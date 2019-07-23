@@ -103,10 +103,22 @@
 		2C1C01E022DC639F00E4E9C4 /* VENMaterialPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C1C01DF22DC639F00E4E9C4 /* VENMaterialPageViewController.m */; };
 		2C1C01E322DC63AD00E4E9C4 /* VENNewsPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C1C01E222DC63AD00E4E9C4 /* VENNewsPageViewController.m */; };
 		2C1C01E622DC63B800E4E9C4 /* VENMinePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C1C01E522DC63B800E4E9C4 /* VENMinePageViewController.m */; };
+		2C8278A022E55F930066B0C2 /* TYPageControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C82789C22E55F930066B0C2 /* TYPageControl.m */; };
+		2C8278A122E55F930066B0C2 /* TYCyclePagerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C82789D22E55F930066B0C2 /* TYCyclePagerView.m */; };
+		2C8278A222E55F930066B0C2 /* TYCyclePagerTransformLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C82789E22E55F930066B0C2 /* TYCyclePagerTransformLayout.m */; };
+		2C8278A622E560550066B0C2 /* VENHomePageBannerCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C8278A322E560550066B0C2 /* VENHomePageBannerCollectionViewCell.xib */; };
+		2C8278A722E560550066B0C2 /* VENHomePageBannerCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C8278A522E560550066B0C2 /* VENHomePageBannerCollectionViewCell.m */; };
+		2C8278AB22E59C970066B0C2 /* VENHomePageTableViewHeaderViewTwo.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C8278AA22E59C970066B0C2 /* VENHomePageTableViewHeaderViewTwo.m */; };
+		2C9C4DD022DC797B00A67B9D /* VENHomePageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C9C4DCE22DC797B00A67B9D /* VENHomePageTableViewCell.m */; };
+		2C9C4DD122DC797B00A67B9D /* VENHomePageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C9C4DCF22DC797B00A67B9D /* VENHomePageTableViewCell.xib */; };
 		2C9D240E22D8333B00B15896 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C9D240D22D8333B00B15896 /* AppDelegate.m */; };
 		2C9D241622D8333C00B15896 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2C9D241522D8333C00B15896 /* Assets.xcassets */; };
 		2C9D241922D8333C00B15896 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2C9D241722D8333C00B15896 /* LaunchScreen.storyboard */; };
 		2C9D241C22D8333C00B15896 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C9D241B22D8333C00B15896 /* main.m */; };
+		2CECFDC822E1C2DE001D9F7F /* VENHomePageTableViewCellTwo.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CECFDC622E1C2DE001D9F7F /* VENHomePageTableViewCellTwo.m */; };
+		2CECFDC922E1C2DE001D9F7F /* VENHomePageTableViewCellTwo.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2CECFDC722E1C2DE001D9F7F /* VENHomePageTableViewCellTwo.xib */; };
+		2CECFDCE22E1C62B001D9F7F /* VENHomePageTableViewHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CECFDCD22E1C62B001D9F7F /* VENHomePageTableViewHeaderView.m */; };
+		2CECFDD022E1C637001D9F7F /* VENHomePageTableViewHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2CECFDCF22E1C636001D9F7F /* VENHomePageTableViewHeaderView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -314,6 +326,20 @@
 		2C1CFFCB22DC1EE400E4E9C4 /* MJRefreshComponent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJRefreshComponent.m; sourceTree = "<group>"; };
 		2C1CFFCC22DC1EE400E4E9C4 /* MJRefreshFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshFooter.h; sourceTree = "<group>"; };
 		2C1CFFCD22DC1EE400E4E9C4 /* MJRefreshBackFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshBackFooter.h; sourceTree = "<group>"; };
+		2C82789A22E55F930066B0C2 /* TYCyclePagerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TYCyclePagerView.h; sourceTree = "<group>"; };
+		2C82789B22E55F930066B0C2 /* TYCyclePagerTransformLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TYCyclePagerTransformLayout.h; sourceTree = "<group>"; };
+		2C82789C22E55F930066B0C2 /* TYPageControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TYPageControl.m; sourceTree = "<group>"; };
+		2C82789D22E55F930066B0C2 /* TYCyclePagerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TYCyclePagerView.m; sourceTree = "<group>"; };
+		2C82789E22E55F930066B0C2 /* TYCyclePagerTransformLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TYCyclePagerTransformLayout.m; sourceTree = "<group>"; };
+		2C82789F22E55F930066B0C2 /* TYPageControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TYPageControl.h; sourceTree = "<group>"; };
+		2C8278A322E560550066B0C2 /* VENHomePageBannerCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VENHomePageBannerCollectionViewCell.xib; sourceTree = "<group>"; };
+		2C8278A422E560550066B0C2 /* VENHomePageBannerCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VENHomePageBannerCollectionViewCell.h; sourceTree = "<group>"; };
+		2C8278A522E560550066B0C2 /* VENHomePageBannerCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VENHomePageBannerCollectionViewCell.m; sourceTree = "<group>"; };
+		2C8278A922E59C970066B0C2 /* VENHomePageTableViewHeaderViewTwo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VENHomePageTableViewHeaderViewTwo.h; sourceTree = "<group>"; };
+		2C8278AA22E59C970066B0C2 /* VENHomePageTableViewHeaderViewTwo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VENHomePageTableViewHeaderViewTwo.m; sourceTree = "<group>"; };
+		2C9C4DCD22DC797B00A67B9D /* VENHomePageTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VENHomePageTableViewCell.h; sourceTree = "<group>"; };
+		2C9C4DCE22DC797B00A67B9D /* VENHomePageTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VENHomePageTableViewCell.m; sourceTree = "<group>"; };
+		2C9C4DCF22DC797B00A67B9D /* VENHomePageTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VENHomePageTableViewCell.xib; sourceTree = "<group>"; };
 		2C9D240922D8333B00B15896 /* XingTingYi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XingTingYi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C9D240C22D8333B00B15896 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		2C9D240D22D8333B00B15896 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -321,6 +347,12 @@
 		2C9D241822D8333C00B15896 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2C9D241A22D8333C00B15896 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2C9D241B22D8333C00B15896 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		2CECFDC522E1C2DE001D9F7F /* VENHomePageTableViewCellTwo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VENHomePageTableViewCellTwo.h; sourceTree = "<group>"; };
+		2CECFDC622E1C2DE001D9F7F /* VENHomePageTableViewCellTwo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VENHomePageTableViewCellTwo.m; sourceTree = "<group>"; };
+		2CECFDC722E1C2DE001D9F7F /* VENHomePageTableViewCellTwo.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VENHomePageTableViewCellTwo.xib; sourceTree = "<group>"; };
+		2CECFDCC22E1C62B001D9F7F /* VENHomePageTableViewHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VENHomePageTableViewHeaderView.h; sourceTree = "<group>"; };
+		2CECFDCD22E1C62B001D9F7F /* VENHomePageTableViewHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VENHomePageTableViewHeaderView.m; sourceTree = "<group>"; };
+		2CECFDCF22E1C636001D9F7F /* VENHomePageTableViewHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VENHomePageTableViewHeaderView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -791,6 +823,8 @@
 		2C1C01D622DC619400E4E9C4 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				2CECFDCB22E1C5F5001D9F7F /* HeaderView */,
+				2CECFDCA22E1C5E6001D9F7F /* Cell */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -845,6 +879,7 @@
 		2C1CFF9122DC1EE300E4E9C4 /* ThirdPartyFramework */ = {
 			isa = PBXGroup;
 			children = (
+				2C82789922E55F930066B0C2 /* TYCyclePagerView */,
 				2C1CFF9222DC1EE300E4E9C4 /* LGPhotoBrowser */,
 				2C1CFF9E22DC1EE300E4E9C4 /* MJRefresh */,
 				2C1C001922DC1EE400E4E9C4 /* Masonry */,
@@ -1056,6 +1091,29 @@
 			path = Base;
 			sourceTree = "<group>";
 		};
+		2C82789922E55F930066B0C2 /* TYCyclePagerView */ = {
+			isa = PBXGroup;
+			children = (
+				2C82789A22E55F930066B0C2 /* TYCyclePagerView.h */,
+				2C82789D22E55F930066B0C2 /* TYCyclePagerView.m */,
+				2C82789F22E55F930066B0C2 /* TYPageControl.h */,
+				2C82789C22E55F930066B0C2 /* TYPageControl.m */,
+				2C82789B22E55F930066B0C2 /* TYCyclePagerTransformLayout.h */,
+				2C82789E22E55F930066B0C2 /* TYCyclePagerTransformLayout.m */,
+			);
+			path = TYCyclePagerView;
+			sourceTree = "<group>";
+		};
+		2C8278A822E58E7A0066B0C2 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				2C8278A422E560550066B0C2 /* VENHomePageBannerCollectionViewCell.h */,
+				2C8278A522E560550066B0C2 /* VENHomePageBannerCollectionViewCell.m */,
+				2C8278A322E560550066B0C2 /* VENHomePageBannerCollectionViewCell.xib */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		2C9D240022D8333B00B15896 = {
 			isa = PBXGroup;
 			children = (
@@ -1085,6 +1143,32 @@
 				2C1CFF8F22DC1C6F00E4E9C4 /* VENPrefixHeader.pch */,
 			);
 			path = XingTingYi;
+			sourceTree = "<group>";
+		};
+		2CECFDCA22E1C5E6001D9F7F /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				2C9C4DCD22DC797B00A67B9D /* VENHomePageTableViewCell.h */,
+				2C9C4DCE22DC797B00A67B9D /* VENHomePageTableViewCell.m */,
+				2C9C4DCF22DC797B00A67B9D /* VENHomePageTableViewCell.xib */,
+				2CECFDC522E1C2DE001D9F7F /* VENHomePageTableViewCellTwo.h */,
+				2CECFDC622E1C2DE001D9F7F /* VENHomePageTableViewCellTwo.m */,
+				2CECFDC722E1C2DE001D9F7F /* VENHomePageTableViewCellTwo.xib */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		2CECFDCB22E1C5F5001D9F7F /* HeaderView */ = {
+			isa = PBXGroup;
+			children = (
+				2CECFDCC22E1C62B001D9F7F /* VENHomePageTableViewHeaderView.h */,
+				2CECFDCD22E1C62B001D9F7F /* VENHomePageTableViewHeaderView.m */,
+				2CECFDCF22E1C636001D9F7F /* VENHomePageTableViewHeaderView.xib */,
+				2C8278A922E59C970066B0C2 /* VENHomePageTableViewHeaderViewTwo.h */,
+				2C8278AA22E59C970066B0C2 /* VENHomePageTableViewHeaderViewTwo.m */,
+				2C8278A822E58E7A0066B0C2 /* Cell */,
+			);
+			path = HeaderView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1144,9 +1228,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2CECFDD022E1C637001D9F7F /* VENHomePageTableViewHeaderView.xib in Resources */,
+				2C8278A622E560550066B0C2 /* VENHomePageBannerCollectionViewCell.xib in Resources */,
 				2C9D241922D8333C00B15896 /* LaunchScreen.storyboard in Resources */,
 				2C9D241622D8333C00B15896 /* Assets.xcassets in Resources */,
+				2C9C4DD122DC797B00A67B9D /* VENHomePageTableViewCell.xib in Resources */,
 				2C1C018522DC1EE400E4E9C4 /* IQKeyboardManager.bundle in Resources */,
+				2CECFDC922E1C2DE001D9F7F /* VENHomePageTableViewCellTwo.xib in Resources */,
 				2C1C012A22DC1EE400E4E9C4 /* MJRefresh.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1168,7 +1256,9 @@
 				2C1C01A522DC1EE400E4E9C4 /* TAAnimatedDotView.m in Sources */,
 				2C1C019F22DC1EE400E4E9C4 /* MBProgressHUD.m in Sources */,
 				2C1C018022DC1EE400E4E9C4 /* IQToolbar.m in Sources */,
+				2CECFDC822E1C2DE001D9F7F /* VENHomePageTableViewCellTwo.m in Sources */,
 				2C1C012922DC1EE400E4E9C4 /* MJRefreshConst.m in Sources */,
+				2C8278A722E560550066B0C2 /* VENHomePageBannerCollectionViewCell.m in Sources */,
 				2C1C017D22DC1EE400E4E9C4 /* NSObject+YYModel.m in Sources */,
 				2C1C01B122DC1EE400E4E9C4 /* NSData+ImageContentType.m in Sources */,
 				2C1C01CA22DC1EE400E4E9C4 /* VENNavigationController.m in Sources */,
@@ -1178,6 +1268,7 @@
 				2C1C01A422DC1EE400E4E9C4 /* TAPageControl.m in Sources */,
 				2C1C01BC22DC1EE400E4E9C4 /* VENNetworkingManager.m in Sources */,
 				2C1C018622DC1EE400E4E9C4 /* IQKeyboardManager.m in Sources */,
+				2CECFDCE22E1C62B001D9F7F /* VENHomePageTableViewHeaderView.m in Sources */,
 				2C1C01E322DC63AD00E4E9C4 /* VENNewsPageViewController.m in Sources */,
 				2C1C018322DC1EE400E4E9C4 /* IQUIView+IQKeyboardToolbar.m in Sources */,
 				2C9D241C22D8333C00B15896 /* main.m in Sources */,
@@ -1209,6 +1300,7 @@
 				2C1C01A122DC1EE400E4E9C4 /* UIView+SDExtension.m in Sources */,
 				2C1C01AB22DC1EE400E4E9C4 /* UIImage+GIF.m in Sources */,
 				2C1C013A22DC1EE400E4E9C4 /* MJRefreshAutoFooter.m in Sources */,
+				2C8278AB22E59C970066B0C2 /* VENHomePageTableViewHeaderViewTwo.m in Sources */,
 				2C1C01AA22DC1EE400E4E9C4 /* SDWebImageDownloader.m in Sources */,
 				2C1C018822DC1EE400E4E9C4 /* IQUITextFieldView+Additions.m in Sources */,
 				2C1C013B22DC1EE400E4E9C4 /* MJRefreshComponent.m in Sources */,
@@ -1216,7 +1308,9 @@
 				2C1C019A22DC1EE400E4E9C4 /* AFNetworkReachabilityManager.m in Sources */,
 				2C1C01A322DC1EE400E4E9C4 /* TADotView.m in Sources */,
 				2C1C01A822DC1EE400E4E9C4 /* SDWebImageDecoder.m in Sources */,
+				2C8278A222E55F930066B0C2 /* TYCyclePagerTransformLayout.m in Sources */,
 				2C1C018C22DC1EE400E4E9C4 /* IQKeyboardReturnKeyHandler.m in Sources */,
+				2C8278A022E55F930066B0C2 /* TYPageControl.m in Sources */,
 				2C1C013222DC1EE400E4E9C4 /* MJRefreshAutoGifFooter.m in Sources */,
 				2C1C019022DC1EE400E4E9C4 /* UIImageView+AFNetworking.m in Sources */,
 				2C1C013122DC1EE400E4E9C4 /* MJRefreshAutoStateFooter.m in Sources */,
@@ -1234,6 +1328,7 @@
 				2C1C015F22DC1EE400E4E9C4 /* MASLayoutConstraint.m in Sources */,
 				2C1C019222DC1EE400E4E9C4 /* UIActivityIndicatorView+AFNetworking.m in Sources */,
 				2C1C016122DC1EE400E4E9C4 /* View+MASAdditions.m in Sources */,
+				2C8278A122E55F930066B0C2 /* TYCyclePagerView.m in Sources */,
 				2C1C019522DC1EE400E4E9C4 /* AFImageDownloader.m in Sources */,
 				2C1C018922DC1EE400E4E9C4 /* IQUIScrollView+Additions.m in Sources */,
 				2C1C013822DC1EE400E4E9C4 /* MJRefreshHeader.m in Sources */,
@@ -1254,6 +1349,7 @@
 				2C1C012E22DC1EE400E4E9C4 /* MJRefreshBackGifFooter.m in Sources */,
 				2C1C01DD22DC633000E4E9C4 /* VENHomePageViewController.m in Sources */,
 				2C1C012F22DC1EE400E4E9C4 /* MJRefreshBackStateFooter.m in Sources */,
+				2C9C4DD022DC797B00A67B9D /* VENHomePageTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1391,7 +1487,7 @@
 				DEVELOPMENT_TEAM = 5T28DA8AL2;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/XingTingYi/VENPrefixHeader.pch";
 				INFOPLIST_FILE = XingTingYi/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1410,7 +1506,7 @@
 				DEVELOPMENT_TEAM = 5T28DA8AL2;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/XingTingYi/VENPrefixHeader.pch";
 				INFOPLIST_FILE = XingTingYi/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

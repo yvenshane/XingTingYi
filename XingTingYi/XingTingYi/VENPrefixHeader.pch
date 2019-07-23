@@ -23,6 +23,8 @@
 #import "MJRefresh.h"
 #import "Masonry.h"
 #import "IQKeyboardManager.h"
+#import "TYCyclePagerView.h"
+#import "TYPageControl.h"
 
 #import "MBProgressHUD+VEN.h"
 #import "VENEmptyClass.h"

@@ -26,7 +26,7 @@
     self.viewControllers = @[vc1, vc2, vc3, vc4];
     
     self.delegate = self;
-    self.tabBar.tintColor = COLOR_THEME;
+    self.tabBar.tintColor = UIColorFromRGB(0x222222);
     self.tabBar.translucent = NO;
 }
 
