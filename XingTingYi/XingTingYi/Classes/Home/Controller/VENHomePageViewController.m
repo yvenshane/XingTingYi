@@ -52,7 +52,6 @@ static NSString *const cellIdentifier3 = @"cellIdentifier3";
     
     [self.tableView registerNib:[UINib nibWithNibName:@"VENHomePageTableViewCell" bundle:nil] forCellReuseIdentifier:cellIdentifier];
     [self.tableView registerNib:[UINib nibWithNibName:@"VENHomePageTableViewCellTwo" bundle:nil] forCellReuseIdentifier:cellIdentifier2];
-    
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
 //    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
@@ -83,6 +82,9 @@ static NSString *const cellIdentifier3 = @"cellIdentifier3";
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
         cell.iconImageView.backgroundColor = [UIColor colorWithRed:arc4random_uniform(255)/255.0 green:arc4random_uniform(255)/255.0 blue:arc4random_uniform(255)/255.0 alpha:1];
+        
+        cell.tagImageView.hidden = indexPath.section == 1 ? YES : NO;
+        cell.tagImageView.backgroundColor = [UIColor colorWithRed:arc4random_uniform(255)/255.0 green:arc4random_uniform(255)/255.0 blue:arc4random_uniform(255)/255.0 alpha:1];
         
         return cell;
     }
