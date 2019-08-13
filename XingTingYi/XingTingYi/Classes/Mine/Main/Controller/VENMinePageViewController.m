@@ -9,6 +9,7 @@
 #import "VENMinePageViewController.h"
 #import "VENMinePageTableViewCell.h"
 #import "VENMinePageTableHeaderView.h"
+#import "VENMyOtherViewController.h"
 
 @interface VENMinePageViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, copy) NSArray *cellArr;
@@ -69,6 +70,28 @@ static NSString *const cellIdentifier = @"cellIdentifier";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
+    if (indexPath.row == 4) {
+        
+    } else if (indexPath.row == 5) {
+        
+    } else if (indexPath.row == 6) {
+        
+    } else {
+        VENMyOtherViewController *vc = [[VENMyOtherViewController alloc] init];
+        
+        if (indexPath.row == 0) {
+            vc.navigationItem.title = @"我的听写";
+        } else if (indexPath.row == 1) {
+            vc.navigationItem.title = @"我的朗读";
+        } else if (indexPath.row == 2) {
+            vc.navigationItem.title = @"我的翻译";
+        } else {
+            vc.navigationItem.title = @"我的字幕";
+        }
+        
+        vc.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {

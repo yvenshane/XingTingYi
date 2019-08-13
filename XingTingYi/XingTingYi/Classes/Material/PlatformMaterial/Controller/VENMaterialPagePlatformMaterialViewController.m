@@ -26,7 +26,7 @@ static NSString *const cellIdentifier = @"cellIdentifier";
 
 #pragma mark - TableView
 - (void)setupTableView {
-    UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 40, kMainScreenWidth, kMainScreenHeight - kStatusBarAndNavigationBarHeight - 40 - kTabBarHeight) style:UITableViewStyleGrouped];
+    UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 48, kMainScreenWidth, kMainScreenHeight - kStatusBarAndNavigationBarHeight - 48 - kTabBarHeight) style:UITableViewStyleGrouped];
     tableView.backgroundColor = UIColorMake(245, 245, 245);
     tableView.delegate = self;
     tableView.dataSource = self;

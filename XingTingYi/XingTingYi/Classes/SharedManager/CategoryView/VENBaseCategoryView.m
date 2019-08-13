@@ -57,9 +57,11 @@
         [lineView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.bottom.equalTo(self.btnsArr[0]);
             make.width.mas_equalTo(20);
-            make.height.mas_equalTo(1);
+            make.height.mas_equalTo(3);
             make.centerX.equalTo(self.btnsArr[0]);
         }];
+        ViewRadius(lineView, 1.5f);
+        
         // 记录成员变量
         _lineView = lineView;
     }

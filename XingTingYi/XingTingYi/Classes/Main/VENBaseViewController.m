@@ -14,6 +14,14 @@
 
 @implementation VENBaseViewController
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    UIImage *backgroundImage = [self imageFromColor:UIColorFromRGB(0xF1F1F1) rect:CGRectMake(0, 0, kMainScreenWidth, 1)];
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
+    [self.navigationController.navigationBar setShadowImage:backgroundImage];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -71,6 +79,17 @@
     } else {
         [self.navigationController popViewControllerAnimated:YES];
     }
+}
+
+- (UIImage *)imageFromColor:(UIColor *)color rect:(CGRect)rect {
+    UIGraphicsBeginImageContext(rect.size);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextSetFillColorWithColor(context, [color CGColor]);
+    CGContextFillRect(context, rect);
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return image;
 }
 
 #pragma mark - dealloc
