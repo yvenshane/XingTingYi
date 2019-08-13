@@ -9,7 +9,6 @@
 #import "VENMinePageTableHeaderView.h"
 
 @interface VENMinePageTableHeaderView ()
-@property (nonatomic, strong) UIButton *setttingButton;
 @property (nonatomic, strong) UIButton *iconButton;
 @property (nonatomic, strong) UILabel *nameLabel;
 @property (nonatomic, strong) UILabel *descriptionLabel;
@@ -90,7 +89,7 @@
 - (void)layoutSubviews {
     [super layoutSubviews];
     
-    self.setttingButton.frame = CGRectMake(kMainScreenWidth - 40, kStatusBarHeight + 12, 20, 20);
+    self.setttingButton.frame = CGRectMake(kMainScreenWidth - 44 - 8, kStatusBarHeight, 44, 44);
     self.iconButton.frame = CGRectMake(20, kStatusBarHeight + 44, 70, 70);
     self.nameLabel.frame = CGRectMake(20 + 70 + 15, kStatusBarHeight + 55, kMainScreenWidth - 20 - 70 - 15 - 20, 25);
     self.descriptionLabel.frame = CGRectMake(20 + 70 + 15, kStatusBarHeight + 55 + 6 + 25, kMainScreenWidth - 20 - 70 - 15 - 20, 17);

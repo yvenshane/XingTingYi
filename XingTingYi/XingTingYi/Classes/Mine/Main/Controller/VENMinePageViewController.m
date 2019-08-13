@@ -9,6 +9,7 @@
 #import "VENMinePageViewController.h"
 #import "VENMinePageTableViewCell.h"
 #import "VENMinePageTableHeaderView.h"
+#import "VENSettingViewController.h"
 #import "VENMyOtherViewController.h"
 
 @interface VENMinePageViewController () <UITableViewDelegate, UITableViewDataSource>
@@ -99,8 +100,8 @@ static NSString *const cellIdentifier = @"cellIdentifier";
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    
     VENMinePageTableHeaderView *headerView = [[VENMinePageTableHeaderView alloc] init];
+    [headerView.setttingButton addTarget:self action:@selector(setttingButton) forControlEvents:UIControlEventTouchUpInside];
     return headerView;
 }
 
@@ -114,6 +115,12 @@ static NSString *const cellIdentifier = @"cellIdentifier";
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
     return CGFLOAT_MIN;
+}
+
+- (void)setttingButton {
+    VENSettingViewController *vc = [[VENSettingViewController alloc] init];
+    vc.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (NSArray *)cellArr {

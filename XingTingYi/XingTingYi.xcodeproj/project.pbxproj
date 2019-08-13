@@ -127,6 +127,9 @@
 		2CBCDEAF2302B8460010BD11 /* VENMyOtherViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CBCDEAE2302B8460010BD11 /* VENMyOtherViewController.m */; };
 		2CBCDEB22302B8860010BD11 /* VENMyOtherPlatformMaterialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CBCDEB12302B8860010BD11 /* VENMyOtherPlatformMaterialViewController.m */; };
 		2CBCDEB52302B89B0010BD11 /* VENMyOtherPersonalMaterialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CBCDEB42302B89B0010BD11 /* VENMyOtherPersonalMaterialViewController.m */; };
+		2CBCDEBC2302BBC70010BD11 /* VENSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CBCDEBB2302BBC70010BD11 /* VENSettingViewController.m */; };
+		2CBCDEC02302BF270010BD11 /* VENSettingTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CBCDEBE2302BF270010BD11 /* VENSettingTableViewCell.m */; };
+		2CBCDEC12302BF270010BD11 /* VENSettingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2CBCDEBF2302BF270010BD11 /* VENSettingTableViewCell.xib */; };
 		2CECFDC822E1C2DE001D9F7F /* VENHomePageTableViewCellTwo.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CECFDC622E1C2DE001D9F7F /* VENHomePageTableViewCellTwo.m */; };
 		2CECFDC922E1C2DE001D9F7F /* VENHomePageTableViewCellTwo.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2CECFDC722E1C2DE001D9F7F /* VENHomePageTableViewCellTwo.xib */; };
 		2CECFDCE22E1C62B001D9F7F /* VENHomePageTableViewHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CECFDCD22E1C62B001D9F7F /* VENHomePageTableViewHeaderView.m */; };
@@ -382,6 +385,11 @@
 		2CBCDEB12302B8860010BD11 /* VENMyOtherPlatformMaterialViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VENMyOtherPlatformMaterialViewController.m; sourceTree = "<group>"; };
 		2CBCDEB32302B89B0010BD11 /* VENMyOtherPersonalMaterialViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VENMyOtherPersonalMaterialViewController.h; sourceTree = "<group>"; };
 		2CBCDEB42302B89B0010BD11 /* VENMyOtherPersonalMaterialViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VENMyOtherPersonalMaterialViewController.m; sourceTree = "<group>"; };
+		2CBCDEBA2302BBC70010BD11 /* VENSettingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VENSettingViewController.h; sourceTree = "<group>"; };
+		2CBCDEBB2302BBC70010BD11 /* VENSettingViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VENSettingViewController.m; sourceTree = "<group>"; };
+		2CBCDEBD2302BF270010BD11 /* VENSettingTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VENSettingTableViewCell.h; sourceTree = "<group>"; };
+		2CBCDEBE2302BF270010BD11 /* VENSettingTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VENSettingTableViewCell.m; sourceTree = "<group>"; };
+		2CBCDEBF2302BF270010BD11 /* VENSettingTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VENSettingTableViewCell.xib; sourceTree = "<group>"; };
 		2CECFDC522E1C2DE001D9F7F /* VENHomePageTableViewCellTwo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VENHomePageTableViewCellTwo.h; sourceTree = "<group>"; };
 		2CECFDC622E1C2DE001D9F7F /* VENHomePageTableViewCellTwo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VENHomePageTableViewCellTwo.m; sourceTree = "<group>"; };
 		2CECFDC722E1C2DE001D9F7F /* VENHomePageTableViewCellTwo.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VENHomePageTableViewCellTwo.xib; sourceTree = "<group>"; };
@@ -768,6 +776,7 @@
 			isa = PBXGroup;
 			children = (
 				2C5CC94F2302981700FAC842 /* Main */,
+				2CBCDEB62302BB730010BD11 /* Setting */,
 				2CBCDEA62302B7100010BD11 /* Other */,
 				2C5CC95F23029A7B00FAC842 /* MyNewWordBook */,
 				2C5CC96723029A7B00FAC842 /* MemberCentre */,
@@ -1467,6 +1476,42 @@
 			path = PersonalMaterial;
 			sourceTree = "<group>";
 		};
+		2CBCDEB62302BB730010BD11 /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				2CBCDEB92302BB960010BD11 /* Model */,
+				2CBCDEB82302BB910010BD11 /* View */,
+				2CBCDEB72302BB8B0010BD11 /* Controller */,
+			);
+			path = Setting;
+			sourceTree = "<group>";
+		};
+		2CBCDEB72302BB8B0010BD11 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				2CBCDEBA2302BBC70010BD11 /* VENSettingViewController.h */,
+				2CBCDEBB2302BBC70010BD11 /* VENSettingViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		2CBCDEB82302BB910010BD11 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				2CBCDEBD2302BF270010BD11 /* VENSettingTableViewCell.h */,
+				2CBCDEBE2302BF270010BD11 /* VENSettingTableViewCell.m */,
+				2CBCDEBF2302BF270010BD11 /* VENSettingTableViewCell.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		2CBCDEB92302BB960010BD11 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		2CECFDCA22E1C5E6001D9F7F /* Cell */ = {
 			isa = PBXGroup;
 			children = (
@@ -1554,6 +1599,7 @@
 				2C8278A622E560550066B0C2 /* VENHomePageBannerCollectionViewCell.xib in Resources */,
 				2C9D241922D8333C00B15896 /* LaunchScreen.storyboard in Resources */,
 				2C24703022F2E28A00142646 /* VENMinePageTableViewCell.xib in Resources */,
+				2CBCDEC12302BF270010BD11 /* VENSettingTableViewCell.xib in Resources */,
 				2C9D241622D8333C00B15896 /* Assets.xcassets in Resources */,
 				2C9C4DD122DC797B00A67B9D /* VENHomePageTableViewCell.xib in Resources */,
 				2C1C018522DC1EE400E4E9C4 /* IQKeyboardManager.bundle in Resources */,
@@ -1605,6 +1651,7 @@
 				2C1C01C222DC1EE400E4E9C4 /* VENUserStatusManager.m in Sources */,
 				2C1C015B22DC1EE400E4E9C4 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,
 				2C1C01A922DC1EE400E4E9C4 /* UIImageView+HighlightedWebCache.m in Sources */,
+				2CBCDEC02302BF270010BD11 /* VENSettingTableViewCell.m in Sources */,
 				2C1C018222DC1EE400E4E9C4 /* IQBarButtonItem.m in Sources */,
 				2C1C01C722DC1EE400E4E9C4 /* VENBaseViewController.m in Sources */,
 				2C1C013622DC1EE400E4E9C4 /* MJRefreshGifHeader.m in Sources */,
@@ -1644,6 +1691,7 @@
 				2C8278A022E55F930066B0C2 /* TYPageControl.m in Sources */,
 				2C1C013222DC1EE400E4E9C4 /* MJRefreshAutoGifFooter.m in Sources */,
 				2C1C019022DC1EE400E4E9C4 /* UIImageView+AFNetworking.m in Sources */,
+				2CBCDEBC2302BBC70010BD11 /* VENSettingViewController.m in Sources */,
 				2C1C013122DC1EE400E4E9C4 /* MJRefreshAutoStateFooter.m in Sources */,
 				2C1C01B522DC1EE400E4E9C4 /* MBProgressHUD+VEN.m in Sources */,
 				2C1C016022DC1EE400E4E9C4 /* NSArray+MASAdditions.m in Sources */,

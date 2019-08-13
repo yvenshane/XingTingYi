@@ -11,6 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface VENMinePageTableHeaderView : UIView
+@property (nonatomic, strong) UIButton *setttingButton;
 
 @end
 
