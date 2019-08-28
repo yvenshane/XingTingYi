@@ -10,6 +10,7 @@
 #import "VENSettingTableViewCell.h"
 #import "VENSettingModifyPasswordViewController.h"
 #import "VENSettingPersonalInformationViewController.h"
+#import "VENSettingFeedbackViewController.h"
 
 @interface VENSettingViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, copy) NSArray *titleArr;
@@ -78,6 +79,9 @@ static NSString *const cellIdentifier = @"cellIdentifier";
                 [MBProgressHUD showText:@"清除缓存成功"];
                 [self.tableView reloadData];
             }];
+        } else if (indexPath.row == 3) {
+            VENSettingFeedbackViewController *vc = [[VENSettingFeedbackViewController alloc] init];
+            [self.navigationController pushViewController:vc animated:YES];
         }
     }
 }

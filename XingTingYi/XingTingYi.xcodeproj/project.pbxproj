@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2C0F87CD23165EA7003E9DB3 /* VENSettingFeedbackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C0F87CB23165EA7003E9DB3 /* VENSettingFeedbackViewController.m */; };
+		2C0F87CE23165EA7003E9DB3 /* VENSettingFeedbackViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C0F87CC23165EA7003E9DB3 /* VENSettingFeedbackViewController.xib */; };
 		2C1C012822DC1EE400E4E9C4 /* UIScrollView+MJRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C1CFFA022DC1EE300E4E9C4 /* UIScrollView+MJRefresh.m */; };
 		2C1C012922DC1EE400E4E9C4 /* MJRefreshConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C1CFFA122DC1EE300E4E9C4 /* MJRefreshConst.m */; };
 		2C1C012A22DC1EE400E4E9C4 /* MJRefresh.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2C1CFFA522DC1EE300E4E9C4 /* MJRefresh.bundle */; };
@@ -144,6 +146,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2C0F87CA23165EA7003E9DB3 /* VENSettingFeedbackViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VENSettingFeedbackViewController.h; sourceTree = "<group>"; };
+		2C0F87CB23165EA7003E9DB3 /* VENSettingFeedbackViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VENSettingFeedbackViewController.m; sourceTree = "<group>"; };
+		2C0F87CC23165EA7003E9DB3 /* VENSettingFeedbackViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VENSettingFeedbackViewController.xib; sourceTree = "<group>"; };
 		2C1C001B22DC1EE400E4E9C4 /* MASCompositeConstraint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASCompositeConstraint.h; sourceTree = "<group>"; };
 		2C1C001C22DC1EE400E4E9C4 /* NSLayoutConstraint+MASDebugAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSLayoutConstraint+MASDebugAdditions.m"; sourceTree = "<group>"; };
 		2C1C001D22DC1EE400E4E9C4 /* MASConstraint+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MASConstraint+Private.h"; sourceTree = "<group>"; };
@@ -429,6 +434,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2C0F87C623165D71003E9DB3 /* Feedback */ = {
+			isa = PBXGroup;
+			children = (
+				2C0F87CA23165EA7003E9DB3 /* VENSettingFeedbackViewController.h */,
+				2C0F87CB23165EA7003E9DB3 /* VENSettingFeedbackViewController.m */,
+				2C0F87CC23165EA7003E9DB3 /* VENSettingFeedbackViewController.xib */,
+			);
+			path = Feedback;
+			sourceTree = "<group>";
+		};
 		2C1C001922DC1EE400E4E9C4 /* Masonry */ = {
 			isa = PBXGroup;
 			children = (
@@ -1542,8 +1557,9 @@
 			isa = PBXGroup;
 			children = (
 				2CBCDEC22302E7970010BD11 /* Main */,
-				2CBCDEC32302E7F40010BD11 /* ModifyPassword */,
 				2CA990832305435A0081CC0C /* PersonalInformation */,
+				2CBCDEC32302E7F40010BD11 /* ModifyPassword */,
+				2C0F87C623165D71003E9DB3 /* Feedback */,
 			);
 			path = Setting;
 			sourceTree = "<group>";
@@ -1668,6 +1684,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2C0F87CE23165EA7003E9DB3 /* VENSettingFeedbackViewController.xib in Resources */,
 				2CECFDD022E1C637001D9F7F /* VENHomePageTableViewHeaderView.xib in Resources */,
 				2CA990A223068D190081CC0C /* VENListPickerViewCell.xib in Resources */,
 				2C8278A622E560550066B0C2 /* VENHomePageBannerCollectionViewCell.xib in Resources */,
@@ -1765,6 +1782,7 @@
 				2C817FFC22F190B100DA6F0B /* VENMaterialPagePersonalMaterialViewController.m in Sources */,
 				2C8278A222E55F930066B0C2 /* TYCyclePagerTransformLayout.m in Sources */,
 				2CBCDEAF2302B8460010BD11 /* VENMyOtherViewController.m in Sources */,
+				2C0F87CD23165EA7003E9DB3 /* VENSettingFeedbackViewController.m in Sources */,
 				2C1C018C22DC1EE400E4E9C4 /* IQKeyboardReturnKeyHandler.m in Sources */,
 				2C8278A022E55F930066B0C2 /* TYPageControl.m in Sources */,
 				2CD13C632302E8A6007974C9 /* VENSettingModifyPasswordViewController.m in Sources */,
