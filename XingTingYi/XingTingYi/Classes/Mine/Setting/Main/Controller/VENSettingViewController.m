@@ -8,9 +8,11 @@
 
 #import "VENSettingViewController.h"
 #import "VENSettingTableViewCell.h"
+#import "VENSettingModifyPasswordViewController.h"
+#import "VENSettingPersonalInformationViewController.h"
 
 @interface VENSettingViewController () <UITableViewDelegate, UITableViewDataSource>
-@property (nonatomic, copy) NSArray *cellArr;
+@property (nonatomic, copy) NSArray *titleArr;
 
 @end
 
@@ -45,7 +47,7 @@ static NSString *const cellIdentifier = @"cellIdentifier";
     VENSettingTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
-    cell.titleLabel.text = self.cellArr[indexPath.section][indexPath.row];
+    cell.titleLabel.text = self.titleArr[indexPath.section][indexPath.row];
     cell.descriptionTextField.userInteractionEnabled = NO;
     cell.descriptionTextField.textAlignment = NSTextAlignmentRight;
     
@@ -61,7 +63,13 @@ static NSString *const cellIdentifier = @"cellIdentifier";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {
-        
+        if (indexPath.row == 0) {
+            VENSettingPersonalInformationViewController *vc = [[VENSettingPersonalInformationViewController alloc] init];
+            [self.navigationController pushViewController:vc animated:YES];
+        } else {
+            VENSettingModifyPasswordViewController *vc = [[VENSettingModifyPasswordViewController alloc] init];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
     } else {
         if (indexPath.row == 0) {
             
@@ -124,11 +132,11 @@ static NSString *const cellIdentifier = @"cellIdentifier";
     [self presentViewController:alert animated:YES completion:nil];
 }
 
-- (NSArray *)cellArr {
-    if (!_cellArr) {
-        _cellArr = @[@[@"个人资料", @"修改密码"], @[@"用户协议", @"清除缓存", @"关于我们", @"意见反馈"]];
+- (NSArray *)titleArr {
+    if (!_titleArr) {
+        _titleArr = @[@[@"个人资料", @"修改密码"], @[@"用户协议", @"清除缓存", @"关于我们", @"意见反馈"]];
     }
-    return _cellArr;
+    return _titleArr;
 }
 
 /*

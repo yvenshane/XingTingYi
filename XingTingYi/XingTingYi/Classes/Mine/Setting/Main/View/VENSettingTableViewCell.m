@@ -13,6 +13,8 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
+    
+    ViewRadius(self.iconImageView, 20.0f);
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

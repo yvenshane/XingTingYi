@@ -124,12 +124,19 @@
 		2C9D241622D8333C00B15896 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2C9D241522D8333C00B15896 /* Assets.xcassets */; };
 		2C9D241922D8333C00B15896 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2C9D241722D8333C00B15896 /* LaunchScreen.storyboard */; };
 		2C9D241C22D8333C00B15896 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C9D241B22D8333C00B15896 /* main.m */; };
+		2CA9908623054AED0081CC0C /* VENSettingPersonalInformationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CA9908523054AED0081CC0C /* VENSettingPersonalInformationViewController.m */; };
+		2CA9908923055D7A0081CC0C /* VENSettingPersonalInformationNickNameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CA9908823055D7A0081CC0C /* VENSettingPersonalInformationNickNameViewController.m */; };
+		2CA990A123068D190081CC0C /* VENDatePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CA9909923068D180081CC0C /* VENDatePickerView.m */; };
+		2CA990A223068D190081CC0C /* VENListPickerViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2CA9909A23068D180081CC0C /* VENListPickerViewCell.xib */; };
+		2CA990A323068D190081CC0C /* VENListPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CA9909B23068D180081CC0C /* VENListPickerView.m */; };
+		2CA990A423068D190081CC0C /* VENListPickerViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CA9909C23068D180081CC0C /* VENListPickerViewCell.m */; };
 		2CBCDEAF2302B8460010BD11 /* VENMyOtherViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CBCDEAE2302B8460010BD11 /* VENMyOtherViewController.m */; };
 		2CBCDEB22302B8860010BD11 /* VENMyOtherPlatformMaterialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CBCDEB12302B8860010BD11 /* VENMyOtherPlatformMaterialViewController.m */; };
 		2CBCDEB52302B89B0010BD11 /* VENMyOtherPersonalMaterialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CBCDEB42302B89B0010BD11 /* VENMyOtherPersonalMaterialViewController.m */; };
 		2CBCDEBC2302BBC70010BD11 /* VENSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CBCDEBB2302BBC70010BD11 /* VENSettingViewController.m */; };
 		2CBCDEC02302BF270010BD11 /* VENSettingTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CBCDEBE2302BF270010BD11 /* VENSettingTableViewCell.m */; };
 		2CBCDEC12302BF270010BD11 /* VENSettingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2CBCDEBF2302BF270010BD11 /* VENSettingTableViewCell.xib */; };
+		2CD13C632302E8A6007974C9 /* VENSettingModifyPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CD13C622302E8A6007974C9 /* VENSettingModifyPasswordViewController.m */; };
 		2CECFDC822E1C2DE001D9F7F /* VENHomePageTableViewCellTwo.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CECFDC622E1C2DE001D9F7F /* VENHomePageTableViewCellTwo.m */; };
 		2CECFDC922E1C2DE001D9F7F /* VENHomePageTableViewCellTwo.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2CECFDC722E1C2DE001D9F7F /* VENHomePageTableViewCellTwo.xib */; };
 		2CECFDCE22E1C62B001D9F7F /* VENHomePageTableViewHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CECFDCD22E1C62B001D9F7F /* VENHomePageTableViewHeaderView.m */; };
@@ -379,6 +386,17 @@
 		2C9D241822D8333C00B15896 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2C9D241A22D8333C00B15896 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2C9D241B22D8333C00B15896 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		2CA9908423054AED0081CC0C /* VENSettingPersonalInformationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VENSettingPersonalInformationViewController.h; sourceTree = "<group>"; };
+		2CA9908523054AED0081CC0C /* VENSettingPersonalInformationViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VENSettingPersonalInformationViewController.m; sourceTree = "<group>"; };
+		2CA9908723055D7A0081CC0C /* VENSettingPersonalInformationNickNameViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VENSettingPersonalInformationNickNameViewController.h; sourceTree = "<group>"; };
+		2CA9908823055D7A0081CC0C /* VENSettingPersonalInformationNickNameViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VENSettingPersonalInformationNickNameViewController.m; sourceTree = "<group>"; };
+		2CA9909823068D180081CC0C /* VENListPickerViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VENListPickerViewCell.h; sourceTree = "<group>"; };
+		2CA9909923068D180081CC0C /* VENDatePickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VENDatePickerView.m; sourceTree = "<group>"; };
+		2CA9909A23068D180081CC0C /* VENListPickerViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VENListPickerViewCell.xib; sourceTree = "<group>"; };
+		2CA9909B23068D180081CC0C /* VENListPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VENListPickerView.m; sourceTree = "<group>"; };
+		2CA9909C23068D180081CC0C /* VENListPickerViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VENListPickerViewCell.m; sourceTree = "<group>"; };
+		2CA9909E23068D180081CC0C /* VENDatePickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VENDatePickerView.h; sourceTree = "<group>"; };
+		2CA9909F23068D180081CC0C /* VENListPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VENListPickerView.h; sourceTree = "<group>"; };
 		2CBCDEAD2302B8460010BD11 /* VENMyOtherViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VENMyOtherViewController.h; sourceTree = "<group>"; };
 		2CBCDEAE2302B8460010BD11 /* VENMyOtherViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VENMyOtherViewController.m; sourceTree = "<group>"; };
 		2CBCDEB02302B8860010BD11 /* VENMyOtherPlatformMaterialViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VENMyOtherPlatformMaterialViewController.h; sourceTree = "<group>"; };
@@ -390,6 +408,8 @@
 		2CBCDEBD2302BF270010BD11 /* VENSettingTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VENSettingTableViewCell.h; sourceTree = "<group>"; };
 		2CBCDEBE2302BF270010BD11 /* VENSettingTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VENSettingTableViewCell.m; sourceTree = "<group>"; };
 		2CBCDEBF2302BF270010BD11 /* VENSettingTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VENSettingTableViewCell.xib; sourceTree = "<group>"; };
+		2CD13C612302E8A6007974C9 /* VENSettingModifyPasswordViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VENSettingModifyPasswordViewController.h; sourceTree = "<group>"; };
+		2CD13C622302E8A6007974C9 /* VENSettingModifyPasswordViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VENSettingModifyPasswordViewController.m; sourceTree = "<group>"; };
 		2CECFDC522E1C2DE001D9F7F /* VENHomePageTableViewCellTwo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VENHomePageTableViewCellTwo.h; sourceTree = "<group>"; };
 		2CECFDC622E1C2DE001D9F7F /* VENHomePageTableViewCellTwo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VENHomePageTableViewCellTwo.m; sourceTree = "<group>"; };
 		2CECFDC722E1C2DE001D9F7F /* VENHomePageTableViewCellTwo.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VENHomePageTableViewCellTwo.xib; sourceTree = "<group>"; };
@@ -727,6 +747,7 @@
 				2C1C00F622DC1EE400E4E9C4 /* VerificationCodeButton */,
 				2C817FE122F172FF00DA6F0B /* CategoryView */,
 				2C1C010422DC1EE400E4E9C4 /* Network */,
+				2CA9909623068D180081CC0C /* PickerView */,
 				2C1C010722DC1EE400E4E9C4 /* WebView */,
 			);
 			path = SharedManager;
@@ -1415,6 +1436,47 @@
 			path = XingTingYi;
 			sourceTree = "<group>";
 		};
+		2CA990832305435A0081CC0C /* PersonalInformation */ = {
+			isa = PBXGroup;
+			children = (
+				2CA9908423054AED0081CC0C /* VENSettingPersonalInformationViewController.h */,
+				2CA9908523054AED0081CC0C /* VENSettingPersonalInformationViewController.m */,
+				2CA9908723055D7A0081CC0C /* VENSettingPersonalInformationNickNameViewController.h */,
+				2CA9908823055D7A0081CC0C /* VENSettingPersonalInformationNickNameViewController.m */,
+			);
+			path = PersonalInformation;
+			sourceTree = "<group>";
+		};
+		2CA9909623068D180081CC0C /* PickerView */ = {
+			isa = PBXGroup;
+			children = (
+				2CA990A52306B5F70081CC0C /* DatePickerView */,
+				2CA990A62306B6070081CC0C /* ListPickerView */,
+			);
+			path = PickerView;
+			sourceTree = "<group>";
+		};
+		2CA990A52306B5F70081CC0C /* DatePickerView */ = {
+			isa = PBXGroup;
+			children = (
+				2CA9909E23068D180081CC0C /* VENDatePickerView.h */,
+				2CA9909923068D180081CC0C /* VENDatePickerView.m */,
+			);
+			path = DatePickerView;
+			sourceTree = "<group>";
+		};
+		2CA990A62306B6070081CC0C /* ListPickerView */ = {
+			isa = PBXGroup;
+			children = (
+				2CA9909F23068D180081CC0C /* VENListPickerView.h */,
+				2CA9909B23068D180081CC0C /* VENListPickerView.m */,
+				2CA9909823068D180081CC0C /* VENListPickerViewCell.h */,
+				2CA9909C23068D180081CC0C /* VENListPickerViewCell.m */,
+				2CA9909A23068D180081CC0C /* VENListPickerViewCell.xib */,
+			);
+			path = ListPickerView;
+			sourceTree = "<group>";
+		};
 		2CBCDEA62302B7100010BD11 /* Other */ = {
 			isa = PBXGroup;
 			children = (
@@ -1479,9 +1541,9 @@
 		2CBCDEB62302BB730010BD11 /* Setting */ = {
 			isa = PBXGroup;
 			children = (
-				2CBCDEB92302BB960010BD11 /* Model */,
-				2CBCDEB82302BB910010BD11 /* View */,
-				2CBCDEB72302BB8B0010BD11 /* Controller */,
+				2CBCDEC22302E7970010BD11 /* Main */,
+				2CBCDEC32302E7F40010BD11 /* ModifyPassword */,
+				2CA990832305435A0081CC0C /* PersonalInformation */,
 			);
 			path = Setting;
 			sourceTree = "<group>";
@@ -1505,11 +1567,22 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		2CBCDEB92302BB960010BD11 /* Model */ = {
+		2CBCDEC22302E7970010BD11 /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				2CBCDEB82302BB910010BD11 /* View */,
+				2CBCDEB72302BB8B0010BD11 /* Controller */,
 			);
-			path = Model;
+			path = Main;
+			sourceTree = "<group>";
+		};
+		2CBCDEC32302E7F40010BD11 /* ModifyPassword */ = {
+			isa = PBXGroup;
+			children = (
+				2CD13C612302E8A6007974C9 /* VENSettingModifyPasswordViewController.h */,
+				2CD13C622302E8A6007974C9 /* VENSettingModifyPasswordViewController.m */,
+			);
+			path = ModifyPassword;
 			sourceTree = "<group>";
 		};
 		2CECFDCA22E1C5E6001D9F7F /* Cell */ = {
@@ -1596,6 +1669,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2CECFDD022E1C637001D9F7F /* VENHomePageTableViewHeaderView.xib in Resources */,
+				2CA990A223068D190081CC0C /* VENListPickerViewCell.xib in Resources */,
 				2C8278A622E560550066B0C2 /* VENHomePageBannerCollectionViewCell.xib in Resources */,
 				2C9D241922D8333C00B15896 /* LaunchScreen.storyboard in Resources */,
 				2C24703022F2E28A00142646 /* VENMinePageTableViewCell.xib in Resources */,
@@ -1615,6 +1689,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2CA990A123068D190081CC0C /* VENDatePickerView.m in Sources */,
 				2C1C018422DC1EE400E4E9C4 /* IQPreviousNextView.m in Sources */,
 				2C1C01A722DC1EE400E4E9C4 /* SDWebImageManager.m in Sources */,
 				2C1C01AC22DC1EE400E4E9C4 /* UIImage+MultiFormat.m in Sources */,
@@ -1643,6 +1718,7 @@
 				2C1C018322DC1EE400E4E9C4 /* IQUIView+IQKeyboardToolbar.m in Sources */,
 				2C9D241C22D8333C00B15896 /* main.m in Sources */,
 				2C1C012D22DC1EE400E4E9C4 /* UIView+MJExtension.m in Sources */,
+				2CA990A323068D190081CC0C /* VENListPickerView.m in Sources */,
 				2C1C018722DC1EE400E4E9C4 /* IQNSArray+Sort.m in Sources */,
 				2C1C018A22DC1EE400E4E9C4 /* IQUIView+Hierarchy.m in Sources */,
 				2C1C01C922DC1EE400E4E9C4 /* VENTabBarController.m in Sources */,
@@ -1653,6 +1729,7 @@
 				2C1C01A922DC1EE400E4E9C4 /* UIImageView+HighlightedWebCache.m in Sources */,
 				2CBCDEC02302BF270010BD11 /* VENSettingTableViewCell.m in Sources */,
 				2C1C018222DC1EE400E4E9C4 /* IQBarButtonItem.m in Sources */,
+				2CA990A423068D190081CC0C /* VENListPickerViewCell.m in Sources */,
 				2C1C01C722DC1EE400E4E9C4 /* VENBaseViewController.m in Sources */,
 				2C1C013622DC1EE400E4E9C4 /* MJRefreshGifHeader.m in Sources */,
 				2C24702F22F2E28A00142646 /* VENMinePageTableViewCell.m in Sources */,
@@ -1680,6 +1757,7 @@
 				2CBCDEB22302B8860010BD11 /* VENMyOtherPlatformMaterialViewController.m in Sources */,
 				2C1C018822DC1EE400E4E9C4 /* IQUITextFieldView+Additions.m in Sources */,
 				2C1C013B22DC1EE400E4E9C4 /* MJRefreshComponent.m in Sources */,
+				2CA9908623054AED0081CC0C /* VENSettingPersonalInformationViewController.m in Sources */,
 				2C1C01BD22DC1EE400E4E9C4 /* VENBaseWebViewController.m in Sources */,
 				2C1C019A22DC1EE400E4E9C4 /* AFNetworkReachabilityManager.m in Sources */,
 				2C1C01A322DC1EE400E4E9C4 /* TADotView.m in Sources */,
@@ -1689,6 +1767,7 @@
 				2CBCDEAF2302B8460010BD11 /* VENMyOtherViewController.m in Sources */,
 				2C1C018C22DC1EE400E4E9C4 /* IQKeyboardReturnKeyHandler.m in Sources */,
 				2C8278A022E55F930066B0C2 /* TYPageControl.m in Sources */,
+				2CD13C632302E8A6007974C9 /* VENSettingModifyPasswordViewController.m in Sources */,
 				2C1C013222DC1EE400E4E9C4 /* MJRefreshAutoGifFooter.m in Sources */,
 				2C1C019022DC1EE400E4E9C4 /* UIImageView+AFNetworking.m in Sources */,
 				2CBCDEBC2302BBC70010BD11 /* VENSettingViewController.m in Sources */,
@@ -1715,6 +1794,7 @@
 				2C1C013922DC1EE400E4E9C4 /* MJRefreshBackFooter.m in Sources */,
 				2C1C019322DC1EE400E4E9C4 /* UIWebView+AFNetworking.m in Sources */,
 				2C1C01AD22DC1EE400E4E9C4 /* SDWebImageCompat.m in Sources */,
+				2CA9908923055D7A0081CC0C /* VENSettingPersonalInformationNickNameViewController.m in Sources */,
 				2C1C018122DC1EE400E4E9C4 /* IQTitleBarButtonItem.m in Sources */,
 				2C1C01B022DC1EE400E4E9C4 /* SDWebImageDownloaderOperation.m in Sources */,
 				2C1C013422DC1EE400E4E9C4 /* MJRefreshNormalHeader.m in Sources */,

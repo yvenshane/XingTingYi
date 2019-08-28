@@ -13,7 +13,7 @@
 #import "VENMyOtherViewController.h"
 
 @interface VENMinePageViewController () <UITableViewDelegate, UITableViewDataSource>
-@property (nonatomic, copy) NSArray *cellArr;
+@property (nonatomic, copy) NSArray *titleArr;
 
 @end
 
@@ -54,8 +54,8 @@ static NSString *const cellIdentifier = @"cellIdentifier";
     VENMinePageTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
-    cell.iconImageView.image = [UIImage imageNamed:self.cellArr[indexPath.row][@"icon"]];
-    cell.titleLabel.text = self.cellArr[indexPath.row][@"title"];
+    cell.iconImageView.image = [UIImage imageNamed:self.titleArr[indexPath.row][@"icon"]];
+    cell.titleLabel.text = self.titleArr[indexPath.row][@"title"];
     cell.descriptionLabel.hidden = indexPath.row == 5 ? NO : YES;
     
     NSString *str = @"11";
@@ -123,9 +123,9 @@ static NSString *const cellIdentifier = @"cellIdentifier";
     [self.navigationController pushViewController:vc animated:YES];
 }
 
-- (NSArray *)cellArr {
-    if (!_cellArr) {
-        _cellArr = @[@{@"icon" : @"icon_mine_01", @"title" : @"我的听写"},
+- (NSArray *)titleArr {
+    if (!_titleArr) {
+        _titleArr = @[@{@"icon" : @"icon_mine_01", @"title" : @"我的听写"},
                      @{@"icon" : @"icon_mine_02", @"title" : @"我的朗读"},
                      @{@"icon" : @"icon_mine_03", @"title" : @"我的翻译"},
                      @{@"icon" : @"icon_mine_04", @"title" : @"我的字幕"},
@@ -133,7 +133,7 @@ static NSString *const cellIdentifier = @"cellIdentifier";
                      @{@"icon" : @"icon_mine_06", @"title" : @"会员中心"},
                      @{@"icon" : @"icon_mine_07", @"title" : @"我的动态"}];
     }
-    return _cellArr;
+    return _titleArr;
 }
 
 /*
