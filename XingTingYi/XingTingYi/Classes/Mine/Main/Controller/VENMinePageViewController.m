@@ -11,6 +11,7 @@
 #import "VENMinePageTableHeaderView.h"
 #import "VENSettingViewController.h"
 #import "VENMyOtherViewController.h"
+#import "VENMinePageMemberCentreViewController.h"
 
 @interface VENMinePageViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, copy) NSArray *titleArr;
@@ -73,8 +74,10 @@ static NSString *const cellIdentifier = @"cellIdentifier";
     
     if (indexPath.row == 4) {
         
-    } else if (indexPath.row == 5) {
-        
+    } else if (indexPath.row == 5) { // 会员中心
+        VENMinePageMemberCentreViewController *vc = [[VENMinePageMemberCentreViewController alloc] init];
+        vc.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:vc animated:YES];
     } else if (indexPath.row == 6) {
         
     } else {

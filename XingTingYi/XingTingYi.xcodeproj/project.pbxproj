@@ -139,6 +139,7 @@
 		2CBCDEC02302BF270010BD11 /* VENSettingTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CBCDEBE2302BF270010BD11 /* VENSettingTableViewCell.m */; };
 		2CBCDEC12302BF270010BD11 /* VENSettingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2CBCDEBF2302BF270010BD11 /* VENSettingTableViewCell.xib */; };
 		2CD13C632302E8A6007974C9 /* VENSettingModifyPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CD13C622302E8A6007974C9 /* VENSettingModifyPasswordViewController.m */; };
+		2CE189DD2317CBBF002E15F5 /* VENMinePageMemberCentreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CE189DC2317CBBF002E15F5 /* VENMinePageMemberCentreViewController.m */; };
 		2CECFDC822E1C2DE001D9F7F /* VENHomePageTableViewCellTwo.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CECFDC622E1C2DE001D9F7F /* VENHomePageTableViewCellTwo.m */; };
 		2CECFDC922E1C2DE001D9F7F /* VENHomePageTableViewCellTwo.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2CECFDC722E1C2DE001D9F7F /* VENHomePageTableViewCellTwo.xib */; };
 		2CECFDCE22E1C62B001D9F7F /* VENHomePageTableViewHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CECFDCD22E1C62B001D9F7F /* VENHomePageTableViewHeaderView.m */; };
@@ -415,6 +416,8 @@
 		2CBCDEBF2302BF270010BD11 /* VENSettingTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VENSettingTableViewCell.xib; sourceTree = "<group>"; };
 		2CD13C612302E8A6007974C9 /* VENSettingModifyPasswordViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VENSettingModifyPasswordViewController.h; sourceTree = "<group>"; };
 		2CD13C622302E8A6007974C9 /* VENSettingModifyPasswordViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VENSettingModifyPasswordViewController.m; sourceTree = "<group>"; };
+		2CE189DB2317CBBF002E15F5 /* VENMinePageMemberCentreViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VENMinePageMemberCentreViewController.h; sourceTree = "<group>"; };
+		2CE189DC2317CBBF002E15F5 /* VENMinePageMemberCentreViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VENMinePageMemberCentreViewController.m; sourceTree = "<group>"; };
 		2CECFDC522E1C2DE001D9F7F /* VENHomePageTableViewCellTwo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VENHomePageTableViewCellTwo.h; sourceTree = "<group>"; };
 		2CECFDC622E1C2DE001D9F7F /* VENHomePageTableViewCellTwo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VENHomePageTableViewCellTwo.m; sourceTree = "<group>"; };
 		2CECFDC722E1C2DE001D9F7F /* VENHomePageTableViewCellTwo.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VENHomePageTableViewCellTwo.xib; sourceTree = "<group>"; };
@@ -1254,9 +1257,9 @@
 		2C5CC96723029A7B00FAC842 /* MemberCentre */ = {
 			isa = PBXGroup;
 			children = (
-				2C5CC96823029A7B00FAC842 /* Controller */,
 				2C5CC96923029A7B00FAC842 /* Model */,
 				2C5CC96A23029A7B00FAC842 /* View */,
+				2C5CC96823029A7B00FAC842 /* Controller */,
 			);
 			path = MemberCentre;
 			sourceTree = "<group>";
@@ -1264,6 +1267,8 @@
 		2C5CC96823029A7B00FAC842 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				2CE189DB2317CBBF002E15F5 /* VENMinePageMemberCentreViewController.h */,
+				2CE189DC2317CBBF002E15F5 /* VENMinePageMemberCentreViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1714,6 +1719,7 @@
 				2C1C01E622DC63B800E4E9C4 /* VENMinePageViewController.m in Sources */,
 				2C1C019422DC1EE400E4E9C4 /* AFAutoPurgingImageCache.m in Sources */,
 				2C1C016322DC1EE400E4E9C4 /* MASViewConstraint.m in Sources */,
+				2CE189DD2317CBBF002E15F5 /* VENMinePageMemberCentreViewController.m in Sources */,
 				2C1C01A522DC1EE400E4E9C4 /* TAAnimatedDotView.m in Sources */,
 				2C1C019F22DC1EE400E4E9C4 /* MBProgressHUD.m in Sources */,
 				2C1C018022DC1EE400E4E9C4 /* IQToolbar.m in Sources */,
