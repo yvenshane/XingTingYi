@@ -19,18 +19,6 @@
 
 @implementation VENNewsPageViewController
 
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    
-    [self.navigationController setNavigationBarHidden:YES animated:animated];
-}
-
-- (void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
-    
-    [self.navigationController setNavigationBarHidden:NO animated:animated];
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -43,7 +31,7 @@
     categoryView.titleFont = [UIFont systemFontOfSize:15.0f weight:UIFontWeightMedium];
     categoryView.titleSelectedFont = [UIFont systemFontOfSize:18.0f weight:UIFontWeightMedium];
     categoryView.titleColorGradientEnabled = YES;
-    [self.view addSubview:categoryView];
+    [self.navigationController.view addSubview:categoryView];
     
     JXCategoryIndicatorLineView *lineView = [[JXCategoryIndicatorLineView alloc] init];
     lineView.indicatorColor = UIColorFromRGB(0xFFDE02);
@@ -56,7 +44,7 @@
     [self.view addSubview:lineView2];
     
     JXCategoryListContainerView *listContainerView = [[JXCategoryListContainerView alloc] initWithDelegate:self];
-    listContainerView.frame = CGRectMake(0, kStatusBarAndNavigationBarHeight, kMainScreenWidth, kMainScreenHeight - kStatusBarAndNavigationBarHeight);
+    listContainerView.frame = CGRectMake(0, 0, kMainScreenWidth, kMainScreenHeight - kStatusBarAndNavigationBarHeight);
     [self.view addSubview:listContainerView];
     //关联cotentScrollView，关联之后才可以互相联动！！！
     categoryView.contentScrollView = listContainerView.scrollView;

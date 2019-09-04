@@ -20,10 +20,10 @@
     if (self = [super initWithFrame:frame]) {
         
         [self setTitle:@"获取验证码" forState:UIControlStateNormal];
-        self.titleLabel.font = [UIFont systemFontOfSize:13.0f];
-        [self setTitleColor:UIColorFromRGB(0xFF9400) forState:UIControlStateNormal];
+        self.titleLabel.font = [UIFont systemFontOfSize:14.0f];
+        [self setTitleColor:UIColorFromRGB(0x222222) forState:UIControlStateNormal];
         
-        ViewBorderRadius(self, 3, 1, UIColorFromRGB(0xFF9400));
+        ViewBorderRadius(self, 18.0f, 1, UIColorFromRGB(0x222222));
     }
     return self;
 }
@@ -41,7 +41,7 @@
     if (self.count != 1){
         self.count -=1;
         self.enabled = NO;
-        [self setTitle:[NSString stringWithFormat:@"%lds后获取", self.count] forState:UIControlStateNormal];
+        [self setTitle:[NSString stringWithFormat:@"%lds", self.count] forState:UIControlStateNormal];
     } else {
         self.enabled = YES;
         [self setTitle:@"获取验证码" forState:UIControlStateNormal];

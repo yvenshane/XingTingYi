@@ -7,6 +7,7 @@
 
 #import "VENTabBarController.h"
 #import "VENNavigationController.h"
+#import "VENLoginPageViewController.h"
 
 @interface VENTabBarController () <UITabBarControllerDelegate>
 
@@ -54,6 +55,20 @@
     VENNavigationController *nav = [[VENNavigationController alloc] initWithRootViewController:vc];
     
     return nav;
+}
+
+- (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController{
+    if (![[VENUserStatusManager sharedManager] isLogin]) {
+        if ([viewController.tabBarItem.title isEqualToString:@"我的"]) {
+            VENLoginPageViewController *vc = [[VENLoginPageViewController alloc] init];
+            VENNavigationController *nav = [[VENNavigationController alloc] initWithRootViewController:vc];
+            [self presentViewController:nav animated:YES completion:nil];
+            
+            return NO;
+        }
+    }
+    
+    return YES;
 }
 
 - (void)didReceiveMemoryWarning {
