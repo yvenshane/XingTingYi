@@ -8,10 +8,10 @@
 
 #import "VENSettingFeedbackViewController.h"
 
-@interface VENSettingFeedbackViewController ()
+@interface VENSettingFeedbackViewController () <UITextViewDelegate>
 @property (weak, nonatomic) IBOutlet UITextView *contentTextView;
 @property (weak, nonatomic) IBOutlet UIButton *determineButton;
-@property (weak, nonatomic) IBOutlet UILabel *placeholdLabel;
+@property (weak, nonatomic) IBOutlet UILabel *placeholderLabel;
 
 @end
 
@@ -27,7 +27,14 @@
     self.determineButton.layer.cornerRadius = 24.0f;
     self.determineButton.layer.masksToBounds = YES;
     
+    self.contentTextView.delegate = self;
+    
     [self setupRightButton];
+}
+
+#pragma mark - UITextView
+- (void)textViewDidChange:(UITextView *)textView {
+    self.placeholderLabel.hidden = textView.text.length > 0 ? YES : NO;
 }
 
 - (void)setupRightButton {

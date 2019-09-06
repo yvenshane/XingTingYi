@@ -191,6 +191,9 @@
 		2CDD5781231E083700F64D57 /* VENLoginPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CDD5777231E083700F64D57 /* VENLoginPageViewController.m */; };
 		2CDD5786231E4A9E00F64D57 /* VENSetPasswordPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CDD5784231E4A9E00F64D57 /* VENSetPasswordPageViewController.m */; };
 		2CDD5787231E4A9E00F64D57 /* VENSetPasswordPageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2CDD5785231E4A9E00F64D57 /* VENSetPasswordPageViewController.xib */; };
+		2CDD578B231F601F00F64D57 /* VENNewsPageReleaseNewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CDD578A231F601F00F64D57 /* VENNewsPageReleaseNewsViewController.m */; };
+		2CDD5792231FA74E00F64D57 /* VENNewsPageReleaseNewsCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CDD5790231FA74E00F64D57 /* VENNewsPageReleaseNewsCollectionViewCell.m */; };
+		2CDD5793231FA74E00F64D57 /* VENNewsPageReleaseNewsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2CDD5791231FA74E00F64D57 /* VENNewsPageReleaseNewsCollectionViewCell.xib */; };
 		2CE189DD2317CBBF002E15F5 /* VENMinePageMemberCentreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CE189DC2317CBBF002E15F5 /* VENMinePageMemberCentreViewController.m */; };
 		2CECFDC822E1C2DE001D9F7F /* VENHomePageTableViewCellTwo.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CECFDC622E1C2DE001D9F7F /* VENHomePageTableViewCellTwo.m */; };
 		2CECFDC922E1C2DE001D9F7F /* VENHomePageTableViewCellTwo.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2CECFDC722E1C2DE001D9F7F /* VENHomePageTableViewCellTwo.xib */; };
@@ -569,6 +572,11 @@
 		2CDD5783231E4A9E00F64D57 /* VENSetPasswordPageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VENSetPasswordPageViewController.h; sourceTree = "<group>"; };
 		2CDD5784231E4A9E00F64D57 /* VENSetPasswordPageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VENSetPasswordPageViewController.m; sourceTree = "<group>"; };
 		2CDD5785231E4A9E00F64D57 /* VENSetPasswordPageViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VENSetPasswordPageViewController.xib; sourceTree = "<group>"; };
+		2CDD5789231F601F00F64D57 /* VENNewsPageReleaseNewsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VENNewsPageReleaseNewsViewController.h; sourceTree = "<group>"; };
+		2CDD578A231F601F00F64D57 /* VENNewsPageReleaseNewsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VENNewsPageReleaseNewsViewController.m; sourceTree = "<group>"; };
+		2CDD578F231FA74E00F64D57 /* VENNewsPageReleaseNewsCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VENNewsPageReleaseNewsCollectionViewCell.h; sourceTree = "<group>"; };
+		2CDD5790231FA74E00F64D57 /* VENNewsPageReleaseNewsCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VENNewsPageReleaseNewsCollectionViewCell.m; sourceTree = "<group>"; };
+		2CDD5791231FA74E00F64D57 /* VENNewsPageReleaseNewsCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VENNewsPageReleaseNewsCollectionViewCell.xib; sourceTree = "<group>"; };
 		2CE189DB2317CBBF002E15F5 /* VENMinePageMemberCentreViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VENMinePageMemberCentreViewController.h; sourceTree = "<group>"; };
 		2CE189DC2317CBBF002E15F5 /* VENMinePageMemberCentreViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VENMinePageMemberCentreViewController.m; sourceTree = "<group>"; };
 		2CECFDC522E1C2DE001D9F7F /* VENHomePageTableViewCellTwo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VENHomePageTableViewCellTwo.h; sourceTree = "<group>"; };
@@ -1077,6 +1085,7 @@
 			children = (
 				2C699E46231913FB00BA8810 /* Main */,
 				2C699E472319140400BA8810 /* List */,
+				2CDD5788231F5EB200F64D57 /* Release */,
 			);
 			path = News;
 			sourceTree = "<group>";
@@ -2028,6 +2037,34 @@
 			path = SetPassword;
 			sourceTree = "<group>";
 		};
+		2CDD5788231F5EB200F64D57 /* Release */ = {
+			isa = PBXGroup;
+			children = (
+				2CDD578D231FA6D800F64D57 /* View */,
+				2CDD578E231FA6DD00F64D57 /* Controller */,
+			);
+			path = Release;
+			sourceTree = "<group>";
+		};
+		2CDD578D231FA6D800F64D57 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				2CDD578F231FA74E00F64D57 /* VENNewsPageReleaseNewsCollectionViewCell.h */,
+				2CDD5790231FA74E00F64D57 /* VENNewsPageReleaseNewsCollectionViewCell.m */,
+				2CDD5791231FA74E00F64D57 /* VENNewsPageReleaseNewsCollectionViewCell.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		2CDD578E231FA6DD00F64D57 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				2CDD5789231F601F00F64D57 /* VENNewsPageReleaseNewsViewController.h */,
+				2CDD578A231F601F00F64D57 /* VENNewsPageReleaseNewsViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
 		2CECFDCA22E1C5E6001D9F7F /* Cell */ = {
 			isa = PBXGroup;
 			children = (
@@ -2114,6 +2151,7 @@
 				2C0F87CE23165EA7003E9DB3 /* VENSettingFeedbackViewController.xib in Resources */,
 				2CDD5780231E083700F64D57 /* VENLoginPageViewController.xib in Resources */,
 				2CDD577B231E083700F64D57 /* VENBindingPhoneViewController.xib in Resources */,
+				2CDD5793231FA74E00F64D57 /* VENNewsPageReleaseNewsCollectionViewCell.xib in Resources */,
 				2CECFDD022E1C637001D9F7F /* VENHomePageTableViewHeaderView.xib in Resources */,
 				2CA990A223068D190081CC0C /* VENListPickerViewCell.xib in Resources */,
 				2CDD577C231E083700F64D57 /* VENRegisterPageViewController.xib in Resources */,
@@ -2274,6 +2312,7 @@
 				2C1C018E22DC1EE400E4E9C4 /* UIRefreshControl+AFNetworking.m in Sources */,
 				2C1C019622DC1EE400E4E9C4 /* AFURLResponseSerialization.m in Sources */,
 				2C1C015F22DC1EE400E4E9C4 /* MASLayoutConstraint.m in Sources */,
+				2CDD5792231FA74E00F64D57 /* VENNewsPageReleaseNewsCollectionViewCell.m in Sources */,
 				2C1C019222DC1EE400E4E9C4 /* UIActivityIndicatorView+AFNetworking.m in Sources */,
 				2C1C016122DC1EE400E4E9C4 /* View+MASAdditions.m in Sources */,
 				2C8278A122E55F930066B0C2 /* TYCyclePagerView.m in Sources */,
@@ -2284,6 +2323,7 @@
 				2C699E3723190E9F00BA8810 /* JXCategoryImageCell.m in Sources */,
 				2C1C019322DC1EE400E4E9C4 /* UIWebView+AFNetworking.m in Sources */,
 				2C699E50231927DD00BA8810 /* VENNewsPageListTableViewCell.m in Sources */,
+				2CDD578B231F601F00F64D57 /* VENNewsPageReleaseNewsViewController.m in Sources */,
 				2C1C01AD22DC1EE400E4E9C4 /* SDWebImageCompat.m in Sources */,
 				2C699E3123190E9F00BA8810 /* JXCategoryTitleImageCell.m in Sources */,
 				2C699E2F23190E9F00BA8810 /* JXCategoryDotCellModel.m in Sources */,

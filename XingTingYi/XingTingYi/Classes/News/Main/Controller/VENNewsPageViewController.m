@@ -11,6 +11,7 @@
 #import "JXCategoryIndicatorLineView.h"
 #import "JXCategoryListContainerView.h"
 #import "VENNewsPageListViewController.h"
+#import "VENNewsPageReleaseNewsViewController.h"
 
 @interface VENNewsPageViewController () <JXCategoryViewDelegate, JXCategoryListContainerViewDelegate>
 @property (nonatomic, strong) JXCategoryListContainerView *listContainerView;
@@ -31,7 +32,7 @@
     categoryView.titleFont = [UIFont systemFontOfSize:15.0f weight:UIFontWeightMedium];
     categoryView.titleSelectedFont = [UIFont systemFontOfSize:18.0f weight:UIFontWeightMedium];
     categoryView.titleColorGradientEnabled = YES;
-    [self.navigationController.view addSubview:categoryView];
+    self.navigationItem.titleView = categoryView;
     
     JXCategoryIndicatorLineView *lineView = [[JXCategoryIndicatorLineView alloc] init];
     lineView.indicatorColor = UIColorFromRGB(0xFFDE02);
@@ -85,9 +86,16 @@
 }
 
 - (void)setupReleaseButton {
-    UIButton *releaseButton = [[UIButton alloc] initWithFrame:CGRectMake(kMainScreenWidth - 5 - 60, kMainScreenHeight - kStatusBarAndNavigationBarHeight - kTabBarHeight - 5, 60, 60)];
+    UIButton *releaseButton = [[UIButton alloc] initWithFrame:CGRectMake(kMainScreenWidth - 5 - 60, kMainScreenHeight - kStatusBarAndNavigationBarHeight - kTabBarHeight - 5 - 60 - (kTabBarHeight - 49), 60, 60)];
     [releaseButton setImage:[UIImage imageNamed:@"icon_release"] forState:UIControlStateNormal];
+    [releaseButton addTarget:self action:@selector(releaseButtonClick) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:releaseButton];
+}
+
+- (void)releaseButtonClick {
+    VENNewsPageReleaseNewsViewController *vc = [[VENNewsPageReleaseNewsViewController alloc] init];
+    vc.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 /*

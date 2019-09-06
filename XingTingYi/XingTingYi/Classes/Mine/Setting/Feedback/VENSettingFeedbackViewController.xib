@@ -14,7 +14,7 @@
             <connections>
                 <outlet property="contentTextView" destination="07v-Xg-Ydo" id="Ypd-ZC-tcT"/>
                 <outlet property="determineButton" destination="wUO-JU-GAt" id="9rc-d7-lVB"/>
-                <outlet property="placeholdLabel" destination="Xyq-hL-hal" id="pXw-ss-6EO"/>
+                <outlet property="placeholderLabel" destination="Xyq-hL-hal" id="G0f-r5-viT"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
