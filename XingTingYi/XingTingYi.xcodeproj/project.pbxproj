@@ -13,6 +13,9 @@
 		2C148FB323223C4000DC9BA3 /* VENNewsPageDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C148FB123223C4000DC9BA3 /* VENNewsPageDetailsViewController.xib */; };
 		2C148FB92322449500DC9BA3 /* VENNewsPageDetailsCommentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C148FB72322449500DC9BA3 /* VENNewsPageDetailsCommentTableViewCell.m */; };
 		2C148FBA2322449500DC9BA3 /* VENNewsPageDetailsCommentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C148FB82322449500DC9BA3 /* VENNewsPageDetailsCommentTableViewCell.xib */; };
+		2C148FC0232253C600DC9BA3 /* VENHomePageNewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C148FBF232253C600DC9BA3 /* VENHomePageNewsViewController.m */; };
+		2C148FC3232253E000DC9BA3 /* VENHomePageRecommendMaterialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C148FC2232253E000DC9BA3 /* VENHomePageRecommendMaterialViewController.m */; };
+		2C148FC8232257BB00DC9BA3 /* VENHomePageRecommendMaterialListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C148FC7232257BB00DC9BA3 /* VENHomePageRecommendMaterialListViewController.m */; };
 		2C1C012822DC1EE400E4E9C4 /* UIScrollView+MJRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C1CFFA022DC1EE300E4E9C4 /* UIScrollView+MJRefresh.m */; };
 		2C1C012922DC1EE400E4E9C4 /* MJRefreshConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C1CFFA122DC1EE300E4E9C4 /* MJRefreshConst.m */; };
 		2C1C012A22DC1EE400E4E9C4 /* MJRefresh.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2C1CFFA522DC1EE300E4E9C4 /* MJRefresh.bundle */; };
@@ -215,6 +218,12 @@
 		2C148FB62322449500DC9BA3 /* VENNewsPageDetailsCommentTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VENNewsPageDetailsCommentTableViewCell.h; sourceTree = "<group>"; };
 		2C148FB72322449500DC9BA3 /* VENNewsPageDetailsCommentTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VENNewsPageDetailsCommentTableViewCell.m; sourceTree = "<group>"; };
 		2C148FB82322449500DC9BA3 /* VENNewsPageDetailsCommentTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VENNewsPageDetailsCommentTableViewCell.xib; sourceTree = "<group>"; };
+		2C148FBE232253C600DC9BA3 /* VENHomePageNewsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VENHomePageNewsViewController.h; sourceTree = "<group>"; };
+		2C148FBF232253C600DC9BA3 /* VENHomePageNewsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VENHomePageNewsViewController.m; sourceTree = "<group>"; };
+		2C148FC1232253E000DC9BA3 /* VENHomePageRecommendMaterialViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VENHomePageRecommendMaterialViewController.h; sourceTree = "<group>"; };
+		2C148FC2232253E000DC9BA3 /* VENHomePageRecommendMaterialViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VENHomePageRecommendMaterialViewController.m; sourceTree = "<group>"; };
+		2C148FC6232257BB00DC9BA3 /* VENHomePageRecommendMaterialListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VENHomePageRecommendMaterialListViewController.h; sourceTree = "<group>"; };
+		2C148FC7232257BB00DC9BA3 /* VENHomePageRecommendMaterialListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VENHomePageRecommendMaterialListViewController.m; sourceTree = "<group>"; };
 		2C1C001B22DC1EE400E4E9C4 /* MASCompositeConstraint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASCompositeConstraint.h; sourceTree = "<group>"; };
 		2C1C001C22DC1EE400E4E9C4 /* NSLayoutConstraint+MASDebugAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSLayoutConstraint+MASDebugAdditions.m"; sourceTree = "<group>"; };
 		2C1C001D22DC1EE400E4E9C4 /* MASConstraint+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MASConstraint+Private.h"; sourceTree = "<group>"; };
@@ -645,6 +654,52 @@
 				2C148FB82322449500DC9BA3 /* VENNewsPageDetailsCommentTableViewCell.xib */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		2C148FBB232250F300DC9BA3 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				2C1C01D522DC619400E4E9C4 /* Model */,
+				2C1C01D622DC619400E4E9C4 /* View */,
+				2C1C01D422DC619400E4E9C4 /* Controller */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		2C148FBC2322532800DC9BA3 /* News */ = {
+			isa = PBXGroup;
+			children = (
+				2C148FBE232253C600DC9BA3 /* VENHomePageNewsViewController.h */,
+				2C148FBF232253C600DC9BA3 /* VENHomePageNewsViewController.m */,
+			);
+			path = News;
+			sourceTree = "<group>";
+		};
+		2C148FBD2322533100DC9BA3 /* RecommendMaterial */ = {
+			isa = PBXGroup;
+			children = (
+				2C148FC42322578E00DC9BA3 /* Main */,
+				2C148FC52322579B00DC9BA3 /* List */,
+			);
+			path = RecommendMaterial;
+			sourceTree = "<group>";
+		};
+		2C148FC42322578E00DC9BA3 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				2C148FC1232253E000DC9BA3 /* VENHomePageRecommendMaterialViewController.h */,
+				2C148FC2232253E000DC9BA3 /* VENHomePageRecommendMaterialViewController.m */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		2C148FC52322579B00DC9BA3 /* List */ = {
+			isa = PBXGroup;
+			children = (
+				2C148FC6232257BB00DC9BA3 /* VENHomePageRecommendMaterialListViewController.h */,
+				2C148FC7232257BB00DC9BA3 /* VENHomePageRecommendMaterialListViewController.m */,
+			);
+			path = List;
 			sourceTree = "<group>";
 		};
 		2C1C001922DC1EE400E4E9C4 /* Masonry */ = {
@@ -1087,9 +1142,9 @@
 		2C1C01D322DC619400E4E9C4 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				2C1C01D522DC619400E4E9C4 /* Model */,
-				2C1C01D622DC619400E4E9C4 /* View */,
-				2C1C01D422DC619400E4E9C4 /* Controller */,
+				2C148FBB232250F300DC9BA3 /* Main */,
+				2C148FBC2322532800DC9BA3 /* News */,
+				2C148FBD2322533100DC9BA3 /* RecommendMaterial */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -2270,8 +2325,10 @@
 				2C699E4523190E9F00BA8810 /* JXCategoryBaseCellModel.m in Sources */,
 				2C699E3E23190E9F00BA8810 /* JXCategoryCollectionView.m in Sources */,
 				2C1C01C922DC1EE400E4E9C4 /* VENTabBarController.m in Sources */,
+				2C148FC3232253E000DC9BA3 /* VENHomePageRecommendMaterialViewController.m in Sources */,
 				2C1C017F22DC1EE400E4E9C4 /* IQTextView.m in Sources */,
 				2C1C01AE22DC1EE400E4E9C4 /* SDWebImagePrefetcher.m in Sources */,
+				2C148FC0232253C600DC9BA3 /* VENHomePageNewsViewController.m in Sources */,
 				2C1C01C222DC1EE400E4E9C4 /* VENUserStatusManager.m in Sources */,
 				2C1C015B22DC1EE400E4E9C4 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,
 				2C699E2323190E9F00BA8810 /* JXCategoryIndicatorTriangleView.m in Sources */,
@@ -2343,6 +2400,7 @@
 				2C1C01B522DC1EE400E4E9C4 /* MBProgressHUD+VEN.m in Sources */,
 				2C1C016022DC1EE400E4E9C4 /* NSArray+MASAdditions.m in Sources */,
 				2C699E3223190E9F00BA8810 /* JXCategoryTitleImageCellModel.m in Sources */,
+				2C148FC8232257BB00DC9BA3 /* VENHomePageRecommendMaterialListViewController.m in Sources */,
 				2C1C019922DC1EE400E4E9C4 /* AFURLRequestSerialization.m in Sources */,
 				2C1C013522DC1EE400E4E9C4 /* MJRefreshStateHeader.m in Sources */,
 				2C1C016222DC1EE400E4E9C4 /* MASConstraint.m in Sources */,

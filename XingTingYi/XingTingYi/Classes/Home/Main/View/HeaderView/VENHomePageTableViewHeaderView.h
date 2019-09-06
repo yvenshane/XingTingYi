@@ -11,6 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface VENHomePageTableViewHeaderView : UIView
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 
 @end
 
