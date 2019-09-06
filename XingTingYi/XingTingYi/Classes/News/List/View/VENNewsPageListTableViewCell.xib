@@ -104,6 +104,7 @@
                 <outlet property="avatarImageView" destination="EZK-Z2-sMd" id="EzT-NO-UhK"/>
                 <outlet property="commentLabel" destination="D6Q-Dr-Oho" id="Vgq-nV-AHs"/>
                 <outlet property="contentLabel" destination="zda-qQ-Xzu" id="sbF-aC-qwn"/>
+                <outlet property="lineImageView" destination="hIV-0w-euC" id="sZV-7j-Mdv"/>
                 <outlet property="nameLabel" destination="ndy-xs-yad" id="It2-Gm-6tH"/>
                 <outlet property="pictureHeightLayoutConstraint" destination="Htn-gt-vWz" id="QbL-m0-phJ"/>
                 <outlet property="pictureView" destination="xnz-NH-CVO" id="Ogy-lQ-rdS"/>

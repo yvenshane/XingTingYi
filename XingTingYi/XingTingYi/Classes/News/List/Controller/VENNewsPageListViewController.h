@@ -11,7 +11,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef void (^listViewSelectBlock)(NSIndexPath *);
 @interface VENNewsPageListViewController : VENBaseViewController <JXCategoryListContentViewDelegate>
+@property (nonatomic, copy) listViewSelectBlock listViewSelectBlock;
 
 @end
 

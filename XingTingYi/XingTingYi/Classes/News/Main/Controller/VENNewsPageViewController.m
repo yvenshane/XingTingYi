@@ -12,6 +12,7 @@
 #import "JXCategoryListContainerView.h"
 #import "VENNewsPageListViewController.h"
 #import "VENNewsPageReleaseNewsViewController.h"
+#import "VENNewsPageDetailsViewController.h"
 
 @interface VENNewsPageViewController () <JXCategoryViewDelegate, JXCategoryListContainerViewDelegate>
 @property (nonatomic, strong) JXCategoryListContainerView *listContainerView;
@@ -82,7 +83,15 @@
 
 //返回遵从`JXCategoryListContentViewDelegate`协议的实例
 - (id<JXCategoryListContentViewDelegate>)listContainerView:(JXCategoryListContainerView *)listContainerView initListForIndex:(NSInteger)index {
-    return [[VENNewsPageListViewController alloc] init];
+    
+   VENNewsPageListViewController *vc = [[VENNewsPageListViewController alloc] init];
+    vc.listViewSelectBlock = ^(NSIndexPath *index) {
+        VENNewsPageDetailsViewController *vc = [[VENNewsPageDetailsViewController alloc] init];
+        vc.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:vc animated:YES];
+    };
+    
+    return vc;
 }
 
 - (void)setupReleaseButton {
