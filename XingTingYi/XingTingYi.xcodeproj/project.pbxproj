@@ -112,6 +112,9 @@
 		2C1C01E022DC639F00E4E9C4 /* VENMaterialPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C1C01DF22DC639F00E4E9C4 /* VENMaterialPageViewController.m */; };
 		2C1C01E322DC63AD00E4E9C4 /* VENNewsPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C1C01E222DC63AD00E4E9C4 /* VENNewsPageViewController.m */; };
 		2C1C01E622DC63B800E4E9C4 /* VENMinePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C1C01E522DC63B800E4E9C4 /* VENMinePageViewController.m */; };
+		2C1E2B5723278D680080C526 /* VENMaterialSortSelectorViewCollectionReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C1E2B5523278D680080C526 /* VENMaterialSortSelectorViewCollectionReusableView.m */; };
+		2C1E2B5823278D680080C526 /* VENMaterialSortSelectorViewCollectionReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C1E2B5623278D680080C526 /* VENMaterialSortSelectorViewCollectionReusableView.xib */; };
+		2C1E2B5F232793B10080C526 /* VENMaterialFormatSelectorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C1E2B5E232793B10080C526 /* VENMaterialFormatSelectorView.m */; };
 		2C24702F22F2E28A00142646 /* VENMinePageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C24702D22F2E28A00142646 /* VENMinePageTableViewCell.m */; };
 		2C24703022F2E28A00142646 /* VENMinePageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C24702E22F2E28A00142646 /* VENMinePageTableViewCell.xib */; };
 		2C5CC94E23018A8D00FAC842 /* VENMinePageTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C5CC94D23018A8D00FAC842 /* VENMinePageTableHeaderView.m */; };
@@ -169,6 +172,9 @@
 		2C8278A622E560550066B0C2 /* VENHomePageBannerCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C8278A322E560550066B0C2 /* VENHomePageBannerCollectionViewCell.xib */; };
 		2C8278A722E560550066B0C2 /* VENHomePageBannerCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C8278A522E560550066B0C2 /* VENHomePageBannerCollectionViewCell.m */; };
 		2C8278AB22E59C970066B0C2 /* VENHomePageTableViewHeaderViewTwo.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C8278AA22E59C970066B0C2 /* VENHomePageTableViewHeaderViewTwo.m */; };
+		2C888E6B2326513200CD0510 /* VENMaterialSortSelectorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C888E6A2326513200CD0510 /* VENMaterialSortSelectorView.m */; };
+		2C888E6F23277F2700CD0510 /* VENMaterialSortSelectorViewCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C888E6D23277F2700CD0510 /* VENMaterialSortSelectorViewCollectionViewCell.m */; };
+		2C888E7023277F2700CD0510 /* VENMaterialSortSelectorViewCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C888E6E23277F2700CD0510 /* VENMaterialSortSelectorViewCollectionViewCell.xib */; };
 		2C9C4DD022DC797B00A67B9D /* VENHomePageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C9C4DCE22DC797B00A67B9D /* VENHomePageTableViewCell.m */; };
 		2C9C4DD122DC797B00A67B9D /* VENHomePageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C9C4DCF22DC797B00A67B9D /* VENHomePageTableViewCell.xib */; };
 		2C9D240E22D8333B00B15896 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C9D240D22D8333B00B15896 /* AppDelegate.m */; };
@@ -428,6 +434,11 @@
 		2C1CFFCB22DC1EE400E4E9C4 /* MJRefreshComponent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJRefreshComponent.m; sourceTree = "<group>"; };
 		2C1CFFCC22DC1EE400E4E9C4 /* MJRefreshFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshFooter.h; sourceTree = "<group>"; };
 		2C1CFFCD22DC1EE400E4E9C4 /* MJRefreshBackFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshBackFooter.h; sourceTree = "<group>"; };
+		2C1E2B5423278D680080C526 /* VENMaterialSortSelectorViewCollectionReusableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VENMaterialSortSelectorViewCollectionReusableView.h; sourceTree = "<group>"; };
+		2C1E2B5523278D680080C526 /* VENMaterialSortSelectorViewCollectionReusableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VENMaterialSortSelectorViewCollectionReusableView.m; sourceTree = "<group>"; };
+		2C1E2B5623278D680080C526 /* VENMaterialSortSelectorViewCollectionReusableView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VENMaterialSortSelectorViewCollectionReusableView.xib; sourceTree = "<group>"; };
+		2C1E2B5D232793B10080C526 /* VENMaterialFormatSelectorView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VENMaterialFormatSelectorView.h; sourceTree = "<group>"; };
+		2C1E2B5E232793B10080C526 /* VENMaterialFormatSelectorView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VENMaterialFormatSelectorView.m; sourceTree = "<group>"; };
 		2C24702C22F2E28A00142646 /* VENMinePageTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VENMinePageTableViewCell.h; sourceTree = "<group>"; };
 		2C24702D22F2E28A00142646 /* VENMinePageTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VENMinePageTableViewCell.m; sourceTree = "<group>"; };
 		2C24702E22F2E28A00142646 /* VENMinePageTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VENMinePageTableViewCell.xib; sourceTree = "<group>"; };
@@ -542,6 +553,11 @@
 		2C8278A522E560550066B0C2 /* VENHomePageBannerCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VENHomePageBannerCollectionViewCell.m; sourceTree = "<group>"; };
 		2C8278A922E59C970066B0C2 /* VENHomePageTableViewHeaderViewTwo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VENHomePageTableViewHeaderViewTwo.h; sourceTree = "<group>"; };
 		2C8278AA22E59C970066B0C2 /* VENHomePageTableViewHeaderViewTwo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VENHomePageTableViewHeaderViewTwo.m; sourceTree = "<group>"; };
+		2C888E692326513200CD0510 /* VENMaterialSortSelectorView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VENMaterialSortSelectorView.h; sourceTree = "<group>"; };
+		2C888E6A2326513200CD0510 /* VENMaterialSortSelectorView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VENMaterialSortSelectorView.m; sourceTree = "<group>"; };
+		2C888E6C23277F2700CD0510 /* VENMaterialSortSelectorViewCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VENMaterialSortSelectorViewCollectionViewCell.h; sourceTree = "<group>"; };
+		2C888E6D23277F2700CD0510 /* VENMaterialSortSelectorViewCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VENMaterialSortSelectorViewCollectionViewCell.m; sourceTree = "<group>"; };
+		2C888E6E23277F2700CD0510 /* VENMaterialSortSelectorViewCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VENMaterialSortSelectorViewCollectionViewCell.xib; sourceTree = "<group>"; };
 		2C9C4DCD22DC797B00A67B9D /* VENHomePageTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VENHomePageTableViewCell.h; sourceTree = "<group>"; };
 		2C9C4DCE22DC797B00A67B9D /* VENHomePageTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VENHomePageTableViewCell.m; sourceTree = "<group>"; };
 		2C9C4DCF22DC797B00A67B9D /* VENHomePageTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VENHomePageTableViewCell.xib; sourceTree = "<group>"; };
@@ -1020,6 +1036,8 @@
 				2C817FE122F172FF00DA6F0B /* CategoryView */,
 				2C1C010422DC1EE400E4E9C4 /* Network */,
 				2CA9909623068D180081CC0C /* PickerView */,
+				2C888E6823264F2100CD0510 /* MaterialSortSelectorView */,
+				2C1E2B592327932D0080C526 /* MaterialFormatSelectorView */,
 				2C1C010722DC1EE400E4E9C4 /* WebView */,
 			);
 			path = SharedManager;
@@ -1437,6 +1455,15 @@
 				2C1CFFCD22DC1EE400E4E9C4 /* MJRefreshBackFooter.h */,
 			);
 			path = Base;
+			sourceTree = "<group>";
+		};
+		2C1E2B592327932D0080C526 /* MaterialFormatSelectorView */ = {
+			isa = PBXGroup;
+			children = (
+				2C1E2B5D232793B10080C526 /* VENMaterialFormatSelectorView.h */,
+				2C1E2B5E232793B10080C526 /* VENMaterialFormatSelectorView.m */,
+			);
+			path = MaterialFormatSelectorView;
 			sourceTree = "<group>";
 		};
 		2C5CC94F2302981700FAC842 /* Main */ = {
@@ -1888,6 +1915,21 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
+		2C888E6823264F2100CD0510 /* MaterialSortSelectorView */ = {
+			isa = PBXGroup;
+			children = (
+				2C888E692326513200CD0510 /* VENMaterialSortSelectorView.h */,
+				2C888E6A2326513200CD0510 /* VENMaterialSortSelectorView.m */,
+				2C888E6C23277F2700CD0510 /* VENMaterialSortSelectorViewCollectionViewCell.h */,
+				2C888E6D23277F2700CD0510 /* VENMaterialSortSelectorViewCollectionViewCell.m */,
+				2C888E6E23277F2700CD0510 /* VENMaterialSortSelectorViewCollectionViewCell.xib */,
+				2C1E2B5423278D680080C526 /* VENMaterialSortSelectorViewCollectionReusableView.h */,
+				2C1E2B5523278D680080C526 /* VENMaterialSortSelectorViewCollectionReusableView.m */,
+				2C1E2B5623278D680080C526 /* VENMaterialSortSelectorViewCollectionReusableView.xib */,
+			);
+			path = MaterialSortSelectorView;
+			sourceTree = "<group>";
+		};
 		2C9D240022D8333B00B15896 = {
 			isa = PBXGroup;
 			children = (
@@ -2255,6 +2297,7 @@
 				2C9D241922D8333C00B15896 /* LaunchScreen.storyboard in Resources */,
 				2C24703022F2E28A00142646 /* VENMinePageTableViewCell.xib in Resources */,
 				2CBCDEC12302BF270010BD11 /* VENSettingTableViewCell.xib in Resources */,
+				2C1E2B5823278D680080C526 /* VENMaterialSortSelectorViewCollectionReusableView.xib in Resources */,
 				2C9D241622D8333C00B15896 /* Assets.xcassets in Resources */,
 				2CDD5787231E4A9E00F64D57 /* VENSetPasswordPageViewController.xib in Resources */,
 				2C148FB323223C4000DC9BA3 /* VENNewsPageDetailsViewController.xib in Resources */,
@@ -2264,6 +2307,7 @@
 				2CECFDC922E1C2DE001D9F7F /* VENHomePageTableViewCellTwo.xib in Resources */,
 				2C699E51231927DD00BA8810 /* VENNewsPageListTableViewCell.xib in Resources */,
 				2C1C012A22DC1EE400E4E9C4 /* MJRefresh.bundle in Resources */,
+				2C888E7023277F2700CD0510 /* VENMaterialSortSelectorViewCollectionViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2300,6 +2344,7 @@
 				2C699E3A23190E9F00BA8810 /* JXCategoryNumberCell.m in Sources */,
 				2C8278A722E560550066B0C2 /* VENHomePageBannerCollectionViewCell.m in Sources */,
 				2C1C017D22DC1EE400E4E9C4 /* NSObject+YYModel.m in Sources */,
+				2C888E6B2326513200CD0510 /* VENMaterialSortSelectorView.m in Sources */,
 				2C1C01B122DC1EE400E4E9C4 /* NSData+ImageContentType.m in Sources */,
 				2C1C01CA22DC1EE400E4E9C4 /* VENNavigationController.m in Sources */,
 				2C1C019122DC1EE400E4E9C4 /* UIButton+AFNetworking.m in Sources */,
@@ -2359,6 +2404,7 @@
 				2C1C012822DC1EE400E4E9C4 /* UIScrollView+MJRefresh.m in Sources */,
 				2C1C01A022DC1EE400E4E9C4 /* SDCycleScrollView.m in Sources */,
 				2C1C018B22DC1EE400E4E9C4 /* IQUIViewController+Additions.m in Sources */,
+				2C1E2B5723278D680080C526 /* VENMaterialSortSelectorViewCollectionReusableView.m in Sources */,
 				2C1C01AF22DC1EE400E4E9C4 /* SDImageCache.m in Sources */,
 				2C699E2623190E9F00BA8810 /* JXCategoryIndicatorBallView.m in Sources */,
 				2C1C01C322DC1EE400E4E9C4 /* VENEmptyClass.m in Sources */,
@@ -2378,6 +2424,7 @@
 				2C699E2123190E9F00BA8810 /* JXCategoryTitleVerticalZoomView.m in Sources */,
 				2C1C019A22DC1EE400E4E9C4 /* AFNetworkReachabilityManager.m in Sources */,
 				2C1C01A322DC1EE400E4E9C4 /* TADotView.m in Sources */,
+				2C888E6F23277F2700CD0510 /* VENMaterialSortSelectorViewCollectionViewCell.m in Sources */,
 				2C1C01A822DC1EE400E4E9C4 /* SDWebImageDecoder.m in Sources */,
 				2C817FFC22F190B100DA6F0B /* VENMaterialPagePersonalMaterialViewController.m in Sources */,
 				2CDD577A231E083700F64D57 /* VENBindingPhoneViewController.m in Sources */,
@@ -2442,6 +2489,7 @@
 				2C1C01B422DC1EE400E4E9C4 /* UIButton+WebCache.m in Sources */,
 				2CDD577D231E083700F64D57 /* VENRegisterPageViewController.m in Sources */,
 				2C699E2D23190E9F00BA8810 /* JXCategoryDotCell.m in Sources */,
+				2C1E2B5F232793B10080C526 /* VENMaterialFormatSelectorView.m in Sources */,
 				2C1C019722DC1EE400E4E9C4 /* AFHTTPSessionManager.m in Sources */,
 				2C1C019B22DC1EE400E4E9C4 /* AFSecurityPolicy.m in Sources */,
 				2C1C015C22DC1EE400E4E9C4 /* ViewController+MASAdditions.m in Sources */,
