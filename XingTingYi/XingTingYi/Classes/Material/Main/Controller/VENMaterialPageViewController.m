@@ -105,7 +105,7 @@
 #pragma mark - NavigationView
 - (void)setupNavigationView {
     UIView *navigationView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kMainScreenWidth, 44)];
-    [self.navigationController.navigationBar addSubview:navigationView];
+    self.navigationItem.titleView = navigationView;
     
     CGFloat width = 80;
     

@@ -10,6 +10,8 @@
 #import "VENHomePageTableViewCellTwo.h"
 #import "VENMaterialSortSelectorView.h"
 #import "VENMaterialFormatSelectorView.h"
+#import "VENVideoMaterialDetailsPageViewController.h"
+#import "VENAudioMaterialDetailsPageViewController.h"
 
 @interface VENMaterialPagePlatformMaterialViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) UIImageView *leftImageView;
@@ -80,7 +82,17 @@ static NSString *const cellIdentifier = @"cellIdentifier";
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+    if (indexPath.row == 0) {
+        VENVideoMaterialDetailsPageViewController *vc = [[VENVideoMaterialDetailsPageViewController alloc] init];
+        vc.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:vc animated:YES];
+    } else if (indexPath.row == 1) {
+        VENAudioMaterialDetailsPageViewController *vc = [[VENAudioMaterialDetailsPageViewController alloc] init];
+        vc.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:vc animated:YES];
+    } else {
+        
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
