@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="VENBottomToolsBarView">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="65"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JCV-Md-DZf">
+                    <rect key="frame" x="0.0" y="0.0" width="52" height="65"/>
+                    <state key="normal" image="icon_keyboard"/>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Ec-QG-OX4">
+                    <rect key="frame" x="52" y="0.0" width="51.5" height="65"/>
+                    <state key="normal" image="icon_retreat"/>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HYv-q6-rXC">
+                    <rect key="frame" x="103.5" y="0.0" width="52" height="65"/>
+                    <state key="normal" image="icon_play"/>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="liC-Rz-3Qo">
+                    <rect key="frame" x="155.5" y="0.0" width="51.5" height="65"/>
+                    <state key="normal" image="icon_forward"/>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I8A-cn-1I0">
+                    <rect key="frame" x="207" y="0.0" width="52" height="65"/>
+                    <state key="normal" image="icon_loop"/>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gYu-sF-QCC">
+                    <rect key="frame" x="259" y="0.0" width="51.5" height="65"/>
+                    <state key="normal" image="icon_start"/>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q2p-6Q-IRv">
+                    <rect key="frame" x="310.5" y="0.0" width="52" height="65"/>
+                    <state key="normal" image="icon_end"/>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Oc5-7C-Tpf">
+                    <rect key="frame" x="362.5" y="0.0" width="51.5" height="65"/>
+                    <state key="normal" image="icon_text"/>
+                </button>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zsb-1E-UPH">
+                    <rect key="frame" x="51.5" y="24.5" width="1" height="16"/>
+                    <color key="backgroundColor" red="0.90980392156862744" green="0.90980392156862744" blue="0.90980392156862744" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="1" id="Tqf-Oy-Gmi"/>
+                        <constraint firstAttribute="height" constant="16" id="ypx-0p-pVr"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D0Q-wG-JCO">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="1"/>
+                    <color key="backgroundColor" red="0.94509803921568625" green="0.94509803921568625" blue="0.94509803921568625" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="f8h-uC-ajR"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="D0Q-wG-JCO" secondAttribute="trailing" id="0Ru-c5-uZ7"/>
+                <constraint firstItem="HYv-q6-rXC" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="1dL-C8-cgw"/>
+                <constraint firstItem="HYv-q6-rXC" firstAttribute="width" secondItem="JCV-Md-DZf" secondAttribute="width" id="515-mg-vpG"/>
+                <constraint firstAttribute="bottom" secondItem="HYv-q6-rXC" secondAttribute="bottom" id="5VR-Zu-PvL"/>
+                <constraint firstItem="Q2p-6Q-IRv" firstAttribute="width" secondItem="JCV-Md-DZf" secondAttribute="width" id="8sr-uR-xAt"/>
+                <constraint firstItem="Oc5-7C-Tpf" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="9Xw-H8-ovq"/>
+                <constraint firstAttribute="bottom" secondItem="I8A-cn-1I0" secondAttribute="bottom" id="9uG-EO-aqq"/>
+                <constraint firstItem="I8A-cn-1I0" firstAttribute="leading" secondItem="liC-Rz-3Qo" secondAttribute="trailing" id="FXS-21-PMt"/>
+                <constraint firstItem="gYu-sF-QCC" firstAttribute="width" secondItem="JCV-Md-DZf" secondAttribute="width" id="ISG-ys-7hI"/>
+                <constraint firstAttribute="bottom" secondItem="Q2p-6Q-IRv" secondAttribute="bottom" id="JXu-0g-Imr"/>
+                <constraint firstItem="Oc5-7C-Tpf" firstAttribute="leading" secondItem="Q2p-6Q-IRv" secondAttribute="trailing" id="KP2-zi-Qoc"/>
+                <constraint firstItem="1Ec-QG-OX4" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="L4c-j6-MQ7"/>
+                <constraint firstItem="Zsb-1E-UPH" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="Lwk-aB-iUc"/>
+                <constraint firstAttribute="bottom" secondItem="Oc5-7C-Tpf" secondAttribute="bottom" id="Nei-V0-l4M"/>
+                <constraint firstItem="D0Q-wG-JCO" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="QVi-7Y-yKY"/>
+                <constraint firstAttribute="bottom" secondItem="gYu-sF-QCC" secondAttribute="bottom" id="TTG-2v-enw"/>
+                <constraint firstItem="gYu-sF-QCC" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="XNw-da-KFS"/>
+                <constraint firstItem="liC-Rz-3Qo" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="beE-GR-ugg"/>
+                <constraint firstAttribute="bottom" secondItem="liC-Rz-3Qo" secondAttribute="bottom" id="cum-wv-os5"/>
+                <constraint firstItem="1Ec-QG-OX4" firstAttribute="leading" secondItem="JCV-Md-DZf" secondAttribute="trailing" id="cxV-Bt-Wt0"/>
+                <constraint firstAttribute="bottom" secondItem="1Ec-QG-OX4" secondAttribute="bottom" id="dwQ-S5-jeg"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Oc5-7C-Tpf" secondAttribute="trailing" id="eFV-Lj-fp2"/>
+                <constraint firstItem="JCV-Md-DZf" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="ena-c9-IGT"/>
+                <constraint firstAttribute="bottom" secondItem="JCV-Md-DZf" secondAttribute="bottom" id="fbT-KI-NsJ"/>
+                <constraint firstItem="liC-Rz-3Qo" firstAttribute="leading" secondItem="HYv-q6-rXC" secondAttribute="trailing" id="i0V-eE-X2d"/>
+                <constraint firstItem="1Ec-QG-OX4" firstAttribute="width" secondItem="JCV-Md-DZf" secondAttribute="width" id="ieD-md-k28"/>
+                <constraint firstItem="Oc5-7C-Tpf" firstAttribute="width" secondItem="JCV-Md-DZf" secondAttribute="width" id="nB0-cc-re5"/>
+                <constraint firstItem="Q2p-6Q-IRv" firstAttribute="leading" secondItem="gYu-sF-QCC" secondAttribute="trailing" id="pTV-qY-DFg"/>
+                <constraint firstItem="HYv-q6-rXC" firstAttribute="leading" secondItem="1Ec-QG-OX4" secondAttribute="trailing" id="s4a-dU-uUU"/>
+                <constraint firstItem="D0Q-wG-JCO" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="sws-07-e9a"/>
+                <constraint firstItem="liC-Rz-3Qo" firstAttribute="width" secondItem="JCV-Md-DZf" secondAttribute="width" id="tEd-1x-W7f"/>
+                <constraint firstItem="JCV-Md-DZf" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="vh4-nk-6R3"/>
+                <constraint firstItem="I8A-cn-1I0" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="vvD-sc-whf"/>
+                <constraint firstItem="gYu-sF-QCC" firstAttribute="leading" secondItem="I8A-cn-1I0" secondAttribute="trailing" id="wcR-lX-nmP"/>
+                <constraint firstItem="Q2p-6Q-IRv" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="xNy-9z-nhv"/>
+                <constraint firstItem="1Ec-QG-OX4" firstAttribute="leading" secondItem="Zsb-1E-UPH" secondAttribute="trailing" constant="-0.5" id="zGQ-Cp-c19"/>
+                <constraint firstItem="I8A-cn-1I0" firstAttribute="width" secondItem="JCV-Md-DZf" secondAttribute="width" id="zWS-3f-QAc"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="endButton" destination="Q2p-6Q-IRv" id="Lu5-7E-zZx"/>
+                <outlet property="forwardButton" destination="liC-Rz-3Qo" id="cfM-Gl-CxZ"/>
+                <outlet property="keyboardButton" destination="JCV-Md-DZf" id="Dcr-p7-l7K"/>
+                <outlet property="loopButton" destination="I8A-cn-1I0" id="Cw4-QX-bMY"/>
+                <outlet property="playButton" destination="HYv-q6-rXC" id="UMT-yG-bvb"/>
+                <outlet property="retreatButton" destination="1Ec-QG-OX4" id="Whc-mN-lYI"/>
+                <outlet property="startButton" destination="gYu-sF-QCC" id="fxA-EP-Aeg"/>
+                <outlet property="textStyleSettingButton" destination="Oc5-7C-Tpf" id="yOd-Qn-VQV"/>
+            </connections>
+            <point key="canvasLocation" x="153.62318840579712" y="-276.22767857142856"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="icon_end" width="16" height="16"/>
+        <image name="icon_forward" width="16" height="16"/>
+        <image name="icon_keyboard" width="16" height="16"/>
+        <image name="icon_loop" width="16" height="16"/>
+        <image name="icon_play" width="16" height="16"/>
+        <image name="icon_retreat" width="16" height="16"/>
+        <image name="icon_start" width="16" height="16"/>
+        <image name="icon_text" width="16" height="16"/>
+    </resources>
+</document>

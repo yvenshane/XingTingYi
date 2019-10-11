@@ -121,6 +121,11 @@
 		2C1E2B6E2328EEEF0080C526 /* VENVideoMaterialDetailsPageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C1E2B6D2328EEEF0080C526 /* VENVideoMaterialDetailsPageModel.m */; };
 		2C24702F22F2E28A00142646 /* VENMinePageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C24702D22F2E28A00142646 /* VENMinePageTableViewCell.m */; };
 		2C24703022F2E28A00142646 /* VENMinePageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C24702E22F2E28A00142646 /* VENMinePageTableViewCell.xib */; };
+		2C4D5ECF234EDDF40010D5A1 /* VENVideoMaterialDetailsStartDictationPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C4D5ECD234EDDF40010D5A1 /* VENVideoMaterialDetailsStartDictationPageViewController.m */; };
+		2C4D5ED0234EDDF40010D5A1 /* VENVideoMaterialDetailsStartDictationPageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C4D5ECE234EDDF40010D5A1 /* VENVideoMaterialDetailsStartDictationPageViewController.xib */; };
+		2C4D5ED2234F06160010D5A1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2C4D5ED1234F06160010D5A1 /* Assets.xcassets */; };
+		2C4D5ED6234F082C0010D5A1 /* VENBottomToolsBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C4D5ED5234F082C0010D5A1 /* VENBottomToolsBarView.m */; };
+		2C4D5ED8234F083B0010D5A1 /* VENBottomToolsBarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C4D5ED7234F083B0010D5A1 /* VENBottomToolsBarView.xib */; };
 		2C5CC94E23018A8D00FAC842 /* VENMinePageTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C5CC94D23018A8D00FAC842 /* VENMinePageTableHeaderView.m */; };
 		2C699E1F23190E9F00BA8810 /* JXCategoryTitleVerticalZoomCellModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C699DC823190E9F00BA8810 /* JXCategoryTitleVerticalZoomCellModel.m */; };
 		2C699E2023190E9F00BA8810 /* JXCategoryTitleVerticalZoomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C699DC923190E9F00BA8810 /* JXCategoryTitleVerticalZoomCell.m */; };
@@ -179,12 +184,35 @@
 		2C888E6B2326513200CD0510 /* VENMaterialSortSelectorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C888E6A2326513200CD0510 /* VENMaterialSortSelectorView.m */; };
 		2C888E6F23277F2700CD0510 /* VENMaterialSortSelectorViewCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C888E6D23277F2700CD0510 /* VENMaterialSortSelectorViewCollectionViewCell.m */; };
 		2C888E7023277F2700CD0510 /* VENMaterialSortSelectorViewCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C888E6E23277F2700CD0510 /* VENMaterialSortSelectorViewCollectionViewCell.xib */; };
+		2C98B1452340480400E2C700 /* VENStyleSettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C98B1442340480400E2C700 /* VENStyleSettingsController.m */; };
+		2C98B14C23404CF900E2C700 /* VENColorStyleSettingsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C98B14A23404CF900E2C700 /* VENColorStyleSettingsTableViewCell.m */; };
+		2C98B14D23404CF900E2C700 /* VENColorStyleSettingsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C98B14B23404CF900E2C700 /* VENColorStyleSettingsTableViewCell.xib */; };
+		2C98B15123404D1400E2C700 /* VENFontStyleSettingsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C98B14F23404D1400E2C700 /* VENFontStyleSettingsTableViewCell.m */; };
+		2C98B15223404D1400E2C700 /* VENFontStyleSettingsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C98B15023404D1400E2C700 /* VENFontStyleSettingsTableViewCell.xib */; };
 		2C9C4DD022DC797B00A67B9D /* VENHomePageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C9C4DCE22DC797B00A67B9D /* VENHomePageTableViewCell.m */; };
 		2C9C4DD122DC797B00A67B9D /* VENHomePageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C9C4DCF22DC797B00A67B9D /* VENHomePageTableViewCell.xib */; };
 		2C9D240E22D8333B00B15896 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C9D240D22D8333B00B15896 /* AppDelegate.m */; };
-		2C9D241622D8333C00B15896 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2C9D241522D8333C00B15896 /* Assets.xcassets */; };
 		2C9D241922D8333C00B15896 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2C9D241722D8333C00B15896 /* LaunchScreen.storyboard */; };
 		2C9D241C22D8333C00B15896 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C9D241B22D8333C00B15896 /* main.m */; };
+		2CA152C6233B492D004CA0BA /* LMFontSizePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CA152BF233B492C004CA0BA /* LMFontSizePickerView.m */; };
+		2CA152C7233B492D004CA0BA /* LMTextHTMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CA152C0233B492C004CA0BA /* LMTextHTMLParser.m */; };
+		2CA152C8233B492D004CA0BA /* LMColorPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CA152C2233B492C004CA0BA /* LMColorPickerView.m */; };
+		2CA152C9233B492D004CA0BA /* LMSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CA152C5233B492D004CA0BA /* LMSegmentedControl.m */; };
+		2CA152CF233B49C9004CA0BA /* LMTextStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CA152CB233B49C9004CA0BA /* LMTextStyle.m */; };
+		2CA152D0233B49C9004CA0BA /* LMParagraphConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CA152CC233B49C9004CA0BA /* LMParagraphConfig.m */; };
+		2CA152DC233B4D3F004CA0BA /* UIFont+LMText.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CA152D9233B4D3F004CA0BA /* UIFont+LMText.m */; };
+		2CA152DD233B4D3F004CA0BA /* NSTextAttachment+LMText.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CA152DA233B4D3F004CA0BA /* NSTextAttachment+LMText.m */; };
+		2CA152ED233B5E8B004CA0BA /* LMWordView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CA152E5233B5E8A004CA0BA /* LMWordView.m */; };
+		2CA152EE233B5E8B004CA0BA /* LMImagePreviewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CA152E8233B5E8A004CA0BA /* LMImagePreviewController.m */; };
+		2CA152F0233B5E8B004CA0BA /* LMWord.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2CA152EA233B5E8B004CA0BA /* LMWord.storyboard */; };
+		2CA152F1233B5E8B004CA0BA /* LMImageSettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CA152EB233B5E8B004CA0BA /* LMImageSettingsController.m */; };
+		2CA152F2233B5E8B004CA0BA /* LMStyleSettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CA152EC233B5E8B004CA0BA /* LMStyleSettingsController.m */; };
+		2CA15353233B5ED1004CA0BA /* LMStyleFontSizeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CA15346233B5ED0004CA0BA /* LMStyleFontSizeCell.m */; };
+		2CA15354233B5ED1004CA0BA /* LMPhotoCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CA15347233B5ED0004CA0BA /* LMPhotoCollectionCell.m */; };
+		2CA15355233B5ED1004CA0BA /* LMStyleColorCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CA15348233B5ED0004CA0BA /* LMStyleColorCell.m */; };
+		2CA15356233B5ED1004CA0BA /* LMStyleFormatCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CA1534D233B5ED0004CA0BA /* LMStyleFormatCell.m */; };
+		2CA15357233B5ED1004CA0BA /* LMStyleParagraphCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CA15350233B5ED1004CA0BA /* LMStyleParagraphCell.m */; };
+		2CA15358233B5ED1004CA0BA /* LMStyleFontStyleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CA15351233B5ED1004CA0BA /* LMStyleFontStyleCell.m */; };
 		2CA9908623054AED0081CC0C /* VENSettingPersonalInformationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CA9908523054AED0081CC0C /* VENSettingPersonalInformationViewController.m */; };
 		2CA9908923055D7A0081CC0C /* VENSettingPersonalInformationNickNameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CA9908823055D7A0081CC0C /* VENSettingPersonalInformationNickNameViewController.m */; };
 		2CA990A123068D190081CC0C /* VENDatePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CA9909923068D180081CC0C /* VENDatePickerView.m */; };
@@ -459,6 +487,13 @@
 		2C24702C22F2E28A00142646 /* VENMinePageTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VENMinePageTableViewCell.h; sourceTree = "<group>"; };
 		2C24702D22F2E28A00142646 /* VENMinePageTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VENMinePageTableViewCell.m; sourceTree = "<group>"; };
 		2C24702E22F2E28A00142646 /* VENMinePageTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VENMinePageTableViewCell.xib; sourceTree = "<group>"; };
+		2C4D5ECC234EDDF40010D5A1 /* VENVideoMaterialDetailsStartDictationPageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VENVideoMaterialDetailsStartDictationPageViewController.h; sourceTree = "<group>"; };
+		2C4D5ECD234EDDF40010D5A1 /* VENVideoMaterialDetailsStartDictationPageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VENVideoMaterialDetailsStartDictationPageViewController.m; sourceTree = "<group>"; };
+		2C4D5ECE234EDDF40010D5A1 /* VENVideoMaterialDetailsStartDictationPageViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VENVideoMaterialDetailsStartDictationPageViewController.xib; sourceTree = "<group>"; };
+		2C4D5ED1234F06160010D5A1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		2C4D5ED4234F082C0010D5A1 /* VENBottomToolsBarView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VENBottomToolsBarView.h; sourceTree = "<group>"; };
+		2C4D5ED5234F082C0010D5A1 /* VENBottomToolsBarView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VENBottomToolsBarView.m; sourceTree = "<group>"; };
+		2C4D5ED7234F083B0010D5A1 /* VENBottomToolsBarView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VENBottomToolsBarView.xib; sourceTree = "<group>"; };
 		2C5CC94C23018A8D00FAC842 /* VENMinePageTableHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VENMinePageTableHeaderView.h; sourceTree = "<group>"; };
 		2C5CC94D23018A8D00FAC842 /* VENMinePageTableHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VENMinePageTableHeaderView.m; sourceTree = "<group>"; };
 		2C699DC523190E9F00BA8810 /* JXCategoryTitleVerticalZoomCellModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JXCategoryTitleVerticalZoomCellModel.h; sourceTree = "<group>"; };
@@ -575,16 +610,61 @@
 		2C888E6C23277F2700CD0510 /* VENMaterialSortSelectorViewCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VENMaterialSortSelectorViewCollectionViewCell.h; sourceTree = "<group>"; };
 		2C888E6D23277F2700CD0510 /* VENMaterialSortSelectorViewCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VENMaterialSortSelectorViewCollectionViewCell.m; sourceTree = "<group>"; };
 		2C888E6E23277F2700CD0510 /* VENMaterialSortSelectorViewCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VENMaterialSortSelectorViewCollectionViewCell.xib; sourceTree = "<group>"; };
+		2C98B1432340480400E2C700 /* VENStyleSettingsController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VENStyleSettingsController.h; sourceTree = "<group>"; };
+		2C98B1442340480400E2C700 /* VENStyleSettingsController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VENStyleSettingsController.m; sourceTree = "<group>"; };
+		2C98B14923404CF900E2C700 /* VENColorStyleSettingsTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VENColorStyleSettingsTableViewCell.h; sourceTree = "<group>"; };
+		2C98B14A23404CF900E2C700 /* VENColorStyleSettingsTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VENColorStyleSettingsTableViewCell.m; sourceTree = "<group>"; };
+		2C98B14B23404CF900E2C700 /* VENColorStyleSettingsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VENColorStyleSettingsTableViewCell.xib; sourceTree = "<group>"; };
+		2C98B14E23404D1400E2C700 /* VENFontStyleSettingsTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VENFontStyleSettingsTableViewCell.h; sourceTree = "<group>"; };
+		2C98B14F23404D1400E2C700 /* VENFontStyleSettingsTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VENFontStyleSettingsTableViewCell.m; sourceTree = "<group>"; };
+		2C98B15023404D1400E2C700 /* VENFontStyleSettingsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VENFontStyleSettingsTableViewCell.xib; sourceTree = "<group>"; };
 		2C9C4DCD22DC797B00A67B9D /* VENHomePageTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VENHomePageTableViewCell.h; sourceTree = "<group>"; };
 		2C9C4DCE22DC797B00A67B9D /* VENHomePageTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VENHomePageTableViewCell.m; sourceTree = "<group>"; };
 		2C9C4DCF22DC797B00A67B9D /* VENHomePageTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VENHomePageTableViewCell.xib; sourceTree = "<group>"; };
 		2C9D240922D8333B00B15896 /* XingTingYi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XingTingYi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C9D240C22D8333B00B15896 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		2C9D240D22D8333B00B15896 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		2C9D241522D8333C00B15896 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2C9D241822D8333C00B15896 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2C9D241A22D8333C00B15896 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2C9D241B22D8333C00B15896 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		2CA152BE233B492B004CA0BA /* LMSegmentedControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LMSegmentedControl.h; sourceTree = "<group>"; };
+		2CA152BF233B492C004CA0BA /* LMFontSizePickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LMFontSizePickerView.m; sourceTree = "<group>"; };
+		2CA152C0233B492C004CA0BA /* LMTextHTMLParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LMTextHTMLParser.m; sourceTree = "<group>"; };
+		2CA152C1233B492C004CA0BA /* LMColorPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LMColorPickerView.h; sourceTree = "<group>"; };
+		2CA152C2233B492C004CA0BA /* LMColorPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LMColorPickerView.m; sourceTree = "<group>"; };
+		2CA152C3233B492C004CA0BA /* LMFontSizePickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LMFontSizePickerView.h; sourceTree = "<group>"; };
+		2CA152C4233B492C004CA0BA /* LMTextHTMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LMTextHTMLParser.h; sourceTree = "<group>"; };
+		2CA152C5233B492D004CA0BA /* LMSegmentedControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LMSegmentedControl.m; sourceTree = "<group>"; };
+		2CA152CB233B49C9004CA0BA /* LMTextStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LMTextStyle.m; sourceTree = "<group>"; };
+		2CA152CC233B49C9004CA0BA /* LMParagraphConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LMParagraphConfig.m; sourceTree = "<group>"; };
+		2CA152CD233B49C9004CA0BA /* LMParagraphConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LMParagraphConfig.h; sourceTree = "<group>"; };
+		2CA152CE233B49C9004CA0BA /* LMTextStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LMTextStyle.h; sourceTree = "<group>"; };
+		2CA152D8233B4D3F004CA0BA /* UIFont+LMText.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIFont+LMText.h"; sourceTree = "<group>"; };
+		2CA152D9233B4D3F004CA0BA /* UIFont+LMText.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIFont+LMText.m"; sourceTree = "<group>"; };
+		2CA152DA233B4D3F004CA0BA /* NSTextAttachment+LMText.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSTextAttachment+LMText.m"; sourceTree = "<group>"; };
+		2CA152DB233B4D3F004CA0BA /* NSTextAttachment+LMText.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSTextAttachment+LMText.h"; sourceTree = "<group>"; };
+		2CA152E2233B5E8A004CA0BA /* LMWordView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LMWordView.h; sourceTree = "<group>"; };
+		2CA152E3233B5E8A004CA0BA /* LMStyleSettingsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LMStyleSettingsController.h; sourceTree = "<group>"; };
+		2CA152E4233B5E8A004CA0BA /* LMImagePreviewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LMImagePreviewController.h; sourceTree = "<group>"; };
+		2CA152E5233B5E8A004CA0BA /* LMWordView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LMWordView.m; sourceTree = "<group>"; };
+		2CA152E6233B5E8A004CA0BA /* LMImageSettingsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LMImageSettingsController.h; sourceTree = "<group>"; };
+		2CA152E8233B5E8A004CA0BA /* LMImagePreviewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LMImagePreviewController.m; sourceTree = "<group>"; };
+		2CA152EA233B5E8B004CA0BA /* LMWord.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LMWord.storyboard; sourceTree = "<group>"; };
+		2CA152EB233B5E8B004CA0BA /* LMImageSettingsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LMImageSettingsController.m; sourceTree = "<group>"; };
+		2CA152EC233B5E8B004CA0BA /* LMStyleSettingsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LMStyleSettingsController.m; sourceTree = "<group>"; };
+		2CA15346233B5ED0004CA0BA /* LMStyleFontSizeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LMStyleFontSizeCell.m; sourceTree = "<group>"; };
+		2CA15347233B5ED0004CA0BA /* LMPhotoCollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LMPhotoCollectionCell.m; sourceTree = "<group>"; };
+		2CA15348233B5ED0004CA0BA /* LMStyleColorCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LMStyleColorCell.m; sourceTree = "<group>"; };
+		2CA15349233B5ED0004CA0BA /* LMStyleSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LMStyleSettings.h; sourceTree = "<group>"; };
+		2CA1534A233B5ED0004CA0BA /* LMStyleFormatCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LMStyleFormatCell.h; sourceTree = "<group>"; };
+		2CA1534B233B5ED0004CA0BA /* LMStyleFontSizeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LMStyleFontSizeCell.h; sourceTree = "<group>"; };
+		2CA1534C233B5ED0004CA0BA /* LMPhotoCollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LMPhotoCollectionCell.h; sourceTree = "<group>"; };
+		2CA1534D233B5ED0004CA0BA /* LMStyleFormatCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LMStyleFormatCell.m; sourceTree = "<group>"; };
+		2CA1534E233B5ED1004CA0BA /* LMStyleParagraphCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LMStyleParagraphCell.h; sourceTree = "<group>"; };
+		2CA1534F233B5ED1004CA0BA /* LMStyleColorCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LMStyleColorCell.h; sourceTree = "<group>"; };
+		2CA15350233B5ED1004CA0BA /* LMStyleParagraphCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LMStyleParagraphCell.m; sourceTree = "<group>"; };
+		2CA15351233B5ED1004CA0BA /* LMStyleFontStyleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LMStyleFontStyleCell.m; sourceTree = "<group>"; };
+		2CA15352233B5ED1004CA0BA /* LMStyleFontStyleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LMStyleFontStyleCell.h; sourceTree = "<group>"; };
 		2CA9908423054AED0081CC0C /* VENSettingPersonalInformationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VENSettingPersonalInformationViewController.h; sourceTree = "<group>"; };
 		2CA9908523054AED0081CC0C /* VENSettingPersonalInformationViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VENSettingPersonalInformationViewController.m; sourceTree = "<group>"; };
 		2CA9908723055D7A0081CC0C /* VENSettingPersonalInformationNickNameViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VENSettingPersonalInformationNickNameViewController.h; sourceTree = "<group>"; };
@@ -1498,6 +1578,7 @@
 			children = (
 				2C1E2B702329DCAA0080C526 /* Audio */,
 				2C1E2B6F2329DC930080C526 /* Video */,
+				2CFF8AFC232A450C009AD211 /* StartDictation */,
 			);
 			path = Details;
 			sourceTree = "<group>";
@@ -1557,6 +1638,16 @@
 				2CFF8AEB2329DD69009AD211 /* VENAudioMaterialDetailsPageViewController.m */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		2C4D5ED3234F07DC0010D5A1 /* BottomToolsBar */ = {
+			isa = PBXGroup;
+			children = (
+				2C4D5ED4234F082C0010D5A1 /* VENBottomToolsBarView.h */,
+				2C4D5ED5234F082C0010D5A1 /* VENBottomToolsBarView.m */,
+				2C4D5ED7234F083B0010D5A1 /* VENBottomToolsBarView.xib */,
+			);
+			path = BottomToolsBar;
 			sourceTree = "<group>";
 		};
 		2C5CC94F2302981700FAC842 /* Main */ = {
@@ -2024,6 +2115,37 @@
 			path = MaterialSortSelectorView;
 			sourceTree = "<group>";
 		};
+		2C98B14623404C5D00E2C700 /* StyleSettings */ = {
+			isa = PBXGroup;
+			children = (
+				2C98B14823404C7200E2C700 /* View */,
+				2C98B14723404C6A00E2C700 /* Controller */,
+			);
+			path = StyleSettings;
+			sourceTree = "<group>";
+		};
+		2C98B14723404C6A00E2C700 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				2C98B1432340480400E2C700 /* VENStyleSettingsController.h */,
+				2C98B1442340480400E2C700 /* VENStyleSettingsController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		2C98B14823404C7200E2C700 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				2C98B14923404CF900E2C700 /* VENColorStyleSettingsTableViewCell.h */,
+				2C98B14A23404CF900E2C700 /* VENColorStyleSettingsTableViewCell.m */,
+				2C98B14B23404CF900E2C700 /* VENColorStyleSettingsTableViewCell.xib */,
+				2C98B14E23404D1400E2C700 /* VENFontStyleSettingsTableViewCell.h */,
+				2C98B14F23404D1400E2C700 /* VENFontStyleSettingsTableViewCell.m */,
+				2C98B15023404D1400E2C700 /* VENFontStyleSettingsTableViewCell.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		2C9D240022D8333B00B15896 = {
 			isa = PBXGroup;
 			children = (
@@ -2046,13 +2168,97 @@
 				2C1CFF9022DC1EE300E4E9C4 /* Classes */,
 				2C9D240C22D8333B00B15896 /* AppDelegate.h */,
 				2C9D240D22D8333B00B15896 /* AppDelegate.m */,
-				2C9D241522D8333C00B15896 /* Assets.xcassets */,
+				2C4D5ED1234F06160010D5A1 /* Assets.xcassets */,
 				2C9D241722D8333C00B15896 /* LaunchScreen.storyboard */,
 				2C9D241A22D8333C00B15896 /* Info.plist */,
 				2C9D241B22D8333C00B15896 /* main.m */,
 				2C1CFF8F22DC1C6F00E4E9C4 /* VENPrefixHeader.pch */,
 			);
 			path = XingTingYi;
+			sourceTree = "<group>";
+		};
+		2CA15217233B485C004CA0BA /* LMWordView */ = {
+			isa = PBXGroup;
+			children = (
+				2CA15345233B5EAF004CA0BA /* Cells */,
+				2CA152DE233B534A004CA0BA /* Views */,
+				2CA152BD233B4918004CA0BA /* Util */,
+				2CA152CA233B49BF004CA0BA /* Models */,
+			);
+			path = LMWordView;
+			sourceTree = "<group>";
+		};
+		2CA152BD233B4918004CA0BA /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				2CA152BE233B492B004CA0BA /* LMSegmentedControl.h */,
+				2CA152C5233B492D004CA0BA /* LMSegmentedControl.m */,
+				2CA152C3233B492C004CA0BA /* LMFontSizePickerView.h */,
+				2CA152BF233B492C004CA0BA /* LMFontSizePickerView.m */,
+				2CA152C1233B492C004CA0BA /* LMColorPickerView.h */,
+				2CA152C2233B492C004CA0BA /* LMColorPickerView.m */,
+				2CA152C4233B492C004CA0BA /* LMTextHTMLParser.h */,
+				2CA152C0233B492C004CA0BA /* LMTextHTMLParser.m */,
+			);
+			path = Util;
+			sourceTree = "<group>";
+		};
+		2CA152CA233B49BF004CA0BA /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				2CA152CE233B49C9004CA0BA /* LMTextStyle.h */,
+				2CA152CB233B49C9004CA0BA /* LMTextStyle.m */,
+				2CA152CD233B49C9004CA0BA /* LMParagraphConfig.h */,
+				2CA152CC233B49C9004CA0BA /* LMParagraphConfig.m */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		2CA152D1233B49EA004CA0BA /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				2CA152DB233B4D3F004CA0BA /* NSTextAttachment+LMText.h */,
+				2CA152DA233B4D3F004CA0BA /* NSTextAttachment+LMText.m */,
+				2CA152D8233B4D3F004CA0BA /* UIFont+LMText.h */,
+				2CA152D9233B4D3F004CA0BA /* UIFont+LMText.m */,
+			);
+			path = Categories;
+			sourceTree = "<group>";
+		};
+		2CA152DE233B534A004CA0BA /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				2CA152E4233B5E8A004CA0BA /* LMImagePreviewController.h */,
+				2CA152E8233B5E8A004CA0BA /* LMImagePreviewController.m */,
+				2CA152E6233B5E8A004CA0BA /* LMImageSettingsController.h */,
+				2CA152EB233B5E8B004CA0BA /* LMImageSettingsController.m */,
+				2CA152E3233B5E8A004CA0BA /* LMStyleSettingsController.h */,
+				2CA152EC233B5E8B004CA0BA /* LMStyleSettingsController.m */,
+				2CA152EA233B5E8B004CA0BA /* LMWord.storyboard */,
+				2CA152E2233B5E8A004CA0BA /* LMWordView.h */,
+				2CA152E5233B5E8A004CA0BA /* LMWordView.m */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		2CA15345233B5EAF004CA0BA /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				2CA1534C233B5ED0004CA0BA /* LMPhotoCollectionCell.h */,
+				2CA15347233B5ED0004CA0BA /* LMPhotoCollectionCell.m */,
+				2CA1534F233B5ED1004CA0BA /* LMStyleColorCell.h */,
+				2CA15348233B5ED0004CA0BA /* LMStyleColorCell.m */,
+				2CA1534B233B5ED0004CA0BA /* LMStyleFontSizeCell.h */,
+				2CA15346233B5ED0004CA0BA /* LMStyleFontSizeCell.m */,
+				2CA15352233B5ED1004CA0BA /* LMStyleFontStyleCell.h */,
+				2CA15351233B5ED1004CA0BA /* LMStyleFontStyleCell.m */,
+				2CA1534A233B5ED0004CA0BA /* LMStyleFormatCell.h */,
+				2CA1534D233B5ED0004CA0BA /* LMStyleFormatCell.m */,
+				2CA1534E233B5ED1004CA0BA /* LMStyleParagraphCell.h */,
+				2CA15350233B5ED1004CA0BA /* LMStyleParagraphCell.m */,
+				2CA15349233B5ED0004CA0BA /* LMStyleSettings.h */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		2CA990832305435A0081CC0C /* PersonalInformation */ = {
@@ -2344,6 +2550,28 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		2CFF8AFC232A450C009AD211 /* StartDictation */ = {
+			isa = PBXGroup;
+			children = (
+				2CA152D1233B49EA004CA0BA /* Categories */,
+				2CA15217233B485C004CA0BA /* LMWordView */,
+				2CFF8AFD232A4522009AD211 /* Controller */,
+			);
+			path = StartDictation;
+			sourceTree = "<group>";
+		};
+		2CFF8AFD232A4522009AD211 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				2C4D5ED3234F07DC0010D5A1 /* BottomToolsBar */,
+				2C98B14623404C5D00E2C700 /* StyleSettings */,
+				2C4D5ECC234EDDF40010D5A1 /* VENVideoMaterialDetailsStartDictationPageViewController.h */,
+				2C4D5ECD234EDDF40010D5A1 /* VENVideoMaterialDetailsStartDictationPageViewController.m */,
+				2C4D5ECE234EDDF40010D5A1 /* VENVideoMaterialDetailsStartDictationPageViewController.xib */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -2405,21 +2633,25 @@
 				2CDD5780231E083700F64D57 /* VENLoginPageViewController.xib in Resources */,
 				2CFF8AF32329DEEC009AD211 /* VENAudioMaterialDetailsPageHeaderView.xib in Resources */,
 				2CDD577B231E083700F64D57 /* VENBindingPhoneViewController.xib in Resources */,
+				2C4D5ED2234F06160010D5A1 /* Assets.xcassets in Resources */,
+				2C4D5ED8234F083B0010D5A1 /* VENBottomToolsBarView.xib in Resources */,
+				2CA152F0233B5E8B004CA0BA /* LMWord.storyboard in Resources */,
 				2CDD5793231FA74E00F64D57 /* VENNewsPageReleaseNewsCollectionViewCell.xib in Resources */,
 				2CECFDD022E1C637001D9F7F /* VENHomePageTableViewHeaderView.xib in Resources */,
 				2C148FBA2322449500DC9BA3 /* VENNewsPageDetailsCommentTableViewCell.xib in Resources */,
 				2CA990A223068D190081CC0C /* VENListPickerViewCell.xib in Resources */,
 				2CDD577C231E083700F64D57 /* VENRegisterPageViewController.xib in Resources */,
+				2C4D5ED0234EDDF40010D5A1 /* VENVideoMaterialDetailsStartDictationPageViewController.xib in Resources */,
 				2C8278A622E560550066B0C2 /* VENHomePageBannerCollectionViewCell.xib in Resources */,
 				2C9D241922D8333C00B15896 /* LaunchScreen.storyboard in Resources */,
 				2C24703022F2E28A00142646 /* VENMinePageTableViewCell.xib in Resources */,
 				2CBCDEC12302BF270010BD11 /* VENSettingTableViewCell.xib in Resources */,
 				2C1E2B5823278D680080C526 /* VENMaterialSortSelectorViewCollectionReusableView.xib in Resources */,
-				2C9D241622D8333C00B15896 /* Assets.xcassets in Resources */,
 				2CDD5787231E4A9E00F64D57 /* VENSetPasswordPageViewController.xib in Resources */,
 				2C148FB323223C4000DC9BA3 /* VENNewsPageDetailsViewController.xib in Resources */,
 				2C1E2B6A2328E77C0080C526 /* VENVideoMaterialDetailsPageHeaderView.xib in Resources */,
 				2CDD577F231E083700F64D57 /* VENResetPasswordViewController.xib in Resources */,
+				2C98B14D23404CF900E2C700 /* VENColorStyleSettingsTableViewCell.xib in Resources */,
 				2C9C4DD122DC797B00A67B9D /* VENHomePageTableViewCell.xib in Resources */,
 				2C1C018522DC1EE400E4E9C4 /* IQKeyboardManager.bundle in Resources */,
 				2CECFDC922E1C2DE001D9F7F /* VENHomePageTableViewCellTwo.xib in Resources */,
@@ -2427,6 +2659,7 @@
 				2CFF8AFB2329F1A7009AD211 /* VENAudioMaterialDetailsPageTableViewCell.xib in Resources */,
 				2C1C012A22DC1EE400E4E9C4 /* MJRefresh.bundle in Resources */,
 				2C888E7023277F2700CD0510 /* VENMaterialSortSelectorViewCollectionViewCell.xib in Resources */,
+				2C98B15223404D1400E2C700 /* VENFontStyleSettingsTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2444,6 +2677,7 @@
 				2C699E3D23190E9F00BA8810 /* JXCategoryFactory.m in Sources */,
 				2C699E4323190E9F00BA8810 /* JXCategoryBaseView.m in Sources */,
 				2C699E2223190E9F00BA8810 /* JXCategoryIndicatorLineView.m in Sources */,
+				2CA15358233B5ED1004CA0BA /* LMStyleFontStyleCell.m in Sources */,
 				2C1C018422DC1EE400E4E9C4 /* IQPreviousNextView.m in Sources */,
 				2C1C01A722DC1EE400E4E9C4 /* SDWebImageManager.m in Sources */,
 				2C699E3523190E9F00BA8810 /* JXCategoryTitleView.m in Sources */,
@@ -2459,6 +2693,7 @@
 				2C1C019F22DC1EE400E4E9C4 /* MBProgressHUD.m in Sources */,
 				2C1C018022DC1EE400E4E9C4 /* IQToolbar.m in Sources */,
 				2CFF8AEC2329DD69009AD211 /* VENAudioMaterialDetailsPageViewController.m in Sources */,
+				2CA15354233B5ED1004CA0BA /* LMPhotoCollectionCell.m in Sources */,
 				2CECFDC822E1C2DE001D9F7F /* VENHomePageTableViewCellTwo.m in Sources */,
 				2C699E2723190E9F00BA8810 /* JXCategoryIndicatorComponentView.m in Sources */,
 				2C1C012922DC1EE400E4E9C4 /* MJRefreshConst.m in Sources */,
@@ -2476,6 +2711,7 @@
 				2C1C012C22DC1EE400E4E9C4 /* NSBundle+MJRefresh.m in Sources */,
 				2C699E3B23190E9F00BA8810 /* JXCategoryNumberCellModel.m in Sources */,
 				2C1C01A422DC1EE400E4E9C4 /* TAPageControl.m in Sources */,
+				2CA15355233B5ED1004CA0BA /* LMStyleColorCell.m in Sources */,
 				2C817FEE22F1795E00DA6F0B /* VENMaterialPagePersonalMaterialAudioViewController.m in Sources */,
 				2C1C01BC22DC1EE400E4E9C4 /* VENNetworkingManager.m in Sources */,
 				2C699E2A23190E9F00BA8810 /* JXCategoryIndicatorCellModel.m in Sources */,
@@ -2484,7 +2720,9 @@
 				2C1C01E322DC63AD00E4E9C4 /* VENNewsPageViewController.m in Sources */,
 				2C1C018322DC1EE400E4E9C4 /* IQUIView+IQKeyboardToolbar.m in Sources */,
 				2C9D241C22D8333C00B15896 /* main.m in Sources */,
+				2CA152ED233B5E8B004CA0BA /* LMWordView.m in Sources */,
 				2C699E3C23190E9F00BA8810 /* JXCategoryListContainerView.m in Sources */,
+				2CA152F2233B5E8B004CA0BA /* LMStyleSettingsController.m in Sources */,
 				2C1C012D22DC1EE400E4E9C4 /* UIView+MJExtension.m in Sources */,
 				2C699E4123190E9F00BA8810 /* JXCategoryListCollectionContainerView.m in Sources */,
 				2C699E2023190E9F00BA8810 /* JXCategoryTitleVerticalZoomCell.m in Sources */,
@@ -2492,27 +2730,35 @@
 				2C1C018722DC1EE400E4E9C4 /* IQNSArray+Sort.m in Sources */,
 				2C1C018A22DC1EE400E4E9C4 /* IQUIView+Hierarchy.m in Sources */,
 				2C699E4523190E9F00BA8810 /* JXCategoryBaseCellModel.m in Sources */,
+				2CA152D0233B49C9004CA0BA /* LMParagraphConfig.m in Sources */,
+				2C4D5ED6234F082C0010D5A1 /* VENBottomToolsBarView.m in Sources */,
 				2C699E3E23190E9F00BA8810 /* JXCategoryCollectionView.m in Sources */,
 				2C1C01C922DC1EE400E4E9C4 /* VENTabBarController.m in Sources */,
 				2C148FC3232253E000DC9BA3 /* VENHomePageRecommendMaterialViewController.m in Sources */,
 				2C1C017F22DC1EE400E4E9C4 /* IQTextView.m in Sources */,
+				2CA152C8233B492D004CA0BA /* LMColorPickerView.m in Sources */,
 				2C1C01AE22DC1EE400E4E9C4 /* SDWebImagePrefetcher.m in Sources */,
 				2C148FC0232253C600DC9BA3 /* VENHomePageNewsViewController.m in Sources */,
 				2C1C01C222DC1EE400E4E9C4 /* VENUserStatusManager.m in Sources */,
 				2C1C015B22DC1EE400E4E9C4 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,
 				2C699E2323190E9F00BA8810 /* JXCategoryIndicatorTriangleView.m in Sources */,
 				2C699E2E23190E9F00BA8810 /* JXCategoryDotView.m in Sources */,
+				2CA152DC233B4D3F004CA0BA /* UIFont+LMText.m in Sources */,
 				2C1C01A922DC1EE400E4E9C4 /* UIImageView+HighlightedWebCache.m in Sources */,
+				2CA15356233B5ED1004CA0BA /* LMStyleFormatCell.m in Sources */,
+				2CA152C9233B492D004CA0BA /* LMSegmentedControl.m in Sources */,
 				2CBCDEC02302BF270010BD11 /* VENSettingTableViewCell.m in Sources */,
 				2C1C018222DC1EE400E4E9C4 /* IQBarButtonItem.m in Sources */,
 				2C699E2423190E9F00BA8810 /* JXCategoryIndicatorRainbowLineView.m in Sources */,
 				2C699E2923190E9F00BA8810 /* JXCategoryIndicatorBackgroundView.m in Sources */,
 				2CA990A423068D190081CC0C /* VENListPickerViewCell.m in Sources */,
 				2C1C01C722DC1EE400E4E9C4 /* VENBaseViewController.m in Sources */,
+				2CA15357233B5ED1004CA0BA /* LMStyleParagraphCell.m in Sources */,
 				2C1C013622DC1EE400E4E9C4 /* MJRefreshGifHeader.m in Sources */,
 				2C699E2523190E9F00BA8810 /* JXCategoryIndicatorImageView.m in Sources */,
 				2C24702F22F2E28A00142646 /* VENMinePageTableViewCell.m in Sources */,
 				2C817FF122F1797800DA6F0B /* VENMaterialPagePersonalMaterialVideoViewController.m in Sources */,
+				2CA152C6233B492D004CA0BA /* LMFontSizePickerView.m in Sources */,
 				2C9D240E22D8333B00B15896 /* AppDelegate.m in Sources */,
 				2C1C013022DC1EE400E4E9C4 /* MJRefreshBackNormalFooter.m in Sources */,
 				2C817FF422F1798B00DA6F0B /* VENMaterialPagePersonalMaterialTextViewController.m in Sources */,
@@ -2521,6 +2767,7 @@
 				2C1C01B322DC1EE400E4E9C4 /* UIView+WebCacheOperation.m in Sources */,
 				2C1C01B222DC1EE400E4E9C4 /* UIImageView+WebCache.m in Sources */,
 				2C699E3623190E9F00BA8810 /* JXCategoryImageView.m in Sources */,
+				2CA152DD233B4D3F004CA0BA /* NSTextAttachment+LMText.m in Sources */,
 				2C1C013322DC1EE400E4E9C4 /* MJRefreshAutoNormalFooter.m in Sources */,
 				2C699E2823190E9F00BA8810 /* JXCategoryIndicatorDotLineView.m in Sources */,
 				2C699E3023190E9F00BA8810 /* JXCategoryTitleImageView.m in Sources */,
@@ -2541,6 +2788,7 @@
 				2C1C01AA22DC1EE400E4E9C4 /* SDWebImageDownloader.m in Sources */,
 				2CBCDEB22302B8860010BD11 /* VENMyOtherPlatformMaterialViewController.m in Sources */,
 				2C1C018822DC1EE400E4E9C4 /* IQUITextFieldView+Additions.m in Sources */,
+				2C98B1452340480400E2C700 /* VENStyleSettingsController.m in Sources */,
 				2C1C013B22DC1EE400E4E9C4 /* MJRefreshComponent.m in Sources */,
 				2CA9908623054AED0081CC0C /* VENSettingPersonalInformationViewController.m in Sources */,
 				2C1C01BD22DC1EE400E4E9C4 /* VENBaseWebViewController.m in Sources */,
@@ -2549,9 +2797,11 @@
 				2C1C019A22DC1EE400E4E9C4 /* AFNetworkReachabilityManager.m in Sources */,
 				2C1C01A322DC1EE400E4E9C4 /* TADotView.m in Sources */,
 				2C888E6F23277F2700CD0510 /* VENMaterialSortSelectorViewCollectionViewCell.m in Sources */,
+				2C98B14C23404CF900E2C700 /* VENColorStyleSettingsTableViewCell.m in Sources */,
 				2C1C01A822DC1EE400E4E9C4 /* SDWebImageDecoder.m in Sources */,
 				2C817FFC22F190B100DA6F0B /* VENMaterialPagePersonalMaterialViewController.m in Sources */,
 				2CDD577A231E083700F64D57 /* VENBindingPhoneViewController.m in Sources */,
+				2C4D5ECF234EDDF40010D5A1 /* VENVideoMaterialDetailsStartDictationPageViewController.m in Sources */,
 				2C8278A222E55F930066B0C2 /* TYCyclePagerTransformLayout.m in Sources */,
 				2CBCDEAF2302B8460010BD11 /* VENMyOtherViewController.m in Sources */,
 				2C699E3923190E9F00BA8810 /* JXCategoryNumberView.m in Sources */,
@@ -2575,7 +2825,9 @@
 				2C1C019922DC1EE400E4E9C4 /* AFURLRequestSerialization.m in Sources */,
 				2C1C013522DC1EE400E4E9C4 /* MJRefreshStateHeader.m in Sources */,
 				2C1C016222DC1EE400E4E9C4 /* MASConstraint.m in Sources */,
+				2CA152F1233B5E8B004CA0BA /* LMImageSettingsController.m in Sources */,
 				2C699E3323190E9F00BA8810 /* JXCategoryTitleCellModel.m in Sources */,
+				2CA152C7233B492D004CA0BA /* LMTextHTMLParser.m in Sources */,
 				2C1C01B622DC1EE400E4E9C4 /* VENVerificationCodeButton.m in Sources */,
 				2C1C018D22DC1EE400E4E9C4 /* UIProgressView+AFNetworking.m in Sources */,
 				2C1C01A622DC1EE400E4E9C4 /* TAAbstractDotView.m in Sources */,
@@ -2585,8 +2837,10 @@
 				2C1C019622DC1EE400E4E9C4 /* AFURLResponseSerialization.m in Sources */,
 				2C1C015F22DC1EE400E4E9C4 /* MASLayoutConstraint.m in Sources */,
 				2C1E2B6E2328EEEF0080C526 /* VENVideoMaterialDetailsPageModel.m in Sources */,
+				2CA15353233B5ED1004CA0BA /* LMStyleFontSizeCell.m in Sources */,
 				2C1E2B632327A8E70080C526 /* VENVideoMaterialDetailsPageViewController.m in Sources */,
 				2CDD5792231FA74E00F64D57 /* VENNewsPageReleaseNewsCollectionViewCell.m in Sources */,
+				2CA152EE233B5E8B004CA0BA /* LMImagePreviewController.m in Sources */,
 				2C1C019222DC1EE400E4E9C4 /* UIActivityIndicatorView+AFNetworking.m in Sources */,
 				2C1C016122DC1EE400E4E9C4 /* View+MASAdditions.m in Sources */,
 				2C8278A122E55F930066B0C2 /* TYCyclePagerView.m in Sources */,
@@ -2599,6 +2853,7 @@
 				2C699E50231927DD00BA8810 /* VENNewsPageListTableViewCell.m in Sources */,
 				2CDD578B231F601F00F64D57 /* VENNewsPageReleaseNewsViewController.m in Sources */,
 				2C1C01AD22DC1EE400E4E9C4 /* SDWebImageCompat.m in Sources */,
+				2C98B15123404D1400E2C700 /* VENFontStyleSettingsTableViewCell.m in Sources */,
 				2C699E3123190E9F00BA8810 /* JXCategoryTitleImageCell.m in Sources */,
 				2C699E2F23190E9F00BA8810 /* JXCategoryDotCellModel.m in Sources */,
 				2CA9908923055D7A0081CC0C /* VENSettingPersonalInformationNickNameViewController.m in Sources */,
@@ -2606,6 +2861,7 @@
 				2C1C018122DC1EE400E4E9C4 /* IQTitleBarButtonItem.m in Sources */,
 				2C699E4A2319143200BA8810 /* VENNewsPageListViewController.m in Sources */,
 				2C1C01B022DC1EE400E4E9C4 /* SDWebImageDownloaderOperation.m in Sources */,
+				2CA152CF233B49C9004CA0BA /* LMTextStyle.m in Sources */,
 				2C1C013422DC1EE400E4E9C4 /* MJRefreshNormalHeader.m in Sources */,
 				2C1C016422DC1EE400E4E9C4 /* MASViewAttribute.m in Sources */,
 				2CDD5786231E4A9E00F64D57 /* VENSetPasswordPageViewController.m in Sources */,

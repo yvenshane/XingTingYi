@@ -10,6 +10,7 @@
 #import "VENAudioMaterialDetailsPageHeaderView.h"
 #import "VENAudioMaterialDetailsPageModel.h"
 #import "VENAudioMaterialDetailsPageTableViewCell.h"
+#import "VENVideoMaterialDetailsStartDictationPageViewController.h"
 
 @interface VENAudioMaterialDetailsPageViewController ()
 
@@ -96,6 +97,7 @@ static NSString *const cellIdentifier = @"cellIdentifier";
     leftButton.titleLabel.font = [UIFont systemFontOfSize:16.0f];
     leftButton.layer.cornerRadius = 20.0f;
     leftButton.layer.masksToBounds = YES;
+    [leftButton addTarget:self action:@selector(leftButtonClick:) forControlEvents:UIControlEventTouchUpInside];
     [bottomToolBar addSubview:leftButton];
     
     UIButton *rightButton = [[UIButton alloc] initWithFrame:CGRectMake(20 + width + 15, 10, (kMainScreenWidth - 40 - 15) / 2, 40)];
@@ -106,6 +108,12 @@ static NSString *const cellIdentifier = @"cellIdentifier";
     rightButton.layer.cornerRadius = 20.0f;
     rightButton.layer.masksToBounds = YES;
     [bottomToolBar addSubview:rightButton];
+}
+
+#pragma mark - 开始听写
+- (void)leftButtonClick:(UIButton *)button {
+    VENVideoMaterialDetailsStartDictationPageViewController *vc = [[VENVideoMaterialDetailsStartDictationPageViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 /*
