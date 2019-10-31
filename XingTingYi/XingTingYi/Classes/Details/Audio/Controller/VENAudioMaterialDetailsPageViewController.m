@@ -35,7 +35,7 @@ static NSString *const cellIdentifier = @"cellIdentifier";
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    self.tableView.frame = CGRectMake(0, 0, kMainScreenWidth, kMainScreenHeight - 60);
+    self.tableView.frame = CGRectMake(0, 0, kMainScreenWidth, kMainScreenHeight - 60 - (kTabBarHeight - 49));
     [self.tableView registerNib:[UINib nibWithNibName:@"VENAudioMaterialDetailsPageTableViewCell" bundle:nil] forCellReuseIdentifier:cellIdentifier];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:self.tableView];
@@ -80,7 +80,7 @@ static NSString *const cellIdentifier = @"cellIdentifier";
 }
 
 - (void)setupBottomToolBar {
-    UIView *bottomToolBar = [[UIView alloc] initWithFrame:CGRectMake(0, kMainScreenHeight - 60, kMainScreenWidth, 60)];
+    UIView *bottomToolBar = [[UIView alloc] initWithFrame:CGRectMake(0, kMainScreenHeight - 60 - (kTabBarHeight - 49), kMainScreenWidth, 60)];
     bottomToolBar.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:bottomToolBar];
     

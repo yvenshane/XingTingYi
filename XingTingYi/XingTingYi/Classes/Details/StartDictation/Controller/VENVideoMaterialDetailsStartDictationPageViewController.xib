@@ -16,6 +16,7 @@
                 <outlet property="bottomViewBottomLayoutConstraint" destination="i7u-Wo-kVx" id="fWk-sS-ZDM"/>
                 <outlet property="contentTextView" destination="NIw-yA-dxw" id="Wni-qh-r2R"/>
                 <outlet property="placeholderLabel" destination="v4I-EB-wei" id="2Nq-Mx-NTt"/>
+                <outlet property="topAudioPlayerView" destination="ndf-6o-1E9" id="Q2K-iE-xdn"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -25,7 +26,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="NIw-yA-dxw">
-                    <rect key="frame" x="0.0" y="199" width="414" height="623"/>
+                    <rect key="frame" x="20" y="214" width="374" height="608"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                 </textView>
@@ -43,7 +44,7 @@
                     </constraints>
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="请在此输入听写的内容" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v4I-EB-wei">
-                    <rect key="frame" x="5" y="207" width="143" height="17"/>
+                    <rect key="frame" x="25" y="222" width="143" height="17"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <color key="textColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
@@ -54,13 +55,13 @@
                 <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="ndf-6o-1E9" secondAttribute="trailing" id="1YS-i8-IRg"/>
                 <constraint firstItem="y9S-Qz-u0f" firstAttribute="top" secondItem="NIw-yA-dxw" secondAttribute="bottom" id="3iw-g7-yIq"/>
                 <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="y9S-Qz-u0f" secondAttribute="trailing" id="8BR-4r-nc4"/>
-                <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="NIw-yA-dxw" secondAttribute="trailing" id="8hr-Xx-khn"/>
+                <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="NIw-yA-dxw" secondAttribute="trailing" constant="20" id="8hr-Xx-khn"/>
                 <constraint firstItem="ndf-6o-1E9" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" id="FbN-JR-6XB"/>
-                <constraint firstItem="v4I-EB-wei" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" constant="5" id="Lqh-3u-iIS"/>
-                <constraint firstItem="NIw-yA-dxw" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="TBP-Na-a56"/>
+                <constraint firstItem="v4I-EB-wei" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" constant="25" id="Lqh-3u-iIS"/>
+                <constraint firstItem="NIw-yA-dxw" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" constant="20" id="TBP-Na-a56"/>
                 <constraint firstItem="Q5M-cg-NOt" firstAttribute="bottom" secondItem="y9S-Qz-u0f" secondAttribute="bottom" id="i7u-Wo-kVx"/>
-                <constraint firstItem="v4I-EB-wei" firstAttribute="top" secondItem="ndf-6o-1E9" secondAttribute="bottom" constant="8" id="mQV-cc-ywm"/>
-                <constraint firstItem="NIw-yA-dxw" firstAttribute="top" secondItem="ndf-6o-1E9" secondAttribute="bottom" id="oZv-eV-BJc"/>
+                <constraint firstItem="v4I-EB-wei" firstAttribute="top" secondItem="ndf-6o-1E9" secondAttribute="bottom" constant="23" id="mQV-cc-ywm"/>
+                <constraint firstItem="NIw-yA-dxw" firstAttribute="top" secondItem="ndf-6o-1E9" secondAttribute="bottom" constant="15" id="oZv-eV-BJc"/>
                 <constraint firstItem="ndf-6o-1E9" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="pKY-UV-ppx"/>
                 <constraint firstItem="y9S-Qz-u0f" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="tMl-Vz-2dR"/>
             </constraints>

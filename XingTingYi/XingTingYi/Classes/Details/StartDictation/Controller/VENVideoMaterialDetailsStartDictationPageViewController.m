@@ -12,16 +12,19 @@
 #import "LMTextHTMLParser.h"
 #import "VENStyleSettingsController.h"
 #import "VENBottomToolsBarView.h"
+#import "VENAudioPlayerView.h"
 
 @interface VENVideoMaterialDetailsStartDictationPageViewController () <UITextViewDelegate>
 @property (weak, nonatomic) IBOutlet UITextView *contentTextView;
 @property (weak, nonatomic) IBOutlet UILabel *placeholderLabel;
 @property (weak, nonatomic) IBOutlet UIView *bottomView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomViewBottomLayoutConstraint;
+@property (weak, nonatomic) IBOutlet UIView *topAudioPlayerView;
 
 @property (nonatomic, strong) VENStyleSettingsController *styleSettingsViewController;
 @property (nonatomic, strong) LMTextStyle *currentTextStyle;
 @property (nonatomic, strong) VENBottomToolsBarView *bottomToolsBarView;
+@property (nonatomic, strong) VENAudioPlayerView *audioPlayerView;
 
 @end
 
@@ -54,6 +57,15 @@
     
     // textView Delegate
     self.contentTextView.delegate = self;
+    // 顶部播放器试图
+    self.topAudioPlayerView.backgroundColor = [UIColor whiteColor];
+    self.topAudioPlayerView.layer.shadowColor = [UIColor colorWithRed:0/255.0 green:0/255.0 blue:0/255.0 alpha:0.03].CGColor;
+    self.topAudioPlayerView.layer.shadowOffset = CGSizeMake(0,4);
+    self.topAudioPlayerView.layer.shadowOpacity = 1;
+    self.topAudioPlayerView.layer.shadowRadius = 8;
+    
+    self.audioPlayerView.audioURL = @"http://app.xingtingyi.com/1020%20NHK%E6%AF%8F%E6%97%A5%E6%89%93%E5%8D%A1.mp3";
+    [self.topAudioPlayerView addSubview:self.audioPlayerView];
     // 底部按钮视图
     [self.bottomView addSubview:self.bottomToolsBarView];
     
@@ -179,7 +191,6 @@
         
         // 字号/颜色
         [_bottomToolsBarView.textStyleSettingButton addTarget:self action:@selector(textStyleSettingButtonClick:) forControlEvents:UIControlEventTouchUpInside];
-
     }
     return _bottomToolsBarView;
 }
@@ -206,19 +217,29 @@
     [button setTitle:@"保存" forState:UIControlStateNormal];
     [button setTitleColor:UIColorFromRGB(0x222222) forState:UIControlStateNormal];
     button.titleLabel.font = [UIFont systemFontOfSize:15.0f];
-    [button addTarget:self action:@selector(backButtonClick) forControlEvents:UIControlEventTouchUpInside];
+    [button addTarget:self action:@selector(saveButtonClick) forControlEvents:UIControlEventTouchUpInside];
     
     UIBarButtonItem *barButton = [[UIBarButtonItem alloc] initWithCustomView:button];
     self.navigationItem.rightBarButtonItem = barButton;
 }
 
-- (void)backButtonClick {
+- (void)saveButtonClick {
     NSLog(@"%@", [self exportHTML]);
 }
 
+#pragma mark - 转换成 HTML
 - (NSString *)exportHTML {
     NSString *content = [LMTextHTMLParser HTMLFromAttributedString:self.contentTextView.attributedText];
     return content;
+}
+
+#pragma mark - 音频播放器
+- (VENAudioPlayerView *)audioPlayerView {
+    if (!_audioPlayerView) {
+        _audioPlayerView = [[[NSBundle mainBundle] loadNibNamed:@"VENAudioPlayerView" owner:nil options:nil] firstObject];
+        _audioPlayerView.frame = CGRectMake(kMainScreenWidth / 2 - 335 / 2, 155 / 2 - 120 / 2, 335, 120);
+    }
+    return _audioPlayerView;
 }
 
 /*
