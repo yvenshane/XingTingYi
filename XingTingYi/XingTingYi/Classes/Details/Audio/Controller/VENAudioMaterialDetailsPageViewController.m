@@ -13,6 +13,7 @@
 #import "VENVideoMaterialDetailsStartDictationPageViewController.h"
 
 @interface VENAudioMaterialDetailsPageViewController ()
+@property (nonatomic, strong) UIView *navigationView;
 
 @end
 
@@ -40,6 +41,7 @@ static NSString *const cellIdentifier = @"cellIdentifier";
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:self.tableView];
     
+    [self setupNavigationView];
     [self setupBottomToolBar];
 }
 
@@ -114,6 +116,36 @@ static NSString *const cellIdentifier = @"cellIdentifier";
 - (void)leftButtonClick:(UIButton *)button {
     VENVideoMaterialDetailsStartDictationPageViewController *vc = [[VENVideoMaterialDetailsStartDictationPageViewController alloc] init];
     [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (void)setupNavigationView {
+    UIView *navigationView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kMainScreenWidth, kStatusBarAndNavigationBarHeight)];
+    [self.view addSubview:navigationView];
+    
+    UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(22, kStatusBarHeight, 44, 44)];
+    backButton.contentEdgeInsets = UIEdgeInsetsMake(0, -20, 0, 0);
+    [backButton setImage:[UIImage imageNamed:@"icon_back2"] forState:UIControlStateNormal];
+    [backButton addTarget:self action:@selector(backButtonClick) forControlEvents:UIControlEventTouchUpInside];
+    [navigationView addSubview:backButton];
+    
+    UIButton *moreButton = [[UIButton alloc] initWithFrame:CGRectMake(kMainScreenWidth - 44 - 11, kStatusBarHeight, 44, 44)];
+    [moreButton setImage:[UIImage imageNamed:@"icon_more2"] forState:UIControlStateNormal];
+    [moreButton addTarget:self action:@selector(moreButtonClick) forControlEvents:UIControlEventTouchUpInside];
+    [navigationView addSubview:moreButton];
+    
+    _navigationView = navigationView;
+}
+
+- (void)backButtonClick {
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)moreButtonClick {
+    
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    self.navigationView.backgroundColor = [UIColor colorWithRed:255.0f / 255.0f green:222.0f / 255.0f blue:2.0f / 255.0f alpha:scrollView.contentOffset.y / kStatusBarAndNavigationBarHeight];
 }
 
 /*

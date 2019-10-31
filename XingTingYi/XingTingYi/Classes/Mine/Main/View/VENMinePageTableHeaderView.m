@@ -89,13 +89,15 @@
 - (void)layoutSubviews {
     [super layoutSubviews];
     
-    self.setttingButton.frame = CGRectMake(kMainScreenWidth - 44 - 8, kStatusBarHeight, 44, 44);
-    self.iconButton.frame = CGRectMake(20, kStatusBarHeight + 44, 70, 70);
-    self.nameLabel.frame = CGRectMake(20 + 70 + 15, kStatusBarHeight + 55, kMainScreenWidth - 20 - 70 - 15 - 20, 25);
-    self.descriptionLabel.frame = CGRectMake(20 + 70 + 15, kStatusBarHeight + 55 + 6 + 25, kMainScreenWidth - 20 - 70 - 15 - 20, 17);
+    CGFloat y = kIsiPhoneX ? 35 : 20;
+    
+    self.setttingButton.frame = CGRectMake(kMainScreenWidth - 44 - 8, y, 44, 44);
+    self.iconButton.frame = CGRectMake(20, 20 + 44, 70, 70);
+    self.nameLabel.frame = CGRectMake(20 + 70 + 15, 20 + 55, kMainScreenWidth - 20 - 70 - 15 - 20, 25);
+    self.descriptionLabel.frame = CGRectMake(20 + 70 + 15, 20 + 55 + 6 + 25, kMainScreenWidth - 20 - 70 - 15 - 20, 17);
     CGFloat width = [self.memberLabel sizeThatFits:CGSizeMake(CGFLOAT_MAX, 12)].width;
     self.memberLabel.frame = CGRectMake(7 + 10 + 3, 3, width, 12);
-    self.memberView.frame = CGRectMake(20 + 70 + 15, kStatusBarHeight + 55 + 6 + 25 + 12 + 17, width + 28, 18);
+    self.memberView.frame = CGRectMake(20 + 70 + 15, 20 + 55 + 6 + 25 + 12 + 17, width + 28, 18);
     self.radiusView.frame = CGRectMake(0, 176, kMainScreenWidth, 14);
 }
 

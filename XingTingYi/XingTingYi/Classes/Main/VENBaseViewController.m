@@ -55,6 +55,12 @@
         _tableView.estimatedSectionFooterHeight = 0;
         // 解决多余 cell 问题
         _tableView.tableFooterView = [[UIView alloc] init];
+        // 解决 iPhone X TableHeaderView 下移的问题
+        if (@available(iOS 11.0, *)) {
+          _tableView.contentInsetAdjustmentBehavior =  UIScrollViewContentInsetAdjustmentNever;
+        } else {
+          self.automaticallyAdjustsScrollViewInsets = NO;
+        }
     }
     return _tableView;
 }

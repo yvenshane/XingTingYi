@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -22,14 +20,6 @@
                         <constraint firstAttribute="height" constant="250" id="F0u-2z-gQc"/>
                     </constraints>
                 </imageView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2hQ-s0-4NX">
-                    <rect key="frame" x="0.0" y="19" width="46" height="46"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="46" id="Z3n-y9-2Co"/>
-                        <constraint firstAttribute="width" constant="46" id="gt4-Dh-5U0"/>
-                    </constraints>
-                    <state key="normal" image="icon_back2"/>
-                </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nri-mH-Hu6">
                     <rect key="frame" x="20" y="270" width="374" height="233"/>
                     <constraints>
@@ -96,14 +86,6 @@
                         <constraint firstAttribute="height" constant="400" id="BWm-42-J6D"/>
                     </constraints>
                 </view>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q0R-RD-Xae">
-                    <rect key="frame" x="368" y="19" width="46" height="46"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="46" id="DeU-z2-OBN"/>
-                        <constraint firstAttribute="width" constant="46" id="Tqk-aw-N28"/>
-                    </constraints>
-                    <state key="normal" image="icon_more2"/>
-                </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
@@ -133,14 +115,10 @@
                 <constraint firstItem="4s2-4F-ZNq" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="ZXs-ad-ZW3"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="9ss-CJ-aK9" secondAttribute="trailing" constant="20" id="ccl-NS-C3M"/>
                 <constraint firstItem="upL-Om-Qna" firstAttribute="top" secondItem="hu8-Mk-EY9" secondAttribute="top" constant="-14" id="dZh-zu-Idu"/>
-                <constraint firstItem="2hQ-s0-4NX" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="fyU-rg-LdU"/>
-                <constraint firstItem="Q0R-RD-Xae" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="19" id="jMQ-xI-hwr"/>
                 <constraint firstItem="8Lp-U9-Dhe" firstAttribute="top" secondItem="nri-mH-Hu6" secondAttribute="bottom" constant="10" id="o3T-NN-swO"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="hu8-Mk-EY9" secondAttribute="trailing" constant="35" id="qOI-5T-4yR"/>
-                <constraint firstItem="2hQ-s0-4NX" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="19" id="sde-w6-Iic"/>
                 <constraint firstItem="hu8-Mk-EY9" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="35" id="tRV-5d-VrB"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="68h-17-hcr" secondAttribute="trailing" id="v26-CA-31a"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Q0R-RD-Xae" secondAttribute="trailing" id="wfR-u7-jpz"/>
                 <constraint firstAttribute="trailing" secondItem="nri-mH-Hu6" secondAttribute="trailing" constant="20" id="zXD-L9-Nbe"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
@@ -162,8 +140,4 @@
             <point key="canvasLocation" x="137.68115942028987" y="339.50892857142856"/>
         </view>
     </objects>
-    <resources>
-        <image name="icon_back2" width="16" height="16"/>
-        <image name="icon_more2" width="16" height="16"/>
-    </resources>
 </document>

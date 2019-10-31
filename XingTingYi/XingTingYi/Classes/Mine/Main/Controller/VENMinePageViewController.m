@@ -105,6 +105,7 @@ static NSString *const cellIdentifier = @"cellIdentifier";
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     VENMinePageTableHeaderView *headerView = [[VENMinePageTableHeaderView alloc] init];
     [headerView.setttingButton addTarget:self action:@selector(setttingButton) forControlEvents:UIControlEventTouchUpInside];
+    
     return headerView;
 }
 

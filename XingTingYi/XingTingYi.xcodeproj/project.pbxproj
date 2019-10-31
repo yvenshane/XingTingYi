@@ -1167,8 +1167,8 @@
 		2C1C010422DC1EE400E4E9C4 /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				2C1C010522DC1EE400E4E9C4 /* VENNetworkingManager.m */,
 				2C1C010622DC1EE400E4E9C4 /* VENNetworkingManager.h */,
+				2C1C010522DC1EE400E4E9C4 /* VENNetworkingManager.m */,
 			);
 			path = Network;
 			sourceTree = "<group>";
