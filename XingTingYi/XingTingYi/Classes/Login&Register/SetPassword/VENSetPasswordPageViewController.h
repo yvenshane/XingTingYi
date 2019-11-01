@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface VENSetPasswordPageViewController : UIViewController
 @property (nonatomic, copy) NSString *pushType;
+@property (nonatomic, copy) NSString *mobile;
+@property (nonatomic, copy) NSString *code;
 
 @end
 

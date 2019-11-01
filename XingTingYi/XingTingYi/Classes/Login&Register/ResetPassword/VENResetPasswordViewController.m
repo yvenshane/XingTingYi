@@ -15,6 +15,9 @@
 @property (weak, nonatomic) IBOutlet UITextField *verificationCodeTextField;
 @property (weak, nonatomic) IBOutlet UIButton *nextStepButton;
 
+@property (nonatomic, assign) BOOL is11;
+@property (nonatomic, assign) BOOL is6;
+
 @end
 
 @implementation VENResetPasswordViewController
@@ -36,29 +39,64 @@
     [verificationCodeButton addTarget:self action:@selector(verificationCodeButtonClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:verificationCodeButton];
     
+    // UITextField 监听
+    self.phoneNumberTextField.tag = 992;
+    self.verificationCodeTextField.tag = 991;
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textFieldTextDidChange:) name:UITextFieldTextDidChangeNotification object:nil];
+    
     [self setupNavigationItemLeftBarButtonItem];
 }
 
 - (void)verificationCodeButtonClick:(VENVerificationCodeButton *)button {
-//    [[VENApiManager sharedManager] getVerificationCodeWithParameters:@{@"tel" : self.phoneNumberTextField.text} successBlock:^(id  _Nonnull responseObject) {
-//        [button countingDownWithCount:60];
-//    }];
+    NSDictionary *parameters = @{@"mobile" : self.phoneNumberTextField.text,
+                                 @"act" : @"reset"};
+    [[VENNetworkingManager shareManager] requestWithType:HttpRequestTypePOST urlString:@"login/sendcode" parameters:parameters successBlock:^(id responseObject) {
+        
+        [button countingDownWithCount:60];
+        
+    } failureBlock:^(NSError *error) {
+        
+    }];
 }
 
 #pragma mark - 下一步
 - (IBAction)nextStepButtonClick:(id)sender {
-    
-    NSDictionary *parameters = @{@"tel" : self.phoneNumberTextField.text,
+    NSDictionary *parameters = @{@"mobile" : self.phoneNumberTextField.text,
                                  @"code" : self.verificationCodeTextField.text};
+    [[VENNetworkingManager shareManager] requestWithType:HttpRequestTypePOST urlString:@"login/resetPassOne" parameters:parameters successBlock:^(id responseObject) {
+        
+        VENSetPasswordPageViewController *vc = [[VENSetPasswordPageViewController alloc] init];
+        vc.mobile = self.phoneNumberTextField.text;
+        vc.code = self.verificationCodeTextField.text;
+        vc.pushType = @"ForgetPassword";
+        VENNavigationController *nav = [[VENNavigationController alloc] initWithRootViewController:vc];
+        [self presentViewController:nav animated:YES completion:nil];
+        
+    } failureBlock:^(NSError *error) {
+        
+    }];
+}
+
+- (void)textFieldTextDidChange:(NSNotification *)notification {
+    UITextField *textField = notification.object;
     
-//    [[VENApiManager sharedManager] resetPasswordWithParameters:parameters successBlock:^(id  _Nonnull responseObject) {
-//           [self dismissViewControllerAnimated:YES completion:nil];
-//    }];
+    if (textField.tag == 992) { // 手机号
+        self.is11 = textField.text.length == 11 ? YES : NO;
+    } else { // 验证码
+        self.is6 = textField.text.length == 6 ? YES : NO;
+    }
     
-    VENSetPasswordPageViewController *vc = [[VENSetPasswordPageViewController alloc] init];
-    vc.pushType = @"ForgetPassword";
-    VENNavigationController *nav = [[VENNavigationController alloc] initWithRootViewController:vc];
-    [self presentViewController:nav animated:YES completion:nil];
+    if (self.is11 && self.is6) {
+        self.nextStepButton.backgroundColor = COLOR_THEME;
+        [self.nextStepButton setTitleColor:UIColorFromRGB(0x222222) forState:UIControlStateNormal];
+    } else {
+        self.nextStepButton.backgroundColor = UIColorFromRGB(0xEBEBEB);
+        [self.nextStepButton setTitleColor:UIColorFromRGB(0xB2B2B2) forState:UIControlStateNormal];
+    }
+}
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)setupNavigationItemLeftBarButtonItem {

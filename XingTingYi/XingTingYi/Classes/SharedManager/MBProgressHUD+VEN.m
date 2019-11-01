@@ -11,7 +11,7 @@
 @implementation MBProgressHUD (VEN)
 
 + (void)showText:(NSString *)text {
-    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:[[UIApplication sharedApplication].windows lastObject] animated:YES];
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:[UIApplication sharedApplication].keyWindow animated:YES];
     hud.labelText = text;
     hud.mode = MBProgressHUDModeText;
     hud.removeFromSuperViewOnHide = YES;
@@ -21,13 +21,13 @@
 }
 
 + (void)addLoading {
-    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:[[UIApplication sharedApplication].windows lastObject] animated:YES];
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:[UIApplication sharedApplication].keyWindow animated:YES];
     hud.mode = MBProgressHUDModeIndeterminate;
     hud.removeFromSuperViewOnHide = YES;
 }
 
 + (void)removeLoading {
-    [self hideHUDForView:[[UIApplication sharedApplication].windows lastObject] animated:YES];
+    [self hideHUDForView:[UIApplication sharedApplication].keyWindow animated:YES];
 }
 
 @end

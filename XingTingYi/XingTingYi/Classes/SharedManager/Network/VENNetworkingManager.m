@@ -8,7 +8,7 @@
 #import "VENNetworkingManager.h"
 
 static id instance;
-static NSString *const url = @"http://meizhuanggushi.ahaiba.com/index.php/";
+static NSString *const url = @"http://hefengxun2.ahaiba.com/index.php/";
 @implementation VENNetworkingManager
 
 + (AFHTTPSessionManager *)shareManager {
@@ -67,14 +67,14 @@ static NSString *const url = @"http://meizhuanggushi.ahaiba.com/index.php/";
                 NSArray *cookies = [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookies];
                 [NSKeyedArchiver archiveRootObject:cookies toFile:CookieStoragePath];
                 
-                if ([responseObject[@"status"] integerValue] == 203) { // 未登录
+                if ([responseObject[@"ret"] integerValue] == 203) { // 未登录
                     
                     return;
-                } else if ([responseObject[@"status"] integerValue] == 202) {
-                    [MBProgressHUD showText:responseObject[@"message"]];
+                } else if ([responseObject[@"ret"] integerValue] == 202) {
+                    [MBProgressHUD showText:responseObject[@"msg"]];
                     return;
                 } else {
-                    [MBProgressHUD showText:responseObject[@"message"]];
+                    [MBProgressHUD showText:responseObject[@"msg"]];
                 }
                 
                 if (successBlock) successBlock(responseObject);
@@ -145,14 +145,14 @@ static NSString *const url = @"http://meizhuanggushi.ahaiba.com/index.php/";
         NSArray *cookies = [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookies];
         [NSKeyedArchiver archiveRootObject:cookies toFile:CookieStoragePath];
         
-        if ([responseObject[@"status"] integerValue] == 203) { // 未登录
+        if ([responseObject[@"ret"] integerValue] == 203) { // 未登录
             
             return;
-        } else if ([responseObject[@"status"] integerValue] == 202) {
-            [MBProgressHUD showText:responseObject[@"message"]];
+        } else if ([responseObject[@"ret"] integerValue] == 202) {
+            [MBProgressHUD showText:responseObject[@"msg"]];
             return;
         } else {
-            [MBProgressHUD showText:responseObject[@"message"]];
+            [MBProgressHUD showText:responseObject[@"msg"]];
         }
         
         if (successBlock) successBlock(responseObject);

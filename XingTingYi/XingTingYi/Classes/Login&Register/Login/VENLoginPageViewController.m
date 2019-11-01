@@ -16,6 +16,9 @@
 @property (weak, nonatomic) IBOutlet UITextField *phoneNumberTextField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
 
+@property (nonatomic, assign) BOOL is11;
+@property (nonatomic, assign) BOOL is916;
+
 @end
 
 @implementation VENLoginPageViewController
@@ -33,30 +36,32 @@
     self.loginButton.layer.cornerRadius = 24.0f;
     self.loginButton.layer.masksToBounds = YES;
     
+    // UITextField 监听
+    self.phoneNumberTextField.tag = 994;
+    self.passwordTextField.tag = 993;
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textFieldTextDidChange:) name:UITextFieldTextDidChangeNotification object:nil];
+    
     [self setupNavigationItemLeftBarButtonItem];
 }
 
 #pragma mark - 登录
 - (IBAction)loginButtonClick:(id)sender {
-    NSDictionary *parameters = @{@"tel" : self.phoneNumberTextField.text,
+    NSDictionary *parameters = @{@"mobile" : self.phoneNumberTextField.text,
                                  @"password" : self.passwordTextField.text};
-//    [[VENApiManager sharedManager] loginWithParameters:parameters successBlock:^(id  _Nonnull responseObject) {
-//        
-//        [[NSUserDefaults standardUserDefaults] setObject:responseObject[@"content"] forKey:@"LOGIN"];
-//        
-//        NSDictionary *dict = @{@"type" : @"login",
-//                               @"tel" : self.phoneNumberTextField.text,
-//                               @"password" : self.passwordTextField.text};
-//        [[NSUserDefaults standardUserDefaults] setObject:dict forKey:@"AutoLogin"];
-//       
-//        if ([self.pushType isEqualToString:@"initialPage"]) {
-//            [self.presentingViewController.presentingViewController dismissViewControllerAnimated:YES completion:nil];
-//        } else {
-//            [self dismissViewControllerAnimated:YES completion:nil];
-//        }
-//
-//        NSLog(@"%d", [[VENUserStatusManager sharedManager] isLogin]);
-//    }];
+    [[VENNetworkingManager shareManager] requestWithType:HttpRequestTypePOST urlString:@"login/login" parameters:parameters successBlock:^(id responseObject) {
+        
+         [[NSUserDefaults standardUserDefaults] setObject:responseObject[@"content"] forKey:@"LOGIN"];
+         
+         NSDictionary *dict = @{@"type" : @"login",
+                                @"tel" : self.phoneNumberTextField.text,
+                                @"password" : self.passwordTextField.text};
+         [[NSUserDefaults standardUserDefaults] setObject:dict forKey:@"AutoLogin"];
+        
+        [self dismissViewControllerAnimated:YES completion:nil];
+        
+    } failureBlock:^(NSError *error) {
+        
+    }];
 }
 
 #pragma mark - 忘记密码
@@ -155,6 +160,33 @@
 //        }];
 //    }];
 //}
+
+- (void)textFieldTextDidChange:(NSNotification *)notification {
+    UITextField *textField = notification.object;
+    
+    if (textField.tag == 994) { // 手机号
+        self.is11 = textField.text.length == 11 ? YES : NO;
+    } else { // 密码
+        if (textField.text.length >= 9 && textField.text.length <= 16) {
+            self.is916 = YES;
+        } else {
+            self.is916 = NO;
+        }
+    }
+    
+    if (self.is11 && self.is916) {
+        self.loginButton.backgroundColor = COLOR_THEME;
+        [self.loginButton setTitleColor:UIColorFromRGB(0x222222) forState:UIControlStateNormal];
+    } else {
+        self.loginButton.backgroundColor = UIColorFromRGB(0xEBEBEB);
+        [self.loginButton setTitleColor:UIColorFromRGB(0xB2B2B2) forState:UIControlStateNormal];
+    }
+}
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 
 - (void)setupNavigationItemLeftBarButtonItem {
     UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 44, 44)];
