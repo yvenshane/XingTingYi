@@ -86,7 +86,16 @@
 
 #pragma mark - 用户注册协议
 - (void)userAgreementButtonClick {
-    
+    [[VENNetworkingManager shareManager] requestWithType:HttpRequestTypePOST urlString:@"base/agreement" parameters:nil successBlock:^(id responseObject) {
+        
+        VENBaseWebViewController *vc = [[VENBaseWebViewController alloc] init];
+        vc.HTMLString = responseObject[@"content"][@"info"][@"content"];
+        vc.navigationItemTitle = @"用户注册协议";
+        [self presentViewController:vc animated:YES completion:nil];
+        
+    } failureBlock:^(NSError *error) {
+        
+    }];
 }
 
 - (void)textFieldTextDidChange:(NSNotification *)notification {

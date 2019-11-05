@@ -7,12 +7,13 @@
 //
 
 #import "VENBaseWebViewController.h"
+#import <WebKit/WebKit.h>
 
-@interface VENBaseWebViewController () <UITableViewDelegate, UIWebViewDelegate>
+@interface VENBaseWebViewController () <UITableViewDelegate, WKNavigationDelegate>
 @property (nonatomic, strong) UITableView *tableView;
-@property (nonatomic, strong) UIView *headerView;
-@property (nonatomic, strong) UIWebView *webView;
-@property (nonatomic, assign) CGFloat height;
+@property (nonatomic, strong) WKWebView *webView;
+
+@property (nonatomic, assign) CGFloat webViewContentHeight;
 
 @end
 
@@ -29,49 +30,93 @@ static NSString *const cellIdentifier = @"cellIdentifier";
         [self setupNavigationBar];
     }
     
-    [self setupTableView];
+    [self.view addSubview:self.tableView];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return 1;
 }
 
-- (void)setupTableView {
-    
-    CGFloat y = self.isPush ? 0 : kStatusBarAndNavigationBarHeight;
-    
-    UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, y, kMainScreenWidth, kMainScreenHeight - kStatusBarHeight) style:UITableViewStylePlain];
-    tableView.delegate = self;
-    tableView.showsVerticalScrollIndicator = NO;
-    tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    [self.view addSubview:tableView];
-    
-    UIView *headerView = [[UIView alloc] init];
-    headerView.backgroundColor = [UIColor whiteColor];
-    tableView.tableHeaderView = headerView;
-    
-    UIWebView *webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, kMainScreenWidth, 1)];
-    webView.delegate = self;
-    webView.scrollView.scrollEnabled = NO;
-    
-    [webView loadHTMLString:self.HTMLString baseURL:nil];
-    [headerView addSubview:webView];
-    
-    self.tableView = tableView;
-    self.headerView = headerView;
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    return self.webView;
 }
 
-- (void)webViewDidFinishLoad:(UIWebView *)webView {
-    CGFloat webViewHeight = [webView.scrollView contentSize].height;
-    
-    CGRect newFrame = webView.frame;
-    newFrame.size.height = webViewHeight;
-    webView.frame = newFrame;
-    
-    self.tableView.tableHeaderView.frame = CGRectMake(0, 0, kMainScreenWidth, webViewHeight + self.height);
-    self.tableView.tableHeaderView = self.headerView;
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return self.webViewContentHeight;
 }
 
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
+    return [[UIView alloc] init];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+    return CGFLOAT_MIN;
+}
+
+#pragma mark - TableView
+- (UITableView *)tableView {
+    if (!_tableView) {
+        CGFloat y = self.isPush ? 0 : kStatusBarAndNavigationBarHeight;
+        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, y, kMainScreenWidth, kMainScreenHeight - kStatusBarHeight) style:UITableViewStyleGrouped];
+        _tableView.backgroundColor = [UIColor whiteColor];
+        _tableView.delegate = self;
+//        _tableView.dataSource = self;
+        _tableView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+        // 解决 iOS 11 执行 reloadData 方法上移问题 (已知在部分页面 estimatedRowHeight = 0 会使 cellForRowAtIndexPath 方法从 index.row = 4 开始)
+        _tableView.estimatedRowHeight = 0;
+        _tableView.estimatedSectionHeaderHeight = 0;
+        _tableView.estimatedSectionFooterHeight = 0;
+        
+        // 解决 iPhone X TableHeaderView 下移的问题
+        if (@available(iOS 11.0, *)) {
+          _tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+        } else {
+          self.automaticallyAdjustsScrollViewInsets = NO;
+        }
+    }
+    return _tableView;
+}
+
+#pragma mark - WKNavigationDelegate
+- (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
+    [webView evaluateJavaScript:@"document.body.scrollWidth"completionHandler:^(id _Nullable result,NSError * _Nullable error) {
+        NSLog(@"scrollWidth高度：%.2f",[result floatValue]);
+        CGFloat ratio =  CGRectGetWidth(self.webView.frame) / [result floatValue];
+
+        [webView evaluateJavaScript:@"document.body.scrollHeight"completionHandler:^(id _Nullable result,NSError * _Nullable error) {
+            NSLog(@"scrollHeight高度：%.2f",[result floatValue]);
+            NSLog(@"scrollHeight计算高度：%.2f",[result floatValue] * ratio);
+            CGFloat newHeight = [result floatValue] * ratio;
+
+            [self resetWebViewFrameWithHeight:newHeight];
+        }];
+    }];
+}
+
+#pragma mark - WebView
+- (WKWebView *)webView {
+    if (!_webView) {
+        _webView = [[WKWebView alloc] init];
+        _webView.navigationDelegate = self;
+        [_webView loadHTMLString:self.HTMLString baseURL:nil];
+    }
+    return _webView;
+}
+
+- (void)resetWebViewFrameWithHeight:(CGFloat)height {
+    if (height != self.webViewContentHeight) {
+        if (height >= CGRectGetHeight(self.view.frame)) {
+            [self.webView setFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.frame), CGRectGetHeight(self.view.frame))];
+        } else {
+            [self.webView setFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.frame), height)];
+        }
+        
+        self.webViewContentHeight = height;
+        [self.tableView reloadData];
+    }
+}
+
+#pragma mark - Navigation
 - (void)setupNavigationBar {
     UIView *navigationBar = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kMainScreenWidth, kStatusBarAndNavigationBarHeight)];
     navigationBar.backgroundColor = [UIColor whiteColor];
@@ -83,10 +128,10 @@ static NSString *const cellIdentifier = @"cellIdentifier";
     [navigationBar addSubview:closeButton];
     
     UILabel *titleLabel = [[UILabel alloc] init];
-    titleLabel.text = [VENEmptyClass isEmptyString:self.navigationItemTitle] ? @"美妆故事" : self.navigationItemTitle;
+    titleLabel.text = [VENEmptyClass isEmptyString:self.navigationItemTitle] ? @"猩听译" : self.navigationItemTitle;
     titleLabel.font = [UIFont systemFontOfSize:16.0f];
     titleLabel.textColor = UIColorFromRGB(0x1A1A1A);
-    CGFloat width = [self label:titleLabel setWidthToHeight:22.0f];
+    CGFloat width = [titleLabel sizeThatFits:CGSizeMake(CGFLOAT_MAX, 22.0f)].width;
     titleLabel.frame = CGRectMake(kMainScreenWidth / 2 - width / 2, kStatusBarHeight + 22 / 2, width, 22);
     [navigationBar addSubview:titleLabel];
 }
@@ -95,9 +140,11 @@ static NSString *const cellIdentifier = @"cellIdentifier";
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (CGFloat)label:(UILabel *)label setWidthToHeight:(CGFloat)Height {
-    CGSize size = [label sizeThatFits:CGSizeMake(CGFLOAT_MAX, Height)];
-    return size.width;
+- (CGFloat)webViewContentHeight {
+    if (!_webViewContentHeight) {
+        _webViewContentHeight = CGFLOAT_MIN;
+    }
+    return _webViewContentHeight;
 }
 
 /*
