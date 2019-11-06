@@ -10,9 +10,7 @@
 #import <WebKit/WebKit.h>
 
 @interface VENBaseWebViewController () <UITableViewDelegate, WKNavigationDelegate>
-@property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) WKWebView *webView;
-
 @property (nonatomic, assign) CGFloat webViewContentHeight;
 
 @end
@@ -28,6 +26,12 @@ static NSString *const cellIdentifier = @"cellIdentifier";
     
     if (!self.isPush) {
         [self setupNavigationBar];
+    } else {
+        UIButton *leftButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 44, 44)];
+        leftButton.contentEdgeInsets = UIEdgeInsetsMake(0, -20, 0, 0);
+        [leftButton setImage:[UIImage imageNamed:@"icon_back"] forState:UIControlStateNormal];
+        [leftButton addTarget:self action:@selector(backEvent) forControlEvents:UIControlEventTouchUpInside];
+        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:leftButton];
     }
     
     [self.view addSubview:self.tableView];
@@ -38,19 +42,19 @@ static NSString *const cellIdentifier = @"cellIdentifier";
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    return self.webView;
+    return self.headerView;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return self.webViewContentHeight;
+    return self.headerViewHeight ? : CGFLOAT_MIN;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
-    return [[UIView alloc] init];
+    return self.webView;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-    return CGFLOAT_MIN;
+    return self.webViewContentHeight;
 }
 
 #pragma mark - TableView
@@ -138,6 +142,10 @@ static NSString *const cellIdentifier = @"cellIdentifier";
 
 - (void)closeButtonClick {
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)backEvent {
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (CGFloat)webViewContentHeight {

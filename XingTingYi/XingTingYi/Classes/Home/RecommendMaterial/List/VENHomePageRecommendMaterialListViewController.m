@@ -8,8 +8,11 @@
 
 #import "VENHomePageRecommendMaterialListViewController.h"
 #import "VENHomePageTableViewCellTwo.h"
+#import "VENHomePageModel.h"
 
 @interface VENHomePageRecommendMaterialListViewController ()
+@property (nonatomic, assign) NSInteger page;
+@property (nonatomic, strong) NSMutableArray *dataSourceMuArr;
 
 @end
 
@@ -22,27 +25,43 @@ static NSString *const cellIdentifier = @"cellIdentifier";
     
     self.view.backgroundColor = [UIColor whiteColor];
     
-    self.tableView.frame = CGRectMake(0, 0, kMainScreenWidth, kMainScreenHeight - kStatusBarAndNavigationBarHeight - 40);
-    [self.tableView registerNib:[UINib nibWithNibName:@"VENHomePageTableViewCellTwo" bundle:nil] forCellReuseIdentifier:cellIdentifier];
-    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    [self setupTableView];
     
-    //    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-    //
-    //    }];
-    
-    [self.view addSubview:self.tableView];
+    [self.tableView.mj_header beginRefreshing];
+}
+
+- (void)loadHomePageRecommendMaterialListData:(NSString *)page {
+    NSDictionary *parameters = @{@"type" : self.type,
+                                 @"page" : page};
+    [[VENNetworkingManager shareManager] requestWithType:HttpRequestTypePOST urlString:@"base/sourceList" parameters:parameters successBlock:^(id responseObject) {
+        
+        if ([page integerValue] == 1) {
+            [self.tableView.mj_header endRefreshing];
+            
+            self.dataSourceMuArr = [NSMutableArray arrayWithArray:[NSArray yy_modelArrayWithClass:[VENHomePageModel class] json:responseObject[@"content"][@"sourceList"]]];
+            
+            self.page = 1;
+        } else {
+            [self.tableView.mj_footer endRefreshing];
+            
+            [self.dataSourceMuArr addObjectsFromArray:[NSArray yy_modelArrayWithClass:[VENHomePageModel class] json:responseObject[@"content"][@"sourceList"]]];
+        }
+        
+        [self.tableView reloadData];
+        
+    } failureBlock:^(NSError *error) {
+        
+    }];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 10;
+    return self.dataSourceMuArr.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     VENHomePageTableViewCellTwo *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    
-    cell.iconImageView.backgroundColor = [UIColor colorWithRed:arc4random_uniform(255)/255.0 green:arc4random_uniform(255)/255.0 blue:arc4random_uniform(255)/255.0 alpha:1];
-    cell.tagImageView.backgroundColor = [UIColor colorWithRed:arc4random_uniform(255)/255.0 green:arc4random_uniform(255)/255.0 blue:arc4random_uniform(255)/255.0 alpha:1];
+    cell.model = self.dataSourceMuArr[indexPath.row];
     
     return cell;
 }
@@ -69,6 +88,22 @@ static NSString *const cellIdentifier = @"cellIdentifier";
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
     return CGFLOAT_MIN;
+}
+
+- (void)setupTableView {
+    self.tableView.frame = CGRectMake(0, 0, kMainScreenWidth, kMainScreenHeight - kStatusBarAndNavigationBarHeight - 40);
+    [self.tableView registerNib:[UINib nibWithNibName:@"VENHomePageTableViewCellTwo" bundle:nil] forCellReuseIdentifier:cellIdentifier];
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    
+    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        [self loadHomePageRecommendMaterialListData:@"1"];
+    }];
+    
+        self.tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
+        [self loadHomePageRecommendMaterialListData:[NSString stringWithFormat:@"%ld", ++self.page]];
+    }];
+    
+    [self.view addSubview:self.tableView];
 }
 
 /*

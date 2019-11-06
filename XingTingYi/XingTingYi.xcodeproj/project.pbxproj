@@ -229,6 +229,7 @@
 		2CBCDEC02302BF270010BD11 /* VENSettingTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CBCDEBE2302BF270010BD11 /* VENSettingTableViewCell.m */; };
 		2CBCDEC12302BF270010BD11 /* VENSettingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2CBCDEBF2302BF270010BD11 /* VENSettingTableViewCell.xib */; };
 		2CD13C632302E8A6007974C9 /* VENSettingModifyPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CD13C622302E8A6007974C9 /* VENSettingModifyPasswordViewController.m */; };
+		2CD24F6023711BF000138207 /* VENHomePageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CD24F5F23711BF000138207 /* VENHomePageModel.m */; };
 		2CDD577A231E083700F64D57 /* VENBindingPhoneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CDD5769231E083700F64D57 /* VENBindingPhoneViewController.m */; };
 		2CDD577B231E083700F64D57 /* VENBindingPhoneViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2CDD576A231E083700F64D57 /* VENBindingPhoneViewController.xib */; };
 		2CDD577C231E083700F64D57 /* VENRegisterPageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2CDD576D231E083700F64D57 /* VENRegisterPageViewController.xib */; };
@@ -697,6 +698,8 @@
 		2CBCDEBF2302BF270010BD11 /* VENSettingTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VENSettingTableViewCell.xib; sourceTree = "<group>"; };
 		2CD13C612302E8A6007974C9 /* VENSettingModifyPasswordViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VENSettingModifyPasswordViewController.h; sourceTree = "<group>"; };
 		2CD13C622302E8A6007974C9 /* VENSettingModifyPasswordViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VENSettingModifyPasswordViewController.m; sourceTree = "<group>"; };
+		2CD24F5E23711BF000138207 /* VENHomePageModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VENHomePageModel.h; sourceTree = "<group>"; };
+		2CD24F5F23711BF000138207 /* VENHomePageModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VENHomePageModel.m; sourceTree = "<group>"; };
 		2CDD5769231E083700F64D57 /* VENBindingPhoneViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VENBindingPhoneViewController.m; sourceTree = "<group>"; };
 		2CDD576A231E083700F64D57 /* VENBindingPhoneViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VENBindingPhoneViewController.xib; sourceTree = "<group>"; };
 		2CDD576B231E083700F64D57 /* VENBindingPhoneViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VENBindingPhoneViewController.h; sourceTree = "<group>"; };
@@ -758,6 +761,15 @@
 			path = Feedback;
 			sourceTree = "<group>";
 		};
+		2C123B3F23725A6200F2B1A3 /* List */ = {
+			isa = PBXGroup;
+			children = (
+				2C148FBE232253C600DC9BA3 /* VENHomePageNewsViewController.h */,
+				2C148FBF232253C600DC9BA3 /* VENHomePageNewsViewController.m */,
+			);
+			path = List;
+			sourceTree = "<group>";
+		};
 		2C148FAE23223C1000DC9BA3 /* Details */ = {
 			isa = PBXGroup;
 			children = (
@@ -800,8 +812,7 @@
 		2C148FBC2322532800DC9BA3 /* News */ = {
 			isa = PBXGroup;
 			children = (
-				2C148FBE232253C600DC9BA3 /* VENHomePageNewsViewController.h */,
-				2C148FBF232253C600DC9BA3 /* VENHomePageNewsViewController.m */,
+				2C123B3F23725A6200F2B1A3 /* List */,
 			);
 			path = News;
 			sourceTree = "<group>";
@@ -1296,6 +1307,8 @@
 		2C1C01D522DC619400E4E9C4 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				2CD24F5E23711BF000138207 /* VENHomePageModel.h */,
+				2CD24F5F23711BF000138207 /* VENHomePageModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2898,6 +2911,7 @@
 				2C1E2B5F232793B10080C526 /* VENMaterialFormatSelectorView.m in Sources */,
 				2C1C019722DC1EE400E4E9C4 /* AFHTTPSessionManager.m in Sources */,
 				2C1C019B22DC1EE400E4E9C4 /* AFSecurityPolicy.m in Sources */,
+				2CD24F6023711BF000138207 /* VENHomePageModel.m in Sources */,
 				2C1C015C22DC1EE400E4E9C4 /* ViewController+MASAdditions.m in Sources */,
 				2C1C018F22DC1EE400E4E9C4 /* AFNetworkActivityIndicatorManager.m in Sources */,
 				2C817FE422F172FF00DA6F0B /* VENBaseCategoryView.m in Sources */,
@@ -3051,6 +3065,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.haiba.XingTingYi;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
+				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Debug;
 		};
@@ -3070,6 +3085,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.haiba.XingTingYi;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
+				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Release;
 		};

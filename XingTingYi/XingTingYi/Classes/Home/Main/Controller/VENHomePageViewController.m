@@ -13,8 +13,11 @@
 #import "VENHomePageTableViewHeaderViewTwo.h"
 #import "VENHomePageNewsViewController.h"
 #import "VENHomePageRecommendMaterialViewController.h"
+#import "VENHomePageModel.h"
+#import "VENBaseWebViewController.h"
 
 @interface VENHomePageViewController ()
+@property (nonatomic, strong) VENHomePageModel *model;
 
 @end
 
@@ -47,6 +50,8 @@ static NSString *const cellIdentifier3 = @"cellIdentifier3";
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    self.view.autoresizesSubviews = YES;
+    
     // logo
     UIView *titleView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kMainScreenWidth, 44)];
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(8, 8, 84, 28)];
@@ -54,17 +59,22 @@ static NSString *const cellIdentifier3 = @"cellIdentifier3";
     [titleView addSubview:imageView];
     self.navigationItem.titleView = titleView;
     
-    self.view.autoresizesSubviews = YES;
+    [self setupTableView];
     
-    [self.tableView registerNib:[UINib nibWithNibName:@"VENHomePageTableViewCell" bundle:nil] forCellReuseIdentifier:cellIdentifier];
-    [self.tableView registerNib:[UINib nibWithNibName:@"VENHomePageTableViewCellTwo" bundle:nil] forCellReuseIdentifier:cellIdentifier2];
-    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    
-//    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-//        
-//    }];
-    
-    [self.view addSubview:self.tableView];
+    [self.tableView.mj_header beginRefreshing];
+}
+
+- (void)loadHomePageData {
+    [[VENNetworkingManager shareManager] requestWithType:HttpRequestTypeGET urlString:@"base/homePage" parameters:nil successBlock:^(id responseObject) {
+        
+        [self.tableView.mj_header endRefreshing];
+        
+        self.model = [VENHomePageModel yy_modelWithJSON:responseObject[@"content"]];
+        
+        [self.tableView reloadData];
+    } failureBlock:^(NSError *error) {
+        
+    }];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -72,25 +82,32 @@ static NSString *const cellIdentifier3 = @"cellIdentifier3";
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 5;
+    if (section == 0) {
+        return self.model.introduce.count;
+    } else if (section == 1) {
+        return self.model.news.count;
+    } else {
+        
+        return self.model.source.count;
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {
         VENHomePageTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        
-        cell.iconImageView.backgroundColor = [UIColor colorWithRed:arc4random_uniform(255)/255.0 green:arc4random_uniform(255)/255.0 blue:arc4random_uniform(255)/255.0 alpha:1];
-        
+        cell.model = [VENHomePageModel yy_modelWithJSON:self.model.introduce[indexPath.row]];
+
         return cell;
     } else {
         VENHomePageTableViewCellTwo *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier2 forIndexPath:indexPath];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
-        cell.iconImageView.backgroundColor = [UIColor colorWithRed:arc4random_uniform(255)/255.0 green:arc4random_uniform(255)/255.0 blue:arc4random_uniform(255)/255.0 alpha:1];
-        
-        cell.tagImageView.hidden = indexPath.section == 1 ? YES : NO;
-        cell.tagImageView.backgroundColor = [UIColor colorWithRed:arc4random_uniform(255)/255.0 green:arc4random_uniform(255)/255.0 blue:arc4random_uniform(255)/255.0 alpha:1];
+        if (indexPath.section == 1) {
+            cell.model = [VENHomePageModel yy_modelWithJSON:self.model.news[indexPath.row]];
+        } else {
+            cell.model = [VENHomePageModel yy_modelWithJSON:self.model.source[indexPath.row]];
+        }
         
         return cell;
     }
@@ -112,6 +129,14 @@ static NSString *const cellIdentifier3 = @"cellIdentifier3";
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     if (section == 0) {
         VENHomePageTableViewHeaderViewTwo *headView = [[VENHomePageTableViewHeaderViewTwo alloc] init];
+        headView.model = self.model;
+        headView.moreButtonClickBlock = ^(NSString *str) {
+            VENBaseWebViewController *vc = [[VENBaseWebViewController alloc] init];
+            vc.HTMLString = self.model.aboutUs[0][@"content"];
+            vc.navigationItemTitle = @"关于我们";
+            [self presentViewController:vc animated:YES completion:nil];
+        };
+        
         return headView;
     } else {
         VENHomePageTableViewHeaderView *headView = [[NSBundle mainBundle] loadNibNamed:@"VENHomePageTableViewHeaderView" owner:nil options:nil].lastObject;
@@ -159,6 +184,18 @@ static NSString *const cellIdentifier3 = @"cellIdentifier3";
     } else {
         return 55 + 40;
     }
+}
+
+- (void)setupTableView {
+    [self.tableView registerNib:[UINib nibWithNibName:@"VENHomePageTableViewCell" bundle:nil] forCellReuseIdentifier:cellIdentifier];
+    [self.tableView registerNib:[UINib nibWithNibName:@"VENHomePageTableViewCellTwo" bundle:nil] forCellReuseIdentifier:cellIdentifier2];
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    
+    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        [self loadHomePageData];
+    }];
+    
+    [self.view addSubview:self.tableView];
 }
 
 #pragma mark - 查看更多

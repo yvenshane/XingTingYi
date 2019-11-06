@@ -8,6 +8,7 @@
 
 #import "VENHomePageTableViewHeaderViewTwo.h"
 #import "VENHomePageBannerCollectionViewCell.h"
+#import "VENHomePageModel.h"
 
 @interface VENHomePageTableViewHeaderViewTwo () <TYCyclePagerViewDelegate, TYCyclePagerViewDataSource>
 @property (nonatomic, strong) UIImageView *bannerBackgroundImageView;
@@ -53,7 +54,6 @@ static NSString *const bannerCellIdentifier = @"bannerCellIdentifier";
         [self addSubview:titleLabel];
         
         UILabel *descriptionLabel = [[UILabel alloc] init];
-        descriptionLabel.text = @"LabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabel";
         descriptionLabel.textColor = UIColorFromRGB(0x666666);
         descriptionLabel.font = [UIFont systemFontOfSize:13.0f];
         descriptionLabel.numberOfLines = 3;
@@ -63,6 +63,7 @@ static NSString *const bannerCellIdentifier = @"bannerCellIdentifier";
         [moreButton setTitle:@"查看更多介绍" forState:UIControlStateNormal];
         [moreButton setTitleColor:UIColorFromRGB(0x222222) forState:UIControlStateNormal];
         moreButton.titleLabel.font = [UIFont systemFontOfSize:13.0f];
+        [moreButton addTarget:self action:@selector(moreButtonClick) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:moreButton];
         ViewBorderRadius(moreButton, 20, 1, UIColorFromRGB(0xE8E8E8));
         
@@ -106,22 +107,29 @@ static NSString *const bannerCellIdentifier = @"bannerCellIdentifier";
     self.titleLabel2.frame = CGRectMake(20, y, kMainScreenWidth - 40, 25);
     y += 18;
     self.lineView2.frame = CGRectMake(kMainScreenWidth / 2 - 73.5 / 2, y, 73.5, 5);
+}
+
+- (void)setModel:(VENHomePageModel *)model {
+    _model = model;
     
-    
-    
-    
-    
+    self.descriptionLabel.text = self.model.aboutUs[0][@"description"];
+}
+
+- (void)moreButtonClick {
+    if (self.moreButtonClickBlock) {
+        self.moreButtonClickBlock(@"");
+    }
 }
 
 #pragma mark - TYCyclePagerViewDataSource
 - (NSInteger)numberOfItemsInPagerView:(TYCyclePagerView *)pageView {
-    return 5;
+    return self.model.banner.count;
 }
 
 - (UICollectionViewCell *)pagerView:(TYCyclePagerView *)pagerView cellForItemAtIndex:(NSInteger)index {
     VENHomePageBannerCollectionViewCell *cell = [pagerView dequeueReusableCellWithReuseIdentifier:bannerCellIdentifier forIndex:index];
     
-    cell.bannerImageView.backgroundColor = [UIColor colorWithRed:arc4random_uniform(255)/255.0 green:arc4random_uniform(255)/255.0 blue:arc4random_uniform(255)/255.0 alpha:1];
+    [cell.bannerImageView sd_setImageWithURL:[NSURL URLWithString:self.model.banner[index][@"image"]]];
     cell.bannerImageView.contentMode = UIViewContentModeScaleAspectFill;
     
     return cell;

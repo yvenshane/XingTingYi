@@ -15,6 +15,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) BOOL isPush;
 @property (nonatomic, copy) NSString *navigationItemTitle;
 
+@property (nonatomic, strong) UIView *headerView;
+@property (nonatomic, assign) CGFloat headerViewHeight;
+@property (nonatomic, strong) UITableView *tableView;
+
 @end
 
 NS_ASSUME_NONNULL_END

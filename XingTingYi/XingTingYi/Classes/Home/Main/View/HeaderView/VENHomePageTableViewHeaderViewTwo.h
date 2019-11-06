@@ -7,10 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+@class VENHomePageModel;
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef void (^moreButtonClickBlock)(NSString *);
 @interface VENHomePageTableViewHeaderViewTwo : UIView
+@property (nonatomic, strong) VENHomePageModel *model;
+@property (nonatomic, copy) moreButtonClickBlock moreButtonClickBlock;
 
 @end
 

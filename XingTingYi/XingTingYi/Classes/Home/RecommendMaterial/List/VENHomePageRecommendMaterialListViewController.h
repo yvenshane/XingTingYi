@@ -12,6 +12,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface VENHomePageRecommendMaterialListViewController : VENBaseViewController <JXCategoryListContentViewDelegate>
+@property (nonatomic, copy) NSString *type;
 
 @end
 

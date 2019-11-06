@@ -7,6 +7,7 @@
 //
 
 #import "VENHomePageTableViewCellTwo.h"
+#import "VENHomePageModel.h"
 
 @implementation VENHomePageTableViewCellTwo
 
@@ -15,6 +16,23 @@
     // Initialization code
     
     ViewRadius(self.iconImageView, 4);
+}
+
+- (void)setModel:(VENHomePageModel *)model {
+    _model = model;
+    
+    self.iconImageView.contentMode = UIViewContentModeScaleToFill;
+    [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:model.image]];
+    self.titleLabel.text = model.title;
+    self.dateLabel.text = model.created_at;
+    
+    if ([model.type isEqualToString:@"1"] || [model.type isEqualToString:@"4"]) {
+        self.tagImageView.image = [UIImage imageNamed:@"icon_tag_audio"];
+    } else if ([model.type isEqualToString:@"2"] || [model.type isEqualToString:@"5"]) {
+        self.tagImageView.image = [UIImage imageNamed:@"icon_tag_video"];
+    } else if ([model.type isEqualToString:@"3"]) {
+        self.tagImageView.image = [UIImage imageNamed:@"icon_tag_text"];
+    }
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

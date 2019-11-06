@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+@class VENHomePageModel;
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -15,6 +16,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UIImageView *tagImageView;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
+
+@property (nonatomic, strong) VENHomePageModel *model;
 
 @end
 
