@@ -82,7 +82,7 @@
     
     if (textField.tag == 992) { // 手机号
         self.is11 = textField.text.length == 11 ? YES : NO;
-    } else { // 验证码
+    } else if (textField.tag == 991) { // 验证码
         self.is6 = textField.text.length == 6 ? YES : NO;
     }
     

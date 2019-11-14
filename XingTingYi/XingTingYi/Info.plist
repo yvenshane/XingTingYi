@@ -10,9 +10,9 @@
 		<true/>
 	</dict>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>App需要您的同意,才能访问相册</string>
+	<string>用户更换头像，发布评论时添加 图片，需要用到相册。</string>
 	<key>NSCameraUsageDescription</key>
-	<string>App需要您的同意，才能访问相机</string>
+	<string>用户更换头像，发布评论时添加 图片，需要用到相机。</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>

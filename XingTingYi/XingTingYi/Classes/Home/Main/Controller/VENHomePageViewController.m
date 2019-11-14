@@ -134,7 +134,8 @@ static NSString *const cellIdentifier3 = @"cellIdentifier3";
             VENBaseWebViewController *vc = [[VENBaseWebViewController alloc] init];
             vc.HTMLString = self.model.aboutUs[0][@"content"];
             vc.navigationItemTitle = @"关于我们";
-            [self presentViewController:vc animated:YES completion:nil];
+            VENNavigationController *nav = [[VENNavigationController alloc] initWithRootViewController:vc];
+            [self presentViewController:nav animated:YES completion:nil];
         };
         
         return headView;

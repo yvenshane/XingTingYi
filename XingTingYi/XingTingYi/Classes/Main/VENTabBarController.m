@@ -21,7 +21,7 @@
     
     UIViewController *vc1 = [self loadChildViewControllerWithClassName:@"VENHomePageViewController" andTitle:@"首页" andImageName:@"icon_tab01"];
     UIViewController *vc2 = [self loadChildViewControllerWithClassName:@"VENMaterialPageViewController" andTitle:@"素材专区" andImageName:@"icon_tab02"];
-    UIViewController *vc3 = [self loadChildViewControllerWithClassName:@"VENNewsPageViewController" andTitle:@"动态圈" andImageName:@"icon_tab03"];
+    UIViewController *vc3 = [self loadChildViewControllerWithClassName:@"VENDynamicCirclePageViewController" andTitle:@"动态圈" andImageName:@"icon_tab03"];
     UIViewController *vc4 = [self loadChildViewControllerWithClassName:@"VENMinePageViewController" andTitle:@"我的" andImageName:@"icon_tab04"];
     
     self.viewControllers = @[vc1, vc2, vc3, vc4];
@@ -59,7 +59,7 @@
 
 - (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController{
     if (![[VENUserStatusManager sharedManager] isLogin]) {
-        if ([viewController.tabBarItem.title isEqualToString:@"我的"]) {
+        if ([viewController.tabBarItem.title isEqualToString:@"我的"] || [viewController.tabBarItem.title isEqualToString:@"动态圈"]) {
             VENLoginPageViewController *vc = [[VENLoginPageViewController alloc] init];
             VENNavigationController *nav = [[VENNavigationController alloc] initWithRootViewController:vc];
             [self presentViewController:nav animated:YES completion:nil];

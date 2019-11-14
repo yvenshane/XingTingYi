@@ -42,6 +42,9 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textFieldTextDidChange:) name:UITextFieldTextDidChangeNotification object:nil];
     
     [self setupNavigationItemLeftBarButtonItem];
+    
+    self.phoneNumberTextField.text = @"15305532355";
+    self.passwordTextField.text = @"111111111";
 }
 
 #pragma mark - 登录
@@ -50,13 +53,15 @@
                                  @"password" : self.passwordTextField.text};
     [[VENNetworkingManager shareManager] requestWithType:HttpRequestTypePOST urlString:@"login/login" parameters:parameters successBlock:^(id responseObject) {
         
-         [[NSUserDefaults standardUserDefaults] setObject:responseObject[@"content"] forKey:@"LOGIN"];
-         
-         NSDictionary *dict = @{@"type" : @"login",
-                                @"tel" : self.phoneNumberTextField.text,
-                                @"password" : self.passwordTextField.text};
-         [[NSUserDefaults standardUserDefaults] setObject:dict forKey:@"AutoLogin"];
+//         [[NSUserDefaults standardUserDefaults] setObject:responseObject[@"content"] forKey:@"LOGIN"];
         
+         [[NSUserDefaults standardUserDefaults] setObject:@"1234" forKey:@"LOGIN"];
+        
+//         NSDictionary *dict = @{@"type" : @"login",
+//                                @"tel" : self.phoneNumberTextField.text,
+//                                @"password" : self.passwordTextField.text};
+//         [[NSUserDefaults standardUserDefaults] setObject:dict forKey:@"AutoLogin"];
+
         [self dismissViewControllerAnimated:YES completion:nil];
         
     } failureBlock:^(NSError *error) {
@@ -67,14 +72,14 @@
 #pragma mark - 忘记密码
 - (IBAction)forgetPasswordButtonClick:(id)sender {
     VENResetPasswordViewController *vc = [[VENResetPasswordViewController alloc] init];
-    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
+    VENNavigationController *nav = [[VENNavigationController alloc] initWithRootViewController:vc];
     [self presentViewController:nav animated:YES completion:nil];
 }
 
 #pragma mark - 注册
 - (IBAction)registerButtonClick:(id)sender {
     VENRegisterPageViewController *vc = [[VENRegisterPageViewController alloc] init];
-    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
+    VENNavigationController *nav = [[VENNavigationController alloc] initWithRootViewController:vc];
     [self presentViewController:nav animated:YES completion:nil];
 }
 
@@ -166,7 +171,7 @@
     
     if (textField.tag == 994) { // 手机号
         self.is11 = textField.text.length == 11 ? YES : NO;
-    } else { // 密码
+    } else if (textField.tag == 993) { // 密码
         if (textField.text.length >= 9 && textField.text.length <= 16) {
             self.is916 = YES;
         } else {

@@ -25,6 +25,8 @@
 #import "IQKeyboardManager.h"
 #import "TYCyclePagerView.h"
 #import "TYPageControl.h"
+#import "YYText.h"
+//#import "YYLabel.h"
 
 #import "MBProgressHUD+VEN.h"
 #import "VENEmptyClass.h"

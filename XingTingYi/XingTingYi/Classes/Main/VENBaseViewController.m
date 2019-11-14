@@ -39,6 +39,8 @@
     
     // 解决 自定义 View 高度少 64/88 问题
     self.view.autoresizesSubviews = NO;
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(endRefreshing) name:@"EndRefreshing" object:nil];
 }
 
 #pragma mark - TableView
@@ -54,7 +56,7 @@
         _tableView.estimatedSectionHeaderHeight = 0;
         _tableView.estimatedSectionFooterHeight = 0;
         // 解决多余 cell 问题
-        _tableView.tableFooterView = [[UIView alloc] init];
+//        _tableView.tableFooterView = [[UIView alloc] init];
         // 解决 iPhone X TableHeaderView 下移的问题
         if (@available(iOS 11.0, *)) {
           _tableView.contentInsetAdjustmentBehavior =  UIScrollViewContentInsetAdjustmentNever;
@@ -96,6 +98,12 @@
     UIGraphicsEndImageContext();
     
     return image;
+}
+
+#pragma mark - NSNotificationCenter
+- (void)endRefreshing {
+    [self.tableView.mj_header endRefreshing];
+    [self.tableView.mj_footer endRefreshing];
 }
 
 #pragma mark - dealloc

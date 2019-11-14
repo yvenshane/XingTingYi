@@ -78,7 +78,7 @@
         } else {
             self.is916 = NO;
         }
-    } else { // 重复密码
+    } else if (textField.tag == 995) { // 重复密码
         if (textField.text.length >= 9 && textField.text.length <= 16) {
             self.is9162 = YES;
         } else {

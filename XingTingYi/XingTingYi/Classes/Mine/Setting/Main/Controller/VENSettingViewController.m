@@ -126,6 +126,15 @@ static NSString *const cellIdentifier = @"cellIdentifier";
     
     UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"再看看" style:UIAlertActionStyleDestructive handler:nil];
     UIAlertAction *determineAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"LOGIN"];
+        
+//        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"AutoLogin"];
+        
+//        [[NSNotificationCenter defaultCenter] postNotificationName:@"Login_Out" object:nil];
+//
+//        NSLog(@"%d", [[VENUserStatusManager sharedManager] isLogin]);
+        
         [self.navigationController popViewControllerAnimated:YES];
     }];
     [determineAction setValue:[UIColor blackColor] forKey:@"titleTextColor"];

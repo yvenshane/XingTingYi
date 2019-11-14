@@ -6,6 +6,7 @@
 //
 
 #import "VENNetworkingManager.h"
+#import "VENLoginPageViewController.h"
 
 static id instance;
 static NSString *const url = @"http://hefengxun2.ahaiba.com/index.php/";
@@ -67,19 +68,22 @@ static NSString *const url = @"http://hefengxun2.ahaiba.com/index.php/";
                 NSArray *cookies = [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookies];
                 [NSKeyedArchiver archiveRootObject:cookies toFile:CookieStoragePath];
                 
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"EndRefreshing" object:nil];
+                [MBProgressHUD showText:responseObject[@"msg"]];
+                
                 if ([responseObject[@"ret"] integerValue] == 203) { // 未登录
-                    
+                    VENLoginPageViewController *vc = [[VENLoginPageViewController alloc] init];
+                    VENNavigationController *nav = [[VENNavigationController alloc] initWithRootViewController:vc];
+                    [[self getCurrentTopVC] presentViewController:nav animated:YES completion:nil];
                     return;
                 } else if ([responseObject[@"ret"] integerValue] == 202) {
-                    [MBProgressHUD showText:responseObject[@"msg"]];
                     return;
-                } else {
-                    [MBProgressHUD showText:responseObject[@"msg"]];
                 }
                 
                 if (successBlock) successBlock(responseObject);
             } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
                 [MBProgressHUD removeLoading];
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"EndRefreshing" object:nil];
                 NSLog(@"%@", error);
                 if (failureBlock) failureBlock(error);
             }];
@@ -89,12 +93,30 @@ static NSString *const url = @"http://hefengxun2.ahaiba.com/index.php/";
             
         case HttpRequestTypeGET: {
             [self GET:urlString parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+                [MBProgressHUD removeLoading];
                 
                 NSLog(@"%@", responseObject);
                 
+                // 存储 cookies
+                NSArray *cookies = [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookies];
+                [NSKeyedArchiver archiveRootObject:cookies toFile:CookieStoragePath];
+                
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"EndRefreshing" object:nil];
+                [MBProgressHUD showText:responseObject[@"msg"]];
+                
+                if ([responseObject[@"ret"] integerValue] == 203) { // 未登录
+                    VENLoginPageViewController *vc = [[VENLoginPageViewController alloc] init];
+                    VENNavigationController *nav = [[VENNavigationController alloc] initWithRootViewController:vc];
+                    [[self getCurrentTopVC] presentViewController:nav animated:YES completion:nil];
+                    return;
+                } else if ([responseObject[@"ret"] integerValue] == 202) {
+                    return;
+                }
+                
                 if (successBlock) successBlock(responseObject);
             } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-                
+                [MBProgressHUD removeLoading];
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"EndRefreshing" object:nil];
                 NSLog(@"%@", error);
                 if (failureBlock) failureBlock(error);
             }];
@@ -145,21 +167,22 @@ static NSString *const url = @"http://hefengxun2.ahaiba.com/index.php/";
         NSArray *cookies = [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookies];
         [NSKeyedArchiver archiveRootObject:cookies toFile:CookieStoragePath];
         
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"EndRefreshing" object:nil];
+        [MBProgressHUD showText:responseObject[@"msg"]];
+        
         if ([responseObject[@"ret"] integerValue] == 203) { // 未登录
-            
+            VENLoginPageViewController *vc = [[VENLoginPageViewController alloc] init];
+            VENNavigationController *nav = [[VENNavigationController alloc] initWithRootViewController:vc];
+            [[self getCurrentTopVC] presentViewController:nav animated:YES completion:nil];
             return;
         } else if ([responseObject[@"ret"] integerValue] == 202) {
-            [MBProgressHUD showText:responseObject[@"msg"]];
             return;
-        } else {
-            [MBProgressHUD showText:responseObject[@"msg"]];
         }
         
         if (successBlock) successBlock(responseObject);
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        
         [MBProgressHUD removeLoading];
-        
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"EndRefreshing" object:nil];
         NSLog(@"%@", error);
         if (failureBlock) failureBlock(error);
     }];

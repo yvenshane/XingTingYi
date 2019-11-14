@@ -91,7 +91,8 @@
         VENBaseWebViewController *vc = [[VENBaseWebViewController alloc] init];
         vc.HTMLString = responseObject[@"content"][@"info"][@"content"];
         vc.navigationItemTitle = @"用户注册协议";
-        [self presentViewController:vc animated:YES completion:nil];
+        VENNavigationController *nav = [[VENNavigationController alloc] initWithRootViewController:vc];
+        [self presentViewController:nav animated:YES completion:nil];
         
     } failureBlock:^(NSError *error) {
         
@@ -103,7 +104,7 @@
     
     if (textField.tag == 998) { // 手机号
         self.is11 = textField.text.length == 11 ? YES : NO;
-    } else { // 验证码
+    } else if (textField.tag == 997) { // 验证码
         self.is6 = textField.text.length == 6 ? YES : NO;
     }
     
