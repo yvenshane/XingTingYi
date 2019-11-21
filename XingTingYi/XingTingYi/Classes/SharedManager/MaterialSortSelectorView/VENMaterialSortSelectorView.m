@@ -16,6 +16,8 @@
 @property (nonatomic, strong) UIView *buttonsView;
 @property (nonatomic, strong) UICollectionView *collectionView;
 
+@property (nonatomic, copy) NSArray *dataSourceArr;
+
 @end
 
 static const NSTimeInterval kAnimationDuration = 0.3;
@@ -38,31 +40,6 @@ static NSString *const cellIdentifier2 = @"cellIdentifier2";
         UIView *buttonsView = [[UIView alloc] init];
         buttonsView.backgroundColor = UIColorFromRGB(0xF5F5F5);
         [backgroundView addSubview:buttonsView];
-        
-        NSArray *titlesArr = @[@"考试日语", @"新闻日语", @"生活日语"];
-        
-        for (NSInteger i = 0; i < 3; i++) {
-            UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0, i * 54, 80, 54)];
-            [button setTitle:titlesArr[i] forState:UIControlStateNormal];
-            [button setTitleColor:UIColorFromRGB(0x222222) forState:UIControlStateNormal];
-            
-            UIImageView *lineImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 17, 2, 20)];
-            lineImageView.backgroundColor = UIColorFromRGB(0xFFDE02);
-            [button addSubview:lineImageView];
-            
-            if (i == 0) {
-                button.backgroundColor = [UIColor whiteColor];
-                button.titleLabel.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:14.0];
-                lineImageView.hidden = NO;
-            } else {
-                button.backgroundColor = [UIColor clearColor];
-                button.titleLabel.font = [UIFont systemFontOfSize:14.0f];
-                lineImageView.hidden = YES;
-            }
-            
-            [button addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
-            [buttonsView addSubview:button];
-        }
         
         UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
         flowLayout.minimumLineSpacing = 10;
@@ -87,6 +64,50 @@ static NSString *const cellIdentifier2 = @"cellIdentifier2";
     return self;
 }
 
+- (void)setSourceCategoryArr:(NSArray *)sourceCategoryArr {
+    _sourceCategoryArr = sourceCategoryArr;
+    
+    for (NSInteger i = 0; i < sourceCategoryArr.count; i++) {
+        UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0, i * 54, 80, 54)];
+        button.backgroundColor = [UIColor clearColor];
+        button.tag = i;
+        [button setTitle:sourceCategoryArr[i][@"name"] forState:UIControlStateNormal];
+        [button setTitleColor:UIColorFromRGB(0x222222) forState:UIControlStateNormal];
+        button.titleLabel.font = [UIFont systemFontOfSize:14.0f];
+        button.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
+        
+        UIImageView *lineImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 17, 2, 20)];
+        lineImageView.backgroundColor = UIColorFromRGB(0xFFDE02);
+        lineImageView.hidden = YES;
+        [button addSubview:lineImageView];
+        
+        if ([VENEmptyClass isEmptyString:self.category_one_id]) {
+            if (i == 0) {
+                button.backgroundColor = [UIColor whiteColor];
+                button.titleLabel.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:14.0];
+                lineImageView.hidden = NO;
+                
+                self.dataSourceArr = sourceCategoryArr[0][@"son"];
+                self.category_one_id = sourceCategoryArr[0][@"id"];
+            }
+        } else {
+            if ([sourceCategoryArr[i][@"id"] isEqualToString:self.category_one_id]) {
+                button.backgroundColor = [UIColor whiteColor];
+                button.titleLabel.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:14.0];
+                lineImageView.hidden = NO;
+                
+                self.dataSourceArr = sourceCategoryArr[i][@"son"];
+                self.category_one_id = sourceCategoryArr[i][@"id"];
+            }
+        }
+        
+        [button addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
+        [self.buttonsView addSubview:button];
+    }
+    
+    [self.collectionView reloadData];
+}
+
 - (void)layoutSubviews {
     [super layoutSubviews];
     
@@ -99,26 +120,41 @@ static NSString *const cellIdentifier2 = @"cellIdentifier2";
 
 #pragma mark - UICollectionView
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-    return 4;
+    return self.dataSourceArr.count;
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return 5;
+    NSArray *tempArr = self.dataSourceArr[section][@"son"];
+    return tempArr.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     VENMaterialSortSelectorViewCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellIdentifier forIndexPath:indexPath];
+    cell.titleLabel.text = self.dataSourceArr[indexPath.section][@"son"][indexPath.row][@"name"];
+    
+    if ([self.dataSourceArr[indexPath.section][@"son"][indexPath.row][@"id"] isEqualToString:self.category_three_id]) {
+        cell.titleLabel.backgroundColor = UIColorFromRGB(0xFFDE02);
+        cell.titleLabel.textColor = UIColorFromRGB(0x222222);
+    } else {
+        cell.titleLabel.backgroundColor = UIColorFromRGB(0xF8F8F8);
+        cell.titleLabel.textColor = UIColorFromRGB(0x666666);
+    }
     
     return cell;
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    
+    if (self.didSelectItemBlock) {
+        self.didSelectItemBlock(@{@"category_one_id" : self.category_one_id,
+                                  @"category_two_id" : self.dataSourceArr[indexPath.section][@"id"],
+                                  @"category_three_id" : self.dataSourceArr[indexPath.section][@"son"][indexPath.row][@"id"]});
+    }
 }
 
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
     
     VENMaterialSortSelectorViewCollectionReusableView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:cellIdentifier2 forIndexPath:indexPath];
+    headerView.titleLabel.text = self.dataSourceArr[indexPath.section][@"name"];
     
     return headerView;
 }
@@ -166,6 +202,9 @@ static NSString *const cellIdentifier2 = @"cellIdentifier2";
         }
     }
     
+    self.dataSourceArr = self.sourceCategoryArr[button.tag][@"son"];
+    self.category_one_id = self.sourceCategoryArr[button.tag][@"id"];
+    [self.collectionView reloadData];
 }
 
 /*

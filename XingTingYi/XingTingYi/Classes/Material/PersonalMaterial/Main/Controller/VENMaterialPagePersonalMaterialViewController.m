@@ -45,8 +45,10 @@
     _pageIdx = offsetX / kMainScreenWidth;
     
     // 滚动 加载数据
-    if (_pageIdx == 0) {
-        
+    if (_pageIdx == 1) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"RefreshPersonalMaterialVideoPage" object:nil];
+    } else if (_pageIdx == 2) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"RefreshPersonalMaterialTextPage" object:nil];
     }
 }
 
@@ -60,8 +62,10 @@
     [_scrollView scrollRectToVisible:rect animated:YES];
     
     // 点击 加载数据
-    if (_pageIdx == 0) {
-        
+    if (_pageIdx == 1) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"RefreshPersonalMaterialVideoPage" object:nil];
+    } else if (_pageIdx == 2) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"RefreshPersonalMaterialTextPage" object:nil];
     }
 }
 

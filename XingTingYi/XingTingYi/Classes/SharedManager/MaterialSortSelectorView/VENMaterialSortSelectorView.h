@@ -10,7 +10,15 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef void (^didSelectItemBlock)(NSDictionary *);
 @interface VENMaterialSortSelectorView : UIView
+@property (nonatomic, copy) NSArray *sourceCategoryArr;
+@property (nonatomic, copy) NSString *category_one_id;
+@property (nonatomic, copy) NSString *category_two_id;
+@property (nonatomic, copy) NSString *category_three_id;
+
+@property (nonatomic, copy) didSelectItemBlock didSelectItemBlock;
+
 - (void)hidden;
 
 @end

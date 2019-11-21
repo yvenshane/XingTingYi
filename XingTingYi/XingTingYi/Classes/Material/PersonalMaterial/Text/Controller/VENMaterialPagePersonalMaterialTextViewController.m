@@ -8,8 +8,13 @@
 
 #import "VENMaterialPagePersonalMaterialTextViewController.h"
 #import "VENHomePageTableViewCellTwo.h"
+#import "VENHomePageModel.h"
 
 @interface VENMaterialPagePersonalMaterialTextViewController () <UITableViewDelegate, UITableViewDataSource>
+@property (nonatomic, assign) NSInteger page;
+@property (nonatomic, strong) NSMutableArray *dataSourceMuArr;
+
+@property (nonatomic, assign) BOOL isRefresh;
 
 @end
 
@@ -23,18 +28,46 @@ static NSString *const cellIdentifier = @"cellIdentifier";
     self.view.backgroundColor = [UIColor whiteColor];
     
     [self setupTableView];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshPersonalMaterialAudioPage) name:@"RefreshPersonalMaterialTextPage" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(endRefreshing) name:@"EndRefreshing" object:nil];
+}
+
+- (void)loadPersonalMaterialTextPageData:(NSString *)page {
+    
+    NSDictionary *parameters = @{@"page" : page,
+                                 @"type" : @"3"};
+    
+    [[VENNetworkingManager shareManager] requestWithType:HttpRequestTypePOST urlString:@"userSource/userSource" parameters:parameters successBlock:^(id responseObject) {
+        
+        if ([page integerValue] == 1) {
+            [self.tableView.mj_header endRefreshing];
+            
+            self.dataSourceMuArr = [NSMutableArray arrayWithArray:[NSArray yy_modelArrayWithClass:[VENHomePageModel class] json:responseObject[@"content"][@"sourcelist"]]];
+            
+            self.page = 1;
+        } else {
+            [self.tableView.mj_footer endRefreshing];
+            
+            [self.dataSourceMuArr addObjectsFromArray:[NSArray yy_modelArrayWithClass:[VENHomePageModel class] json:responseObject[@"content"][@"sourcelist"]]];
+        }
+        
+        [self.tableView reloadData];
+        
+    } failureBlock:^(NSError *error) {
+
+    }];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 10;
+    return self.dataSourceMuArr.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     VENHomePageTableViewCellTwo *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
-    cell.iconImageView.backgroundColor = [UIColor colorWithRed:arc4random_uniform(255)/255.0 green:arc4random_uniform(255)/255.0 blue:arc4random_uniform(255)/255.0 alpha:1];
-    cell.tagImageView.backgroundColor = [UIColor colorWithRed:arc4random_uniform(255)/255.0 green:arc4random_uniform(255)/255.0 blue:arc4random_uniform(255)/255.0 alpha:1];
+    cell.model = self.dataSourceMuArr[indexPath.row];
     
     return cell;
 }
@@ -85,9 +118,32 @@ static NSString *const cellIdentifier = @"cellIdentifier";
     tableView.tableFooterView = [[UIView alloc] init];
     [self.view addSubview:tableView];
     
-    //    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-    //
-    //    }];
+    tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        [self loadPersonalMaterialTextPageData:@"1"];
+    }];
+    
+    tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
+        [self loadPersonalMaterialTextPageData:[NSString stringWithFormat:@"%ld", ++self.page]];
+    }];
+    
+    _tableView = tableView;
+}
+
+#pragma mark - NSNotificationCenter
+- (void)refreshPersonalMaterialAudioPage {
+    if (!self.isRefresh) {
+        [self.tableView.mj_header beginRefreshing];
+        self.isRefresh = YES;
+    }
+}
+
+- (void)endRefreshing {
+    [self.tableView.mj_header endRefreshing];
+    [self.tableView.mj_footer endRefreshing];
+}
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 /*

@@ -62,18 +62,15 @@
         self.lineView.hidden = YES;
         self.lineView2.hidden = NO;
     }
-    
-    
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
     CGFloat offsetX = scrollView.contentOffset.x;
-//    _pageIdx = offsetX / kMainScreenWidth;
-//
-//    // 滚动 加载数据
-//    if (_pageIdx == 0) {
-//
-//    }
+    
+    // 滚动 加载数据
+    if (offsetX / kMainScreenWidth == 1) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"RefreshPersonalMaterialAudioPage" object:nil];
+    }
 }
 
 - (void)setupContentView {
@@ -164,6 +161,8 @@
         
         CGRect rect = CGRectMake(self.scrollView.bounds.size.width, 0, self.scrollView.bounds.size.width, self.scrollView.bounds.size.height);
         [self.scrollView scrollRectToVisible:rect animated:YES];
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"RefreshPersonalMaterialAudioPage" object:nil];
     }
 }
 

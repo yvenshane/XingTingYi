@@ -10,7 +10,6 @@
 
 @interface VENMaterialFormatSelectorView () <UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) UIButton *backgroundButton;
-@property (nonatomic, strong) UIView *backgroundView;
 @property (nonatomic, strong) UITableView *tableView;
 
 @end
@@ -27,19 +26,14 @@ static NSString *const cellIdentifier = @"cellIdentifier";
         [backgroundButton addTarget:self action:@selector(hidden) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:backgroundButton];
         
-        UIView *backgroundView = [[UIView alloc] init];
-        backgroundView.backgroundColor = [UIColor whiteColor];
-        [backgroundButton addSubview:backgroundView];
-        
         UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
         tableView.delegate = self;
         tableView.dataSource = self;
         tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         tableView.tableFooterView = [[UIView alloc] init];
-        [backgroundView addSubview:tableView];
+        [backgroundButton addSubview:tableView];
         
         _backgroundButton = backgroundButton;
-        _backgroundView = backgroundView;
         _tableView = tableView;
     }
     return self;
@@ -49,28 +43,35 @@ static NSString *const cellIdentifier = @"cellIdentifier";
     [super layoutSubviews];
     
     self.backgroundButton.frame = CGRectMake(0, 0, kMainScreenWidth, kMainScreenHeight);
-    self.tableView.frame = CGRectMake(0, 0, kMainScreenWidth, kMainScreenWidth * 420 / 375);
-    
     [self show];
 }
 
 #pragma mark - UITableView
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 10;
+    return self.typeListArr.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
-    
-    cell.textLabel.text = @"1231231";
-    cell.textLabel.font = [UIFont systemFontOfSize:14.0f];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
+    cell.textLabel.text = self.typeListArr[indexPath.row][@"name"];
+    
+    if ([self.type isEqualToString:[NSString stringWithFormat:@"%@", self.typeListArr[indexPath.row][@"id"]]]) {
+        cell.textLabel.textColor = UIColorFromRGB(0x333333);
+        cell.textLabel.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:14.0];
+    } else {
+        cell.textLabel.textColor = UIColorFromRGB(0x666666);
+        cell.textLabel.font = [UIFont systemFontOfSize:14.0f];
+    }
     
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+    if (self.didSelectRowBlock) {
+        self.didSelectRowBlock([NSString stringWithFormat:@"%@", self.typeListArr[indexPath.row][@"id"]]);
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -80,9 +81,9 @@ static NSString *const cellIdentifier = @"cellIdentifier";
 - (void)show {
     [[NSNotificationCenter defaultCenter] postNotificationName:@"VENMaterialFormatSelectorView" object:nil userInfo:@{@"type" : @"show"}];
     
-    self.backgroundView.frame = CGRectMake(0, -(kMainScreenWidth * 420 / 375), kMainScreenWidth, kMainScreenWidth * 420 / 375);
+    self.tableView.frame = CGRectMake(0, -(self.typeListArr.count * 54 + kStatusBarHeight + 47), kMainScreenWidth, self.typeListArr.count * 54);
     [UIView animateWithDuration:kAnimationDuration animations:^{
-        self.backgroundView.frame = CGRectMake(0, 0, kMainScreenWidth, kMainScreenWidth * 420 / 375);
+        self.tableView.frame = CGRectMake(0, 0, kMainScreenWidth, self.typeListArr.count * 54);
     } completion:nil];
 }
 
@@ -90,7 +91,7 @@ static NSString *const cellIdentifier = @"cellIdentifier";
     [[NSNotificationCenter defaultCenter] postNotificationName:@"VENMaterialFormatSelectorView" object:nil userInfo:@{@"type" : @"hidden"}];
     
     [UIView animateWithDuration:kAnimationDuration animations:^{
-        self.backgroundView.frame = CGRectMake(0, -(kMainScreenWidth * 420 / 375), kMainScreenWidth, kMainScreenWidth * 420 / 375);
+        self.tableView.frame = CGRectMake(0, -(self.typeListArr.count * 54 + kStatusBarHeight + 47), kMainScreenWidth, self.typeListArr.count * 54);
     } completion:^(BOOL finished) {
         [self removeFromSuperview];
     }];

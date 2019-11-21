@@ -10,7 +10,13 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef void (^didSelectRowBlock)(NSString *);
 @interface VENMaterialFormatSelectorView : UIView
+@property (nonatomic, copy) NSArray *typeListArr;
+@property (nonatomic, copy) NSString *type;
+
+@property (nonatomic, copy) didSelectRowBlock didSelectRowBlock;
+
 - (void)hidden;
 
 @end

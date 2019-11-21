@@ -76,7 +76,9 @@ static NSString *const url = @"http://hefengxun2.ahaiba.com/index.php/";
                     VENNavigationController *nav = [[VENNavigationController alloc] initWithRootViewController:vc];
                     [[self getCurrentTopVC] presentViewController:nav animated:YES completion:nil];
                     return;
-                } else if ([responseObject[@"ret"] integerValue] == 202) {
+                }
+                
+                if ([responseObject[@"ret"] integerValue] != 200) {
                     return;
                 }
                 
@@ -109,7 +111,9 @@ static NSString *const url = @"http://hefengxun2.ahaiba.com/index.php/";
                     VENNavigationController *nav = [[VENNavigationController alloc] initWithRootViewController:vc];
                     [[self getCurrentTopVC] presentViewController:nav animated:YES completion:nil];
                     return;
-                } else if ([responseObject[@"ret"] integerValue] == 202) {
+                }
+                
+                if ([responseObject[@"ret"] integerValue] != 200) {
                     return;
                 }
                 
@@ -175,7 +179,9 @@ static NSString *const url = @"http://hefengxun2.ahaiba.com/index.php/";
             VENNavigationController *nav = [[VENNavigationController alloc] initWithRootViewController:vc];
             [[self getCurrentTopVC] presentViewController:nav animated:YES completion:nil];
             return;
-        } else if ([responseObject[@"ret"] integerValue] == 202) {
+        }
+        
+        if ([responseObject[@"ret"] integerValue] != 200) {
             return;
         }
         

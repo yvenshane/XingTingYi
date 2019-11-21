@@ -12,12 +12,26 @@
 #import "VENMaterialFormatSelectorView.h"
 #import "VENVideoMaterialDetailsPageViewController.h"
 #import "VENAudioMaterialDetailsPageViewController.h"
+#import "VENHomePageModel.h"
 
 @interface VENMaterialPagePlatformMaterialViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) UIImageView *leftImageView;
 @property (nonatomic, strong) UIImageView *rightImageView;
 @property (nonatomic, weak) VENMaterialSortSelectorView *materialSortSelectorView;
 @property (nonatomic, weak) VENMaterialFormatSelectorView *materialFormatSelectorView;
+
+@property (nonatomic, strong) UITableView *tableView;
+
+@property (nonatomic, copy) NSArray *sourceCategoryArr;
+@property (nonatomic, copy) NSString *category_one_id;
+@property (nonatomic, copy) NSString *category_two_id;
+@property (nonatomic, copy) NSString *category_three_id;
+
+@property (nonatomic, copy) NSArray *typeListArr;
+@property (nonatomic, copy) NSString *type;
+
+@property (nonatomic, assign) NSInteger page;
+@property (nonatomic, strong) NSMutableArray *dataSourceMuArr;
 
 @end
 
@@ -31,8 +45,17 @@ static NSString *const cellIdentifier = @"cellIdentifier";
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationCenter:) name:@"MaterialSortSelectorView" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationCenter2:) name:@"VENMaterialFormatSelectorView" object:nil];
     
+    self.category_one_id = @"";
+    self.category_two_id = @"";
+    self.category_three_id = @"";
+    self.type = @"";
+    
     [self setupCategoryView];
     [self setupTableView];
+    
+    [self loadMaterialSortSelectorData];
+    
+    [self.tableView.mj_header beginRefreshing];
 }
 
 - (void)notificationCenter:(NSNotification *)noti {
@@ -51,6 +74,48 @@ static NSString *const cellIdentifier = @"cellIdentifier";
     }
 }
 
+#pragma mark - 素材分类数据
+- (void)loadMaterialSortSelectorData {
+    [[VENNetworkingManager shareManager] requestWithType:HttpRequestTypePOST urlString:@"source/sourceCategory" parameters:nil successBlock:^(id responseObject) {
+        
+        self.sourceCategoryArr = responseObject[@"content"][@"sourceCategory"];
+        self.typeListArr = responseObject[@"content"][@"typeList"];
+        
+    } failureBlock:^(NSError *error) {
+        
+    }];
+}
+
+#pragma mark - 平台素材列表数据
+- (void)loadPlatformMaterialPageData:(NSString *)page {
+    
+    NSDictionary *parameters = @{@"page" : page,
+                                 @"type" : self.type,
+                                 @"category_one_id" : self.category_one_id,
+                                 @"category_two_id" : self.category_two_id,
+                                 @"category_three_id" : self.category_three_id};
+    
+    [[VENNetworkingManager shareManager] requestWithType:HttpRequestTypePOST urlString:@"source/sourceList" parameters:parameters successBlock:^(id responseObject) {
+        
+        if ([page integerValue] == 1) {
+            [self.tableView.mj_header endRefreshing];
+            
+            self.dataSourceMuArr = [NSMutableArray arrayWithArray:[NSArray yy_modelArrayWithClass:[VENHomePageModel class] json:responseObject[@"content"][@"sourcelist"]]];
+            
+            self.page = 1;
+        } else {
+            [self.tableView.mj_footer endRefreshing];
+            
+            [self.dataSourceMuArr addObjectsFromArray:[NSArray yy_modelArrayWithClass:[VENHomePageModel class] json:responseObject[@"content"][@"sourcelist"]]];
+        }
+        
+        [self.tableView reloadData];
+        
+    } failureBlock:^(NSError *error) {
+
+    }];
+}
+
 #pragma mark - TableView
 - (void)setupTableView {
     UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 48, kMainScreenWidth, kMainScreenHeight - kStatusBarAndNavigationBarHeight - 48 - kTabBarHeight) style:UITableViewStyleGrouped];
@@ -62,21 +127,26 @@ static NSString *const cellIdentifier = @"cellIdentifier";
     tableView.tableFooterView = [[UIView alloc] init];
     [self.view addSubview:tableView];
     
-    //    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-    //
-    //    }];
+    tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        [self loadPlatformMaterialPageData:@"1"];
+    }];
+    
+    tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
+        [self loadPlatformMaterialPageData:[NSString stringWithFormat:@"%ld", ++self.page]];
+    }];
+    
+    _tableView = tableView;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 10;
+    return self.dataSourceMuArr.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     VENHomePageTableViewCellTwo *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
-    cell.iconImageView.backgroundColor = [UIColor colorWithRed:arc4random_uniform(255)/255.0 green:arc4random_uniform(255)/255.0 blue:arc4random_uniform(255)/255.0 alpha:1];
-    cell.tagImageView.backgroundColor = [UIColor colorWithRed:arc4random_uniform(255)/255.0 green:arc4random_uniform(255)/255.0 blue:arc4random_uniform(255)/255.0 alpha:1];
+    cell.model = self.dataSourceMuArr[indexPath.row];
     
     return cell;
 }
@@ -181,8 +251,25 @@ static NSString *const cellIdentifier = @"cellIdentifier";
     
     if (!self.materialSortSelectorView) {
         VENMaterialSortSelectorView *materialSortSelectorView = [[VENMaterialSortSelectorView alloc] initWithFrame:CGRectMake(0, 48, kMainScreenWidth, kMainScreenHeight)];
-        [self.view addSubview:materialSortSelectorView];
         materialSortSelectorView.layer.zPosition = 2;
+        
+        materialSortSelectorView.category_one_id = self.category_one_id;
+        materialSortSelectorView.category_two_id = self.category_two_id;
+        materialSortSelectorView.category_three_id = self.category_three_id;
+        materialSortSelectorView.sourceCategoryArr = self.sourceCategoryArr;
+        
+        __weak typeof(self) weakSelf = self;
+        materialSortSelectorView.didSelectItemBlock = ^(NSDictionary *dict) {
+            self.category_one_id = dict[@"category_one_id"];
+            self.category_two_id = dict[@"category_two_id"];
+            self.category_three_id = dict[@"category_three_id"];
+            
+            [weakSelf.materialSortSelectorView hidden];
+            
+            [self loadPlatformMaterialPageData:@"1"];
+        };
+        
+        [self.view addSubview:materialSortSelectorView];
         
         _materialSortSelectorView = materialSortSelectorView;
     } else {
@@ -199,13 +286,31 @@ static NSString *const cellIdentifier = @"cellIdentifier";
     
     if (!self.materialFormatSelectorView) {
         VENMaterialFormatSelectorView *materialFormatSelectorView = [[VENMaterialFormatSelectorView alloc] initWithFrame:CGRectMake(0, 48, kMainScreenWidth, kMainScreenHeight)];
-        [self.view addSubview:materialFormatSelectorView];
         materialFormatSelectorView.layer.zPosition = 2;
+        
+        materialFormatSelectorView.type = self.type;
+        materialFormatSelectorView.typeListArr = self.typeListArr;
+        
+        __weak typeof(self) weakSelf = self;
+        materialFormatSelectorView.didSelectRowBlock = ^(NSString *str) {
+            self.type = str;
+            
+            [weakSelf.materialFormatSelectorView hidden];
+            
+            [self loadPlatformMaterialPageData:@"1"];
+        };
+        
+        [self.view addSubview:materialFormatSelectorView];
         
         _materialFormatSelectorView = materialFormatSelectorView;
     } else {
         [self.materialFormatSelectorView hidden];
     }
+}
+
+#pragma mark - dealloc
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 /*
