@@ -11,6 +11,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef void (^refreshBlock)(NSString *);
 @interface VENVideoMaterialDetailsPageHeaderView : UIView
 @property (weak, nonatomic) IBOutlet UIImageView *pictureImageView;
 @property (weak, nonatomic) IBOutlet UILabel *titileLabel;
@@ -21,10 +22,13 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UIView *videoView;
 @property (weak, nonatomic) IBOutlet UIView *audioView;
 @property (weak, nonatomic) IBOutlet UIView *categoryView;
+@property (weak, nonatomic) IBOutlet UIView *categoryContentView;
+@property (weak, nonatomic) IBOutlet UILabel *categoryContentLabel;
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *pictureImageViewHeightLayoutConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *videoViewHeightLayoutConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *audioViewHeightLayoutConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *categoryViewHeightLayoutConstraint;
 
 @property (nonatomic, strong) VENVideoMaterialDetailsPageModel *model;
 

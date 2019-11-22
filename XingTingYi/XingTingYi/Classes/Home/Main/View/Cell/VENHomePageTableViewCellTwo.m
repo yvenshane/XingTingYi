@@ -26,12 +26,16 @@
     self.titleLabel.text = model.title;
     self.dateLabel.text = model.created_at;
     
-    if ([model.type isEqualToString:@"1"] || [model.type isEqualToString:@"4"]) {
+    if ([model.type isEqualToString:@"1"]) {
         self.tagImageView.image = [UIImage imageNamed:@"icon_tag_audio"];
-    } else if ([model.type isEqualToString:@"2"] || [model.type isEqualToString:@"5"]) {
+    } else if ([model.type isEqualToString:@"2"]) {
         self.tagImageView.image = [UIImage imageNamed:@"icon_tag_video"];
     } else if ([model.type isEqualToString:@"3"]) {
         self.tagImageView.image = [UIImage imageNamed:@"icon_tag_text"];
+    }  else if ([model.type isEqualToString:@"4"]) {
+        self.tagImageView.image = [UIImage imageNamed:@"icon_tag_audio_text"];
+    }  else if ([model.type isEqualToString:@"5"]) {
+        self.tagImageView.image = [UIImage imageNamed:@"icon_tag_video_text"];
     }
 }
 

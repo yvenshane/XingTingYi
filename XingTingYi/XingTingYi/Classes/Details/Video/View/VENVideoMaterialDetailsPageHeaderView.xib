@@ -81,9 +81,33 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9ss-CJ-aK9">
-                    <rect key="frame" x="20" y="1044" width="374" height="400"/>
+                    <rect key="frame" x="0.0" y="1044" width="414" height="400"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Uwo-01-Yor">
+                            <rect key="frame" x="20" y="45" width="374" height="355"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oIV-wO-Q2w">
+                                    <rect key="frame" x="15" y="15" width="344" height="325"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                    <color key="textColor" red="0.1333333333" green="0.1333333333" blue="0.1333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" red="0.97254901960784312" green="0.97254901960784312" blue="0.97254901960784312" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="bottom" secondItem="oIV-wO-Q2w" secondAttribute="bottom" constant="15" id="7od-UR-z0l"/>
+                                <constraint firstItem="oIV-wO-Q2w" firstAttribute="top" secondItem="Uwo-01-Yor" secondAttribute="top" constant="15" id="C1y-tx-p3u"/>
+                                <constraint firstItem="oIV-wO-Q2w" firstAttribute="leading" secondItem="Uwo-01-Yor" secondAttribute="leading" constant="15" id="Icb-wy-VG7"/>
+                                <constraint firstAttribute="trailing" secondItem="oIV-wO-Q2w" secondAttribute="trailing" constant="15" id="wJL-dQ-v9w"/>
+                            </constraints>
+                        </view>
+                    </subviews>
                     <constraints>
                         <constraint firstAttribute="height" constant="400" id="BWm-42-J6D"/>
+                        <constraint firstItem="Uwo-01-Yor" firstAttribute="leading" secondItem="9ss-CJ-aK9" secondAttribute="leading" constant="20" id="D60-qf-AWp"/>
+                        <constraint firstAttribute="bottom" secondItem="Uwo-01-Yor" secondAttribute="bottom" id="L4G-UQ-DxN"/>
+                        <constraint firstItem="Uwo-01-Yor" firstAttribute="top" secondItem="9ss-CJ-aK9" secondAttribute="top" constant="45" id="TB8-RG-Pf9"/>
+                        <constraint firstAttribute="trailing" secondItem="Uwo-01-Yor" secondAttribute="trailing" constant="20" id="lNf-Na-lJH"/>
                     </constraints>
                 </view>
             </subviews>
@@ -100,7 +124,7 @@
                 <constraint firstItem="68h-17-hcr" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="CQn-Kf-Tid"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="4s2-4F-ZNq" secondAttribute="trailing" constant="20" id="Drz-Zo-wAn"/>
                 <constraint firstItem="2gz-fo-Gdf" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="Fjy-7f-ize"/>
-                <constraint firstItem="9ss-CJ-aK9" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="Fkd-R9-AkA"/>
+                <constraint firstItem="9ss-CJ-aK9" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="Fkd-R9-AkA"/>
                 <constraint firstItem="nri-mH-Hu6" firstAttribute="top" secondItem="68h-17-hcr" secondAttribute="bottom" constant="20" id="G5T-Kx-K2R"/>
                 <constraint firstItem="upL-Om-Qna" firstAttribute="trailing" secondItem="hu8-Mk-EY9" secondAttribute="trailing" constant="15" id="JOx-SX-YeO"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="8Lp-U9-Dhe" secondAttribute="trailing" constant="20" id="Kjd-a5-YU9"/>
@@ -113,7 +137,7 @@
                 <constraint firstItem="tah-Jx-K2t" firstAttribute="top" secondItem="hu8-Mk-EY9" secondAttribute="bottom" id="WMD-kB-2gO"/>
                 <constraint firstItem="baa-Jc-zJp" firstAttribute="top" secondItem="hu8-Mk-EY9" secondAttribute="bottom" constant="13" id="XTX-7l-pe0"/>
                 <constraint firstItem="4s2-4F-ZNq" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="ZXs-ad-ZW3"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="9ss-CJ-aK9" secondAttribute="trailing" constant="20" id="ccl-NS-C3M"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="9ss-CJ-aK9" secondAttribute="trailing" id="ccl-NS-C3M"/>
                 <constraint firstItem="upL-Om-Qna" firstAttribute="top" secondItem="hu8-Mk-EY9" secondAttribute="top" constant="-14" id="dZh-zu-Idu"/>
                 <constraint firstItem="8Lp-U9-Dhe" firstAttribute="top" secondItem="nri-mH-Hu6" secondAttribute="bottom" constant="10" id="o3T-NN-swO"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="hu8-Mk-EY9" secondAttribute="trailing" constant="35" id="qOI-5T-4yR"/>
@@ -126,7 +150,10 @@
             <connections>
                 <outlet property="audioView" destination="2gz-fo-Gdf" id="b7q-jr-Ipo"/>
                 <outlet property="audioViewHeightLayoutConstraint" destination="FS3-87-F5L" id="uZL-XS-dge"/>
+                <outlet property="categoryContentLabel" destination="oIV-wO-Q2w" id="8dP-Ol-44e"/>
+                <outlet property="categoryContentView" destination="Uwo-01-Yor" id="a4X-aG-7eb"/>
                 <outlet property="categoryView" destination="9ss-CJ-aK9" id="xjr-KE-me5"/>
+                <outlet property="categoryViewHeightLayoutConstraint" destination="BWm-42-J6D" id="lPl-Fs-KqE"/>
                 <outlet property="contentButton" destination="tah-Jx-K2t" id="OsP-sv-cJp"/>
                 <outlet property="contentLabel" destination="hu8-Mk-EY9" id="f70-ve-GiD"/>
                 <outlet property="contentView" destination="upL-Om-Qna" id="1dO-rQ-lmS"/>

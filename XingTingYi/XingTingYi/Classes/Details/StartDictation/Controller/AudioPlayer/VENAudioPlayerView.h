@@ -7,11 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <AVFoundation/AVFoundation.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface VENAudioPlayerView : UIView
 @property (nonatomic, copy) NSString *audioURL;
+
+- (AVPlayerLayer *)playerLayer;
 
 @end
 

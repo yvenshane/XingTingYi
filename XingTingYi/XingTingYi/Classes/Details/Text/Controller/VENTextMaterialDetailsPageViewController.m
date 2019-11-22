@@ -1,24 +1,24 @@
 //
-//  VENAudioMaterialDetailsPageViewController.m
+//  VENTextMaterialDetailsPageViewController.m
 //  XingTingYi
 //
-//  Created by YVEN on 2019/9/12.
+//  Created by YVEN on 2019/11/21.
 //  Copyright © 2019 Hefei Haiba Network Technology Co., Ltd. All rights reserved.
 //
 
-#import "VENAudioMaterialDetailsPageViewController.h"
+#import "VENTextMaterialDetailsPageViewController.h"
 #import "VENAudioMaterialDetailsPageHeaderView.h"
 #import "VENAudioMaterialDetailsPageModel.h"
 #import "VENAudioMaterialDetailsPageTableViewCell.h"
 #import "VENVideoMaterialDetailsStartDictationPageViewController.h"
 
-@interface VENAudioMaterialDetailsPageViewController ()
+@interface VENTextMaterialDetailsPageViewController ()
 @property (nonatomic, strong) UIView *navigationView;
 
 @end
 
 static NSString *const cellIdentifier = @"cellIdentifier";
-@implementation VENAudioMaterialDetailsPageViewController
+@implementation VENTextMaterialDetailsPageViewController
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
@@ -124,12 +124,12 @@ static NSString *const cellIdentifier = @"cellIdentifier";
     
     UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(22, kStatusBarHeight, 44, 44)];
     backButton.contentEdgeInsets = UIEdgeInsetsMake(0, -20, 0, 0);
-    [backButton setImage:[UIImage imageNamed:@"icon_back"] forState:UIControlStateNormal];
+    [backButton setImage:[UIImage imageNamed:@"icon_back2"] forState:UIControlStateNormal];
     [backButton addTarget:self action:@selector(backButtonClick) forControlEvents:UIControlEventTouchUpInside];
     [navigationView addSubview:backButton];
     
     UIButton *moreButton = [[UIButton alloc] initWithFrame:CGRectMake(kMainScreenWidth - 44 - 11, kStatusBarHeight, 44, 44)];
-    [moreButton setImage:[UIImage imageNamed:@"icon_more3"] forState:UIControlStateNormal];
+    [moreButton setImage:[UIImage imageNamed:@"icon_more2"] forState:UIControlStateNormal];
     [moreButton addTarget:self action:@selector(moreButtonClick) forControlEvents:UIControlEventTouchUpInside];
     [navigationView addSubview:moreButton];
     
@@ -145,7 +145,7 @@ static NSString *const cellIdentifier = @"cellIdentifier";
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    self.navigationView.backgroundColor = [UIColor colorWithRed:255.0f / 255.0f green:255.0f / 255.0f blue:255.0f / 255.0f alpha:scrollView.contentOffset.y / kStatusBarAndNavigationBarHeight];
+    self.navigationView.backgroundColor = [UIColor colorWithRed:255.0f / 255.0f green:222.0f / 255.0f blue:2.0f / 255.0f alpha:scrollView.contentOffset.y / kStatusBarAndNavigationBarHeight];
 }
 
 /*

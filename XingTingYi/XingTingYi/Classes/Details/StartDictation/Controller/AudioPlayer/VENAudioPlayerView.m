@@ -7,7 +7,6 @@
 //
 
 #import "VENAudioPlayerView.h"
-#import <AVFoundation/AVFoundation.h>
 
 @interface VENAudioPlayerView ()
 @property (nonatomic, strong) AVPlayer *player;
@@ -60,6 +59,11 @@
 }
 
 - (void)setAudioURL:(NSString *)audioURL {
+    
+    if ([VENEmptyClass isEmptyString:audioURL]) {
+        return;
+    }
+    
     NSURL *url = [NSURL URLWithString:audioURL];
     AVAsset *asset = [AVAsset assetWithURL:url];
     AVPlayerItem *playerItem = [AVPlayerItem playerItemWithAsset:asset];
@@ -226,6 +230,10 @@
         button.selected = NO;
         self.isLoop = NO;
         [MBProgressHUD showText:@"取消定点循环播放"];
+        
+        // 还原起始位置
+        self.startImageView.frame = CGRectMake(9, 15, 12, 15);
+        self.endImageView.frame = CGRectMake(self.frame.size.width - 21, 15, 12, 15);
     }
 }
 
@@ -259,6 +267,21 @@
     } else {
         [MBProgressHUD showText:@"结束时间必须大于开始时间哦~"];
     }
+}
+
+#pragma mark - 视频
+- (AVPlayerLayer *)playerLayer {
+    AVPlayerLayer *playerLayer = [AVPlayerLayer playerLayerWithPlayer:self.player];
+    
+//    AVLayerVideoGravityResizeAspect
+//    AVLayerVideoGravityResizeAspectFill
+//    AVLayerVideoGravityResize
+    
+    playerLayer.videoGravity = AVLayerVideoGravityResize;
+    playerLayer.cornerRadius = 4.0f;
+    playerLayer.masksToBounds = YES;
+    
+    return playerLayer;
 }
 
 // 绘制图片

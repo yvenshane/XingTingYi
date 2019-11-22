@@ -12,6 +12,7 @@
 
 @interface VENVideoMaterialDetailsPageViewController ()
 @property (nonatomic, copy) UIView *navigationView;
+@property (nonatomic, strong) VENVideoMaterialDetailsPageModel *model;
 
 @end
 
@@ -33,13 +34,25 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    self.tableView.dataSource = nil;
-    self.tableView.frame = CGRectMake(0, 0, kMainScreenWidth, kMainScreenHeight - 60 - (kTabBarHeight - 49));
-    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    [self.view addSubview:self.tableView];
-    
+    [self setupTableView];
     [self setupNavigationView];
     [self setupBottomToolBar];
+    
+    [self loadVideoMaterialDetailsPageData];
+}
+
+- (void)loadVideoMaterialDetailsPageData {
+    [[VENNetworkingManager shareManager] requestWithType:HttpRequestTypePOST urlString:@"source/sourceInfo" parameters:@{@"id" : self.id} successBlock:^(id responseObject) {
+        
+        self.model = [VENVideoMaterialDetailsPageModel yy_modelWithJSON:responseObject[@"content"][@"info"]];
+        
+//        self.typeListArr = responseObject[@"content"][@"typeList"];
+        
+        [self.tableView reloadData];
+        
+    } failureBlock:^(NSError *error) {
+        
+    }];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -49,8 +62,7 @@
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     VENVideoMaterialDetailsPageHeaderView *headerView = [[NSBundle mainBundle] loadNibNamed:@"VENVideoMaterialDetailsPageHeaderView" owner:nil options:nil].lastObject;
     headerView.backgroundColor = [UIColor whiteColor];
-    VENVideoMaterialDetailsPageModel *model;
-    headerView.model = model;
+    headerView.model = self.model;
     
     return headerView;
 }
@@ -65,6 +77,13 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
     return CGFLOAT_MIN;
+}
+
+- (void)setupTableView {
+    self.tableView.dataSource = nil;
+    self.tableView.frame = CGRectMake(0, 0, kMainScreenWidth, kMainScreenHeight - 60 - (kTabBarHeight - 49));
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    [self.view addSubview:self.tableView];
 }
 
 - (void)setupBottomToolBar {
@@ -103,12 +122,12 @@
     
     UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(22, kStatusBarHeight, 44, 44)];
     backButton.contentEdgeInsets = UIEdgeInsetsMake(0, -20, 0, 0);
-    [backButton setImage:[UIImage imageNamed:@"icon_back2"] forState:UIControlStateNormal];
+    [backButton setImage:[UIImage imageNamed:@"icon_back"] forState:UIControlStateNormal];
     [backButton addTarget:self action:@selector(backButtonClick) forControlEvents:UIControlEventTouchUpInside];
     [navigationView addSubview:backButton];
     
     UIButton *moreButton = [[UIButton alloc] initWithFrame:CGRectMake(kMainScreenWidth - 44 - 11, kStatusBarHeight, 44, 44)];
-    [moreButton setImage:[UIImage imageNamed:@"icon_more2"] forState:UIControlStateNormal];
+    [moreButton setImage:[UIImage imageNamed:@"icon_more3"] forState:UIControlStateNormal];
     [moreButton addTarget:self action:@selector(moreButtonClick) forControlEvents:UIControlEventTouchUpInside];
     [navigationView addSubview:moreButton];
     
@@ -124,7 +143,7 @@
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    self.navigationView.backgroundColor = [UIColor colorWithRed:255.0f / 255.0f green:222.0f / 255.0f blue:2.0f / 255.0f alpha:scrollView.contentOffset.y / kStatusBarAndNavigationBarHeight];
+    self.navigationView.backgroundColor = [UIColor colorWithRed:255.0f / 255.0f green:255.0f / 255.0f blue:255.0f / 255.0f alpha:scrollView.contentOffset.y / kStatusBarAndNavigationBarHeight];
 }
 
 /*

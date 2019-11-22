@@ -11,6 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface VENVideoMaterialDetailsPageViewController : VENBaseViewController
+@property (nonatomic, copy) NSString *id;
 
 @end
 

@@ -10,4 +10,8 @@
 
 @implementation VENVideoMaterialDetailsPageModel
 
++ (NSDictionary *)modelCustomPropertyMapper {
+    return @{@"descriptionn" : @"description"};
+}
+
 @end

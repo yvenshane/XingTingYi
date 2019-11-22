@@ -40,7 +40,7 @@
     
     // 获取滚动视图的内容的偏移量 x
     CGFloat offsetX = scrollView.contentOffset.x;
-    NSLog(@"%f____%f", offsetX, kMainScreenWidth);
+//    NSLog(@"%f____%f", offsetX, kMainScreenWidth);
     // 需要将偏移量交给分类视图!
 //    _categoryView.offset_X = offsetX / 3;
     

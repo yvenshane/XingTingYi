@@ -124,6 +124,8 @@
 		2C24702F22F2E28A00142646 /* VENMinePageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C24702D22F2E28A00142646 /* VENMinePageTableViewCell.m */; };
 		2C24703022F2E28A00142646 /* VENMinePageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C24702E22F2E28A00142646 /* VENMinePageTableViewCell.xib */; };
 		2C2FAA99236ADD0C001227F4 /* UIViewController+DDYPresent.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C2FAA98236ADD0C001227F4 /* UIViewController+DDYPresent.m */; };
+		2C3C59832386AC5E00AABCEA /* VENTextMaterialDetailsPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C3C59822386AC5E00AABCEA /* VENTextMaterialDetailsPageViewController.m */; };
+		2C3C59862387BDFB00AABCEA /* VENMaterialDetailsPageCategoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C3C59852387BDFB00AABCEA /* VENMaterialDetailsPageCategoryView.m */; };
 		2C3D638C237BF68F001754E4 /* VENDynamicCirclePageDetailsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C3D638B237BF68F001754E4 /* VENDynamicCirclePageDetailsModel.m */; };
 		2C3D63C2237BFB94001754E4 /* YYTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C3D638F237BFB94001754E4 /* YYTextView.m */; };
 		2C3D63C3237BFB94001754E4 /* YYTextMagnifier.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C3D6393237BFB94001754E4 /* YYTextMagnifier.m */; };
@@ -524,6 +526,10 @@
 		2C24702E22F2E28A00142646 /* VENMinePageTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VENMinePageTableViewCell.xib; sourceTree = "<group>"; };
 		2C2FAA97236ADD0C001227F4 /* UIViewController+DDYPresent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+DDYPresent.h"; sourceTree = "<group>"; };
 		2C2FAA98236ADD0C001227F4 /* UIViewController+DDYPresent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+DDYPresent.m"; sourceTree = "<group>"; };
+		2C3C59812386AC5E00AABCEA /* VENTextMaterialDetailsPageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VENTextMaterialDetailsPageViewController.h; sourceTree = "<group>"; };
+		2C3C59822386AC5E00AABCEA /* VENTextMaterialDetailsPageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VENTextMaterialDetailsPageViewController.m; sourceTree = "<group>"; };
+		2C3C59842387BDFB00AABCEA /* VENMaterialDetailsPageCategoryView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VENMaterialDetailsPageCategoryView.h; sourceTree = "<group>"; };
+		2C3C59852387BDFB00AABCEA /* VENMaterialDetailsPageCategoryView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VENMaterialDetailsPageCategoryView.m; sourceTree = "<group>"; };
 		2C3D638A237BF68F001754E4 /* VENDynamicCirclePageDetailsModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VENDynamicCirclePageDetailsModel.h; sourceTree = "<group>"; };
 		2C3D638B237BF68F001754E4 /* VENDynamicCirclePageDetailsModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VENDynamicCirclePageDetailsModel.m; sourceTree = "<group>"; };
 		2C3D638E237BFB94001754E4 /* YYText.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYText.h; sourceTree = "<group>"; };
@@ -1692,6 +1698,7 @@
 			children = (
 				2C1E2B702329DCAA0080C526 /* Audio */,
 				2C1E2B6F2329DC930080C526 /* Video */,
+				2C3C597D2386AC0C00AABCEA /* Text */,
 				2CFF8AFC232A450C009AD211 /* StartDictation */,
 			);
 			path = Details;
@@ -1712,6 +1719,8 @@
 				2C1E2B66232882D30080C526 /* VENVideoMaterialDetailsPageHeaderView.h */,
 				2C1E2B67232882D30080C526 /* VENVideoMaterialDetailsPageHeaderView.m */,
 				2C1E2B692328E77C0080C526 /* VENVideoMaterialDetailsPageHeaderView.xib */,
+				2C3C59842387BDFB00AABCEA /* VENMaterialDetailsPageCategoryView.h */,
+				2C3C59852387BDFB00AABCEA /* VENMaterialDetailsPageCategoryView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1752,6 +1761,39 @@
 				2CFF8AEB2329DD69009AD211 /* VENAudioMaterialDetailsPageViewController.m */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		2C3C597D2386AC0C00AABCEA /* Text */ = {
+			isa = PBXGroup;
+			children = (
+				2C3C59802386AC2D00AABCEA /* Model */,
+				2C3C597F2386AC2900AABCEA /* View */,
+				2C3C597E2386AC2400AABCEA /* Controller */,
+			);
+			path = Text;
+			sourceTree = "<group>";
+		};
+		2C3C597E2386AC2400AABCEA /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				2C3C59812386AC5E00AABCEA /* VENTextMaterialDetailsPageViewController.h */,
+				2C3C59822386AC5E00AABCEA /* VENTextMaterialDetailsPageViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		2C3C597F2386AC2900AABCEA /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		2C3C59802386AC2D00AABCEA /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		2C3D6389237BF5B7001754E4 /* Model */ = {
@@ -2882,6 +2924,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2C3C59832386AC5E00AABCEA /* VENTextMaterialDetailsPageViewController.m in Sources */,
 				2C1E2B68232882D30080C526 /* VENVideoMaterialDetailsPageHeaderView.m in Sources */,
 				2CA990A123068D190081CC0C /* VENDatePickerView.m in Sources */,
 				2C699E3423190E9F00BA8810 /* JXCategoryTitleCell.m in Sources */,
@@ -3040,6 +3083,7 @@
 				2C699E3923190E9F00BA8810 /* JXCategoryNumberView.m in Sources */,
 				2C0F87CD23165EA7003E9DB3 /* VENSettingFeedbackViewController.m in Sources */,
 				2C148FB223223C4000DC9BA3 /* VENDynamicCirclePageDetailsViewController.m in Sources */,
+				2C3C59862387BDFB00AABCEA /* VENMaterialDetailsPageCategoryView.m in Sources */,
 				2C699E3823190E9F00BA8810 /* JXCategoryImageCellModel.m in Sources */,
 				2C1C018C22DC1EE400E4E9C4 /* IQKeyboardReturnKeyHandler.m in Sources */,
 				2C3D63C5237BFB94001754E4 /* YYTextEffectWindow.m in Sources */,
