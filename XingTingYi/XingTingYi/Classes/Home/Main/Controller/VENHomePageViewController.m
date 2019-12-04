@@ -133,7 +133,8 @@ static NSString *const cellIdentifier3 = @"cellIdentifier3";
         headView.moreButtonClickBlock = ^(NSString *str) {
             VENBaseWebViewController *vc = [[VENBaseWebViewController alloc] init];
             vc.HTMLString = self.model.aboutUs[0][@"content"];
-            vc.navigationItemTitle = @"关于我们";
+            vc.isPresent = YES;
+            vc.navigationItem.title = @"关于我们";
             VENNavigationController *nav = [[VENNavigationController alloc] initWithRootViewController:vc];
             [self presentViewController:nav animated:YES completion:nil];
         };

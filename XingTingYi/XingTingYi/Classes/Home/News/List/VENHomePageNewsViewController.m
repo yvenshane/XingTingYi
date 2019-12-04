@@ -91,7 +91,7 @@ static NSString *const cellIdentifier = @"cellIdentifier";
         [headerView addSubview:dateLabel];
         
         VENBaseWebViewController *vc = [[VENBaseWebViewController alloc] init];
-        vc.isPush = YES;
+        vc.isPresent = YES;
         vc.headerView = headerView;
         vc.headerViewHeight = 5 + height + 10 + height2 + 20;
         vc.HTMLString = responseObject[@"content"][@"content"];

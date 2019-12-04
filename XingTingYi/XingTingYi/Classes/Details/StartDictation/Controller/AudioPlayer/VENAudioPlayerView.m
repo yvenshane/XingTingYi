@@ -310,14 +310,14 @@
     return [formatter stringFromDate:date];
 }
 
-- (CGFloat)startTime {
+- (Float64)startTime {
     if (!_startTime) {
         _startTime = 0.0;
     }
     return _startTime;
 }
 
-- (CGFloat)endTime {
+- (Float64)endTime {
     if (!_endTime) {
         _endTime = CMTimeGetSeconds(self.playerItem.asset.duration);
     }

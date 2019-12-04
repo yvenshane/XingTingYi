@@ -12,8 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface VENBaseWebViewController : UIViewController
 @property (nonatomic, copy) NSString *HTMLString;
-@property (nonatomic, assign) BOOL isPush;
-@property (nonatomic, copy) NSString *navigationItemTitle;
+@property (nonatomic, assign) BOOL isPresent;
 
 @property (nonatomic, strong) UIView *headerView;
 @property (nonatomic, assign) CGFloat headerViewHeight;

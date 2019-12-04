@@ -90,7 +90,7 @@
     if (underline) {
         content = [NSString stringWithFormat:@"<u>%@</u>", content];
     }
-    return [NSString stringWithFormat:@"<font style=\"font-size:%f;color:%@\">%@</font>", font.fontSize, color, content];
+    return [NSString stringWithFormat:@"<font style=\"font-size:%fpx;color:%@\">%@</font>", font.fontSize, color, content];
 }
 
 + (NSString *)hexStringWithColor:(UIColor *)color {

@@ -90,7 +90,8 @@
         
         VENBaseWebViewController *vc = [[VENBaseWebViewController alloc] init];
         vc.HTMLString = responseObject[@"content"][@"info"][@"content"];
-        vc.navigationItemTitle = @"用户注册协议";
+        vc.navigationItem.title = @"用户注册协议";
+        vc.isPresent = YES;
         VENNavigationController *nav = [[VENNavigationController alloc] initWithRootViewController:vc];
         [self presentViewController:nav animated:YES completion:nil];
         

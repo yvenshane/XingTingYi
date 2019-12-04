@@ -10,8 +10,8 @@
 #import "VENHomePageTableViewCellTwo.h"
 #import "VENMaterialSortSelectorView.h"
 #import "VENMaterialFormatSelectorView.h"
-#import "VENVideoMaterialDetailsPageViewController.h"
-#import "VENAudioMaterialDetailsPageViewController.h"
+#import "VENMaterialDetailsPageViewController.h"
+#import "VENMaterialDetailsPageViewController.h"
 #import "VENHomePageModel.h"
 
 @interface VENMaterialPagePlatformMaterialViewController () <UITableViewDelegate, UITableViewDataSource>
@@ -155,23 +155,10 @@ static NSString *const cellIdentifier = @"cellIdentifier";
     
     VENHomePageModel *model = self.dataSourceMuArr[indexPath.row];
     
-    if ([model.type isEqualToString:@"1"]) { // 音频
-        VENAudioMaterialDetailsPageViewController *vc = [[VENAudioMaterialDetailsPageViewController alloc] init];
-        vc.id = model.id;
-        vc.hidesBottomBarWhenPushed = YES;
-        [self.navigationController pushViewController:vc animated:YES];
-    } else if ([model.type isEqualToString:@"2"]) { // 视频
-        VENVideoMaterialDetailsPageViewController *vc = [[VENVideoMaterialDetailsPageViewController alloc] init];
-        vc.id = model.id;
-        vc.hidesBottomBarWhenPushed = YES;
-        [self.navigationController pushViewController:vc animated:YES];
-    } else if ([model.type isEqualToString:@"3"]) { // 文本
-        
-    } else if ([model.type isEqualToString:@"4"]) { // 音频文本
-        
-    } else { // 视频文本
-        
-    }
+    VENMaterialDetailsPageViewController *vc = [[VENMaterialDetailsPageViewController alloc] init];
+    vc.id = model.id;
+    vc.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {

@@ -18,21 +18,33 @@
 static NSString *const cellIdentifier = @"cellIdentifier";
 @implementation VENBaseWebViewController
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    // nav 黑线
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
+    [self.navigationController.navigationBar setShadowImage:[UIImage new]];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    
+    // nav 黑线
+    [self.navigationController.navigationBar setBackgroundImage:nil forBarMetrics:UIBarMetricsDefault];
+    [self.navigationController.navigationBar setShadowImage:nil];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
     self.view.backgroundColor = [UIColor whiteColor];
     
-    if (!self.isPush) {
-        [self setupNavigationBar];
-    } else {
-        UIButton *leftButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 44, 44)];
-        leftButton.contentEdgeInsets = UIEdgeInsetsMake(0, -20, 0, 0);
-        [leftButton setImage:[UIImage imageNamed:@"icon_back"] forState:UIControlStateNormal];
-        [leftButton addTarget:self action:@selector(backEvent) forControlEvents:UIControlEventTouchUpInside];
-        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:leftButton];
-    }
+    UIButton *leftButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 44, 44)];
+    leftButton.contentEdgeInsets = UIEdgeInsetsMake(0, -20, 0, 0);
+    [leftButton setImage:[UIImage imageNamed:@"icon_back"] forState:UIControlStateNormal];
+    [leftButton addTarget:self action:@selector(backEvent) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:leftButton];
     
     [self.view addSubview:self.tableView];
 }
@@ -60,7 +72,7 @@ static NSString *const cellIdentifier = @"cellIdentifier";
 #pragma mark - TableView
 - (UITableView *)tableView {
     if (!_tableView) {
-        CGFloat y = self.isPush ? 0 : kStatusBarAndNavigationBarHeight;
+        CGFloat y = self.isPresent ? 0 : kStatusBarAndNavigationBarHeight;
         _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, y, kMainScreenWidth, kMainScreenHeight - kStatusBarHeight) style:UITableViewStyleGrouped];
         _tableView.backgroundColor = [UIColor whiteColor];
         _tableView.delegate = self;
@@ -120,32 +132,12 @@ static NSString *const cellIdentifier = @"cellIdentifier";
     }
 }
 
-#pragma mark - Navigation
-- (void)setupNavigationBar {
-    UIView *navigationBar = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kMainScreenWidth, kStatusBarAndNavigationBarHeight)];
-    navigationBar.backgroundColor = [UIColor whiteColor];
-    [self.view addSubview:navigationBar];
-    
-    UIButton *closeButton = [[UIButton alloc] initWithFrame:CGRectMake(10, kStatusBarHeight, 44, 44)];
-    [closeButton setImage:[UIImage imageNamed:@"icon_back"] forState:UIControlStateNormal];
-    [closeButton addTarget:self action:@selector(closeButtonClick) forControlEvents:UIControlEventTouchUpInside];
-    [navigationBar addSubview:closeButton];
-    
-    UILabel *titleLabel = [[UILabel alloc] init];
-    titleLabel.text = [VENEmptyClass isEmptyString:self.navigationItemTitle] ? @"猩听译" : self.navigationItemTitle;
-    titleLabel.font = [UIFont systemFontOfSize:16.0f];
-    titleLabel.textColor = UIColorFromRGB(0x1A1A1A);
-    CGFloat width = [titleLabel sizeThatFits:CGSizeMake(CGFLOAT_MAX, 22.0f)].width;
-    titleLabel.frame = CGRectMake(kMainScreenWidth / 2 - width / 2, kStatusBarHeight + 22 / 2, width, 22);
-    [navigationBar addSubview:titleLabel];
-}
-
-- (void)closeButtonClick {
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
-
 - (void)backEvent {
-    [self.navigationController popViewControllerAnimated:YES];
+    if (self.isPresent) {
+        [self dismissViewControllerAnimated:YES completion:nil];
+    } else {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
 
 - (CGFloat)webViewContentHeight {
