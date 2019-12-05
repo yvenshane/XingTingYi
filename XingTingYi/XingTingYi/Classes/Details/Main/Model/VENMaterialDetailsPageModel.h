@@ -32,7 +32,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSDictionary *dictationInfo;
 //@property (nonatomic, copy) NSArray *id;
 //@property (nonatomic, copy) NSArray *path;
-@property (nonatomic, copy) NSArray *subtitle;
+@property (nonatomic, copy) NSString *subtitle;
 @property (nonatomic, copy) NSDictionary *subtitlesList;
 
 // dictationInfo

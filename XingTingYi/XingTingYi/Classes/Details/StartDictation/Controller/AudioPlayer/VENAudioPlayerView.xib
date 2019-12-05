@@ -33,9 +33,6 @@
                         <constraint firstAttribute="width" constant="20" id="fc6-WW-Sb2"/>
                     </constraints>
                     <state key="normal" image="icon_player_start"/>
-                    <connections>
-                        <action selector="startButtonClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="oO4-AK-Tsb"/>
-                    </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RmG-uM-QFp">
                     <rect key="frame" x="300" y="75" width="20" height="20"/>
@@ -44,9 +41,6 @@
                         <constraint firstAttribute="width" constant="20" id="t3J-k4-pjj"/>
                     </constraints>
                     <state key="normal" image="icon_player_end"/>
-                    <connections>
-                        <action selector="endButtonClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="CKe-K8-Xl4"/>
-                    </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Eld-Qu-lNn">
                     <rect key="frame" x="70" y="70" width="30" height="30"/>
@@ -56,9 +50,6 @@
                     </constraints>
                     <state key="normal" image="icon_player_play"/>
                     <state key="selected" image="icon_player_pause"/>
-                    <connections>
-                        <action selector="playButtonClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="8ut-1a-xFf"/>
-                    </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cj9-ns-DzT">
                     <rect key="frame" x="125" y="70" width="30" height="30"/>
@@ -67,9 +58,6 @@
                         <constraint firstAttribute="width" constant="30" id="nto-t9-DH9"/>
                     </constraints>
                     <state key="normal" image="icon_player_forward"/>
-                    <connections>
-                        <action selector="forwardButtonClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="F90-hu-TGa"/>
-                    </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EdU-fP-SVA">
                     <rect key="frame" x="15" y="70" width="30" height="30"/>
@@ -78,9 +66,6 @@
                         <constraint firstAttribute="height" constant="30" id="3ap-ha-KV7"/>
                     </constraints>
                     <state key="normal" image="icon_player_retreat"/>
-                    <connections>
-                        <action selector="retreatButtonClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="wfs-pZ-6qp"/>
-                    </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mih-3f-qIu">
                     <rect key="frame" x="220" y="75" width="20" height="20"/>
@@ -89,9 +74,6 @@
                         <constraint firstAttribute="height" constant="20" id="zIc-Vt-RHf"/>
                     </constraints>
                     <state key="normal" image="icon_player_loop"/>
-                    <connections>
-                        <action selector="loopButtonClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="ihk-D7-FLA"/>
-                    </connections>
                 </button>
                 <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="F9j-T2-e3I">
                     <rect key="frame" x="13" y="33" width="309" height="4"/>
@@ -158,11 +140,16 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>
+                <outlet property="endButton" destination="RmG-uM-QFp" id="fbI-Aj-KDo"/>
                 <outlet property="endImageView" destination="KdC-0e-R9d" id="ljK-w4-C4O"/>
+                <outlet property="forwardButton" destination="Cj9-ns-DzT" id="pi0-Pc-Ydd"/>
+                <outlet property="loopButton" destination="Mih-3f-qIu" id="4eA-rF-Mtn"/>
                 <outlet property="maxTimeLabel" destination="FRB-ez-bjK" id="Qek-rX-moF"/>
                 <outlet property="minTimeButton" destination="T68-hl-rTb" id="0KR-Vf-NLc"/>
                 <outlet property="playButton" destination="Eld-Qu-lNn" id="aGf-PM-bsr"/>
                 <outlet property="progressBarSlider" destination="F9j-T2-e3I" id="bH9-ot-wnZ"/>
+                <outlet property="retreatButton" destination="EdU-fP-SVA" id="pMo-VX-Qnf"/>
+                <outlet property="startButton" destination="xSY-3V-7zQ" id="nQA-at-6AZ"/>
                 <outlet property="startImageView" destination="6Ak-V5-bJQ" id="Q8u-Sn-1Jn"/>
             </connections>
             <point key="canvasLocation" x="-71.739130434782609" y="-64.955357142857139"/>

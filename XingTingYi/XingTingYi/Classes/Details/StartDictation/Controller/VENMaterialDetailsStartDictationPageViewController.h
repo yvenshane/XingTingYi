@@ -13,6 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface VENMaterialDetailsStartDictationPageViewController : VENBaseViewController
 @property (nonatomic, copy) NSString *source_id;
 @property (nonatomic, copy) NSString *source_period_id;
+@property (nonatomic, assign) BOOL isSectionDictation;
 
 @end
 

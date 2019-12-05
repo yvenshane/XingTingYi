@@ -11,10 +11,20 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef void (^palyButtonBlock)(BOOL);
 @interface VENAudioPlayerView : UIView
 @property (nonatomic, copy) NSString *audioURL;
+@property (weak, nonatomic) IBOutlet UIButton *playButton; // ▶️/⏸
+@property (weak, nonatomic) IBOutlet UIButton *loopButton; // 循环
+@property (nonatomic, copy) palyButtonBlock palyButtonBlock;
 
 - (AVPlayerLayer *)playerLayer;
+- (void)playButtonClick:(UIButton *)button;
+- (void)forwardButtonClick;
+- (void)retreatButtonClick;
+- (void)loopButtonClick:(UIButton *)button;
+- (void)startButtonClick;
+- (void)endButtonClick;
 
 @end
 

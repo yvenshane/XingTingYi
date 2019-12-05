@@ -12,6 +12,7 @@
 #import "VENMaterialDetailsPageModel.h"
 #import "VENMaterialDetailsStartDictationPageViewController.h"
 #import "VENBaseWebViewController.h"
+#import "VENMaterialDetailsPageTableViewCell.h"
 
 @interface VENMaterialDetailsPageViewController ()
 @property (nonatomic, strong) UIView *navigationView;
@@ -27,6 +28,7 @@
 
 @end
 
+static NSString *const cellIdentifier = @"cellIdentifier";
 @implementation VENMaterialDetailsPageViewController
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -62,7 +64,11 @@
         self.avInfoArr = [NSArray yy_modelArrayWithClass:[VENMaterialDetailsPageModel class] json:responseObject[@"content"][@"avInfo"]];
         self.contentDict = responseObject[@"content"];
         
-        VENMaterialDetailsPageModel *avInfoModel = self.avInfoArr[0];
+        VENMaterialDetailsPageModel *avInfoModel;
+        
+        if (self.avInfoArr.count > 0) {
+            avInfoModel = self.avInfoArr[0];
+        }
         
         if (![VENEmptyClass isEmptyString:avInfoModel.dictationInfo[@"id"]]) {
             [self.leftButton setTitle:@"继续听写" forState:UIControlStateNormal];
@@ -77,16 +83,62 @@
     }];
 }
 
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 2;
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 1;
+    if (section == 0) {
+        return 0;
+    } else {
+        return self.avInfoArr.count > 1 ? self.avInfoArr.count : 0;
+    }
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    VENMaterialDetailsPageTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
+    VENMaterialDetailsPageModel *avInfoModel = self.avInfoArr[indexPath.row];
+    
+    if (indexPath.row < 10) {
+        cell.numberLabel.text = [NSString stringWithFormat:@"0%ld", (long)indexPath.row + 1];
+    } else {
+        cell.numberLabel.text = [NSString stringWithFormat:@"%ld", (long)indexPath.row + 1];
+    }
+    
+    cell.titleLabel.text = avInfoModel.subtitle;
+    cell.leftButton.tag = indexPath.row;
+    [cell.leftButton addTarget:self action:@selector(cellLeftButtonClick:) forControlEvents:UIControlEventTouchUpInside];
+    
+    return cell;
+}
+
+- (void)cellLeftButtonClick:(UIButton *)button {
+    VENMaterialDetailsPageModel *model = self.avInfoArr[button.tag];
+    
+    VENMaterialDetailsStartDictationPageViewController *vc = [[VENMaterialDetailsStartDictationPageViewController alloc] init];
+    vc.source_id = self.infoModel.id;
+    vc.source_period_id = model.id;
+    vc.isSectionDictation = YES;
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 145;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    VENMaterialDetailsPageHeaderView *headerView = [[NSBundle mainBundle] loadNibNamed:@"VENVideoMaterialDetailsPageHeaderView" owner:nil options:nil].lastObject;
-    headerView.contentDict = self.contentDict;
-    [headerView.contentButton addTarget:self action:@selector(contentButtonClick) forControlEvents:UIControlEventTouchUpInside];
-    
-    return headerView;
+    if (section == 0) {
+        VENMaterialDetailsPageHeaderView *headerView = [[NSBundle mainBundle] loadNibNamed:@"VENVideoMaterialDetailsPageHeaderView" owner:nil options:nil].lastObject;
+        headerView.contentDict = self.contentDict;
+        [headerView.contentButton addTarget:self action:@selector(contentButtonClick) forControlEvents:UIControlEventTouchUpInside];
+        
+        return headerView;
+    } else {
+        UIView *otherView = [[NSBundle mainBundle] loadNibNamed:@"VENMaterialDetailsPageOtherView" owner:nil options:nil].lastObject;
+        return otherView;
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView estimatedHeightForHeaderInSection:(NSInteger)section {
@@ -94,13 +146,18 @@
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
-    VENMaterialDetailsPageFooterView *footerView = [[NSBundle mainBundle] loadNibNamed:@"VENMaterialDetailsPageFooterView" owner:nil options:nil].lastObject;
-    footerView.categoryViewContent = self.categoryViewContent;
-    footerView.categoryViewTitle = self.categoryViewTitle;
-    footerView.numberOfLines = self.numberOfLines ? : @"3";
-    footerView.contentDict = self.contentDict;
-    
-    return footerView;
+    if (section == 0) {
+        VENMaterialDetailsPageFooterView *footerView = [[NSBundle mainBundle] loadNibNamed:@"VENMaterialDetailsPageFooterView" owner:nil options:nil].lastObject;
+        footerView.categoryViewContent = self.categoryViewContent;
+        footerView.categoryViewTitle = self.categoryViewTitle;
+        footerView.numberOfLines = self.numberOfLines ? : @"3";
+        footerView.contentDict = self.contentDict;
+        
+        return footerView;
+    } else {
+        UIView *otherView = [[NSBundle mainBundle] loadNibNamed:@"VENMaterialDetailsPageOtherView" owner:nil options:nil].lastObject;
+        return otherView;
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView estimatedHeightForFooterInSection:(NSInteger)section {
@@ -108,8 +165,8 @@
 }
 
 - (void)setupTableView {
-    self.tableView.dataSource = nil;
     self.tableView.frame = CGRectMake(0, 0, kMainScreenWidth, kMainScreenHeight - 60 - (kTabBarHeight - 49));
+    [self.tableView registerNib:[UINib nibWithNibName:@"VENMaterialDetailsPageTableViewCell" bundle:nil] forCellReuseIdentifier:cellIdentifier];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:self.tableView];
 }

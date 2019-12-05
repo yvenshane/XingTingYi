@@ -24,7 +24,11 @@
     
     VENMaterialDetailsPageModel *infoModel = [VENMaterialDetailsPageModel yy_modelWithJSON:contentDict[@"info"]];
     NSArray *avInfoArr = [NSArray yy_modelArrayWithClass:[VENMaterialDetailsPageModel class] json:contentDict[@"avInfo"]];
-    VENMaterialDetailsPageModel *avInfoModel = avInfoArr[0];
+    
+    VENMaterialDetailsPageModel *avInfoModel;
+    if (avInfoArr.count > 0) {
+        avInfoModel = avInfoArr[0];
+    }
     
     // category view
     self.categoryContentView.layer.cornerRadius = 8.0f;
@@ -75,9 +79,16 @@
         
         CGFloat height = [self.myDictationVieww.contentLabel sizeThatFits:CGSizeMake(kMainScreenWidth - 35 * 2, CGFLOAT_MAX)].height;
         
-        self.myDictationViewHeightLayoutConstraint.constant = 23.5 + 20 + 15 + 40 + height + 20;
+        self.myDictationViewHeightLayoutConstraint.constant = 23.5 + 20 + 15 + 40 + height + 36;
     } else {
         self.myDictationViewHeightLayoutConstraint.constant = 0.0f;
+    }
+    
+    // sectionDictationView
+    if (avInfoArr.count > 1) {
+        self.sectionDictationView.hidden = NO;
+    } else {
+        self.sectionDictationView.hidden = YES;
     }
 }
 

@@ -15,9 +15,13 @@
 @property (weak, nonatomic) IBOutlet UISlider *progressBarSlider;
 @property (weak, nonatomic) IBOutlet UIButton *minTimeButton; // 00:00
 @property (weak, nonatomic) IBOutlet UILabel *maxTimeLabel; // 02:00
-@property (weak, nonatomic) IBOutlet UIButton *playButton; // ▶️/⏸
 @property (weak, nonatomic) IBOutlet UIImageView *startImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *endImageView;
+
+@property (weak, nonatomic) IBOutlet UIButton *forwardButton; // ⏩
+@property (weak, nonatomic) IBOutlet UIButton *retreatButton; // 快退
+@property (weak, nonatomic) IBOutlet UIButton *startButton; // 起
+@property (weak, nonatomic) IBOutlet UIButton *endButton; // 终
 
 @property (nonatomic, assign) Float64 startTime; // 起
 @property (nonatomic, assign) Float64 endTime; // 终
@@ -56,6 +60,13 @@
     [self.progressBarSlider setThumbImage:newImage forState:UIControlStateNormal];
     // 进度条拖动监控
     [self.progressBarSlider addTarget:self action:@selector(sliderValueChanged:) forControlEvents:UIControlEventValueChanged];
+    
+    [self.playButton addTarget:self action:@selector(playButtonClick:) forControlEvents:UIControlEventTouchUpInside];
+    [self.forwardButton addTarget:self action:@selector(forwardButtonClick) forControlEvents:UIControlEventTouchUpInside];
+    [self.retreatButton addTarget:self action:@selector(retreatButtonClick) forControlEvents:UIControlEventTouchUpInside];
+    [self.loopButton addTarget:self action:@selector(loopButtonClick:) forControlEvents:UIControlEventTouchUpInside];
+    [self.startButton addTarget:self action:@selector(startButtonClick) forControlEvents:UIControlEventTouchUpInside];
+    [self.endButton addTarget:self action:@selector(endButtonClick) forControlEvents:UIControlEventTouchUpInside];
 }
 
 - (void)setAudioURL:(NSString *)audioURL {
@@ -150,7 +161,7 @@
 }
 
 #pragma mark - 播放/暂停
-- (IBAction)playButtonClick:(UIButton *)button {
+- (void)playButtonClick:(UIButton *)button {
     if (button.selected) {
         button.selected = NO;
         self.isPause = YES;
@@ -167,11 +178,14 @@
         }
         [self.player play];
     }
+    
+    if (self.palyButtonBlock) {
+        self.palyButtonBlock(button.selected);
+    }
 }
 
 #pragma mark - 快进
-- (IBAction)forwardButtonClick:(id)sender {
-    
+- (void)forwardButtonClick {
     // 获取当前播放进度
     /*
         或用 avPlayerItem.currentTime.value/avPlayerItem.currentTime.timescale;
@@ -198,7 +212,7 @@
 }
 
 #pragma mark - 快退
-- (IBAction)retreatButtonClick:(id)sender {
+- (void)retreatButtonClick {
     CMTime currentTime = self.player.currentTime;
     float currentSecond = CMTimeGetSeconds(currentTime);
     
@@ -220,7 +234,7 @@
 }
 
 #pragma mark - 循环
-- (IBAction)loopButtonClick:(UIButton *)button {
+- (void)loopButtonClick:(UIButton *)button {
     if (!button.selected) {
         button.selected = YES;
         self.isLoop = YES;
@@ -234,11 +248,14 @@
         // 还原起始位置
         self.startImageView.frame = CGRectMake(9, 15, 12, 15);
         self.endImageView.frame = CGRectMake(self.frame.size.width - 21, 15, 12, 15);
+        
+        self.startTime = 0;
+        self.endTime = CMTimeGetSeconds(self.playerItem.asset.duration);
     }
 }
 
 #pragma mark - 开始
-- (IBAction)startButtonClick:(id)sender {
+- (void)startButtonClick {
     CGFloat progress = (self.bounds.size.width - 15.0 * 2.0) / CMTimeGetSeconds(self.playerItem.asset.duration);
     CGFloat x = CMTimeGetSeconds(self.player.currentTime) * progress;
     
@@ -254,7 +271,7 @@
 }
 
 #pragma mark - 结束
-- (IBAction)endButtonClick:(id)sender {
+- (void)endButtonClick {
     CGFloat progress = (self.bounds.size.width - 15.0 * 2.0) / CMTimeGetSeconds(self.playerItem.asset.duration);
     CGFloat x = CMTimeGetSeconds(self.player.currentTime) * progress;
     

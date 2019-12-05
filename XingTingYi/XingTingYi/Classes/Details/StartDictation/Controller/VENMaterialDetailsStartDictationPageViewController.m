@@ -24,6 +24,9 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomViewBottomLayoutConstraint;
 @property (weak, nonatomic) IBOutlet UIView *topAudioPlayerView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *topAudioPlayerViewHeightLayoutConstraint;
+@property (weak, nonatomic) IBOutlet UIView *titleView;
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *audioPlayerViewTopLayoutConstraint;
 
 @property (nonatomic, strong) VENStyleSettingsController *styleSettingsViewController;
 @property (nonatomic, strong) LMTextStyle *currentTextStyle;
@@ -121,6 +124,19 @@
         self.avInfoModel = [VENMaterialDetailsPageModel yy_modelWithJSON:responseObject[@"content"][@"avInfo"]];
         self.audioPlayerView.audioURL = self.avInfoModel.path;
         self.dictationInfoModel = [VENMaterialDetailsPageModel yy_modelWithJSON:responseObject[@"content"][@"dictationInfo"]];
+        
+        // 顶部 title
+        if (self.isSectionDictation) {
+            self.titleView.hidden = NO;
+            self.titleLabel.text = self.avInfoModel.subtitle;
+            
+            CGFloat height = [self.titleLabel sizeThatFits:CGSizeMake(kMainScreenWidth - 20 * 2, CGFLOAT_MAX)].height;
+            
+            self.audioPlayerViewTopLayoutConstraint.constant = height + 15;
+        } else {
+            self.titleView.hidden = YES;
+            self.audioPlayerViewTopLayoutConstraint.constant = 0.0f;
+        }
         
     } failureBlock:^(NSError *error) {
         
@@ -248,10 +264,41 @@
         _bottomToolsBarView.frame = CGRectMake(0, 0, kMainScreenWidth, 40);
         _bottomToolsBarView.textView = self.contentTextView;
         
+        [_bottomToolsBarView.playButton addTarget:self action:@selector(playButtonClick:) forControlEvents:UIControlEventTouchUpInside];
+        [_bottomToolsBarView.forwardButton addTarget:self action:@selector(forwardButtonClick) forControlEvents:UIControlEventTouchUpInside];
+        [_bottomToolsBarView.retreatButton addTarget:self action:@selector(retreatButtonClick) forControlEvents:UIControlEventTouchUpInside];
+        [_bottomToolsBarView.loopButton addTarget:self action:@selector(loopButtonClick:) forControlEvents:UIControlEventTouchUpInside];
+        [_bottomToolsBarView.startButton addTarget:self action:@selector(startButtonClick) forControlEvents:UIControlEventTouchUpInside];
+        [_bottomToolsBarView.endButton addTarget:self action:@selector(endButtonClick) forControlEvents:UIControlEventTouchUpInside];
         // 字号/颜色
         [_bottomToolsBarView.textStyleSettingButton addTarget:self action:@selector(textStyleSettingButtonClick:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _bottomToolsBarView;
+}
+
+- (void)playButtonClick:(UIButton *)button {
+    button.selected = !self.audioPlayerView.playButton.selected;
+    [self.audioPlayerView playButtonClick:self.audioPlayerView.playButton];
+}
+
+- (void)forwardButtonClick {
+    [self.audioPlayerView forwardButtonClick];
+}
+
+- (void)retreatButtonClick {
+    [self.audioPlayerView retreatButtonClick];
+}
+
+- (void)loopButtonClick:(UIButton *)button {
+    [self.audioPlayerView loopButtonClick:self.audioPlayerView.loopButton];
+}
+
+- (void)startButtonClick {
+    [self.audioPlayerView startButtonClick];
+}
+
+- (void)endButtonClick {
+    [self.audioPlayerView endButtonClick];
 }
 
 - (void)textStyleSettingButtonClick:(UIButton *)button {
@@ -418,6 +465,11 @@
     if (!_audioPlayerView) {
         _audioPlayerView = [[[NSBundle mainBundle] loadNibNamed:@"VENAudioPlayerView" owner:nil options:nil] firstObject];
         _audioPlayerView.frame = CGRectMake(20, 15, kMainScreenWidth - 40, (kMainScreenWidth - 40) / (335.0 / 120.0) - 14);
+        
+        __weak typeof(self) weakSelf = self;
+        _audioPlayerView.palyButtonBlock = ^(BOOL isPlay) {
+            weakSelf.bottomToolsBarView.playButton.selected = isPlay;
+        };
     }
     return _audioPlayerView;
 }

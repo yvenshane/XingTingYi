@@ -17,8 +17,6 @@
     [self.keyboardButton setImage:[UIImage imageNamed:@"icon_keyboard"] forState:UIControlStateNormal];
     [self.keyboardButton setImage:[UIImage imageNamed:@"icon_keyboard01"] forState:UIControlStateSelected];
     [self.keyboardButton addTarget:self action:@selector(keyboardButtonClick:) forControlEvents:UIControlEventTouchUpInside];
-    
-
 }
 
 - (void)keyboardButtonClick:(UIButton *)button {
