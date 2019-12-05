@@ -13,6 +13,7 @@
 #import "VENMaterialDetailsStartDictationPageViewController.h"
 #import "VENBaseWebViewController.h"
 #import "VENMaterialDetailsPageTableViewCell.h"
+#import "VENMaterialDetailsArticleCorrectionPageViewController.h"
 
 @interface VENMaterialDetailsPageViewController ()
 @property (nonatomic, strong) UIView *navigationView;
@@ -243,8 +244,12 @@ static NSString *const cellIdentifier = @"cellIdentifier";
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+#pragma mark - 纠错
 - (void)moreButtonClick {
-    
+    VENMaterialDetailsArticleCorrectionPageViewController *vc = [[VENMaterialDetailsArticleCorrectionPageViewController alloc] init];
+    vc.source_id = self.infoModel.id;
+    vc.type = @"1";
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 #pragma mark - 简介
