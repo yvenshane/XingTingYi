@@ -9,7 +9,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef void (^loginSuccessBlock)(void);
 @interface VENLoginPageViewController : UIViewController
+@property (nonatomic, copy) loginSuccessBlock loginSuccessBlock;
 
 @end
 

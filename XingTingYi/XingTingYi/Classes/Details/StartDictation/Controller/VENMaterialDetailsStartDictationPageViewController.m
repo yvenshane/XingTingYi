@@ -138,6 +138,14 @@
             self.audioPlayerViewTopLayoutConstraint.constant = 0.0f;
         }
         
+        // textView 赋值
+        if (![VENEmptyClass isEmptyString:self.dictationInfoModel.content]) {
+            NSAttributedString *attributedString = [[NSAttributedString alloc] initWithData:[self.dictationInfoModel.content dataUsingEncoding:NSUnicodeStringEncoding] options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType} documentAttributes:nil error:nil];
+            
+            self.contentTextView.attributedText = attributedString;
+            self.placeholderLabel.hidden = YES;
+        }
+        
     } failureBlock:^(NSError *error) {
         
     }];

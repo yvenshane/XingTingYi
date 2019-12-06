@@ -63,6 +63,10 @@
 //         [[NSUserDefaults standardUserDefaults] setObject:dict forKey:@"AutoLogin"];
 
         [self dismissViewControllerAnimated:YES completion:nil];
+
+        if (self.loginSuccessBlock) {
+            self.loginSuccessBlock();
+        }
         
     } failureBlock:^(NSError *error) {
         

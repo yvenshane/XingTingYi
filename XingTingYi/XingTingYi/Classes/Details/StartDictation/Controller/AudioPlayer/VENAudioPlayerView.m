@@ -91,6 +91,8 @@
         
         NSLog(@"%lu - %f - %f", (unsigned long)value, self.startTime, self.endTime);
         
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"CurrentTime" object:nil userInfo:@{@"time" : [NSString stringWithFormat:@"%lu", (unsigned long)value]}];
+        
         if (self.isLoop) {
             
             if (value > self.endTime) {

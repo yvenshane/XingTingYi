@@ -14,10 +14,12 @@
 #import "VENBaseWebViewController.h"
 #import "VENMaterialDetailsPageTableViewCell.h"
 #import "VENMaterialDetailsArticleCorrectionPageViewController.h"
+#import "VENMaterialDetailsMakeSubtitlesCorrectionPageViewController.h"
 
 @interface VENMaterialDetailsPageViewController ()
 @property (nonatomic, strong) UIView *navigationView;
 @property (nonatomic, strong) UIButton *leftButton;
+@property (nonatomic, strong) UIButton *rightButton;
 
 @property (nonatomic, strong) VENMaterialDetailsPageModel *infoModel;
 @property (nonatomic, copy) NSArray *avInfoArr;
@@ -77,6 +79,12 @@ static NSString *const cellIdentifier = @"cellIdentifier";
             [self.leftButton setTitle:@"开始听写" forState:UIControlStateNormal];
         }
         
+        if (![VENEmptyClass isEmptyArray:avInfoModel.subtitlesList]) {
+            [self.rightButton setTitle:@"修改字幕" forState:UIControlStateNormal];
+        } else {
+            [self.rightButton setTitle:@"制作字幕" forState:UIControlStateNormal];
+        }
+        
         [self.tableView reloadData];
         
     } failureBlock:^(NSError *error) {
@@ -109,20 +117,25 @@ static NSString *const cellIdentifier = @"cellIdentifier";
     }
     
     cell.titleLabel.text = avInfoModel.subtitle;
+    
+    if (![VENEmptyClass isEmptyString:avInfoModel.dictationInfo[@"id"]]) {
+        [cell.leftButton setTitle:@"继续听写" forState:UIControlStateNormal];
+    } else {
+        [cell.leftButton setTitle:@"开始听写" forState:UIControlStateNormal];
+    }
+    
+    if (![VENEmptyClass isEmptyArray:avInfoModel.subtitlesList]) {
+        [cell.rightButton setTitle:@"修改字幕" forState:UIControlStateNormal];
+    } else {
+        [cell.rightButton setTitle:@"制作字幕" forState:UIControlStateNormal];
+    }
+    
     cell.leftButton.tag = indexPath.row;
     [cell.leftButton addTarget:self action:@selector(cellLeftButtonClick:) forControlEvents:UIControlEventTouchUpInside];
+    cell.rightButton.tag = indexPath.row;
+    [cell.rightButton addTarget:self action:@selector(cellRightButtonClick:) forControlEvents:UIControlEventTouchUpInside];
     
     return cell;
-}
-
-- (void)cellLeftButtonClick:(UIButton *)button {
-    VENMaterialDetailsPageModel *model = self.avInfoArr[button.tag];
-    
-    VENMaterialDetailsStartDictationPageViewController *vc = [[VENMaterialDetailsStartDictationPageViewController alloc] init];
-    vc.source_id = self.infoModel.id;
-    vc.source_period_id = model.id;
-    vc.isSectionDictation = YES;
-    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -204,6 +217,7 @@ static NSString *const cellIdentifier = @"cellIdentifier";
     [bottomToolBar addSubview:rightButton];
     
     _leftButton = leftButton;
+    _rightButton = rightButton;
 }
 
 #pragma mark - 开始听写
@@ -216,9 +230,33 @@ static NSString *const cellIdentifier = @"cellIdentifier";
     [self.navigationController pushViewController:vc animated:YES];
 }
 
+#pragma mark - cell 开始听写
+- (void)cellLeftButtonClick:(UIButton *)button {
+    VENMaterialDetailsPageModel *model = self.avInfoArr[button.tag];
+    
+    VENMaterialDetailsStartDictationPageViewController *vc = [[VENMaterialDetailsStartDictationPageViewController alloc] init];
+    vc.source_id = self.infoModel.id;
+    vc.source_period_id = model.id;
+    vc.isSectionDictation = YES;
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
 #pragma mark - 制作字幕
 - (void)rightButtonClick:(UIButton *)button {
+    VENMaterialDetailsPageModel *model = self.avInfoArr[0];
     
+    VENMaterialDetailsMakeSubtitlesCorrectionPageViewController *vc = [[VENMaterialDetailsMakeSubtitlesCorrectionPageViewController alloc] init];
+    vc.source_period_id = model.id;
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+#pragma mark - cell 制作字幕
+- (void)cellRightButtonClick:(UIButton *)button {
+    VENMaterialDetailsPageModel *model = self.avInfoArr[button.tag];
+    
+    VENMaterialDetailsMakeSubtitlesCorrectionPageViewController *vc = [[VENMaterialDetailsMakeSubtitlesCorrectionPageViewController alloc] init];
+    vc.source_period_id = model.id;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 #pragma mark - 导航栏

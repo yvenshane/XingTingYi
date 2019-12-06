@@ -58,10 +58,10 @@
                     [htmlContent appendString:@"</p>"];
                     isNewParagraph = YES;
                 }
-                if (isNewParagraph && (content.length > 0 || i < components.count - 1)) {
-                    [htmlContent appendString:[NSString stringWithFormat:@"<p style=\"text-indent:%@em;margin:4px auto 0px auto;\">", @(2 * paragraphConfig.indentLevel).stringValue]];
-                    isNewParagraph = NO;
-                }
+//                if (isNewParagraph && (content.length > 0 || i < components.count - 1)) {
+//                    [htmlContent appendString:[NSString stringWithFormat:@"<p style=\"text-indent:%@em;margin:4px auto 0px auto;\">", @(2 * paragraphConfig.indentLevel).stringValue]];
+//                    isNewParagraph = NO;
+//                }
                 [htmlContent appendString:[self HTMLWithContent:content font:font underline:underline color:color]];
                 isFirst = NO;
             }
