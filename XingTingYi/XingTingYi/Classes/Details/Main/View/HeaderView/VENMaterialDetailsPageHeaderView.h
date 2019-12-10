@@ -1,5 +1,5 @@
 //
-//  VENVideoMaterialDetailsPageHeaderView.h
+//  VENMaterialDetailsPageHeaderView.h
 //  XingTingYi
 //
 //  Created by YVEN on 2019/9/11.
@@ -11,7 +11,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-typedef void (^refreshBlock)(NSString *);
+typedef void (^contentButtonBlock)(void);
 @interface VENMaterialDetailsPageHeaderView : UIView
 @property (weak, nonatomic) IBOutlet UIImageView *pictureImageView;
 @property (weak, nonatomic) IBOutlet UILabel *titileLabel;
@@ -25,8 +25,11 @@ typedef void (^refreshBlock)(NSString *);
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *pictureImageViewHeightLayoutConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *videoViewHeightLayoutConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *audioViewHeightLayoutConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *videoViewYLayoutConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *audioViewYLayoutConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *audioViewBottomLayoutConstraint;
 
+@property (nonatomic, copy) contentButtonBlock contentButtonBlock;
 @property (nonatomic, copy) NSDictionary *contentDict;
 
 @end

@@ -1,17 +1,17 @@
 //
-//  VENMaterialDetailsMakeSubtitlesCorrectionPageViewController.m
+//  VENMaterialDetailsMakeSubtitlesPageViewController.m
 //  XingTingYi
 //
 //  Created by YVEN on 2019/12/5.
 //  Copyright © 2019 Hefei Haiba Network Technology Co., Ltd. All rights reserved.
 //
 
-#import "VENMaterialDetailsMakeSubtitlesCorrectionPageViewController.h"
+#import "VENMaterialDetailsMakeSubtitlesPageViewController.h"
 #import "VENBottomToolsBarView.h"
 #import "VENAudioPlayerView.h"
 #import "VENMaterialDetailsPageModel.h"
 
-@interface VENMaterialDetailsMakeSubtitlesCorrectionPageViewController () <UITextViewDelegate>
+@interface VENMaterialDetailsMakeSubtitlesPageViewController () <UITextViewDelegate>
 @property (weak, nonatomic) IBOutlet UITextView *contentTextView;
 @property (weak, nonatomic) IBOutlet UILabel *placeholderLabel;
 @property (weak, nonatomic) IBOutlet UIView *bottomView;
@@ -28,7 +28,7 @@
 
 @end
 
-@implementation VENMaterialDetailsMakeSubtitlesCorrectionPageViewController
+@implementation VENMaterialDetailsMakeSubtitlesPageViewController
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:YES];

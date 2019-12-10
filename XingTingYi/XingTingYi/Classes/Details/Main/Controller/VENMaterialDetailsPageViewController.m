@@ -9,21 +9,22 @@
 #import "VENMaterialDetailsPageViewController.h"
 #import "VENMaterialDetailsPageHeaderView.h"
 #import "VENMaterialDetailsPageFooterView.h"
-#import "VENMaterialDetailsPageModel.h"
-#import "VENMaterialDetailsStartDictationPageViewController.h"
-#import "VENBaseWebViewController.h"
 #import "VENMaterialDetailsPageTableViewCell.h"
-#import "VENMaterialDetailsArticleCorrectionPageViewController.h"
-#import "VENMaterialDetailsMakeSubtitlesCorrectionPageViewController.h"
+#import "VENMaterialDetailsPageTableViewCellTwo.h"
+#import "VENMaterialDetailsPageModel.h"
+#import "VENBaseWebViewController.h"
+#import "VENMaterialDetailsArticleCorrectionPageViewController.h" // 文章纠错
+#import "VENMaterialDetailsStartDictationPageViewController.h" // 开始听写
+#import "VENMaterialDetailsMakeSubtitlesPageViewController.h" // 制作字幕
+#import "VENMaterialDetailsReadAloudPageViewController.h" // 朗读
 
 @interface VENMaterialDetailsPageViewController ()
 @property (nonatomic, strong) UIView *navigationView;
-@property (nonatomic, strong) UIButton *leftButton;
-@property (nonatomic, strong) UIButton *rightButton;
 
+@property (nonatomic, copy) NSDictionary *contentDict;
 @property (nonatomic, strong) VENMaterialDetailsPageModel *infoModel;
 @property (nonatomic, copy) NSArray *avInfoArr;
-@property (nonatomic, copy) NSDictionary *contentDict;
+@property (nonatomic, copy) NSArray *textInfoArr;
 
 @property (nonatomic, copy) NSString *categoryViewContent;
 @property (nonatomic, copy) NSString *categoryViewTitle;
@@ -32,6 +33,7 @@
 @end
 
 static NSString *const cellIdentifier = @"cellIdentifier";
+static NSString *const cellIdentifier2 = @"cellIdentifier2";
 @implementation VENMaterialDetailsPageViewController
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -52,7 +54,6 @@ static NSString *const cellIdentifier = @"cellIdentifier";
     
     [self setupTableView];
     [self setupNavigationView];
-    [self setupBottomToolBar];
     
     [self loadVideoMaterialDetailsPageData];
     
@@ -63,27 +64,14 @@ static NSString *const cellIdentifier = @"cellIdentifier";
 - (void)loadVideoMaterialDetailsPageData {
     [[VENNetworkingManager shareManager] requestWithType:HttpRequestTypePOST urlString:@"source/sourceInfo" parameters:@{@"id" : self.id} successBlock:^(id responseObject) {
         
-        self.infoModel = [VENMaterialDetailsPageModel yy_modelWithJSON:responseObject[@"content"][@"info"]];
-        self.avInfoArr = [NSArray yy_modelArrayWithClass:[VENMaterialDetailsPageModel class] json:responseObject[@"content"][@"avInfo"]];
         self.contentDict = responseObject[@"content"];
         
-        VENMaterialDetailsPageModel *avInfoModel;
+        self.infoModel = [VENMaterialDetailsPageModel yy_modelWithJSON:responseObject[@"content"][@"info"]];
+        self.avInfoArr = [NSArray yy_modelArrayWithClass:[VENMaterialDetailsPageModel class] json:responseObject[@"content"][@"avInfo"]];
+        self.textInfoArr = [NSArray yy_modelArrayWithClass:[VENMaterialDetailsPageModel class] json:responseObject[@"content"][@"textInfo"]];
         
-        if (self.avInfoArr.count > 0) {
-            avInfoModel = self.avInfoArr[0];
-        }
-        
-        if (![VENEmptyClass isEmptyString:avInfoModel.dictationInfo[@"id"]]) {
-            [self.leftButton setTitle:@"继续听写" forState:UIControlStateNormal];
-        } else {
-            [self.leftButton setTitle:@"开始听写" forState:UIControlStateNormal];
-        }
-        
-        if (![VENEmptyClass isEmptyArray:avInfoModel.subtitlesList]) {
-            [self.rightButton setTitle:@"修改字幕" forState:UIControlStateNormal];
-        } else {
-            [self.rightButton setTitle:@"制作字幕" forState:UIControlStateNormal];
-        }
+        self.tableView.frame = CGRectMake(0, 0, kMainScreenWidth, kMainScreenHeight - 60 - (kTabBarHeight - 49));
+        [self setupBottomToolBar];
         
         [self.tableView reloadData];
         
@@ -100,53 +88,94 @@ static NSString *const cellIdentifier = @"cellIdentifier";
     if (section == 0) {
         return 0;
     } else {
-        return self.avInfoArr.count > 1 ? self.avInfoArr.count : 0;
+        if (self.avInfoArr.count > 1) {
+            return self.avInfoArr.count;
+        } else if (self.textInfoArr.count > 0) {
+            return self.textInfoArr.count;
+        } else {
+            return 0;
+        }
     }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    VENMaterialDetailsPageTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    
-    VENMaterialDetailsPageModel *avInfoModel = self.avInfoArr[indexPath.row];
-    
-    if (indexPath.row < 10) {
-        cell.numberLabel.text = [NSString stringWithFormat:@"0%ld", (long)indexPath.row + 1];
+    if (self.avInfoArr.count > 1) {
+        VENMaterialDetailsPageTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        
+        VENMaterialDetailsPageModel *avInfoModel = self.avInfoArr[indexPath.row];
+        
+        if (indexPath.row < 10) {
+            cell.numberLabel.text = [NSString stringWithFormat:@"0%ld", (long)indexPath.row + 1];
+        } else {
+            cell.numberLabel.text = [NSString stringWithFormat:@"%ld", (long)indexPath.row + 1];
+        }
+        
+        cell.titleLabel.text = avInfoModel.subtitle;
+        
+        if (![VENEmptyClass isEmptyString:avInfoModel.dictationInfo[@"id"]]) {
+            [cell.leftButton setTitle:@"继续听写" forState:UIControlStateNormal];
+        } else {
+            [cell.leftButton setTitle:@"开始听写" forState:UIControlStateNormal];
+        }
+        
+        if (![VENEmptyClass isEmptyArray:avInfoModel.subtitlesList]) {
+            [cell.rightButton setTitle:@"修改字幕" forState:UIControlStateNormal];
+        } else {
+            [cell.rightButton setTitle:@"制作字幕" forState:UIControlStateNormal];
+        }
+        
+        cell.leftButton.tag = indexPath.row;
+        [cell.leftButton addTarget:self action:@selector(cellLeftButtonClick:) forControlEvents:UIControlEventTouchUpInside];
+        cell.rightButton.tag = indexPath.row;
+        [cell.rightButton addTarget:self action:@selector(cellRightButtonClick:) forControlEvents:UIControlEventTouchUpInside];
+        
+        return cell;
+    } else if (self.textInfoArr.count > 0) {
+        VENMaterialDetailsPageTableViewCellTwo *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier2 forIndexPath:indexPath];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        
+        VENMaterialDetailsPageModel *textInfoModel = self.textInfoArr[indexPath.row];
+        
+        cell.titleLabel.text = textInfoModel.content;
+        cell.contentLabel.text = @"";
+        
+        cell.buttonOneBlock = ^{
+            
+        };
+        
+        cell.buttonTwoBlock = ^{
+            VENMaterialDetailsReadAloudPageViewController *vc = [[VENMaterialDetailsReadAloudPageViewController alloc] init];
+            vc.source_period_id = textInfoModel.id;
+            [self.navigationController pushViewController:vc animated:YES];
+        };
+        
+        cell.buttonThreeBlock = ^{
+            
+        };
+        
+        return cell;
     } else {
-        cell.numberLabel.text = [NSString stringWithFormat:@"%ld", (long)indexPath.row + 1];
+        return nil;
     }
-    
-    cell.titleLabel.text = avInfoModel.subtitle;
-    
-    if (![VENEmptyClass isEmptyString:avInfoModel.dictationInfo[@"id"]]) {
-        [cell.leftButton setTitle:@"继续听写" forState:UIControlStateNormal];
-    } else {
-        [cell.leftButton setTitle:@"开始听写" forState:UIControlStateNormal];
-    }
-    
-    if (![VENEmptyClass isEmptyArray:avInfoModel.subtitlesList]) {
-        [cell.rightButton setTitle:@"修改字幕" forState:UIControlStateNormal];
-    } else {
-        [cell.rightButton setTitle:@"制作字幕" forState:UIControlStateNormal];
-    }
-    
-    cell.leftButton.tag = indexPath.row;
-    [cell.leftButton addTarget:self action:@selector(cellLeftButtonClick:) forControlEvents:UIControlEventTouchUpInside];
-    cell.rightButton.tag = indexPath.row;
-    [cell.rightButton addTarget:self action:@selector(cellRightButtonClick:) forControlEvents:UIControlEventTouchUpInside];
-    
-    return cell;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 145;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    if (section == 0) {
-        VENMaterialDetailsPageHeaderView *headerView = [[NSBundle mainBundle] loadNibNamed:@"VENVideoMaterialDetailsPageHeaderView" owner:nil options:nil].lastObject;
+    if (section == 0 && ![VENEmptyClass isEmptyDictionary:self.contentDict]) {
+        VENMaterialDetailsPageHeaderView *headerView = [[NSBundle mainBundle] loadNibNamed:@"VENMaterialDetailsPageHeaderView" owner:nil options:nil].lastObject;
         headerView.contentDict = self.contentDict;
-        [headerView.contentButton addTarget:self action:@selector(contentButtonClick) forControlEvents:UIControlEventTouchUpInside];
+        headerView.contentButtonBlock = ^{
+            VENBaseWebViewController *vc = [[VENBaseWebViewController alloc] init];
+            vc.HTMLString = self.infoModel.descriptionn;
+            vc.navigationItem.title = @"简介";
+            vc.isPresent = YES;
+            VENNavigationController *nav = [[VENNavigationController alloc] initWithRootViewController:vc];
+            [self presentViewController:nav animated:YES completion:nil];
+        };
         
         return headerView;
     } else {
@@ -160,7 +189,7 @@ static NSString *const cellIdentifier = @"cellIdentifier";
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
-    if (section == 0) {
+    if (section == 0 && ![VENEmptyClass isEmptyDictionary:self.contentDict]) {
         VENMaterialDetailsPageFooterView *footerView = [[NSBundle mainBundle] loadNibNamed:@"VENMaterialDetailsPageFooterView" owner:nil options:nil].lastObject;
         footerView.categoryViewContent = self.categoryViewContent;
         footerView.categoryViewTitle = self.categoryViewTitle;
@@ -179,8 +208,9 @@ static NSString *const cellIdentifier = @"cellIdentifier";
 }
 
 - (void)setupTableView {
-    self.tableView.frame = CGRectMake(0, 0, kMainScreenWidth, kMainScreenHeight - 60 - (kTabBarHeight - 49));
+    self.tableView.frame = CGRectMake(0, 0, kMainScreenWidth, kMainScreenHeight - (kTabBarHeight - 49));
     [self.tableView registerNib:[UINib nibWithNibName:@"VENMaterialDetailsPageTableViewCell" bundle:nil] forCellReuseIdentifier:cellIdentifier];
+    [self.tableView registerNib:[UINib nibWithNibName:@"VENMaterialDetailsPageTableViewCellTwo" bundle:nil] forCellReuseIdentifier:cellIdentifier2];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:self.tableView];
 }
@@ -198,7 +228,6 @@ static NSString *const cellIdentifier = @"cellIdentifier";
     
     UIButton *leftButton = [[UIButton alloc] initWithFrame:CGRectMake(20, 10, width, 40)];
     leftButton.backgroundColor = UIColorFromRGB(0xFFDE02);
-    [leftButton setTitle:@"开始听写" forState:UIControlStateNormal];
     [leftButton setTitleColor:UIColorFromRGB(0x222222) forState:UIControlStateNormal];
     leftButton.titleLabel.font = [UIFont systemFontOfSize:16.0f];
     leftButton.layer.cornerRadius = 20.0f;
@@ -208,7 +237,6 @@ static NSString *const cellIdentifier = @"cellIdentifier";
     
     UIButton *rightButton = [[UIButton alloc] initWithFrame:CGRectMake(20 + width + 15, 10, (kMainScreenWidth - 40 - 15) / 2, 40)];
     rightButton.backgroundColor = UIColorFromRGB(0x222222);
-    [rightButton setTitle:@"制作字幕" forState:UIControlStateNormal];
     [rightButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     rightButton.titleLabel.font = [UIFont systemFontOfSize:16.0f];
     rightButton.layer.cornerRadius = 20.0f;
@@ -216,8 +244,24 @@ static NSString *const cellIdentifier = @"cellIdentifier";
     [rightButton addTarget:self action:@selector(rightButtonClick:) forControlEvents:UIControlEventTouchUpInside];
     [bottomToolBar addSubview:rightButton];
     
-    _leftButton = leftButton;
-    _rightButton = rightButton;
+    // 1音频 2视频 3文本 4音频文本 5视频文本
+    if ([self.infoModel.type isEqualToString:@"1"] || [self.infoModel.type isEqualToString:@"2"]) {
+        VENMaterialDetailsPageModel *avInfoModel = self.avInfoArr[0];
+        
+        BOOL isContinue = ![VENEmptyClass isEmptyString:avInfoModel.dictationInfo[@"id"]];
+        [leftButton setTitle:isContinue ? @"继续听写" : @"开始听写" forState:UIControlStateNormal];
+        BOOL isModify = ![VENEmptyClass isEmptyArray:avInfoModel.subtitlesList];
+        [rightButton setTitle:isModify ? @"修改字幕" : @"制作字幕" forState:UIControlStateNormal];
+    } else if ([self.infoModel.type isEqualToString:@"3"]) {
+        [leftButton setTitle:@"添加生词" forState:UIControlStateNormal];
+        [rightButton setTitle:@"合成录音" forState:UIControlStateNormal];
+        
+        
+//        BOOL isAgain = ![VENEmptyClass isEmptyArray:avInfoModel.subtitlesList];
+//        [rightButton setTitle:isModify ? @"合成录音" : @"再次合成录音" forState:UIControlStateNormal];
+    } else {
+        
+    }
 }
 
 #pragma mark - 开始听写
@@ -245,7 +289,7 @@ static NSString *const cellIdentifier = @"cellIdentifier";
 - (void)rightButtonClick:(UIButton *)button {
     VENMaterialDetailsPageModel *model = self.avInfoArr[0];
     
-    VENMaterialDetailsMakeSubtitlesCorrectionPageViewController *vc = [[VENMaterialDetailsMakeSubtitlesCorrectionPageViewController alloc] init];
+    VENMaterialDetailsMakeSubtitlesPageViewController *vc = [[VENMaterialDetailsMakeSubtitlesPageViewController alloc] init];
     vc.source_period_id = model.id;
     [self.navigationController pushViewController:vc animated:YES];
 }
@@ -254,7 +298,7 @@ static NSString *const cellIdentifier = @"cellIdentifier";
 - (void)cellRightButtonClick:(UIButton *)button {
     VENMaterialDetailsPageModel *model = self.avInfoArr[button.tag];
     
-    VENMaterialDetailsMakeSubtitlesCorrectionPageViewController *vc = [[VENMaterialDetailsMakeSubtitlesCorrectionPageViewController alloc] init];
+    VENMaterialDetailsMakeSubtitlesPageViewController *vc = [[VENMaterialDetailsMakeSubtitlesPageViewController alloc] init];
     vc.source_period_id = model.id;
     [self.navigationController pushViewController:vc animated:YES];
 }
@@ -278,6 +322,7 @@ static NSString *const cellIdentifier = @"cellIdentifier";
     _navigationView = navigationView;
 }
 
+#pragma mark - 返回
 - (void)backButtonClick {
     [self.navigationController popViewControllerAnimated:YES];
 }
@@ -288,16 +333,6 @@ static NSString *const cellIdentifier = @"cellIdentifier";
     vc.source_id = self.infoModel.id;
     vc.type = @"1";
     [self.navigationController pushViewController:vc animated:YES];
-}
-
-#pragma mark - 简介
-- (void)contentButtonClick {
-    VENBaseWebViewController *vc = [[VENBaseWebViewController alloc] init];
-    vc.HTMLString = self.infoModel.descriptionn;
-    vc.navigationItem.title = @"简介";
-    vc.isPresent = YES;
-    VENNavigationController *nav = [[VENNavigationController alloc] initWithRootViewController:vc];
-    [self presentViewController:nav animated:YES completion:nil];
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
@@ -314,16 +349,10 @@ static NSString *const cellIdentifier = @"cellIdentifier";
 
 - (void)shrinkButtonClick:(NSNotification *)noti {
     UIButton *button = noti.userInfo[@"button"];
-    
-    if (button.selected) {
-        self.numberOfLines = @"0";
-    } else {
-        self.numberOfLines = @"3";
-    }
+    self.numberOfLines = button.selected ? @"0" : @"3";
     
     [self.tableView reloadData];
 }
-
 
 /*
 #pragma mark - Navigation

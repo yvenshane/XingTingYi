@@ -20,12 +20,6 @@
                         <constraint firstAttribute="height" constant="45" id="xpe-i4-2AB"/>
                     </constraints>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cvp-pG-Mzn">
-                    <rect key="frame" x="0.0" y="245" width="414" height="200"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="200" id="skd-fE-wwg"/>
-                    </constraints>
-                </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eyI-Q1-ADU">
                     <rect key="frame" x="20" y="45" width="374" height="200"/>
                     <subviews>
@@ -52,6 +46,12 @@
                         <constraint firstItem="2nq-XJ-Us8" firstAttribute="top" secondItem="eyI-Q1-ADU" secondAttribute="top" constant="15" id="lgJ-Yy-Rm3"/>
                         <constraint firstItem="1BD-Xi-0fR" firstAttribute="centerX" secondItem="eyI-Q1-ADU" secondAttribute="centerX" id="lh9-6g-c4P"/>
                         <constraint firstAttribute="height" constant="200" id="wMS-wC-7V2"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cvp-pG-Mzn">
+                    <rect key="frame" x="0.0" y="245" width="414" height="200"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="200" id="skd-fE-wwg"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tK6-Pu-wr5">
@@ -91,8 +91,8 @@
                 <constraint firstItem="Cvp-pG-Mzn" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="4ji-Wd-PMs"/>
                 <constraint firstItem="yVU-xc-U1A" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="5f8-zb-gYq"/>
                 <constraint firstItem="tK6-Pu-wr5" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="Fth-1l-hcm"/>
-                <constraint firstItem="tK6-Pu-wr5" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="NU6-XA-bJ0"/>
                 <constraint firstItem="eyI-Q1-ADU" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="UAe-Bk-2TE"/>
+                <constraint firstItem="tK6-Pu-wr5" firstAttribute="bottom" secondItem="iN0-l3-epB" secondAttribute="bottom" id="Wqk-2L-fD7"/>
                 <constraint firstItem="yVU-xc-U1A" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="XKR-1m-XQ4"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="eyI-Q1-ADU" secondAttribute="trailing" constant="20" id="ZrT-Wq-OIn"/>
                 <constraint firstItem="eyI-Q1-ADU" firstAttribute="top" secondItem="yVU-xc-U1A" secondAttribute="bottom" id="a9B-mH-h1v"/>
@@ -108,12 +108,14 @@
                 <outlet property="categoryContentView" destination="eyI-Q1-ADU" id="Qiw-Um-rHf"/>
                 <outlet property="categoryContentViewHeightLayoutConstraint" destination="wMS-wC-7V2" id="ZBb-zg-7Hu"/>
                 <outlet property="categoryView" destination="yVU-xc-U1A" id="6vQ-Id-IXN"/>
+                <outlet property="categoryViewHeightLayoutConstraint" destination="xpe-i4-2AB" id="aoY-bI-TXj"/>
                 <outlet property="lockButton" destination="1BD-Xi-0fR" id="9Aj-qH-8ZR"/>
                 <outlet property="myDictationView" destination="Cvp-pG-Mzn" id="MAK-HO-nHV"/>
                 <outlet property="myDictationViewHeightLayoutConstraint" destination="skd-fE-wwg" id="21h-JP-bfs"/>
                 <outlet property="sectionDictationView" destination="tK6-Pu-wr5" id="5GQ-5V-xpx"/>
+                <outlet property="sectionDictationViewHeightLayoutConstraint" destination="MV6-RF-KJH" id="ZkO-oy-wvJ"/>
             </connections>
-            <point key="canvasLocation" x="137.68115942028987" y="21.428571428571427"/>
+            <point key="canvasLocation" x="137.68115942028987" y="20.089285714285712"/>
         </view>
     </objects>
     <resources>

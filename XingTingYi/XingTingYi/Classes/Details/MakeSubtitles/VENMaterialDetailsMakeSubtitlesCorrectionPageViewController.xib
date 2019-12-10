@@ -8,7 +8,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="VENMaterialDetailsMakeSubtitlesCorrectionPageViewController">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="VENMaterialDetailsMakeSubtitlesPageViewController">
             <connections>
                 <outlet property="bottomView" destination="OJn-ep-JkX" id="nht-9L-f0U"/>
                 <outlet property="bottomViewBottomLayoutConstraint" destination="QSw-7e-40l" id="Eaf-88-9pu"/>

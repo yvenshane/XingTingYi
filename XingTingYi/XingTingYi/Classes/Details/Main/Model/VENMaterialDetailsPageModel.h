@@ -47,6 +47,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *pid;
 @property (nonatomic, copy) NSString *dictation_tag;
 
+@property (nonatomic, copy) NSString *read;
+@property (nonatomic, copy) NSDictionary *translation;
+
 @end
 
 NS_ASSUME_NONNULL_END

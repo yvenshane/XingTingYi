@@ -1,5 +1,5 @@
 //
-//  VENVideoMaterialDetailsPageHeaderView.m
+//  VENMaterialDetailsPageHeaderView.m
 //  XingTingYi
 //
 //  Created by YVEN on 2019/9/11.
@@ -40,27 +40,44 @@
     self.contentView.layer.borderColor = UIColorFromRGB(0xE8E8E8).CGColor;
     
     self.contentLabel.text = infoModel.descriptionn;
+    [self.contentButton addTarget:self action:@selector(contentButtonClick) forControlEvents:UIControlEventTouchUpInside];
     
-    // audio
-    self.audioViewHeightLayoutConstraint.constant = (kMainScreenWidth - 40) / (335.0 / 120.0);
+    // audio/video
     self.audioView.layer.cornerRadius = 8.0f;
     self.audioView.layer.masksToBounds = YES;
     
-    self.audioPlayerView.audioURL = infoModel.source_path;
-    self.audioPlayerView.frame = CGRectMake(0, 0, CGRectGetWidth(self.audioView.frame), CGRectGetHeight(self.audioView.frame));
-    
-    // video
+    self.audioViewHeightLayoutConstraint.constant = 0.0f;
     self.audioViewYLayoutConstraint.constant = 0.0f;
     self.videoViewHeightLayoutConstraint.constant = 0.0f;
+    self.videoViewYLayoutConstraint.constant = 0.0f;
+    
+    self.audioViewBottomLayoutConstraint.constant = 0.0f;
     
     if (![VENEmptyClass isEmptyString:infoModel.source_path]) {
+        self.audioPlayerView.audioURL = infoModel.source_path;
+        
+        // audio
+        self.audioViewHeightLayoutConstraint.constant = (kMainScreenWidth - 40) / (335.0 / 120.0);
+        self.videoViewYLayoutConstraint.constant = 20.0f;
+        
+        self.audioPlayerView.frame = CGRectMake(0, 0, CGRectGetWidth(self.audioView.frame), CGRectGetHeight(self.audioView.frame));
+        
+        // video
         if ([[infoModel.source_path substringFromIndex:infoModel.source_path.length - 1] isEqualToString:@"4"]) { // 如果是.MP4
-            self.audioViewYLayoutConstraint.constant = 20.0f;
             self.videoViewHeightLayoutConstraint.constant = (kMainScreenWidth - 40) / (335.0 / 188.0);
+            self.audioViewYLayoutConstraint.constant = 20.0f;
         }
+        
+        self.playerLayer.frame = CGRectMake(0, 0, CGRectGetWidth(self.videoView.frame), CGRectGetHeight(self.videoView.frame));
+        
+        self.audioViewBottomLayoutConstraint.constant = 30.0f;
     }
-    
-    self.playerLayer.frame = CGRectMake(0, 0, CGRectGetWidth(self.videoView.frame), CGRectGetHeight(self.videoView.frame));
+}
+
+- (void)contentButtonClick {
+    if (self.contentButtonBlock) {
+        self.contentButtonBlock();
+    }
 }
 
 #pragma mark - 音频播放器

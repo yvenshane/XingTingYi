@@ -1,8 +1,8 @@
 //
-//  VENMaterialDetailsMakeSubtitlesCorrectionPageViewController.h
+//  VENMaterialDetailsReadAloudPageViewController.h
 //  XingTingYi
 //
-//  Created by YVEN on 2019/12/5.
+//  Created by YVEN on 2019/12/9.
 //  Copyright © 2019 Hefei Haiba Network Technology Co., Ltd. All rights reserved.
 //
 
@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface VENMaterialDetailsMakeSubtitlesCorrectionPageViewController : VENBaseViewController
+@interface VENMaterialDetailsReadAloudPageViewController : VENBaseViewController
 @property (nonatomic, copy) NSString *source_period_id;
 
 @end

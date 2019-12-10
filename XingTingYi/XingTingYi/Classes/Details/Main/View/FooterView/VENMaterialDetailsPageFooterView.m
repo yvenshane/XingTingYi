@@ -34,38 +34,44 @@
     self.categoryContentView.layer.cornerRadius = 8.0f;
     self.categoryContentView.layer.masksToBounds = YES;
     
-    self.categoryVieww.categoryViewTitle = self.categoryViewTitle;
-    self.categoryVieww.titleArr = @[@"提示词", @"生词汇总", @"标准答案"];
+    self.categoryViewHeightLayoutConstraint.constant = 0.0f;
+    self.categoryContentViewHeightLayoutConstraint.constant = 0.0f;
     
-    __weak typeof(self) weakSelf = self;
-    self.categoryVieww.buttonClickBlock = ^(UIButton *button) {
+    if (![VENEmptyClass isEmptyString:infoModel.notice] && ![VENEmptyClass isEmptyString:infoModel.words] && ![VENEmptyClass isEmptyString:infoModel.answer]) {
+        self.categoryViewHeightLayoutConstraint.constant = 45.0f;
+        self.categoryVieww.categoryViewTitle = self.categoryViewTitle;
+        self.categoryVieww.titleArr = @[@"提示词", @"生词汇总", @"标准答案"];
         
-        weakSelf.lockButton.hidden = YES;
-        weakSelf.categoryContentLabel.hidden = NO;
-        
-        NSString *tempStr = @"";
-        
-        if (button.tag == 0) {
-            tempStr = infoModel.notice;
-        } else if (button.tag == 1) {
-            tempStr = infoModel.words;
-        } else {
-            tempStr = infoModel.answer;
-        }
-        
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"RefreshDetailPage" object:nil userInfo:@{@"content" : tempStr, @"title" : button.titleLabel.text}];
-    };
+        __weak typeof(self) weakSelf = self;
+        self.categoryVieww.buttonClickBlock = ^(UIButton *button) {
+            
+            weakSelf.lockButton.hidden = YES;
+            weakSelf.categoryContentLabel.hidden = NO;
+            
+            NSString *tempStr = @"";
+            
+            if (button.tag == 0) {
+                tempStr = infoModel.notice;
+            } else if (button.tag == 1) {
+                tempStr = infoModel.words;
+            } else {
+                tempStr = infoModel.answer;
+            }
+            
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"RefreshDetailPage" object:nil userInfo:@{@"content" : tempStr, @"title" : button.titleLabel.text}];
+        };
 
-    self.categoryContentLabel.text = [VENEmptyClass isEmptyString:self.categoryViewContent] ? infoModel.notice : self.categoryViewContent;
-    CGFloat height = [self.categoryContentLabel sizeThatFits:CGSizeMake(kMainScreenWidth - 20 * 2 - 15 * 2, CGFLOAT_MAX)].height;
+        self.categoryContentLabel.text = [VENEmptyClass isEmptyString:self.categoryViewContent] ? infoModel.notice : self.categoryViewContent;
+        CGFloat height = [self.categoryContentLabel sizeThatFits:CGSizeMake(kMainScreenWidth - 20 * 2 - 15 * 2, CGFLOAT_MAX)].height;
 
-    self.categoryContentViewHeightLayoutConstraint.constant = height + 15 * 2;
-    
-    if ([self.categoryViewTitle isEqualToString:@"标准答案"]) {
-        if ([VENEmptyClass isEmptyString:avInfoModel.dictationInfo[@"id"]]) {
-            self.lockButton.hidden = NO;
-            self.categoryContentLabel.hidden = YES;
-            self.categoryContentViewHeightLayoutConstraint.constant = 120;
+        self.categoryContentViewHeightLayoutConstraint.constant = height + 15 * 2;
+        
+        if ([self.categoryViewTitle isEqualToString:@"标准答案"]) {
+            if ([VENEmptyClass isEmptyString:avInfoModel.dictationInfo[@"id"]]) {
+                self.lockButton.hidden = NO;
+                self.categoryContentLabel.hidden = YES;
+                self.categoryContentViewHeightLayoutConstraint.constant = 120;
+            }
         }
     }
     
@@ -87,8 +93,10 @@
     // sectionDictationView
     if (avInfoArr.count > 1) {
         self.sectionDictationView.hidden = NO;
+        self.sectionDictationViewHeightLayoutConstraint.constant = 83.0f;
     } else {
         self.sectionDictationView.hidden = YES;
+        self.sectionDictationViewHeightLayoutConstraint.constant = 0.0f;
     }
 }
 

@@ -113,6 +113,7 @@
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>
                 <outlet property="audioView" destination="2gz-fo-Gdf" id="b7q-jr-Ipo"/>
+                <outlet property="audioViewBottomLayoutConstraint" destination="R28-m8-kOr" id="xRT-xV-5nH"/>
                 <outlet property="audioViewHeightLayoutConstraint" destination="FS3-87-F5L" id="uZL-XS-dge"/>
                 <outlet property="audioViewYLayoutConstraint" destination="4AI-kj-2gK" id="oUU-jQ-c90"/>
                 <outlet property="contentButton" destination="tah-Jx-K2t" id="OsP-sv-cJp"/>
@@ -124,6 +125,7 @@
                 <outlet property="titileLabel" destination="nri-mH-Hu6" id="4Kz-2w-nLv"/>
                 <outlet property="videoView" destination="4s2-4F-ZNq" id="cko-Yl-116"/>
                 <outlet property="videoViewHeightLayoutConstraint" destination="c66-v3-5XC" id="I1U-1w-80T"/>
+                <outlet property="videoViewYLayoutConstraint" destination="8wI-38-BpY" id="kue-e8-6wd"/>
             </connections>
             <point key="canvasLocation" x="137.68115942028987" y="172.76785714285714"/>
         </view>
