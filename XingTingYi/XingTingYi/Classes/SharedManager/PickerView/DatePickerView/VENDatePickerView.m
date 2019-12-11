@@ -107,7 +107,9 @@ static const CGFloat kDatePickerHeight = 216;
         self.dateString = [VENEmptyClass isEmptyString:self.date] ? [self.dateFormatter stringFromDate:[NSDate date]] : self.date;
     }
     
-    self.datePickerViewBlock(self.dateString);
+    if (self.datePickerViewBlock) {
+        self.datePickerViewBlock(self.dateString);
+    }
     
     [self removeFromSuperview];
 }

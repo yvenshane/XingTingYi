@@ -70,7 +70,9 @@ static NSString *const cellIdentifier = @"cellIdentifier";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     VENDynamicCirclePageListModel *model = self.dataSourceMuArr[indexPath.row];
-    self.listViewSelectBlock(model.id);
+    if (self.listViewSelectBlock) {
+        self.listViewSelectBlock(model.id);
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath {

@@ -17,6 +17,7 @@
 #import "VENMaterialDetailsStartDictationPageViewController.h" // 开始听写
 #import "VENMaterialDetailsMakeSubtitlesPageViewController.h" // 制作字幕
 #import "VENMaterialDetailsReadAloudPageViewController.h" // 朗读
+#import "VENMaterialDetailsTranslationPageViewController.h" // 翻译
 
 @interface VENMaterialDetailsPageViewController ()
 @property (nonatomic, strong) UIView *navigationView;
@@ -151,7 +152,9 @@ static NSString *const cellIdentifier2 = @"cellIdentifier2";
         };
         
         cell.buttonThreeBlock = ^{
-            
+            VENMaterialDetailsTranslationPageViewController *vc = [[VENMaterialDetailsTranslationPageViewController alloc] init];
+            vc.source_period_id = textInfoModel.id;
+            [self.navigationController pushViewController:vc animated:YES];
         };
         
         return cell;

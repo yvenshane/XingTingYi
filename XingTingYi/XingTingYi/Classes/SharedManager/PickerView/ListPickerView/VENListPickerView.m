@@ -63,7 +63,9 @@ static NSString *const cellIdentifier = @"cellIdentifier";
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    self.listPickerViewBlock(self.dataSourceArr[indexPath.row]);
+    if (self.listPickerViewBlock) {
+        self.listPickerViewBlock(self.dataSourceArr[indexPath.row]);
+    }
     [self removeFromSuperview];
 }
 

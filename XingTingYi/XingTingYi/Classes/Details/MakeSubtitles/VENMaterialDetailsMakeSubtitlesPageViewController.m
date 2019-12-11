@@ -127,7 +127,6 @@
     } else {
         self.placeholderLabel.hidden = NO;
     }
-    
 }
 
 #pragma mark - 底部按钮视图
