@@ -69,6 +69,7 @@
     [self.view addSubview:self.tableView];
 }
 
+#pragma mark - 查词
 - (void)setupToolBar {
     UIButton *toolBarButton = [[UIButton alloc] initWithFrame:CGRectMake(kMainScreenWidth - 54, kMainScreenHeight - kStatusBarAndNavigationBarHeight - 60 - (kTabBarHeight - 49) - 54, 54, 54)];
     [toolBarButton setImage:[UIImage imageNamed:@"icon_search_words"] forState:UIControlStateNormal];
@@ -78,6 +79,7 @@
 
 - (void)toolBarButtonClick {
     VENMaterialDetailsTranslationPageSearchWordViewController *vc = [[VENMaterialDetailsTranslationPageSearchWordViewController alloc] init];
+    vc.source_id = self.infoModel.source_id;
     [self.navigationController pushViewController:vc animated:YES];
 }
 

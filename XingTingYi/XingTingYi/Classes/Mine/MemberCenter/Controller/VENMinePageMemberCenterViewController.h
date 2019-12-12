@@ -1,5 +1,5 @@
 //
-//  VENMinePageMemberCentreViewController.h
+//  VENMinePageMemberCenterViewController.h
 //  XingTingYi
 //
 //  Created by YVEN on 2019/8/29.
@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface VENMinePageMemberCentreViewController : VENBaseViewController
+@interface VENMinePageMemberCenterViewController : VENBaseViewController
 
 @end
 

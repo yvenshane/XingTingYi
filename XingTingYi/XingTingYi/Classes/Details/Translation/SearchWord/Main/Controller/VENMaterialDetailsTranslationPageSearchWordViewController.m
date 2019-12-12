@@ -83,6 +83,7 @@ static NSString *const cellIdentifier = @"cellIdentifier";
     VENMaterialDetailsTranslationPageSearchWordAddNewWordsViewController *vc = [[VENMaterialDetailsTranslationPageSearchWordAddNewWordsViewController alloc] init];
     vc.keyword = self.keyword;
     vc.translation = self.translation;
+    vc.source_id = self.source_id;
     [self.navigationController pushViewController:vc animated:YES];
 }
 

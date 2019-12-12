@@ -1,22 +1,24 @@
 //
-//  VENMinePageMemberCentreViewController.m
+//  VENMinePageMemberCenterViewController.m
 //  XingTingYi
 //
 //  Created by YVEN on 2019/8/29.
 //  Copyright © 2019 Hefei Haiba Network Technology Co., Ltd. All rights reserved.
 //
 
-#import "VENMinePageMemberCentreViewController.h"
+#import "VENMinePageMemberCenterViewController.h"
 
-@interface VENMinePageMemberCentreViewController ()
+@interface VENMinePageMemberCenterViewController ()
 @property (nonatomic, strong) NSMutableArray *priceButtonMuArr;
 
 @end
 
-@implementation VENMinePageMemberCentreViewController
+@implementation VENMinePageMemberCenterViewController
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    
+    self.navigationController.navigationBar.barTintColor = UIColorFromRGB(0xFFDE02);
     
     // nav 黑线
     [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
@@ -25,6 +27,8 @@
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
+    
+    self.navigationController.navigationBar.barTintColor = [UIColor whiteColor];
     
     // nav 黑线
     [self.navigationController.navigationBar setBackgroundImage:nil forBarMetrics:UIBarMetricsDefault];
@@ -36,7 +40,6 @@
     // Do any additional setup after loading the view.
     
     self.navigationItem.title = @"会员中心";
-    self.navigationController.navigationBar.barTintColor = UIColorFromRGB(0xFFDE02);
     
     self.tableView.dataSource = nil;
     self.tableView.backgroundColor = [UIColor whiteColor];

@@ -11,6 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface VENMaterialDetailsTranslationPageSearchWordViewController : VENBaseViewController
+@property (nonatomic, copy) NSString *source_id;
 
 @end
 

@@ -11,7 +11,8 @@
 #import "VENMinePageTableHeaderView.h"
 #import "VENSettingViewController.h"
 #import "VENMyOtherViewController.h"
-#import "VENMinePageMemberCentreViewController.h"
+#import "VENMinePageMemberCenterViewController.h"
+#import "VENMinePageMyNewWordBookViewController.h"
 
 @interface VENMinePageViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, copy) NSArray *titleArr;
@@ -72,10 +73,12 @@ static NSString *const cellIdentifier = @"cellIdentifier";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    if (indexPath.row == 4) {
-        
+    if (indexPath.row == 4) { // 我的生词本
+        VENMinePageMyNewWordBookViewController *vc = [[VENMinePageMyNewWordBookViewController alloc] init];
+        vc.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:vc animated:YES];
     } else if (indexPath.row == 5) { // 会员中心
-        VENMinePageMemberCentreViewController *vc = [[VENMinePageMemberCentreViewController alloc] init];
+        VENMinePageMemberCenterViewController *vc = [[VENMinePageMemberCenterViewController alloc] init];
         vc.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:vc animated:YES];
     } else if (indexPath.row == 6) {

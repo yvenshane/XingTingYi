@@ -7,8 +7,13 @@
 //
 
 #import "VENMaterialDetailsTranslationPageSearchWordAddNewWordsTableHeaderView.h"
+#import "VENAudioRecorder.h"
 
 @interface VENMaterialDetailsTranslationPageSearchWordAddNewWordsTableHeaderView () <UITextViewDelegate>
+@property (nonatomic, strong) UIView *toolsBarView;
+@property (nonatomic, strong) UIButton *playButton;
+
+@property (nonatomic, strong) VENAudioRecorder *audioRecorder;
 
 @end
 
@@ -22,6 +27,26 @@
     
     self.translateTextField.rightView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 20, 48)];
     self.translateTextField.rightViewMode = UITextFieldViewModeAlways;
+    
+    UIView *toolsBarView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 20 + 30 + 20 + 10 + 30, 48)];
+    
+    UIButton *recordButton = [[UIButton alloc] initWithFrame:CGRectMake(CGRectGetWidth(toolsBarView.frame) - 30 - 20, 9, 30, 30)];
+    [recordButton setImage:[UIImage imageNamed:@"icon_article_pop_reading"] forState:UIControlStateNormal];
+    [recordButton setImage:[UIImage imageNamed:@"icon_article_pop_suspend"] forState:UIControlStateSelected];
+    [recordButton addTarget:self action:@selector(recordButtonClick:) forControlEvents:UIControlEventTouchUpInside];
+    [toolsBarView addSubview:recordButton];
+    
+    UIButton *playButton = [[UIButton alloc] initWithFrame:CGRectMake(20, 9, 30, 30)];
+    [playButton setImage:[UIImage imageNamed:@"icon_article_pop_play"] forState:UIControlStateNormal];
+    [playButton addTarget:self action:@selector(playButtonClick:) forControlEvents:UIControlEventTouchUpInside];
+    playButton.hidden = YES;
+    [toolsBarView addSubview:playButton];
+    
+    _toolsBarView = toolsBarView;
+    _playButton = playButton;
+    
+    self.pronunciationTextField.rightView = toolsBarView;
+    self.pronunciationTextField.rightViewMode = UITextFieldViewModeAlways;
     
     self.textViewOne.delegate = self;
     self.textViewOne.tag = 998;
@@ -43,6 +68,32 @@
             self.placeholderLabelTwo.hidden = NO;
         }
     }
+}
+
+- (void)playButtonClick:(UIButton *)button {
+    [self.audioRecorder playReadAloud];
+}
+
+- (void)recordButtonClick:(UIButton *)button {
+    if (button.selected) {
+        button.selected = NO;
+        self.playButton.hidden = NO;
+        
+        [self.audioRecorder finishReadAloud]; // 完成录音
+    } else {
+        button.selected = YES;
+        self.playButton.hidden = YES;
+        
+        [self.audioRecorder beginReadAloud]; // 开始录音
+    }
+}
+
+#pragma mark - 录音器
+- (VENAudioRecorder *)audioRecorder {
+    if (!_audioRecorder) {
+        _audioRecorder = [VENAudioRecorder sharedAudioRecorder];
+    }
+    return _audioRecorder;
 }
 
 /*

@@ -202,6 +202,7 @@
 		2C699E4A2319143200BA8810 /* VENDynamicCirclePageListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C699E492319143200BA8810 /* VENDynamicCirclePageListViewController.m */; };
 		2C699E50231927DD00BA8810 /* VENDynamicCirclePageListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C699E4E231927DD00BA8810 /* VENDynamicCirclePageListTableViewCell.m */; };
 		2C699E51231927DD00BA8810 /* VENDynamicCirclePageListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C699E4F231927DD00BA8810 /* VENDynamicCirclePageListTableViewCell.xib */; };
+		2C726A7023A2290B0024BED7 /* VENAudioRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C726A6F23A2290B0024BED7 /* VENAudioRecorder.m */; };
 		2C776B2723A083CE002926EA /* VENMaterialDetailsTranslationPageSearchWordAddNewWordsTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C776B2623A083CE002926EA /* VENMaterialDetailsTranslationPageSearchWordAddNewWordsTableHeaderView.m */; };
 		2C776B2923A083D6002926EA /* VENMaterialDetailsTranslationPageSearchWordAddNewWordsTableHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C776B2823A083D6002926EA /* VENMaterialDetailsTranslationPageSearchWordAddNewWordsTableHeaderView.xib */; };
 		2C817FE422F172FF00DA6F0B /* VENBaseCategoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C817FE322F172FF00DA6F0B /* VENBaseCategoryView.m */; };
@@ -237,6 +238,12 @@
 		2C9C8E7523A09A290070C42C /* WechatIMG243.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C9C8E7423A09A290070C42C /* WechatIMG243.png */; };
 		2C9C8E7B23A09FA60070C42C /* VENChooseCategoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C9C8E7A23A09FA60070C42C /* VENChooseCategoryView.m */; };
 		2C9C8E7D23A0CC590070C42C /* WechatIMG246.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C9C8E7C23A0CC590070C42C /* WechatIMG246.png */; };
+		2C9C8E8023A0F47D0070C42C /* VENMinePageMyNewWordBookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C9C8E7F23A0F47D0070C42C /* VENMinePageMyNewWordBookViewController.m */; };
+		2C9C8E8523A102B50070C42C /* VENMinePageMyNewWordBookCategoryManagementViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C9C8E8423A102B50070C42C /* VENMinePageMyNewWordBookCategoryManagementViewController.m */; };
+		2C9C8E8A23A10E6D0070C42C /* VENAddCategoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C9C8E8923A10E6D0070C42C /* VENAddCategoryView.m */; };
+		2C9C8E8C23A10F140070C42C /* WechatIMG247.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C9C8E8B23A10F140070C42C /* WechatIMG247.png */; };
+		2C9C8E9023A1DB040070C42C /* VENEditCategoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C9C8E8F23A1DB040070C42C /* VENEditCategoryView.m */; };
+		2C9C8E9223A1DB260070C42C /* WechatIMG250.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C9C8E9123A1DB260070C42C /* WechatIMG250.png */; };
 		2C9D240E22D8333B00B15896 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C9D240D22D8333B00B15896 /* AppDelegate.m */; };
 		2C9D241922D8333C00B15896 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2C9D241722D8333C00B15896 /* LaunchScreen.storyboard */; };
 		2C9D241C22D8333C00B15896 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C9D241B22D8333C00B15896 /* main.m */; };
@@ -288,7 +295,7 @@
 		2CDD5793231FA74E00F64D57 /* VENDynamicCirclePageReleaseDynamicCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2CDD5791231FA74E00F64D57 /* VENDynamicCirclePageReleaseDynamicCollectionViewCell.xib */; };
 		2CDF2BA4239FC47C00486747 /* VENMaterialDetailsTranslationPageSearchWordTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CDF2BA2239FC47C00486747 /* VENMaterialDetailsTranslationPageSearchWordTableViewCell.m */; };
 		2CDF2BA5239FC47C00486747 /* VENMaterialDetailsTranslationPageSearchWordTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2CDF2BA3239FC47C00486747 /* VENMaterialDetailsTranslationPageSearchWordTableViewCell.xib */; };
-		2CE189DD2317CBBF002E15F5 /* VENMinePageMemberCentreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CE189DC2317CBBF002E15F5 /* VENMinePageMemberCentreViewController.m */; };
+		2CE189DD2317CBBF002E15F5 /* VENMinePageMemberCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CE189DC2317CBBF002E15F5 /* VENMinePageMemberCenterViewController.m */; };
 		2CE68BDA238BF12700524CC4 /* VENMaterialDetailsPageMyDictationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CE68BD9238BF12700524CC4 /* VENMaterialDetailsPageMyDictationView.m */; };
 		2CE68BDC238BF13500524CC4 /* VENMaterialDetailsPageMyDictationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2CE68BDB238BF13500524CC4 /* VENMaterialDetailsPageMyDictationView.xib */; };
 		2CE829E5239F459A005F6D55 /* VENMaterialDetailsTranslationPageSearchWordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CE829E4239F459A005F6D55 /* VENMaterialDetailsTranslationPageSearchWordViewController.m */; };
@@ -706,6 +713,8 @@
 		2C699E4D231927DD00BA8810 /* VENDynamicCirclePageListTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VENDynamicCirclePageListTableViewCell.h; sourceTree = "<group>"; };
 		2C699E4E231927DD00BA8810 /* VENDynamicCirclePageListTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VENDynamicCirclePageListTableViewCell.m; sourceTree = "<group>"; };
 		2C699E4F231927DD00BA8810 /* VENDynamicCirclePageListTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VENDynamicCirclePageListTableViewCell.xib; sourceTree = "<group>"; };
+		2C726A6E23A2290B0024BED7 /* VENAudioRecorder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VENAudioRecorder.h; sourceTree = "<group>"; };
+		2C726A6F23A2290B0024BED7 /* VENAudioRecorder.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VENAudioRecorder.m; sourceTree = "<group>"; };
 		2C776B2523A083CE002926EA /* VENMaterialDetailsTranslationPageSearchWordAddNewWordsTableHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VENMaterialDetailsTranslationPageSearchWordAddNewWordsTableHeaderView.h; sourceTree = "<group>"; };
 		2C776B2623A083CE002926EA /* VENMaterialDetailsTranslationPageSearchWordAddNewWordsTableHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VENMaterialDetailsTranslationPageSearchWordAddNewWordsTableHeaderView.m; sourceTree = "<group>"; };
 		2C776B2823A083D6002926EA /* VENMaterialDetailsTranslationPageSearchWordAddNewWordsTableHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VENMaterialDetailsTranslationPageSearchWordAddNewWordsTableHeaderView.xib; sourceTree = "<group>"; };
@@ -763,6 +772,16 @@
 		2C9C8E7923A09FA60070C42C /* VENChooseCategoryView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VENChooseCategoryView.h; sourceTree = "<group>"; };
 		2C9C8E7A23A09FA60070C42C /* VENChooseCategoryView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VENChooseCategoryView.m; sourceTree = "<group>"; };
 		2C9C8E7C23A0CC590070C42C /* WechatIMG246.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WechatIMG246.png; sourceTree = "<group>"; };
+		2C9C8E7E23A0F47D0070C42C /* VENMinePageMyNewWordBookViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VENMinePageMyNewWordBookViewController.h; sourceTree = "<group>"; };
+		2C9C8E7F23A0F47D0070C42C /* VENMinePageMyNewWordBookViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VENMinePageMyNewWordBookViewController.m; sourceTree = "<group>"; };
+		2C9C8E8323A102B50070C42C /* VENMinePageMyNewWordBookCategoryManagementViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VENMinePageMyNewWordBookCategoryManagementViewController.h; sourceTree = "<group>"; };
+		2C9C8E8423A102B50070C42C /* VENMinePageMyNewWordBookCategoryManagementViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VENMinePageMyNewWordBookCategoryManagementViewController.m; sourceTree = "<group>"; };
+		2C9C8E8823A10E6D0070C42C /* VENAddCategoryView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VENAddCategoryView.h; sourceTree = "<group>"; };
+		2C9C8E8923A10E6D0070C42C /* VENAddCategoryView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VENAddCategoryView.m; sourceTree = "<group>"; };
+		2C9C8E8B23A10F140070C42C /* WechatIMG247.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WechatIMG247.png; sourceTree = "<group>"; };
+		2C9C8E8E23A1DB040070C42C /* VENEditCategoryView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VENEditCategoryView.h; sourceTree = "<group>"; };
+		2C9C8E8F23A1DB040070C42C /* VENEditCategoryView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VENEditCategoryView.m; sourceTree = "<group>"; };
+		2C9C8E9123A1DB260070C42C /* WechatIMG250.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WechatIMG250.png; sourceTree = "<group>"; };
 		2C9D240922D8333B00B15896 /* XingTingYi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XingTingYi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C9D240C22D8333B00B15896 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		2C9D240D22D8333B00B15896 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -856,8 +875,8 @@
 		2CDF2BA1239FC47C00486747 /* VENMaterialDetailsTranslationPageSearchWordTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VENMaterialDetailsTranslationPageSearchWordTableViewCell.h; sourceTree = "<group>"; };
 		2CDF2BA2239FC47C00486747 /* VENMaterialDetailsTranslationPageSearchWordTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VENMaterialDetailsTranslationPageSearchWordTableViewCell.m; sourceTree = "<group>"; };
 		2CDF2BA3239FC47C00486747 /* VENMaterialDetailsTranslationPageSearchWordTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VENMaterialDetailsTranslationPageSearchWordTableViewCell.xib; sourceTree = "<group>"; };
-		2CE189DB2317CBBF002E15F5 /* VENMinePageMemberCentreViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VENMinePageMemberCentreViewController.h; sourceTree = "<group>"; };
-		2CE189DC2317CBBF002E15F5 /* VENMinePageMemberCentreViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VENMinePageMemberCentreViewController.m; sourceTree = "<group>"; };
+		2CE189DB2317CBBF002E15F5 /* VENMinePageMemberCenterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VENMinePageMemberCenterViewController.h; sourceTree = "<group>"; };
+		2CE189DC2317CBBF002E15F5 /* VENMinePageMemberCenterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VENMinePageMemberCenterViewController.m; sourceTree = "<group>"; };
 		2CE68BD8238BF12700524CC4 /* VENMaterialDetailsPageMyDictationView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VENMaterialDetailsPageMyDictationView.h; sourceTree = "<group>"; };
 		2CE68BD9238BF12700524CC4 /* VENMaterialDetailsPageMyDictationView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VENMaterialDetailsPageMyDictationView.m; sourceTree = "<group>"; };
 		2CE68BDB238BF13500524CC4 /* VENMaterialDetailsPageMyDictationView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VENMaterialDetailsPageMyDictationView.xib; sourceTree = "<group>"; };
@@ -1401,7 +1420,7 @@
 				2CBCDEB62302BB730010BD11 /* Setting */,
 				2CBCDEA62302B7100010BD11 /* Other */,
 				2C5CC95F23029A7B00FAC842 /* MyNewWordBook */,
-				2C5CC96723029A7B00FAC842 /* MemberCentre */,
+				2C5CC96723029A7B00FAC842 /* MemberCenter */,
 				2C5CC95B23029A7B00FAC842 /* MyTidings */,
 			);
 			path = Mine;
@@ -1954,9 +1973,8 @@
 		2C5CC95F23029A7B00FAC842 /* MyNewWordBook */ = {
 			isa = PBXGroup;
 			children = (
-				2C5CC96023029A7B00FAC842 /* Controller */,
-				2C5CC96123029A7B00FAC842 /* Model */,
-				2C5CC96223029A7B00FAC842 /* View */,
+				2C9C8E8123A1021A0070C42C /* Main */,
+				2C9C8E8223A1022C0070C42C /* CategoryManagement */,
 			);
 			path = MyNewWordBook;
 			sourceTree = "<group>";
@@ -1964,6 +1982,8 @@
 		2C5CC96023029A7B00FAC842 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				2C9C8E7E23A0F47D0070C42C /* VENMinePageMyNewWordBookViewController.h */,
+				2C9C8E7F23A0F47D0070C42C /* VENMinePageMyNewWordBookViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1982,21 +2002,21 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		2C5CC96723029A7B00FAC842 /* MemberCentre */ = {
+		2C5CC96723029A7B00FAC842 /* MemberCenter */ = {
 			isa = PBXGroup;
 			children = (
 				2C5CC96923029A7B00FAC842 /* Model */,
 				2C5CC96A23029A7B00FAC842 /* View */,
 				2C5CC96823029A7B00FAC842 /* Controller */,
 			);
-			path = MemberCentre;
+			path = MemberCenter;
 			sourceTree = "<group>";
 		};
 		2C5CC96823029A7B00FAC842 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				2CE189DB2317CBBF002E15F5 /* VENMinePageMemberCentreViewController.h */,
-				2CE189DC2317CBBF002E15F5 /* VENMinePageMemberCentreViewController.m */,
+				2CE189DB2317CBBF002E15F5 /* VENMinePageMemberCenterViewController.h */,
+				2CE189DC2317CBBF002E15F5 /* VENMinePageMemberCenterViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -2221,6 +2241,25 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		2C726A6623A228100024BED7 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				2C84931B239E34BB0075F2AB /* VENMaterialDetailsReadAloudPageViewController.h */,
+				2C84931C239E34BB0075F2AB /* VENMaterialDetailsReadAloudPageViewController.m */,
+				2C84931D239E34BB0075F2AB /* VENMaterialDetailsReadAloudPageViewController.xib */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		2C726A6723A228180024BED7 /* AudioRecorder */ = {
+			isa = PBXGroup;
+			children = (
+				2C726A6E23A2290B0024BED7 /* VENAudioRecorder.h */,
+				2C726A6F23A2290B0024BED7 /* VENAudioRecorder.m */,
+			);
+			path = AudioRecorder;
+			sourceTree = "<group>";
+		};
 		2C776B2423A083B4002926EA /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -2372,9 +2411,8 @@
 		2C84931A239E32D40075F2AB /* ReadAloud */ = {
 			isa = PBXGroup;
 			children = (
-				2C84931B239E34BB0075F2AB /* VENMaterialDetailsReadAloudPageViewController.h */,
-				2C84931C239E34BB0075F2AB /* VENMaterialDetailsReadAloudPageViewController.m */,
-				2C84931D239E34BB0075F2AB /* VENMaterialDetailsReadAloudPageViewController.xib */,
+				2C726A6623A228100024BED7 /* Main */,
+				2C726A6723A228180024BED7 /* AudioRecorder */,
 			);
 			path = ReadAloud;
 			sourceTree = "<group>";
@@ -2457,11 +2495,60 @@
 		2C9C8E7623A09A7F0070C42C /* ChooseCategoryView */ = {
 			isa = PBXGroup;
 			children = (
+				2C9C8E8623A10DB70070C42C /* Main */,
+				2C9C8E8723A10DC00070C42C /* AddCategory */,
+				2C9C8E8D23A1DAE40070C42C /* EditCategory */,
+			);
+			path = ChooseCategoryView;
+			sourceTree = "<group>";
+		};
+		2C9C8E8123A1021A0070C42C /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				2C5CC96123029A7B00FAC842 /* Model */,
+				2C5CC96223029A7B00FAC842 /* View */,
+				2C5CC96023029A7B00FAC842 /* Controller */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		2C9C8E8223A1022C0070C42C /* CategoryManagement */ = {
+			isa = PBXGroup;
+			children = (
+				2C9C8E8323A102B50070C42C /* VENMinePageMyNewWordBookCategoryManagementViewController.h */,
+				2C9C8E8423A102B50070C42C /* VENMinePageMyNewWordBookCategoryManagementViewController.m */,
+			);
+			path = CategoryManagement;
+			sourceTree = "<group>";
+		};
+		2C9C8E8623A10DB70070C42C /* Main */ = {
+			isa = PBXGroup;
+			children = (
 				2C9C8E7C23A0CC590070C42C /* WechatIMG246.png */,
 				2C9C8E7923A09FA60070C42C /* VENChooseCategoryView.h */,
 				2C9C8E7A23A09FA60070C42C /* VENChooseCategoryView.m */,
 			);
-			path = ChooseCategoryView;
+			path = Main;
+			sourceTree = "<group>";
+		};
+		2C9C8E8723A10DC00070C42C /* AddCategory */ = {
+			isa = PBXGroup;
+			children = (
+				2C9C8E8B23A10F140070C42C /* WechatIMG247.png */,
+				2C9C8E8823A10E6D0070C42C /* VENAddCategoryView.h */,
+				2C9C8E8923A10E6D0070C42C /* VENAddCategoryView.m */,
+			);
+			path = AddCategory;
+			sourceTree = "<group>";
+		};
+		2C9C8E8D23A1DAE40070C42C /* EditCategory */ = {
+			isa = PBXGroup;
+			children = (
+				2C9C8E9123A1DB260070C42C /* WechatIMG250.png */,
+				2C9C8E8E23A1DB040070C42C /* VENEditCategoryView.h */,
+				2C9C8E8F23A1DB040070C42C /* VENEditCategoryView.m */,
+			);
+			path = EditCategory;
 			sourceTree = "<group>";
 		};
 		2C9D240022D8333B00B15896 = {
@@ -3091,6 +3178,7 @@
 				2C9C8E6F23A099470070C42C /* WechatIMG240.png in Resources */,
 				2C0F87CE23165EA7003E9DB3 /* VENSettingFeedbackViewController.xib in Resources */,
 				2C84931F239E34BB0075F2AB /* VENMaterialDetailsReadAloudPageViewController.xib in Resources */,
+				2C9C8E9223A1DB260070C42C /* WechatIMG250.png in Resources */,
 				2C9C8E7523A09A290070C42C /* WechatIMG243.png in Resources */,
 				2CDD5780231E083700F64D57 /* VENLoginPageViewController.xib in Resources */,
 				2CE8E6302397D8750048977F /* VENMaterialDetailsPageOtherView.xib in Resources */,
@@ -3105,6 +3193,7 @@
 				2C148FBA2322449500DC9BA3 /* VENDynamicCirclePageDetailsCommentTableViewCell.xib in Resources */,
 				2C4D5EE22351743F0010D5A1 /* VENAudioPlayerView.xib in Resources */,
 				2C9C8E7D23A0CC590070C42C /* WechatIMG246.png in Resources */,
+				2C9C8E8C23A10F140070C42C /* WechatIMG247.png in Resources */,
 				2CDF2BA5239FC47C00486747 /* VENMaterialDetailsTranslationPageSearchWordTableViewCell.xib in Resources */,
 				2C9C8E7123A0994C0070C42C /* WechatIMG241.png in Resources */,
 				2CA990A223068D190081CC0C /* VENListPickerViewCell.xib in Resources */,
@@ -3168,7 +3257,7 @@
 				2C3D63CB237BFB94001754E4 /* YYTextDebugOption.m in Sources */,
 				2C1C019422DC1EE400E4E9C4 /* AFAutoPurgingImageCache.m in Sources */,
 				2C1C016322DC1EE400E4E9C4 /* MASViewConstraint.m in Sources */,
-				2CE189DD2317CBBF002E15F5 /* VENMinePageMemberCentreViewController.m in Sources */,
+				2CE189DD2317CBBF002E15F5 /* VENMinePageMemberCenterViewController.m in Sources */,
 				2C1C01A522DC1EE400E4E9C4 /* TAAnimatedDotView.m in Sources */,
 				2C1C019F22DC1EE400E4E9C4 /* MBProgressHUD.m in Sources */,
 				2C1C018022DC1EE400E4E9C4 /* IQToolbar.m in Sources */,
@@ -3220,7 +3309,9 @@
 				2C3D63D8237BFB94001754E4 /* YYTextAsyncLayer.m in Sources */,
 				2C148FC3232253E000DC9BA3 /* VENHomePageRecommendMaterialViewController.m in Sources */,
 				2C1C017F22DC1EE400E4E9C4 /* IQTextView.m in Sources */,
+				2C726A7023A2290B0024BED7 /* VENAudioRecorder.m in Sources */,
 				2CA152C8233B492D004CA0BA /* LMColorPickerView.m in Sources */,
+				2C9C8E8A23A10E6D0070C42C /* VENAddCategoryView.m in Sources */,
 				2C3D63CF237BFB94001754E4 /* YYTextAttribute.m in Sources */,
 				2C1C01AE22DC1EE400E4E9C4 /* SDWebImagePrefetcher.m in Sources */,
 				2C148FC0232253C600DC9BA3 /* VENHomePageNewsViewController.m in Sources */,
@@ -3243,6 +3334,7 @@
 				2CA990A423068D190081CC0C /* VENListPickerViewCell.m in Sources */,
 				2C1C01C722DC1EE400E4E9C4 /* VENBaseViewController.m in Sources */,
 				2C3D63CC237BFB94001754E4 /* YYLabel.m in Sources */,
+				2C9C8E9023A1DB040070C42C /* VENEditCategoryView.m in Sources */,
 				2CA15357233B5ED1004CA0BA /* LMStyleParagraphCell.m in Sources */,
 				2C1C013622DC1EE400E4E9C4 /* MJRefreshGifHeader.m in Sources */,
 				2C699E2523190E9F00BA8810 /* JXCategoryIndicatorImageView.m in Sources */,
@@ -3363,6 +3455,7 @@
 				2C1C019322DC1EE400E4E9C4 /* UIWebView+AFNetworking.m in Sources */,
 				2C699E50231927DD00BA8810 /* VENDynamicCirclePageListTableViewCell.m in Sources */,
 				2CDD578B231F601F00F64D57 /* VENDynamicCirclePageReleaseDynamicViewController.m in Sources */,
+				2C9C8E8523A102B50070C42C /* VENMinePageMyNewWordBookCategoryManagementViewController.m in Sources */,
 				2C123B4D2378F03F00F2B1A3 /* VENSettingPersonalInformationModel.m in Sources */,
 				2C1C01AD22DC1EE400E4E9C4 /* SDWebImageCompat.m in Sources */,
 				2C3D63CE237BFB94001754E4 /* YYTextParser.m in Sources */,
@@ -3384,6 +3477,7 @@
 				2C148FB92322449500DC9BA3 /* VENDynamicCirclePageDetailsCommentTableViewCell.m in Sources */,
 				2C1C015D22DC1EE400E4E9C4 /* MASCompositeConstraint.m in Sources */,
 				2C1C01B422DC1EE400E4E9C4 /* UIButton+WebCache.m in Sources */,
+				2C9C8E8023A0F47D0070C42C /* VENMinePageMyNewWordBookViewController.m in Sources */,
 				2CDD577D231E083700F64D57 /* VENRegisterPageViewController.m in Sources */,
 				2C699E2D23190E9F00BA8810 /* JXCategoryDotCell.m in Sources */,
 				2CE8E62223978B7A0048977F /* VENMaterialDetailsPageFooterView.m in Sources */,

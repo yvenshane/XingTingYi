@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UIButton *categoryButton;
 @property (weak, nonatomic) IBOutlet UILabel *categoryLabel;
 @property (weak, nonatomic) IBOutlet UITextField *translateTextField;
+@property (weak, nonatomic) IBOutlet UITextField *pronunciationTextField;
 @property (weak, nonatomic) IBOutlet UILabel *placeholderLabelOne;
 @property (weak, nonatomic) IBOutlet UITextView *textViewOne;
 @property (weak, nonatomic) IBOutlet UILabel *placeholderLabelTwo;

@@ -13,6 +13,9 @@ NS_ASSUME_NONNULL_BEGIN
 @interface VENMaterialDetailsTranslationPageSearchWordAddNewWordsViewController : VENBaseViewController
 @property (nonatomic, copy) NSString *keyword;
 @property (nonatomic, copy) NSString *translation;
+@property (nonatomic, copy) NSString *source_id;
+
+@property (nonatomic, assign) BOOL isEdit;
 
 @end
 
