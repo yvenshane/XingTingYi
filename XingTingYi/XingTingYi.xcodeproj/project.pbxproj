@@ -126,6 +126,29 @@
 		2C24702F22F2E28A00142646 /* VENMinePageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C24702D22F2E28A00142646 /* VENMinePageTableViewCell.m */; };
 		2C24703022F2E28A00142646 /* VENMinePageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C24702E22F2E28A00142646 /* VENMinePageTableViewCell.xib */; };
 		2C2FAA99236ADD0C001227F4 /* UIViewController+DDYPresent.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C2FAA98236ADD0C001227F4 /* UIViewController+DDYPresent.m */; };
+		2C3B468823A2336B00135F7C /* QNConcurrentResumeUpload.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C3B465023A2336B00135F7C /* QNConcurrentResumeUpload.m */; };
+		2C3B468923A2336B00135F7C /* QNUploadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C3B465523A2336B00135F7C /* QNUploadManager.m */; };
+		2C3B468A23A2336B00135F7C /* QNConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C3B465623A2336B00135F7C /* QNConfiguration.m */; };
+		2C3B468B23A2336B00135F7C /* QNResumeUpload.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C3B465823A2336B00135F7C /* QNResumeUpload.m */; };
+		2C3B468C23A2336B00135F7C /* QNUploadInfoReporter.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C3B465B23A2336B00135F7C /* QNUploadInfoReporter.m */; };
+		2C3B468D23A2336B00135F7C /* QNUpToken.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C3B465C23A2336B00135F7C /* QNUpToken.m */; };
+		2C3B468E23A2336B00135F7C /* QNFormUpload.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C3B465F23A2336B00135F7C /* QNFormUpload.m */; };
+		2C3B468F23A2336B00135F7C /* QNUploadOption.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C3B466023A2336B00135F7C /* QNUploadOption.m */; };
+		2C3B469023A2336B00135F7C /* QNPHAssetResource.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C3B466223A2336B00135F7C /* QNPHAssetResource.m */; };
+		2C3B469123A2336B00135F7C /* QNCrc32.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C3B466323A2336B00135F7C /* QNCrc32.m */; };
+		2C3B469223A2336B00135F7C /* QNUrlSafeBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C3B466623A2336B00135F7C /* QNUrlSafeBase64.m */; };
+		2C3B469323A2336B00135F7C /* QNFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C3B466A23A2336B00135F7C /* QNFile.m */; };
+		2C3B469423A2336B00135F7C /* QNEtag.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C3B466B23A2336B00135F7C /* QNEtag.m */; };
+		2C3B469523A2336B00135F7C /* QNSystem.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C3B466D23A2336B00135F7C /* QNSystem.m */; };
+		2C3B469623A2336B00135F7C /* QNAsyncRun.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C3B467023A2336B00135F7C /* QNAsyncRun.m */; };
+		2C3B469723A2336B00135F7C /* QNALAssetFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C3B467223A2336B00135F7C /* QNALAssetFile.m */; };
+		2C3B469823A2336B00135F7C /* QNPHAssetFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C3B467323A2336B00135F7C /* QNPHAssetFile.m */; };
+		2C3B469923A2336B00135F7C /* QN_GTM_Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C3B467423A2336B00135F7C /* QN_GTM_Base64.m */; };
+		2C3B469A23A2336B00135F7C /* QNUserAgent.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C3B467A23A2336B00135F7C /* QNUserAgent.m */; };
+		2C3B469B23A2336B00135F7C /* QNResponseInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C3B467C23A2336B00135F7C /* QNResponseInfo.m */; };
+		2C3B469C23A2336B00135F7C /* QNSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C3B467E23A2336B00135F7C /* QNSessionManager.m */; };
+		2C3B469D23A2336B00135F7C /* QNFileRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C3B468123A2336B00135F7C /* QNFileRecorder.m */; };
+		2C3B469E23A2336B00135F7C /* QNPipeline.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C3B468723A2336B00135F7C /* QNPipeline.m */; };
 		2C3C59862387BDFB00AABCEA /* VENMaterialDetailsPageCategoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C3C59852387BDFB00AABCEA /* VENMaterialDetailsPageCategoryView.m */; };
 		2C3D638C237BF68F001754E4 /* VENDynamicCirclePageDetailsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C3D638B237BF68F001754E4 /* VENDynamicCirclePageDetailsModel.m */; };
 		2C3D63C2237BFB94001754E4 /* YYTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C3D638F237BFB94001754E4 /* YYTextView.m */; };
@@ -562,6 +585,58 @@
 		2C24702E22F2E28A00142646 /* VENMinePageTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VENMinePageTableViewCell.xib; sourceTree = "<group>"; };
 		2C2FAA97236ADD0C001227F4 /* UIViewController+DDYPresent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+DDYPresent.h"; sourceTree = "<group>"; };
 		2C2FAA98236ADD0C001227F4 /* UIViewController+DDYPresent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+DDYPresent.m"; sourceTree = "<group>"; };
+		2C3B465023A2336B00135F7C /* QNConcurrentResumeUpload.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QNConcurrentResumeUpload.m; sourceTree = "<group>"; };
+		2C3B465123A2336B00135F7C /* QNResumeUpload.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QNResumeUpload.h; sourceTree = "<group>"; };
+		2C3B465223A2336B00135F7C /* QNUploadInfoReporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QNUploadInfoReporter.h; sourceTree = "<group>"; };
+		2C3B465323A2336B00135F7C /* QNUploadOption.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QNUploadOption.h; sourceTree = "<group>"; };
+		2C3B465423A2336B00135F7C /* QNFormUpload.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QNFormUpload.h; sourceTree = "<group>"; };
+		2C3B465523A2336B00135F7C /* QNUploadManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QNUploadManager.m; sourceTree = "<group>"; };
+		2C3B465623A2336B00135F7C /* QNConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QNConfiguration.m; sourceTree = "<group>"; };
+		2C3B465723A2336B00135F7C /* QNUpToken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QNUpToken.h; sourceTree = "<group>"; };
+		2C3B465823A2336B00135F7C /* QNResumeUpload.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QNResumeUpload.m; sourceTree = "<group>"; };
+		2C3B465923A2336B00135F7C /* QNConcurrentResumeUpload.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QNConcurrentResumeUpload.h; sourceTree = "<group>"; };
+		2C3B465A23A2336B00135F7C /* QNUploadOption+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "QNUploadOption+Private.h"; sourceTree = "<group>"; };
+		2C3B465B23A2336B00135F7C /* QNUploadInfoReporter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QNUploadInfoReporter.m; sourceTree = "<group>"; };
+		2C3B465C23A2336B00135F7C /* QNUpToken.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QNUpToken.m; sourceTree = "<group>"; };
+		2C3B465D23A2336B00135F7C /* QNConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QNConfiguration.h; sourceTree = "<group>"; };
+		2C3B465E23A2336B00135F7C /* QNUploadManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QNUploadManager.h; sourceTree = "<group>"; };
+		2C3B465F23A2336B00135F7C /* QNFormUpload.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QNFormUpload.m; sourceTree = "<group>"; };
+		2C3B466023A2336B00135F7C /* QNUploadOption.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QNUploadOption.m; sourceTree = "<group>"; };
+		2C3B466223A2336B00135F7C /* QNPHAssetResource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QNPHAssetResource.m; sourceTree = "<group>"; };
+		2C3B466323A2336B00135F7C /* QNCrc32.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QNCrc32.m; sourceTree = "<group>"; };
+		2C3B466423A2336B00135F7C /* QNFileDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QNFileDelegate.h; sourceTree = "<group>"; };
+		2C3B466523A2336B00135F7C /* QNALAssetFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QNALAssetFile.h; sourceTree = "<group>"; };
+		2C3B466623A2336B00135F7C /* QNUrlSafeBase64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QNUrlSafeBase64.m; sourceTree = "<group>"; };
+		2C3B466723A2336B00135F7C /* QNAsyncRun.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QNAsyncRun.h; sourceTree = "<group>"; };
+		2C3B466823A2336B00135F7C /* QN_GTM_Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QN_GTM_Base64.h; sourceTree = "<group>"; };
+		2C3B466923A2336B00135F7C /* QNPHAssetFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QNPHAssetFile.h; sourceTree = "<group>"; };
+		2C3B466A23A2336B00135F7C /* QNFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QNFile.m; sourceTree = "<group>"; };
+		2C3B466B23A2336B00135F7C /* QNEtag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QNEtag.m; sourceTree = "<group>"; };
+		2C3B466C23A2336B00135F7C /* QNVersion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QNVersion.h; sourceTree = "<group>"; };
+		2C3B466D23A2336B00135F7C /* QNSystem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QNSystem.m; sourceTree = "<group>"; };
+		2C3B466E23A2336B00135F7C /* QNCrc32.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QNCrc32.h; sourceTree = "<group>"; };
+		2C3B466F23A2336B00135F7C /* QNPHAssetResource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QNPHAssetResource.h; sourceTree = "<group>"; };
+		2C3B467023A2336B00135F7C /* QNAsyncRun.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QNAsyncRun.m; sourceTree = "<group>"; };
+		2C3B467123A2336B00135F7C /* QNUrlSafeBase64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QNUrlSafeBase64.h; sourceTree = "<group>"; };
+		2C3B467223A2336B00135F7C /* QNALAssetFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QNALAssetFile.m; sourceTree = "<group>"; };
+		2C3B467323A2336B00135F7C /* QNPHAssetFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QNPHAssetFile.m; sourceTree = "<group>"; };
+		2C3B467423A2336B00135F7C /* QN_GTM_Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QN_GTM_Base64.m; sourceTree = "<group>"; };
+		2C3B467523A2336B00135F7C /* QNSystem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QNSystem.h; sourceTree = "<group>"; };
+		2C3B467623A2336B00135F7C /* QNEtag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QNEtag.h; sourceTree = "<group>"; };
+		2C3B467723A2336B00135F7C /* QNFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QNFile.h; sourceTree = "<group>"; };
+		2C3B467923A2336B00135F7C /* QNResponseInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QNResponseInfo.h; sourceTree = "<group>"; };
+		2C3B467A23A2336B00135F7C /* QNUserAgent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QNUserAgent.m; sourceTree = "<group>"; };
+		2C3B467B23A2336B00135F7C /* QNSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QNSessionManager.h; sourceTree = "<group>"; };
+		2C3B467C23A2336B00135F7C /* QNResponseInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QNResponseInfo.m; sourceTree = "<group>"; };
+		2C3B467D23A2336B00135F7C /* QNHttpDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QNHttpDelegate.h; sourceTree = "<group>"; };
+		2C3B467E23A2336B00135F7C /* QNSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QNSessionManager.m; sourceTree = "<group>"; };
+		2C3B467F23A2336B00135F7C /* QNUserAgent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QNUserAgent.h; sourceTree = "<group>"; };
+		2C3B468123A2336B00135F7C /* QNFileRecorder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QNFileRecorder.m; sourceTree = "<group>"; };
+		2C3B468223A2336B00135F7C /* QNFileRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QNFileRecorder.h; sourceTree = "<group>"; };
+		2C3B468323A2336B00135F7C /* QNRecorderDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QNRecorderDelegate.h; sourceTree = "<group>"; };
+		2C3B468423A2336B00135F7C /* QiniuSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QiniuSDK.h; sourceTree = "<group>"; };
+		2C3B468623A2336B00135F7C /* QNPipeline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QNPipeline.h; sourceTree = "<group>"; };
+		2C3B468723A2336B00135F7C /* QNPipeline.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QNPipeline.m; sourceTree = "<group>"; };
 		2C3C59842387BDFB00AABCEA /* VENMaterialDetailsPageCategoryView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VENMaterialDetailsPageCategoryView.h; sourceTree = "<group>"; };
 		2C3C59852387BDFB00AABCEA /* VENMaterialDetailsPageCategoryView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VENMaterialDetailsPageCategoryView.m; sourceTree = "<group>"; };
 		2C3D638A237BF68F001754E4 /* VENDynamicCirclePageDetailsModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VENDynamicCirclePageDetailsModel.h; sourceTree = "<group>"; };
@@ -1554,6 +1629,7 @@
 		2C1CFF9122DC1EE300E4E9C4 /* ThirdPartyFramework */ = {
 			isa = PBXGroup;
 			children = (
+				2C3B464E23A2336B00135F7C /* QiniuSDK */,
 				2C3D638D237BFB94001754E4 /* YYText */,
 				2C699DC323190E9F00BA8810 /* JXCategoryView */,
 				2C82789922E55F930066B0C2 /* TYCyclePagerView */,
@@ -1818,6 +1894,105 @@
 				2C1E2B6D2328EEEF0080C526 /* VENMaterialDetailsPageModel.m */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		2C3B464E23A2336B00135F7C /* QiniuSDK */ = {
+			isa = PBXGroup;
+			children = (
+				2C3B464F23A2336B00135F7C /* Storage */,
+				2C3B466123A2336B00135F7C /* Common */,
+				2C3B467823A2336B00135F7C /* Http */,
+				2C3B468023A2336B00135F7C /* Recorder */,
+				2C3B468423A2336B00135F7C /* QiniuSDK.h */,
+				2C3B468523A2336B00135F7C /* BigData */,
+			);
+			path = QiniuSDK;
+			sourceTree = "<group>";
+		};
+		2C3B464F23A2336B00135F7C /* Storage */ = {
+			isa = PBXGroup;
+			children = (
+				2C3B465023A2336B00135F7C /* QNConcurrentResumeUpload.m */,
+				2C3B465123A2336B00135F7C /* QNResumeUpload.h */,
+				2C3B465223A2336B00135F7C /* QNUploadInfoReporter.h */,
+				2C3B465323A2336B00135F7C /* QNUploadOption.h */,
+				2C3B465423A2336B00135F7C /* QNFormUpload.h */,
+				2C3B465523A2336B00135F7C /* QNUploadManager.m */,
+				2C3B465623A2336B00135F7C /* QNConfiguration.m */,
+				2C3B465723A2336B00135F7C /* QNUpToken.h */,
+				2C3B465823A2336B00135F7C /* QNResumeUpload.m */,
+				2C3B465923A2336B00135F7C /* QNConcurrentResumeUpload.h */,
+				2C3B465A23A2336B00135F7C /* QNUploadOption+Private.h */,
+				2C3B465B23A2336B00135F7C /* QNUploadInfoReporter.m */,
+				2C3B465C23A2336B00135F7C /* QNUpToken.m */,
+				2C3B465D23A2336B00135F7C /* QNConfiguration.h */,
+				2C3B465E23A2336B00135F7C /* QNUploadManager.h */,
+				2C3B465F23A2336B00135F7C /* QNFormUpload.m */,
+				2C3B466023A2336B00135F7C /* QNUploadOption.m */,
+			);
+			path = Storage;
+			sourceTree = "<group>";
+		};
+		2C3B466123A2336B00135F7C /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				2C3B466223A2336B00135F7C /* QNPHAssetResource.m */,
+				2C3B466323A2336B00135F7C /* QNCrc32.m */,
+				2C3B466423A2336B00135F7C /* QNFileDelegate.h */,
+				2C3B466523A2336B00135F7C /* QNALAssetFile.h */,
+				2C3B466623A2336B00135F7C /* QNUrlSafeBase64.m */,
+				2C3B466723A2336B00135F7C /* QNAsyncRun.h */,
+				2C3B466823A2336B00135F7C /* QN_GTM_Base64.h */,
+				2C3B466923A2336B00135F7C /* QNPHAssetFile.h */,
+				2C3B466A23A2336B00135F7C /* QNFile.m */,
+				2C3B466B23A2336B00135F7C /* QNEtag.m */,
+				2C3B466C23A2336B00135F7C /* QNVersion.h */,
+				2C3B466D23A2336B00135F7C /* QNSystem.m */,
+				2C3B466E23A2336B00135F7C /* QNCrc32.h */,
+				2C3B466F23A2336B00135F7C /* QNPHAssetResource.h */,
+				2C3B467023A2336B00135F7C /* QNAsyncRun.m */,
+				2C3B467123A2336B00135F7C /* QNUrlSafeBase64.h */,
+				2C3B467223A2336B00135F7C /* QNALAssetFile.m */,
+				2C3B467323A2336B00135F7C /* QNPHAssetFile.m */,
+				2C3B467423A2336B00135F7C /* QN_GTM_Base64.m */,
+				2C3B467523A2336B00135F7C /* QNSystem.h */,
+				2C3B467623A2336B00135F7C /* QNEtag.h */,
+				2C3B467723A2336B00135F7C /* QNFile.h */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		2C3B467823A2336B00135F7C /* Http */ = {
+			isa = PBXGroup;
+			children = (
+				2C3B467923A2336B00135F7C /* QNResponseInfo.h */,
+				2C3B467A23A2336B00135F7C /* QNUserAgent.m */,
+				2C3B467B23A2336B00135F7C /* QNSessionManager.h */,
+				2C3B467C23A2336B00135F7C /* QNResponseInfo.m */,
+				2C3B467D23A2336B00135F7C /* QNHttpDelegate.h */,
+				2C3B467E23A2336B00135F7C /* QNSessionManager.m */,
+				2C3B467F23A2336B00135F7C /* QNUserAgent.h */,
+			);
+			path = Http;
+			sourceTree = "<group>";
+		};
+		2C3B468023A2336B00135F7C /* Recorder */ = {
+			isa = PBXGroup;
+			children = (
+				2C3B468123A2336B00135F7C /* QNFileRecorder.m */,
+				2C3B468223A2336B00135F7C /* QNFileRecorder.h */,
+				2C3B468323A2336B00135F7C /* QNRecorderDelegate.h */,
+			);
+			path = Recorder;
+			sourceTree = "<group>";
+		};
+		2C3B468523A2336B00135F7C /* BigData */ = {
+			isa = PBXGroup;
+			children = (
+				2C3B468623A2336B00135F7C /* QNPipeline.h */,
+				2C3B468723A2336B00135F7C /* QNPipeline.m */,
+			);
+			path = BigData;
 			sourceTree = "<group>";
 		};
 		2C3D6389237BF5B7001754E4 /* Model */ = {
@@ -3235,7 +3410,9 @@
 			files = (
 				2C1E2B68232882D30080C526 /* VENMaterialDetailsPageHeaderView.m in Sources */,
 				2CA990A123068D190081CC0C /* VENDatePickerView.m in Sources */,
+				2C3B468F23A2336B00135F7C /* QNUploadOption.m in Sources */,
 				2C699E3423190E9F00BA8810 /* JXCategoryTitleCell.m in Sources */,
+				2C3B469B23A2336B00135F7C /* QNResponseInfo.m in Sources */,
 				2C84931E239E34BB0075F2AB /* VENMaterialDetailsReadAloudPageViewController.m in Sources */,
 				2C699E4423190E9F00BA8810 /* JXCategoryBaseCell.m in Sources */,
 				2C699E3D23190E9F00BA8810 /* JXCategoryFactory.m in Sources */,
@@ -3245,6 +3422,7 @@
 				2CA15358233B5ED1004CA0BA /* LMStyleFontStyleCell.m in Sources */,
 				2C3D63C9237BFB94001754E4 /* YYTextSelectionView.m in Sources */,
 				2C3D63CD237BFB94001754E4 /* YYTextRunDelegate.m in Sources */,
+				2C3B469A23A2336B00135F7C /* QNUserAgent.m in Sources */,
 				2C1C018422DC1EE400E4E9C4 /* IQPreviousNextView.m in Sources */,
 				2C1C01A722DC1EE400E4E9C4 /* SDWebImageManager.m in Sources */,
 				2C699E3523190E9F00BA8810 /* JXCategoryTitleView.m in Sources */,
@@ -3253,10 +3431,12 @@
 				2C3D63D6237BFB94001754E4 /* YYTextTransaction.m in Sources */,
 				2C1C01A222DC1EE400E4E9C4 /* SDCollectionViewCell.m in Sources */,
 				2C2FAA99236ADD0C001227F4 /* UIViewController+DDYPresent.m in Sources */,
+				2C3B469023A2336B00135F7C /* QNPHAssetResource.m in Sources */,
 				2C1C01E622DC63B800E4E9C4 /* VENMinePageViewController.m in Sources */,
 				2C3D63CB237BFB94001754E4 /* YYTextDebugOption.m in Sources */,
 				2C1C019422DC1EE400E4E9C4 /* AFAutoPurgingImageCache.m in Sources */,
 				2C1C016322DC1EE400E4E9C4 /* MASViewConstraint.m in Sources */,
+				2C3B468D23A2336B00135F7C /* QNUpToken.m in Sources */,
 				2CE189DD2317CBBF002E15F5 /* VENMinePageMemberCenterViewController.m in Sources */,
 				2C1C01A522DC1EE400E4E9C4 /* TAAnimatedDotView.m in Sources */,
 				2C1C019F22DC1EE400E4E9C4 /* MBProgressHUD.m in Sources */,
@@ -3264,6 +3444,7 @@
 				2CF52809239540DF009B7C69 /* VENLabelPickerViewOne.m in Sources */,
 				2CA15354233B5ED1004CA0BA /* LMPhotoCollectionCell.m in Sources */,
 				2CECFDC822E1C2DE001D9F7F /* VENHomePageTableViewCellTwo.m in Sources */,
+				2C3B469223A2336B00135F7C /* QNUrlSafeBase64.m in Sources */,
 				2C699E2723190E9F00BA8810 /* JXCategoryIndicatorComponentView.m in Sources */,
 				2C1C012922DC1EE400E4E9C4 /* MJRefreshConst.m in Sources */,
 				2C699E4223190E9F00BA8810 /* UIColor+JXAdd.m in Sources */,
@@ -3276,6 +3457,7 @@
 				2C1C01CA22DC1EE400E4E9C4 /* VENNavigationController.m in Sources */,
 				2C1C019122DC1EE400E4E9C4 /* UIButton+AFNetworking.m in Sources */,
 				2CE829E5239F459A005F6D55 /* VENMaterialDetailsTranslationPageSearchWordViewController.m in Sources */,
+				2C3B469423A2336B00135F7C /* QNEtag.m in Sources */,
 				2C1C017E22DC1EE400E4E9C4 /* YYClassInfo.m in Sources */,
 				2C1C012C22DC1EE400E4E9C4 /* NSBundle+MJRefresh.m in Sources */,
 				2C699E3B23190E9F00BA8810 /* JXCategoryNumberCellModel.m in Sources */,
@@ -3286,6 +3468,7 @@
 				2C817FEE22F1795E00DA6F0B /* VENMaterialPagePersonalMaterialAudioViewController.m in Sources */,
 				2C1C01BC22DC1EE400E4E9C4 /* VENNetworkingManager.m in Sources */,
 				2C699E2A23190E9F00BA8810 /* JXCategoryIndicatorCellModel.m in Sources */,
+				2C3B469E23A2336B00135F7C /* QNPipeline.m in Sources */,
 				2C1C018622DC1EE400E4E9C4 /* IQKeyboardManager.m in Sources */,
 				2CECFDCE22E1C62B001D9F7F /* VENHomePageTableViewHeaderView.m in Sources */,
 				2C1C01E322DC63AD00E4E9C4 /* VENDynamicCirclePageViewController.m in Sources */,
@@ -3328,6 +3511,7 @@
 				2CDF2BA4239FC47C00486747 /* VENMaterialDetailsTranslationPageSearchWordTableViewCell.m in Sources */,
 				2C1C018222DC1EE400E4E9C4 /* IQBarButtonItem.m in Sources */,
 				2C699E2423190E9F00BA8810 /* JXCategoryIndicatorRainbowLineView.m in Sources */,
+				2C3B469323A2336B00135F7C /* QNFile.m in Sources */,
 				2C699E2923190E9F00BA8810 /* JXCategoryIndicatorBackgroundView.m in Sources */,
 				2C84932D239F35E90075F2AB /* VENMaterialDetailsTranslationPageTableHeaderView.m in Sources */,
 				2C3D63C8237BFB94001754E4 /* YYTextLine.m in Sources */,
@@ -3347,11 +3531,13 @@
 				2C817FF422F1798B00DA6F0B /* VENMaterialPagePersonalMaterialTextViewController.m in Sources */,
 				2C1C019822DC1EE400E4E9C4 /* AFURLSessionManager.m in Sources */,
 				2C3D63C7237BFB94001754E4 /* YYTextLayout.m in Sources */,
+				2C3B468C23A2336B00135F7C /* QNUploadInfoReporter.m in Sources */,
 				2C1C013722DC1EE400E4E9C4 /* MJRefreshFooter.m in Sources */,
 				2C3D63C4237BFB94001754E4 /* YYTextContainerView.m in Sources */,
 				2C1C01B322DC1EE400E4E9C4 /* UIView+WebCacheOperation.m in Sources */,
 				2C1C01B222DC1EE400E4E9C4 /* UIImageView+WebCache.m in Sources */,
 				2C699E3623190E9F00BA8810 /* JXCategoryImageView.m in Sources */,
+				2C3B468823A2336B00135F7C /* QNConcurrentResumeUpload.m in Sources */,
 				2CA152DD233B4D3F004CA0BA /* NSTextAttachment+LMText.m in Sources */,
 				2C1C013322DC1EE400E4E9C4 /* MJRefreshAutoNormalFooter.m in Sources */,
 				2C3D63C2237BFB94001754E4 /* YYTextView.m in Sources */,
@@ -3360,6 +3546,8 @@
 				2C699E3023190E9F00BA8810 /* JXCategoryTitleImageView.m in Sources */,
 				2C1C015E22DC1EE400E4E9C4 /* MASConstraintMaker.m in Sources */,
 				2C1C012822DC1EE400E4E9C4 /* UIScrollView+MJRefresh.m in Sources */,
+				2C3B469823A2336B00135F7C /* QNPHAssetFile.m in Sources */,
+				2C3B469D23A2336B00135F7C /* QNFileRecorder.m in Sources */,
 				2C1C01A022DC1EE400E4E9C4 /* SDCycleScrollView.m in Sources */,
 				2C1C018B22DC1EE400E4E9C4 /* IQUIViewController+Additions.m in Sources */,
 				2C1E2B5723278D680080C526 /* VENMaterialSortSelectorViewCollectionReusableView.m in Sources */,
@@ -3378,6 +3566,7 @@
 				2CBCDEB22302B8860010BD11 /* VENMyOtherPlatformMaterialViewController.m in Sources */,
 				2C1C018822DC1EE400E4E9C4 /* IQUITextFieldView+Additions.m in Sources */,
 				2C3D63D7237BFB94001754E4 /* UIView+YYText.m in Sources */,
+				2C3B469623A2336B00135F7C /* QNAsyncRun.m in Sources */,
 				2C98B1452340480400E2C700 /* VENStyleSettingsController.m in Sources */,
 				2C1C013B22DC1EE400E4E9C4 /* MJRefreshComponent.m in Sources */,
 				2CA9908623054AED0081CC0C /* VENSettingPersonalInformationViewController.m in Sources */,
@@ -3401,6 +3590,7 @@
 				2CBCDEAF2302B8460010BD11 /* VENMyOtherViewController.m in Sources */,
 				2C699E3923190E9F00BA8810 /* JXCategoryNumberView.m in Sources */,
 				2C0F87CD23165EA7003E9DB3 /* VENSettingFeedbackViewController.m in Sources */,
+				2C3B469523A2336B00135F7C /* QNSystem.m in Sources */,
 				2C148FB223223C4000DC9BA3 /* VENDynamicCirclePageDetailsViewController.m in Sources */,
 				2C3C59862387BDFB00AABCEA /* VENMaterialDetailsPageCategoryView.m in Sources */,
 				2C699E3823190E9F00BA8810 /* JXCategoryImageCellModel.m in Sources */,
@@ -3413,8 +3603,10 @@
 				2CF5280623954074009B7C69 /* VENLabelPickerViewThree.m in Sources */,
 				2CD13C632302E8A6007974C9 /* VENSettingModifyPasswordViewController.m in Sources */,
 				2C1C013222DC1EE400E4E9C4 /* MJRefreshAutoGifFooter.m in Sources */,
+				2C3B469923A2336B00135F7C /* QN_GTM_Base64.m in Sources */,
 				2C1C019022DC1EE400E4E9C4 /* UIImageView+AFNetworking.m in Sources */,
 				2CBCDEBC2302BBC70010BD11 /* VENSettingViewController.m in Sources */,
+				2C3B468E23A2336B00135F7C /* QNFormUpload.m in Sources */,
 				2C1C013122DC1EE400E4E9C4 /* MJRefreshAutoStateFooter.m in Sources */,
 				2C699E1F23190E9F00BA8810 /* JXCategoryTitleVerticalZoomCellModel.m in Sources */,
 				2C1C01B522DC1EE400E4E9C4 /* MBProgressHUD+VEN.m in Sources */,
@@ -3427,6 +3619,7 @@
 				2CA152F1233B5E8B004CA0BA /* LMImageSettingsController.m in Sources */,
 				2C699E3323190E9F00BA8810 /* JXCategoryTitleCellModel.m in Sources */,
 				2CA152C7233B492D004CA0BA /* LMTextHTMLParser.m in Sources */,
+				2C3B469123A2336B00135F7C /* QNCrc32.m in Sources */,
 				2C1C01B622DC1EE400E4E9C4 /* VENVerificationCodeButton.m in Sources */,
 				2C1C018D22DC1EE400E4E9C4 /* UIProgressView+AFNetworking.m in Sources */,
 				2C1C01A622DC1EE400E4E9C4 /* TAAbstractDotView.m in Sources */,
@@ -3434,6 +3627,7 @@
 				2C5CC94E23018A8D00FAC842 /* VENMinePageTableHeaderView.m in Sources */,
 				2C1C018E22DC1EE400E4E9C4 /* UIRefreshControl+AFNetworking.m in Sources */,
 				2C1C019622DC1EE400E4E9C4 /* AFURLResponseSerialization.m in Sources */,
+				2C3B469C23A2336B00135F7C /* QNSessionManager.m in Sources */,
 				2C3D638C237BF68F001754E4 /* VENDynamicCirclePageDetailsModel.m in Sources */,
 				2C1C015F22DC1EE400E4E9C4 /* MASLayoutConstraint.m in Sources */,
 				2C1E2B6E2328EEEF0080C526 /* VENMaterialDetailsPageModel.m in Sources */,
@@ -3445,6 +3639,7 @@
 				2C1C016122DC1EE400E4E9C4 /* View+MASAdditions.m in Sources */,
 				2C3D63C3237BFB94001754E4 /* YYTextMagnifier.m in Sources */,
 				2C4D5EE0235174320010D5A1 /* VENAudioPlayerView.m in Sources */,
+				2C3B468923A2336B00135F7C /* QNUploadManager.m in Sources */,
 				2C8278A122E55F930066B0C2 /* TYCyclePagerView.m in Sources */,
 				2C1C019522DC1EE400E4E9C4 /* AFImageDownloader.m in Sources */,
 				2C1C018922DC1EE400E4E9C4 /* IQUIScrollView+Additions.m in Sources */,
@@ -3457,7 +3652,9 @@
 				2CDD578B231F601F00F64D57 /* VENDynamicCirclePageReleaseDynamicViewController.m in Sources */,
 				2C9C8E8523A102B50070C42C /* VENMinePageMyNewWordBookCategoryManagementViewController.m in Sources */,
 				2C123B4D2378F03F00F2B1A3 /* VENSettingPersonalInformationModel.m in Sources */,
+				2C3B469723A2336B00135F7C /* QNALAssetFile.m in Sources */,
 				2C1C01AD22DC1EE400E4E9C4 /* SDWebImageCompat.m in Sources */,
+				2C3B468A23A2336B00135F7C /* QNConfiguration.m in Sources */,
 				2C3D63CE237BFB94001754E4 /* YYTextParser.m in Sources */,
 				2C98B15123404D1400E2C700 /* VENFontStyleSettingsTableViewCell.m in Sources */,
 				2C699E3123190E9F00BA8810 /* JXCategoryTitleImageCell.m in Sources */,
@@ -3469,6 +3666,7 @@
 				2C699E4A2319143200BA8810 /* VENDynamicCirclePageListViewController.m in Sources */,
 				2C3D63CA237BFB94001754E4 /* YYTextKeyboardManager.m in Sources */,
 				2C1C01B022DC1EE400E4E9C4 /* SDWebImageDownloaderOperation.m in Sources */,
+				2C3B468B23A2336B00135F7C /* QNResumeUpload.m in Sources */,
 				2CA152CF233B49C9004CA0BA /* LMTextStyle.m in Sources */,
 				2C1C013422DC1EE400E4E9C4 /* MJRefreshNormalHeader.m in Sources */,
 				2C1C016422DC1EE400E4E9C4 /* MASViewAttribute.m in Sources */,
