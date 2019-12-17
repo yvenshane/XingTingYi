@@ -123,6 +123,18 @@ static NSString *const cellIdentifier = @"cellIdentifier";
         
         self.dataSourceArr = responseObject[@"content"][@"wordsCategory"];
         
+//        for (NSDictionary *dict in self.dataSourceArr) {
+//            for (NSDictionary *dict2 in dict[@"son"]) {
+//                if ([dict2[@"id"] isEqualToString:self.sort_id]) {
+//                    self.subtitleLabel.text = dict[@"name"];
+//                    self.subtitleLabel2.text = dict2[@"name"];
+//                }
+//            }
+//        }
+//
+//        [self setNeedsLayout];
+//        [self layoutIfNeeded];
+        
         [self.tableView reloadData];
         [self.tableView2 reloadData];
         
@@ -135,20 +147,18 @@ static NSString *const cellIdentifier = @"cellIdentifier";
     [super layoutSubviews];
     
     self.backgroundButton.frame = CGRectMake(0, 0, kMainScreenWidth, CGRectGetHeight(self.frame));
-    self.topBarView.frame = [VENEmptyClass isEmptyString:self.id] ? CGRectMake(0, CGRectGetHeight(self.frame) - 332, kMainScreenWidth, 68) : CGRectMake(0, CGRectGetHeight(self.frame) - 360, kMainScreenWidth, 97);
+    self.topBarView.frame = [VENEmptyClass isEmptyString:self.sort_id] ? CGRectMake(0, CGRectGetHeight(self.frame) - 332 - (kTabBarHeight - 49), kMainScreenWidth, 68) : CGRectMake(0, CGRectGetHeight(self.frame) - 360 - (kTabBarHeight - 49), kMainScreenWidth, 97);
     CGFloat width = [self.subtitleLabel sizeThatFits:CGSizeMake(CGFLOAT_MAX, 17.0f)].width;
     self.subtitleLabel.frame = CGRectMake(20, 65, width, 17);
     self.rightImageView.frame = CGRectMake(20 + width + 15, 67, 7, 12);
-    if (CGRectGetHeight(self.topBarView.frame) == 97) {
-        self.rightImageView.hidden = NO;
-    }
+    self.rightImageView.hidden = [VENEmptyClass isEmptyString:self.sort_id] ? YES : NO;
     CGFloat width2 = [self.subtitleLabel2 sizeThatFits:CGSizeMake(CGFLOAT_MAX, 17.0f)].width;
     self.subtitleLabel2.frame = CGRectMake(20 + width + 15 + 7 + 15, 65, width2, 17);
-    self.lineView.frame = CGRectMake(0, CGRectGetHeight(self.frame) - 48 - 216, kMainScreenWidth, 1);
-    self.tableView.frame = CGRectMake(0, CGRectGetHeight(self.frame) - 48 - 216, kMainScreenWidth / 2, 216);
-    self.tableView2.frame = CGRectMake(kMainScreenWidth / 2, CGRectGetHeight(self.frame) - 48 - 216, kMainScreenWidth / 2, 216);
-    self.lineView2.frame = CGRectMake(0, CGRectGetHeight(self.frame) - 48, kMainScreenWidth, 1);
-    self.editCategoryButton.frame = CGRectMake(0, CGRectGetHeight(self.frame) - 47, kMainScreenWidth, 48);
+    self.lineView.frame = CGRectMake(0, CGRectGetHeight(self.frame) - 48 - 216 - (kTabBarHeight - 49), kMainScreenWidth, 1);
+    self.tableView.frame = CGRectMake(0, CGRectGetHeight(self.frame) - 48 - 216 - (kTabBarHeight - 49), kMainScreenWidth / 2, 216);
+    self.tableView2.frame = CGRectMake(kMainScreenWidth / 2, CGRectGetHeight(self.frame) - 48 - 216 - (kTabBarHeight - 49), kMainScreenWidth / 2, 216);
+    self.lineView2.frame = CGRectMake(0, CGRectGetHeight(self.frame) - 48 - (kTabBarHeight - 49), kMainScreenWidth, 1);
+    self.editCategoryButton.frame = CGRectMake(0, CGRectGetHeight(self.frame) - 47 - (kTabBarHeight - 49), kMainScreenWidth, 48);
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -175,7 +185,7 @@ static NSString *const cellIdentifier = @"cellIdentifier";
         
         cell.textLabel.text = self.dataSourceArr[indexPath.row][@"name"];
         
-        if ([self.id isEqualToString:self.dataSourceArr[indexPath.row][@"id"]]) {
+        if ([self.sort_id isEqualToString:self.dataSourceArr[indexPath.row][@"id"]]) {
             cell.textLabel.textColor = UIColorFromRGB(0x333333);
             cell.textLabel.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:14.0];
             cell.contentView.backgroundColor = [UIColor whiteColor];
@@ -202,9 +212,10 @@ static NSString *const cellIdentifier = @"cellIdentifier";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (tableView.tag == 998) {
-        self.id = self.dataSourceArr[indexPath.row][@"id"];
+        self.sort_id = self.dataSourceArr[indexPath.row][@"id"];
         self.indexPathRow = indexPath.row + 1;
         self.subtitleLabel.text = self.dataSourceArr[indexPath.row][@"name"];
+        self.subtitleLabel2.text = @"";
     } else {
         if (self.chooseCategoryViewBlock) {
             

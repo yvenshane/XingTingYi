@@ -10,9 +10,13 @@
 #import "VENMaterialDetailsTranslationPageTableHeaderView.h"
 #import "VENMaterialDetailsPageModel.h"
 #import "VENMaterialDetailsTranslationPageSearchWordViewController.h" // 查词
+#import "VENMaterialDetailsTranslationPageModel.h"
+#import "VENMaterialDetailsTranslationPageOtherTranslationViewController.h"
 
 @interface VENMaterialDetailsTranslationPageViewController ()
 @property (nonatomic, strong) VENMaterialDetailsPageModel *infoModel;
+@property (nonatomic, strong) VENMaterialDetailsTranslationPageTableHeaderView *headerView;
+@property (nonatomic, strong) VENMaterialDetailsTranslationPageModel *translationInfoModel;
 
 @end
 
@@ -35,6 +39,8 @@
     [[VENNetworkingManager shareManager] requestWithType:HttpRequestTypePOST urlString:@"source/translationInfo" parameters:@{@"source_period_id" : self.source_period_id} successBlock:^(id responseObject) {
         
         self.infoModel = [VENMaterialDetailsPageModel yy_modelWithJSON:responseObject[@"content"][@"info"]];
+        self.translationInfoModel = [VENMaterialDetailsTranslationPageModel yy_modelWithJSON:responseObject[@"content"][@"translationInfo"]];
+        
         [self.tableView reloadData];
         
     } failureBlock:^(NSError *error) {
@@ -45,6 +51,17 @@
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     VENMaterialDetailsTranslationPageTableHeaderView *headerView = [[NSBundle mainBundle] loadNibNamed:@"VENMaterialDetailsTranslationPageTableHeaderView" owner:nil options:nil].lastObject;
     headerView.titleLabel.text = self.infoModel.content;
+    headerView.contentTextView.text = self.translationInfoModel.content;
+    headerView.otherTextField.text = self.translationInfoModel.grammar;
+    headerView.otherTextFieldTwo.text = self.translationInfoModel.words;
+    
+    if ([VENEmptyClass isEmptyString:self.translationInfoModel.content]) {
+        headerView.placeholderLabel.hidden = NO;
+    } else {
+        headerView.placeholderLabel.hidden = YES;
+    }
+    
+    _headerView = headerView;
     
     return headerView;
 }
@@ -113,6 +130,31 @@
     rightButton.layer.masksToBounds = YES;
     [rightButton addTarget:self action:@selector(rightButtonClick:) forControlEvents:UIControlEventTouchUpInside];
     [bottomToolBar addSubview:rightButton];
+}
+
+// 查看他人翻译
+- (void)leftButtonClick:(UIButton *)button {
+    VENMaterialDetailsTranslationPageOtherTranslationViewController *vc = [[VENMaterialDetailsTranslationPageOtherTranslationViewController alloc] init];
+    vc.source_period_id = self.source_period_id;
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+// 保存
+- (void)rightButtonClick:(UIButton *)button {
+    
+    NSDictionary *parameters = @{@"source_period_id" : self.source_period_id,
+                                 @"content" : self.headerView.contentTextView.text,
+                                 @"grammar" : self.headerView.otherTextField.text,
+                                 @"words" : self.headerView.otherTextFieldTwo.text};
+    
+    [[VENNetworkingManager shareManager] requestWithType:HttpRequestTypePOST urlString:@"source/translation" parameters:parameters successBlock:^(id responseObject) {
+        
+        [self.navigationController popViewControllerAnimated:YES];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"RefreshDetailPage" object:nil userInfo:nil];
+        
+    } failureBlock:^(NSError *error) {
+        
+    }];
 }
 
 /*

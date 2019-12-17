@@ -10,6 +10,7 @@
 #import "VENBottomToolsBarView.h"
 #import "VENAudioPlayerView.h"
 #import "VENMaterialDetailsPageModel.h"
+#import "VENAudioPlayer.h"
 
 @interface VENMaterialDetailsMakeSubtitlesPageViewController () <UITextViewDelegate>
 @property (weak, nonatomic) IBOutlet UITextView *contentTextView;
@@ -24,7 +25,6 @@
 
 @property (nonatomic, strong) VENMaterialDetailsPageModel *sourceInfoModel;
 @property (nonatomic, copy) NSArray *subtitlesListArr;
-@property (nonatomic, copy) NSString *currentTime;
 
 @end
 
@@ -46,6 +46,12 @@
     [[IQKeyboardManager sharedManager] setEnable:YES];
     // 启用IQKeyboard 的 Toolbar
     [[IQKeyboardManager sharedManager] setEnableAutoToolbar:YES];
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+    
+    [[VENAudioPlayer sharedAudioPlayer] stop];
 }
 
 - (void)viewDidLoad {
@@ -74,8 +80,6 @@
     [self setupNavigationView];
     
     [self loadMaterialDetailsMakeSubtitlesPageData];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(currentTime:) name:@"CurrentTime" object:nil];
 }
 
 // 进入制作字幕
@@ -174,11 +178,6 @@
     [self.audioPlayerView endButtonClick];
 }
 
-// 当前时间
-- (void)currentTime:(NSNotification *)noti {
-    self.currentTime = noti.userInfo[@"time"];
-}
-
 // 时间戳
 - (void)timeStampButtonClick {
     self.placeholderLabel.hidden = YES;
@@ -186,7 +185,8 @@
     NSMutableString *contentStr = [[NSMutableString alloc] initWithString:self.contentTextView.text];
     
     // 播放进度 时间戳
-    NSString *timeStr = [NSString stringWithFormat:@"[%@]\n\n", [self convertTime:[self.currentTime floatValue]]];
+    float currentTime = [[VENAudioPlayer sharedAudioPlayer] currentTime];
+    NSString *timeStr = [NSString stringWithFormat:@"[%@]\n\n", [self convertTime:currentTime]];
     
     // 光标位置
     NSInteger location = self.contentTextView.selectedRange.location;

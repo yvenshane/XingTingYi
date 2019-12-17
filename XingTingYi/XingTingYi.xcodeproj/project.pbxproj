@@ -149,6 +149,16 @@
 		2C3B469C23A2336B00135F7C /* QNSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C3B467E23A2336B00135F7C /* QNSessionManager.m */; };
 		2C3B469D23A2336B00135F7C /* QNFileRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C3B468123A2336B00135F7C /* QNFileRecorder.m */; };
 		2C3B469E23A2336B00135F7C /* QNPipeline.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C3B468723A2336B00135F7C /* QNPipeline.m */; };
+		2C3B46A223A258C200135F7C /* VENAudioPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C3B46A123A258C200135F7C /* VENAudioPlayer.m */; };
+		2C3B46A623A4D97F00135F7C /* VENMinePageMyNewWordBookTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C3B46A423A4D97F00135F7C /* VENMinePageMyNewWordBookTableViewCell.m */; };
+		2C3B46A723A4D97F00135F7C /* VENMinePageMyNewWordBookTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C3B46A523A4D97F00135F7C /* VENMinePageMyNewWordBookTableViewCell.xib */; };
+		2C3B46AA23A7166300135F7C /* VENMinePageMyNewWordBookModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C3B46A923A7166300135F7C /* VENMinePageMyNewWordBookModel.m */; };
+		2C3B46AE23A7353A00135F7C /* VENMaterialDetailsTranslationPageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C3B46AD23A7353A00135F7C /* VENMaterialDetailsTranslationPageModel.m */; };
+		2C3B46B223A737B700135F7C /* VENMaterialDetailsTranslationPageOtherTranslationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C3B46B123A737B700135F7C /* VENMaterialDetailsTranslationPageOtherTranslationViewController.m */; };
+		2C3B46B823A762C200135F7C /* VENMaterialDetailsTranslationPageOtherTranslationTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C3B46B623A762C200135F7C /* VENMaterialDetailsTranslationPageOtherTranslationTableViewCell.m */; };
+		2C3B46B923A762C200135F7C /* VENMaterialDetailsTranslationPageOtherTranslationTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C3B46B723A762C200135F7C /* VENMaterialDetailsTranslationPageOtherTranslationTableViewCell.xib */; };
+		2C3B46BD23A76A0C00135F7C /* VENMaterialDetailsTranslationPageOtherTranslationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C3B46BC23A76A0C00135F7C /* VENMaterialDetailsTranslationPageOtherTranslationModel.m */; };
+		2C3B46C223A7889B00135F7C /* VENMaterialDetailsAddNewWordsEditNewWordsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C3B46C123A7889B00135F7C /* VENMaterialDetailsAddNewWordsEditNewWordsModel.m */; };
 		2C3C59862387BDFB00AABCEA /* VENMaterialDetailsPageCategoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C3C59852387BDFB00AABCEA /* VENMaterialDetailsPageCategoryView.m */; };
 		2C3D638C237BF68F001754E4 /* VENDynamicCirclePageDetailsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C3D638B237BF68F001754E4 /* VENDynamicCirclePageDetailsModel.m */; };
 		2C3D63C2237BFB94001754E4 /* YYTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C3D638F237BFB94001754E4 /* YYTextView.m */; };
@@ -330,7 +340,7 @@
 		2CE8E6352398ADDC0048977F /* VENMaterialDetailsArticleCorrectionPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CE8E6332398ADDC0048977F /* VENMaterialDetailsArticleCorrectionPageViewController.m */; };
 		2CE8E6362398ADDC0048977F /* VENMaterialDetailsArticleCorrectionPageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2CE8E6342398ADDC0048977F /* VENMaterialDetailsArticleCorrectionPageViewController.xib */; };
 		2CE8E63B2398DE9E0048977F /* VENMaterialDetailsMakeSubtitlesPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CE8E6392398DE9E0048977F /* VENMaterialDetailsMakeSubtitlesPageViewController.m */; };
-		2CE8E63C2398DE9E0048977F /* VENMaterialDetailsMakeSubtitlesCorrectionPageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2CE8E63A2398DE9E0048977F /* VENMaterialDetailsMakeSubtitlesCorrectionPageViewController.xib */; };
+		2CE8E63C2398DE9E0048977F /* VENMaterialDetailsMakeSubtitlesPageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2CE8E63A2398DE9E0048977F /* VENMaterialDetailsMakeSubtitlesPageViewController.xib */; };
 		2CECFDC822E1C2DE001D9F7F /* VENHomePageTableViewCellTwo.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CECFDC622E1C2DE001D9F7F /* VENHomePageTableViewCellTwo.m */; };
 		2CECFDC922E1C2DE001D9F7F /* VENHomePageTableViewCellTwo.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2CECFDC722E1C2DE001D9F7F /* VENHomePageTableViewCellTwo.xib */; };
 		2CECFDCE22E1C62B001D9F7F /* VENHomePageTableViewHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CECFDCD22E1C62B001D9F7F /* VENHomePageTableViewHeaderView.m */; };
@@ -637,6 +647,24 @@
 		2C3B468423A2336B00135F7C /* QiniuSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QiniuSDK.h; sourceTree = "<group>"; };
 		2C3B468623A2336B00135F7C /* QNPipeline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QNPipeline.h; sourceTree = "<group>"; };
 		2C3B468723A2336B00135F7C /* QNPipeline.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QNPipeline.m; sourceTree = "<group>"; };
+		2C3B46A023A258C200135F7C /* VENAudioPlayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VENAudioPlayer.h; sourceTree = "<group>"; };
+		2C3B46A123A258C200135F7C /* VENAudioPlayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VENAudioPlayer.m; sourceTree = "<group>"; };
+		2C3B46A323A4D97F00135F7C /* VENMinePageMyNewWordBookTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VENMinePageMyNewWordBookTableViewCell.h; sourceTree = "<group>"; };
+		2C3B46A423A4D97F00135F7C /* VENMinePageMyNewWordBookTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VENMinePageMyNewWordBookTableViewCell.m; sourceTree = "<group>"; };
+		2C3B46A523A4D97F00135F7C /* VENMinePageMyNewWordBookTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VENMinePageMyNewWordBookTableViewCell.xib; sourceTree = "<group>"; };
+		2C3B46A823A7166300135F7C /* VENMinePageMyNewWordBookModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VENMinePageMyNewWordBookModel.h; sourceTree = "<group>"; };
+		2C3B46A923A7166300135F7C /* VENMinePageMyNewWordBookModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VENMinePageMyNewWordBookModel.m; sourceTree = "<group>"; };
+		2C3B46AC23A7353A00135F7C /* VENMaterialDetailsTranslationPageModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VENMaterialDetailsTranslationPageModel.h; sourceTree = "<group>"; };
+		2C3B46AD23A7353A00135F7C /* VENMaterialDetailsTranslationPageModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VENMaterialDetailsTranslationPageModel.m; sourceTree = "<group>"; };
+		2C3B46B023A737B700135F7C /* VENMaterialDetailsTranslationPageOtherTranslationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VENMaterialDetailsTranslationPageOtherTranslationViewController.h; sourceTree = "<group>"; };
+		2C3B46B123A737B700135F7C /* VENMaterialDetailsTranslationPageOtherTranslationViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VENMaterialDetailsTranslationPageOtherTranslationViewController.m; sourceTree = "<group>"; };
+		2C3B46B523A762C200135F7C /* VENMaterialDetailsTranslationPageOtherTranslationTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VENMaterialDetailsTranslationPageOtherTranslationTableViewCell.h; sourceTree = "<group>"; };
+		2C3B46B623A762C200135F7C /* VENMaterialDetailsTranslationPageOtherTranslationTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VENMaterialDetailsTranslationPageOtherTranslationTableViewCell.m; sourceTree = "<group>"; };
+		2C3B46B723A762C200135F7C /* VENMaterialDetailsTranslationPageOtherTranslationTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VENMaterialDetailsTranslationPageOtherTranslationTableViewCell.xib; sourceTree = "<group>"; };
+		2C3B46BB23A76A0C00135F7C /* VENMaterialDetailsTranslationPageOtherTranslationModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VENMaterialDetailsTranslationPageOtherTranslationModel.h; sourceTree = "<group>"; };
+		2C3B46BC23A76A0C00135F7C /* VENMaterialDetailsTranslationPageOtherTranslationModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VENMaterialDetailsTranslationPageOtherTranslationModel.m; sourceTree = "<group>"; };
+		2C3B46C023A7889B00135F7C /* VENMaterialDetailsAddNewWordsEditNewWordsModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VENMaterialDetailsAddNewWordsEditNewWordsModel.h; sourceTree = "<group>"; };
+		2C3B46C123A7889B00135F7C /* VENMaterialDetailsAddNewWordsEditNewWordsModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VENMaterialDetailsAddNewWordsEditNewWordsModel.m; sourceTree = "<group>"; };
 		2C3C59842387BDFB00AABCEA /* VENMaterialDetailsPageCategoryView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VENMaterialDetailsPageCategoryView.h; sourceTree = "<group>"; };
 		2C3C59852387BDFB00AABCEA /* VENMaterialDetailsPageCategoryView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VENMaterialDetailsPageCategoryView.m; sourceTree = "<group>"; };
 		2C3D638A237BF68F001754E4 /* VENDynamicCirclePageDetailsModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VENDynamicCirclePageDetailsModel.h; sourceTree = "<group>"; };
@@ -969,7 +997,7 @@
 		2CE8E6342398ADDC0048977F /* VENMaterialDetailsArticleCorrectionPageViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VENMaterialDetailsArticleCorrectionPageViewController.xib; sourceTree = "<group>"; };
 		2CE8E6382398DE9E0048977F /* VENMaterialDetailsMakeSubtitlesPageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VENMaterialDetailsMakeSubtitlesPageViewController.h; sourceTree = "<group>"; };
 		2CE8E6392398DE9E0048977F /* VENMaterialDetailsMakeSubtitlesPageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VENMaterialDetailsMakeSubtitlesPageViewController.m; sourceTree = "<group>"; };
-		2CE8E63A2398DE9E0048977F /* VENMaterialDetailsMakeSubtitlesCorrectionPageViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VENMaterialDetailsMakeSubtitlesCorrectionPageViewController.xib; sourceTree = "<group>"; };
+		2CE8E63A2398DE9E0048977F /* VENMaterialDetailsMakeSubtitlesPageViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VENMaterialDetailsMakeSubtitlesPageViewController.xib; sourceTree = "<group>"; };
 		2CECFDC522E1C2DE001D9F7F /* VENHomePageTableViewCellTwo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VENHomePageTableViewCellTwo.h; sourceTree = "<group>"; };
 		2CECFDC622E1C2DE001D9F7F /* VENHomePageTableViewCellTwo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VENHomePageTableViewCellTwo.m; sourceTree = "<group>"; };
 		2CECFDC722E1C2DE001D9F7F /* VENHomePageTableViewCellTwo.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VENHomePageTableViewCellTwo.xib; sourceTree = "<group>"; };
@@ -1439,6 +1467,7 @@
 				2C2FAA98236ADD0C001227F4 /* UIViewController+DDYPresent.m */,
 				2C817FE122F172FF00DA6F0B /* CategoryView */,
 				2C1C010422DC1EE400E4E9C4 /* Network */,
+				2C726A6723A228180024BED7 /* AudioRecorder */,
 				2CA9909623068D180081CC0C /* PickerView */,
 				2C888E6823264F2100CD0510 /* MaterialSortSelectorView */,
 				2C1E2B592327932D0080C526 /* MaterialFormatSelectorView */,
@@ -1995,6 +2024,79 @@
 			path = BigData;
 			sourceTree = "<group>";
 		};
+		2C3B469F23A2588A00135F7C /* AudioPlayer */ = {
+			isa = PBXGroup;
+			children = (
+				2C3B46A023A258C200135F7C /* VENAudioPlayer.h */,
+				2C3B46A123A258C200135F7C /* VENAudioPlayer.m */,
+			);
+			path = AudioPlayer;
+			sourceTree = "<group>";
+		};
+		2C3B46AB23A7352A00135F7C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				2C3B46AC23A7353A00135F7C /* VENMaterialDetailsTranslationPageModel.h */,
+				2C3B46AD23A7353A00135F7C /* VENMaterialDetailsTranslationPageModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		2C3B46AF23A7373600135F7C /* OtherTranslation */ = {
+			isa = PBXGroup;
+			children = (
+				2C3B46BA23A769FB00135F7C /* Model */,
+				2C3B46B423A7614800135F7C /* View */,
+				2C3B46B323A7613F00135F7C /* Controller */,
+			);
+			path = OtherTranslation;
+			sourceTree = "<group>";
+		};
+		2C3B46B323A7613F00135F7C /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				2C3B46B023A737B700135F7C /* VENMaterialDetailsTranslationPageOtherTranslationViewController.h */,
+				2C3B46B123A737B700135F7C /* VENMaterialDetailsTranslationPageOtherTranslationViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		2C3B46B423A7614800135F7C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				2C3B46B523A762C200135F7C /* VENMaterialDetailsTranslationPageOtherTranslationTableViewCell.h */,
+				2C3B46B623A762C200135F7C /* VENMaterialDetailsTranslationPageOtherTranslationTableViewCell.m */,
+				2C3B46B723A762C200135F7C /* VENMaterialDetailsTranslationPageOtherTranslationTableViewCell.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		2C3B46BA23A769FB00135F7C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				2C3B46BB23A76A0C00135F7C /* VENMaterialDetailsTranslationPageOtherTranslationModel.h */,
+				2C3B46BC23A76A0C00135F7C /* VENMaterialDetailsTranslationPageOtherTranslationModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		2C3B46BE23A7884000135F7C /* EditNewWords */ = {
+			isa = PBXGroup;
+			children = (
+				2C3B46BF23A7884F00135F7C /* Model */,
+			);
+			path = EditNewWords;
+			sourceTree = "<group>";
+		};
+		2C3B46BF23A7884F00135F7C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				2C3B46C023A7889B00135F7C /* VENMaterialDetailsAddNewWordsEditNewWordsModel.h */,
+				2C3B46C123A7889B00135F7C /* VENMaterialDetailsAddNewWordsEditNewWordsModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		2C3D6389237BF5B7001754E4 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -2094,14 +2196,14 @@
 			path = BottomToolsBar;
 			sourceTree = "<group>";
 		};
-		2C4D5EDD2351737C0010D5A1 /* AudioPlayer */ = {
+		2C4D5EDD2351737C0010D5A1 /* AudioPlayerView */ = {
 			isa = PBXGroup;
 			children = (
 				2C4D5EDE235174320010D5A1 /* VENAudioPlayerView.h */,
 				2C4D5EDF235174320010D5A1 /* VENAudioPlayerView.m */,
 				2C4D5EE12351743F0010D5A1 /* VENAudioPlayerView.xib */,
 			);
-			path = AudioPlayer;
+			path = AudioPlayerView;
 			sourceTree = "<group>";
 		};
 		2C5CC94F2302981700FAC842 /* Main */ = {
@@ -2166,6 +2268,8 @@
 		2C5CC96123029A7B00FAC842 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				2C3B46A823A7166300135F7C /* VENMinePageMyNewWordBookModel.h */,
+				2C3B46A923A7166300135F7C /* VENMinePageMyNewWordBookModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2173,6 +2277,9 @@
 		2C5CC96223029A7B00FAC842 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				2C3B46A323A4D97F00135F7C /* VENMinePageMyNewWordBookTableViewCell.h */,
+				2C3B46A423A4D97F00135F7C /* VENMinePageMyNewWordBookTableViewCell.m */,
+				2C3B46A523A4D97F00135F7C /* VENMinePageMyNewWordBookTableViewCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2587,7 +2694,6 @@
 			isa = PBXGroup;
 			children = (
 				2C726A6623A228100024BED7 /* Main */,
-				2C726A6723A228180024BED7 /* AudioRecorder */,
 			);
 			path = ReadAloud;
 			sourceTree = "<group>";
@@ -2597,6 +2703,7 @@
 			children = (
 				2CE829E1239F44EF005F6D55 /* Main */,
 				2CE829E2239F44F8005F6D55 /* SearchWord */,
+				2C3B46AF23A7373600135F7C /* OtherTranslation */,
 			);
 			path = Translation;
 			sourceTree = "<group>";
@@ -3157,6 +3264,7 @@
 		2CE829E1239F44EF005F6D55 /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				2C3B46AB23A7352A00135F7C /* Model */,
 				2C849329239F35A00075F2AB /* View */,
 				2C84932A239F35A40075F2AB /* Controller */,
 			);
@@ -3168,6 +3276,7 @@
 			children = (
 				2CF3BCBB23A0810F003B91EB /* Main */,
 				2CF3BCBC23A08117003B91EB /* AddNewWords */,
+				2C3B46BE23A7884000135F7C /* EditNewWords */,
 			);
 			path = SearchWord;
 			sourceTree = "<group>";
@@ -3212,7 +3321,7 @@
 			children = (
 				2CE8E6382398DE9E0048977F /* VENMaterialDetailsMakeSubtitlesPageViewController.h */,
 				2CE8E6392398DE9E0048977F /* VENMaterialDetailsMakeSubtitlesPageViewController.m */,
-				2CE8E63A2398DE9E0048977F /* VENMaterialDetailsMakeSubtitlesCorrectionPageViewController.xib */,
+				2CE8E63A2398DE9E0048977F /* VENMaterialDetailsMakeSubtitlesPageViewController.xib */,
 			);
 			path = MakeSubtitles;
 			sourceTree = "<group>";
@@ -3283,7 +3392,8 @@
 		2CFF8AFD232A4522009AD211 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				2C4D5EDD2351737C0010D5A1 /* AudioPlayer */,
+				2C3B469F23A2588A00135F7C /* AudioPlayer */,
+				2C4D5EDD2351737C0010D5A1 /* AudioPlayerView */,
 				2C4D5ED3234F07DC0010D5A1 /* BottomToolsBar */,
 				2C98B14623404C5D00E2C700 /* StyleSettings */,
 				2C4D5ECC234EDDF40010D5A1 /* VENMaterialDetailsStartDictationPageViewController.h */,
@@ -3371,6 +3481,7 @@
 				2C9C8E8C23A10F140070C42C /* WechatIMG247.png in Resources */,
 				2CDF2BA5239FC47C00486747 /* VENMaterialDetailsTranslationPageSearchWordTableViewCell.xib in Resources */,
 				2C9C8E7123A0994C0070C42C /* WechatIMG241.png in Resources */,
+				2C3B46B923A762C200135F7C /* VENMaterialDetailsTranslationPageOtherTranslationTableViewCell.xib in Resources */,
 				2CA990A223068D190081CC0C /* VENListPickerViewCell.xib in Resources */,
 				2CDD577C231E083700F64D57 /* VENRegisterPageViewController.xib in Resources */,
 				2C4D5ED0234EDDF40010D5A1 /* VENMaterialDetailsStartDictationPageViewController.xib in Resources */,
@@ -3378,6 +3489,7 @@
 				2C8278A622E560550066B0C2 /* VENHomePageBannerCollectionViewCell.xib in Resources */,
 				2CE68BDC238BF13500524CC4 /* VENMaterialDetailsPageMyDictationView.xib in Resources */,
 				2C9D241922D8333C00B15896 /* LaunchScreen.storyboard in Resources */,
+				2C3B46A723A4D97F00135F7C /* VENMinePageMyNewWordBookTableViewCell.xib in Resources */,
 				2C24703022F2E28A00142646 /* VENMinePageTableViewCell.xib in Resources */,
 				2CBCDEC12302BF270010BD11 /* VENSettingTableViewCell.xib in Resources */,
 				2C1E2B5823278D680080C526 /* VENMaterialSortSelectorViewCollectionReusableView.xib in Resources */,
@@ -3397,7 +3509,7 @@
 				2C1C012A22DC1EE400E4E9C4 /* MJRefresh.bundle in Resources */,
 				2C888E7023277F2700CD0510 /* VENMaterialSortSelectorViewCollectionViewCell.xib in Resources */,
 				2C98B15223404D1400E2C700 /* VENFontStyleSettingsTableViewCell.xib in Resources */,
-				2CE8E63C2398DE9E0048977F /* VENMaterialDetailsMakeSubtitlesCorrectionPageViewController.xib in Resources */,
+				2CE8E63C2398DE9E0048977F /* VENMaterialDetailsMakeSubtitlesPageViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3467,9 +3579,11 @@
 				2CF3BCC023A08185003B91EB /* VENMaterialDetailsTranslationPageSearchWordAddNewWordsViewController.m in Sources */,
 				2C817FEE22F1795E00DA6F0B /* VENMaterialPagePersonalMaterialAudioViewController.m in Sources */,
 				2C1C01BC22DC1EE400E4E9C4 /* VENNetworkingManager.m in Sources */,
+				2C3B46C223A7889B00135F7C /* VENMaterialDetailsAddNewWordsEditNewWordsModel.m in Sources */,
 				2C699E2A23190E9F00BA8810 /* JXCategoryIndicatorCellModel.m in Sources */,
 				2C3B469E23A2336B00135F7C /* QNPipeline.m in Sources */,
 				2C1C018622DC1EE400E4E9C4 /* IQKeyboardManager.m in Sources */,
+				2C3B46AE23A7353A00135F7C /* VENMaterialDetailsTranslationPageModel.m in Sources */,
 				2CECFDCE22E1C62B001D9F7F /* VENHomePageTableViewHeaderView.m in Sources */,
 				2C1C01E322DC63AD00E4E9C4 /* VENDynamicCirclePageViewController.m in Sources */,
 				2C1C018322DC1EE400E4E9C4 /* IQUIView+IQKeyboardToolbar.m in Sources */,
@@ -3481,6 +3595,7 @@
 				2C1C012D22DC1EE400E4E9C4 /* UIView+MJExtension.m in Sources */,
 				2C699E4123190E9F00BA8810 /* JXCategoryListCollectionContainerView.m in Sources */,
 				2C699E2023190E9F00BA8810 /* JXCategoryTitleVerticalZoomCell.m in Sources */,
+				2C3B46B823A762C200135F7C /* VENMaterialDetailsTranslationPageOtherTranslationTableViewCell.m in Sources */,
 				2CA990A323068D190081CC0C /* VENListPickerView.m in Sources */,
 				2C1C018722DC1EE400E4E9C4 /* IQNSArray+Sort.m in Sources */,
 				2C1C018A22DC1EE400E4E9C4 /* IQUIView+Hierarchy.m in Sources */,
@@ -3537,7 +3652,9 @@
 				2C1C01B322DC1EE400E4E9C4 /* UIView+WebCacheOperation.m in Sources */,
 				2C1C01B222DC1EE400E4E9C4 /* UIImageView+WebCache.m in Sources */,
 				2C699E3623190E9F00BA8810 /* JXCategoryImageView.m in Sources */,
+				2C3B46AA23A7166300135F7C /* VENMinePageMyNewWordBookModel.m in Sources */,
 				2C3B468823A2336B00135F7C /* QNConcurrentResumeUpload.m in Sources */,
+				2C3B46A223A258C200135F7C /* VENAudioPlayer.m in Sources */,
 				2CA152DD233B4D3F004CA0BA /* NSTextAttachment+LMText.m in Sources */,
 				2C1C013322DC1EE400E4E9C4 /* MJRefreshAutoNormalFooter.m in Sources */,
 				2C3D63C2237BFB94001754E4 /* YYTextView.m in Sources */,
@@ -3651,6 +3768,7 @@
 				2C699E50231927DD00BA8810 /* VENDynamicCirclePageListTableViewCell.m in Sources */,
 				2CDD578B231F601F00F64D57 /* VENDynamicCirclePageReleaseDynamicViewController.m in Sources */,
 				2C9C8E8523A102B50070C42C /* VENMinePageMyNewWordBookCategoryManagementViewController.m in Sources */,
+				2C3B46B223A737B700135F7C /* VENMaterialDetailsTranslationPageOtherTranslationViewController.m in Sources */,
 				2C123B4D2378F03F00F2B1A3 /* VENSettingPersonalInformationModel.m in Sources */,
 				2C3B469723A2336B00135F7C /* QNALAssetFile.m in Sources */,
 				2C1C01AD22DC1EE400E4E9C4 /* SDWebImageCompat.m in Sources */,
@@ -3680,6 +3798,7 @@
 				2C699E2D23190E9F00BA8810 /* JXCategoryDotCell.m in Sources */,
 				2CE8E62223978B7A0048977F /* VENMaterialDetailsPageFooterView.m in Sources */,
 				2C1E2B5F232793B10080C526 /* VENMaterialFormatSelectorView.m in Sources */,
+				2C3B46A623A4D97F00135F7C /* VENMinePageMyNewWordBookTableViewCell.m in Sources */,
 				2C1C019722DC1EE400E4E9C4 /* AFHTTPSessionManager.m in Sources */,
 				2C1C019B22DC1EE400E4E9C4 /* AFSecurityPolicy.m in Sources */,
 				2CD24F6023711BF000138207 /* VENHomePageModel.m in Sources */,
@@ -3690,6 +3809,7 @@
 				2C1C01DD22DC633000E4E9C4 /* VENHomePageViewController.m in Sources */,
 				2C1C012F22DC1EE400E4E9C4 /* MJRefreshBackStateFooter.m in Sources */,
 				2CE68BDA238BF12700524CC4 /* VENMaterialDetailsPageMyDictationView.m in Sources */,
+				2C3B46BD23A76A0C00135F7C /* VENMaterialDetailsTranslationPageOtherTranslationModel.m in Sources */,
 				2C817FFF22F190D200DA6F0B /* VENMaterialPagePlatformMaterialViewController.m in Sources */,
 				2C9C4DD022DC797B00A67B9D /* VENHomePageTableViewCell.m in Sources */,
 			);

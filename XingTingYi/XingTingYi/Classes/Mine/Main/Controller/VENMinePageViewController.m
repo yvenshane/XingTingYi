@@ -75,6 +75,7 @@ static NSString *const cellIdentifier = @"cellIdentifier";
     
     if (indexPath.row == 4) { // 我的生词本
         VENMinePageMyNewWordBookViewController *vc = [[VENMinePageMyNewWordBookViewController alloc] init];
+        vc.origin = @"PersonalCenter";
         vc.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:vc animated:YES];
     } else if (indexPath.row == 5) { // 会员中心

@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <AVFoundation/AVFoundation.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -18,7 +17,6 @@ typedef void (^palyButtonBlock)(BOOL);
 @property (weak, nonatomic) IBOutlet UIButton *loopButton; // 循环
 @property (nonatomic, copy) palyButtonBlock palyButtonBlock;
 
-- (AVPlayerLayer *)playerLayer;
 - (void)playButtonClick:(UIButton *)button;
 - (void)forwardButtonClick;
 - (void)retreatButtonClick;

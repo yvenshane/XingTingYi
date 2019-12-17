@@ -8,12 +8,14 @@
 
 #import "VENMaterialDetailsTranslationPageSearchWordAddNewWordsTableHeaderView.h"
 #import "VENAudioRecorder.h"
+#import "VENAudioPlayer.h"
 
 @interface VENMaterialDetailsTranslationPageSearchWordAddNewWordsTableHeaderView () <UITextViewDelegate>
-@property (nonatomic, strong) UIView *toolsBarView;
+@property (nonatomic, strong) VENAudioRecorder *audioRecorder;
+@property (nonatomic, strong) UIButton *recordButton;
 @property (nonatomic, strong) UIButton *playButton;
 
-@property (nonatomic, strong) VENAudioRecorder *audioRecorder;
+@property (nonatomic, assign) BOOL isPlayFile;
 
 @end
 
@@ -39,10 +41,10 @@
     UIButton *playButton = [[UIButton alloc] initWithFrame:CGRectMake(20, 9, 30, 30)];
     [playButton setImage:[UIImage imageNamed:@"icon_article_pop_play"] forState:UIControlStateNormal];
     [playButton addTarget:self action:@selector(playButtonClick:) forControlEvents:UIControlEventTouchUpInside];
-    playButton.hidden = YES;
+    playButton.hidden = self.isEdit ? NO : YES;
     [toolsBarView addSubview:playButton];
     
-    _toolsBarView = toolsBarView;
+    _recordButton = recordButton;
     _playButton = playButton;
     
     self.pronunciationTextField.rightView = toolsBarView;
@@ -71,7 +73,16 @@
 }
 
 - (void)playButtonClick:(UIButton *)button {
-    [self.audioRecorder playReadAloud];
+    if ([VENEmptyClass isEmptyString:self.path]) {
+        [self.audioRecorder playReadAloud];
+    } else {
+        if (self.isPlayFile) {
+            [self.audioRecorder playReadAloud];
+        } else {
+            [[VENAudioPlayer sharedAudioPlayer] playWithURL:[NSURL URLWithString:self.path]];
+            [[VENAudioPlayer sharedAudioPlayer] play];
+        }
+    }
 }
 
 - (void)recordButtonClick:(UIButton *)button {
@@ -80,11 +91,18 @@
         self.playButton.hidden = NO;
         
         [self.audioRecorder finishReadAloud]; // 完成录音
+        
+        if (self.addNewWordsBlock) {
+            self.addNewWordsBlock([self.audioRecorder path]);
+        }
+        
     } else {
         button.selected = YES;
         self.playButton.hidden = YES;
         
         [self.audioRecorder beginReadAloud]; // 开始录音
+        
+        self.isPlayFile = YES;
     }
 }
 

@@ -21,7 +21,7 @@
                         <constraint firstAttribute="height" constant="0.5" id="zde-aY-Q6d"/>
                     </constraints>
                 </view>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="生词" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FkJ-oz-2UJ">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="生词" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FkJ-oz-2UJ">
                     <rect key="frame" x="20" y="15.5" width="29" height="17"/>
                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
                     <color key="textColor" red="0.13333333333333333" green="0.13333333333333333" blue="0.13333333333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -61,7 +61,7 @@
                         <constraint firstAttribute="height" constant="10" id="Kzl-Mr-UTK"/>
                     </constraints>
                 </view>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="释义" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qTp-I0-VmM">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="释义" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qTp-I0-VmM">
                     <rect key="frame" x="20" y="112.5" width="29" height="17"/>
                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
                     <color key="textColor" red="0.1333333333" green="0.1333333333" blue="0.1333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -79,11 +79,11 @@
                     <textInputTraits key="textInputTraits"/>
                 </textField>
                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请填写释义" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rxy-eX-WxH">
-                    <rect key="frame" x="49" y="97" width="365" height="48"/>
+                    <rect key="frame" x="69" y="97" width="345" height="48"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="读音" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EJG-xW-LiV">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="读音" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EJG-xW-LiV">
                     <rect key="frame" x="20" y="161" width="29" height="17"/>
                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
                     <color key="textColor" red="0.1333333333" green="0.1333333333" blue="0.1333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -96,8 +96,8 @@
                         <constraint firstAttribute="height" constant="0.5" id="BzH-ed-Q21"/>
                     </constraints>
                 </view>
-                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请填写读音" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="g0O-vr-WrB">
-                    <rect key="frame" x="49" y="145.5" width="365" height="48"/>
+                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="12321313123121232131312312123213131231212321313123121232131312312123213131231212321313123121232131312312" placeholder="请填写读音" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="g0O-vr-WrB">
+                    <rect key="frame" x="69" y="145.5" width="345" height="48"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
@@ -198,7 +198,7 @@
                 <constraint firstItem="g0O-vr-WrB" firstAttribute="top" secondItem="Z8O-0C-Nkg" secondAttribute="bottom" id="PV8-BV-xZd"/>
                 <constraint firstItem="FvE-s9-KIK" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="QQi-tB-zbU"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="hYZ-lb-jcQ" secondAttribute="trailing" id="Qks-SH-tdN"/>
-                <constraint firstItem="g0O-vr-WrB" firstAttribute="leading" secondItem="EJG-xW-LiV" secondAttribute="trailing" id="TF0-gD-I6Y"/>
+                <constraint firstItem="g0O-vr-WrB" firstAttribute="leading" secondItem="EJG-xW-LiV" secondAttribute="trailing" constant="20" id="TF0-gD-I6Y"/>
                 <constraint firstItem="BKY-H6-LHp" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="Tci-Fw-3Be"/>
                 <constraint firstAttribute="trailing" secondItem="WfX-SS-vUp" secondAttribute="trailing" constant="20" id="VIk-Yt-pWy"/>
                 <constraint firstItem="fM4-JI-6Yk" firstAttribute="top" secondItem="c0e-bB-VjA" secondAttribute="bottom" constant="8" id="VNP-u6-uI2"/>
@@ -228,7 +228,7 @@
                 <constraint firstAttribute="trailing" secondItem="PvO-kt-sgc" secondAttribute="trailing" id="pg1-3F-3dy"/>
                 <constraint firstItem="Z8O-0C-Nkg" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="tks-0R-9LG"/>
                 <constraint firstItem="VfP-fc-9rG" firstAttribute="centerY" secondItem="3ty-WI-emG" secondAttribute="centerY" id="uO1-j2-GMN"/>
-                <constraint firstItem="rxy-eX-WxH" firstAttribute="leading" secondItem="qTp-I0-VmM" secondAttribute="trailing" id="w3l-8k-EMm"/>
+                <constraint firstItem="rxy-eX-WxH" firstAttribute="leading" secondItem="qTp-I0-VmM" secondAttribute="trailing" constant="20" id="w3l-8k-EMm"/>
                 <constraint firstItem="WfX-SS-vUp" firstAttribute="top" secondItem="gcc-EI-d0r" secondAttribute="bottom" constant="15.5" id="w8v-Xa-3Lk"/>
                 <constraint firstItem="3ty-WI-emG" firstAttribute="top" secondItem="sA7-18-VLL" secondAttribute="bottom" id="xA1-pI-oq4"/>
                 <constraint firstItem="gcc-EI-d0r" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="xmS-yD-aI4"/>

@@ -16,6 +16,7 @@
 #import "VENMaterialDetailsPageModel.h"
 #import "VENLabelPickerViewOne.h"
 #import "VENLabelPickerViewTwo.h"
+#import "VENAudioPlayer.h"
 
 @interface VENMaterialDetailsStartDictationPageViewController () <UITextViewDelegate>
 @property (weak, nonatomic) IBOutlet UITextView *contentTextView;
@@ -69,6 +70,12 @@
     [[IQKeyboardManager sharedManager] setEnableAutoToolbar:YES];
 }
 
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+    
+    [[VENAudioPlayer sharedAudioPlayer] stop];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
@@ -112,6 +119,8 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(saveDictationTag) name:@"SaveDictationTag" object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(confirmButtonClick:) name:@"ConfirmButtonClick" object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playDidFinish) name:@"playDidFinish" object:nil];
 }
 
 // 进入听写数据
@@ -307,6 +316,10 @@
 
 - (void)endButtonClick {
     [self.audioPlayerView endButtonClick];
+}
+
+- (void)playDidFinish {
+    self.bottomToolsBarView.playButton.selected = NO;
 }
 
 - (void)textStyleSettingButtonClick:(UIButton *)button {

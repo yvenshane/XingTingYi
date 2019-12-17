@@ -49,6 +49,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, copy) NSString *read;
 @property (nonatomic, copy) NSDictionary *translation;
+@property (nonatomic, copy) NSString *merge_audio;
 
 @end
 

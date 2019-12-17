@@ -17,8 +17,8 @@
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_player_bg" translatesAutoresizingMaskIntoConstraints="NO" id="Z0N-yK-gXq">
                     <rect key="frame" x="0.0" y="0.0" width="335" height="120"/>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FRB-ez-bjK">
-                    <rect key="frame" x="297.5" y="42" width="22.5" height="14"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FRB-ez-bjK">
+                    <rect key="frame" x="291" y="42" width="29" height="14"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="14" id="FzF-Pb-yXj"/>
                     </constraints>
@@ -102,7 +102,7 @@
                         <constraint firstAttribute="height" constant="14" id="3J0-Nk-tuF"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                    <state key="normal" title="0:00">
+                    <state key="normal" title="00:00">
                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </state>
                 </button>

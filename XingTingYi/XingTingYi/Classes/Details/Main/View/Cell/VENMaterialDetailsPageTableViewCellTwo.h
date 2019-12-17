@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-typedef void (^buttonOneBlock)(void);
+typedef void (^buttonOneBlock)(UIButton *);
 typedef void (^buttonTwoBlock)(void);
 typedef void (^buttonThreeBlock)(void);
 @interface VENMaterialDetailsPageTableViewCellTwo : UITableViewCell

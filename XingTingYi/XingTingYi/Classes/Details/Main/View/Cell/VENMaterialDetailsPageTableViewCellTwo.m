@@ -22,14 +22,14 @@
     self.contentView.layer.shadowRadius = 2.5;
     self.contentView.layer.shadowOffset = CGSizeMake(0,0);
     
-    [self.buttonOne addTarget:self action:@selector(buttonOneClick) forControlEvents:UIControlEventTouchUpInside];
+    [self.buttonOne addTarget:self action:@selector(buttonOneClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.buttonTwo addTarget:self action:@selector(buttonTwoClick) forControlEvents:UIControlEventTouchUpInside];
     [self.buttonThree addTarget:self action:@selector(buttonThreeClick) forControlEvents:UIControlEventTouchUpInside];
 }
 
-- (void)buttonOneClick {
+- (void)buttonOneClick:(UIButton *)button {
     if (self.buttonOneBlock) {
-        self.buttonOneBlock();
+        self.buttonOneBlock(button);
     }
 }
 

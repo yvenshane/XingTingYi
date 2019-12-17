@@ -9,6 +9,7 @@
 #import "VENMaterialDetailsReadAloudPageViewController.h"
 #import "VENMaterialDetailsPageModel.h"
 #import "VENAudioRecorder.h"
+#import "QiniuSDK.h"
 
 @interface VENMaterialDetailsReadAloudPageViewController ()
 @property (nonatomic, strong) UILabel *contentLabel;
@@ -91,7 +92,37 @@
 
 #pragma mark - 完成
 - (void)rightButtonClick {
-    
+    [MBProgressHUD addLoading];
+    [[VENNetworkingManager shareManager] requestWithType:HttpRequestTypeGET urlString:@"qiniu/createToken" parameters:nil successBlock:^(id responseObject) {
+        
+        NSString *token = responseObject[@"content"][@"token"];
+        NSString *path = self.audioRecorder.path;
+        NSData *data= [NSData dataWithContentsOfFile:path];
+        NSString *keys = responseObject[@"content"][@"key"];
+        
+        QNUploadManager *upManager = [[QNUploadManager alloc] init];
+        [upManager putData:data key:keys token:token complete: ^(QNResponseInfo *info, NSString *key, NSDictionary *resp) {
+            NSLog(@"info - %@", info);
+            NSLog(@"resp - %@", resp);
+
+            NSDictionary *parameters = @{@"source_period_id" : self.source_period_id,
+                                         @"path" : resp[@"key"]};
+
+            [[VENNetworkingManager shareManager] requestWithType:HttpRequestTypePOST urlString:@"source/read" parameters:parameters successBlock:^(id responseObject) {
+                
+                [MBProgressHUD removeLoading];
+                [self.navigationController popViewControllerAnimated:YES];
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"RefreshDetailPage" object:nil userInfo:nil];
+
+            } failureBlock:^(NSError *error) {
+
+            }];
+
+        } option:[QNUploadOption defaultOptions]];
+        
+    } failureBlock:^(NSError *error) {
+        
+    }];
 }
 
 #pragma mark - 录音/完成

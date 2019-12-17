@@ -9,10 +9,10 @@
 #import "VENMaterialDetailsPageHeaderView.h"
 #import "VENMaterialDetailsPageModel.h"
 #import "VENAudioPlayerView.h"
+#import "VENAudioPlayer.h"
 
 @interface VENMaterialDetailsPageHeaderView ()
 @property (nonatomic, strong) VENAudioPlayerView *audioPlayerView;
-@property (nonatomic, strong) AVPlayerLayer *playerLayer;
 
 @end
 
@@ -53,6 +53,10 @@
     
     self.audioViewBottomLayoutConstraint.constant = 0.0f;
     
+    
+    
+    
+    
     if (![VENEmptyClass isEmptyString:infoModel.source_path]) {
         self.audioPlayerView.audioURL = infoModel.source_path;
         
@@ -68,9 +72,33 @@
             self.audioViewYLayoutConstraint.constant = 20.0f;
         }
         
-        self.playerLayer.frame = CGRectMake(0, 0, CGRectGetWidth(self.videoView.frame), CGRectGetHeight(self.videoView.frame));
+        AVPlayerLayer *playerLayer = [[VENAudioPlayer sharedAudioPlayer] playerLayer];
+        [self.videoView.layer addSublayer:playerLayer];
+        playerLayer.frame = CGRectMake(0, 0, CGRectGetWidth(self.videoView.frame), CGRectGetHeight(self.videoView.frame));
         
         self.audioViewBottomLayoutConstraint.constant = 30.0f;
+    }
+    
+    if (![VENEmptyClass isEmptyString:infoModel.merge_audio]) {
+        self.audioPlayerView.audioURL = infoModel.merge_audio;
+        
+        // audio
+        self.audioViewHeightLayoutConstraint.constant = (kMainScreenWidth - 40) / (335.0 / 120.0);
+        self.videoViewYLayoutConstraint.constant = 20.0f;
+        
+        self.audioPlayerView.frame = CGRectMake(0, 0, CGRectGetWidth(self.audioView.frame), CGRectGetHeight(self.audioView.frame));
+        
+        // video
+        if ([[infoModel.merge_audio substringFromIndex:infoModel.merge_audio.length - 1] isEqualToString:@"4"]) { // 如果是.MP4
+            self.videoViewHeightLayoutConstraint.constant = (kMainScreenWidth - 40) / (335.0 / 188.0);
+            self.audioViewYLayoutConstraint.constant = 20.0f;
+        }
+        
+        AVPlayerLayer *playerLayer = [[VENAudioPlayer sharedAudioPlayer] playerLayer];
+        [self.videoView.layer addSublayer:playerLayer];
+        playerLayer.frame = CGRectMake(0, 0, CGRectGetWidth(self.videoView.frame), CGRectGetHeight(self.videoView.frame));
+        
+        self.audioViewBottomLayoutConstraint.constant = 0.0f;
     }
 }
 
@@ -87,14 +115,6 @@
         [self.audioView addSubview:_audioPlayerView];
     }
     return _audioPlayerView;
-}
-
-- (AVPlayerLayer *)playerLayer {
-    if (!_playerLayer) {
-        _playerLayer = [self.audioPlayerView playerLayer];
-        [self.videoView.layer addSublayer:_playerLayer];
-    }
-    return _playerLayer;
 }
 
 /*

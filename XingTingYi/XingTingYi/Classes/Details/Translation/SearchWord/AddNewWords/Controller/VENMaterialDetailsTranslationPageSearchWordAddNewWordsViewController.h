@@ -15,7 +15,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *translation;
 @property (nonatomic, copy) NSString *source_id;
 
+@property (nonatomic, copy) NSString *origin;
+
 @property (nonatomic, assign) BOOL isEdit;
+@property (nonatomic, copy) NSString *words_id;
 
 @end
 

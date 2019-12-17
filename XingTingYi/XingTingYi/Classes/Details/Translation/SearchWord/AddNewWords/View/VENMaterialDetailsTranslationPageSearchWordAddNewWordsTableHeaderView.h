@@ -10,6 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef void (^addNewWordsBlock)(NSString *);
 @interface VENMaterialDetailsTranslationPageSearchWordAddNewWordsTableHeaderView : UIView
 @property (weak, nonatomic) IBOutlet UITextField *nnewWordsTextField;
 @property (weak, nonatomic) IBOutlet UIButton *categoryButton;
@@ -20,6 +21,11 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UITextView *textViewOne;
 @property (weak, nonatomic) IBOutlet UILabel *placeholderLabelTwo;
 @property (weak, nonatomic) IBOutlet UITextView *textViewTwo;
+
+@property (nonatomic, assign) BOOL isEdit;
+@property (nonatomic, copy) NSString *path;
+
+@property (nonatomic, copy) addNewWordsBlock addNewWordsBlock;
 
 @end
 

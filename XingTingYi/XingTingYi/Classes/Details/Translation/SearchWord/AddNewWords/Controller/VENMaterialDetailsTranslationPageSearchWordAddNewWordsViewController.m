@@ -9,12 +9,20 @@
 #import "VENMaterialDetailsTranslationPageSearchWordAddNewWordsViewController.h"
 #import "VENMaterialDetailsTranslationPageSearchWordAddNewWordsTableHeaderView.h"
 #import "VENChooseCategoryView.h"
+#import "QiniuSDK.h"
+#import "VENMaterialDetailsAddNewWordsEditNewWordsModel.h"
 
 @interface VENMaterialDetailsTranslationPageSearchWordAddNewWordsViewController ()
 @property (nonatomic, strong) VENMaterialDetailsTranslationPageSearchWordAddNewWordsTableHeaderView *headerView;
-
 @property (nonatomic, copy) NSString *sort_id;
 @property (nonatomic, copy) NSString *sort_name;
+
+@property (nonatomic, copy) NSString *path;
+
+@property (nonatomic, strong) VENMaterialDetailsAddNewWordsEditNewWordsModel *wordsInfoModel;
+@property (nonatomic, copy) NSString *pronunciation_words;
+@property (nonatomic, copy) NSString *sentences;
+@property (nonatomic, copy) NSString *associate;
 
 @end
 
@@ -25,26 +33,71 @@ static NSString *const cellIdentifier = @"cellIdentifier";
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    self.navigationItem.title = @"添加生词";
-    
     [self setupTableView];
+    
+    if (self.isEdit) {
+        self.navigationItem.title = @"编辑生词";
+        [self loadEditNewWordsData];
+    } else {
+        self.navigationItem.title = @"添加生词";
+    }
+}
+
+- (void)loadEditNewWordsData {
+    [[VENNetworkingManager shareManager] requestWithType:HttpRequestTypePOST urlString:@"source/wordsInfo" parameters:@{@"words_id" : self.words_id} successBlock:^(id responseObject) {
+        
+        self.wordsInfoModel = [VENMaterialDetailsAddNewWordsEditNewWordsModel yy_modelWithJSON:responseObject[@"content"][@"wordsInfo"]];
+        
+        NSArray *wordsCategoryArr = responseObject[@"content"][@"wordsCategory"];
+        
+        for (NSDictionary *dict in wordsCategoryArr) {
+            for (NSDictionary *dict2 in dict[@"son"]) {
+                if ([self.wordsInfoModel.sort_id isEqualToString:dict2[@"id"]]) {
+                    self.sort_id = dict2[@"id"];
+                    self.sort_name = dict2[@"name"];
+                }
+            }
+        }
+        
+        [self.tableView reloadData];
+        
+    } failureBlock:^(NSError *error) {
+        
+    }];
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     VENMaterialDetailsTranslationPageSearchWordAddNewWordsTableHeaderView *headerView = [[NSBundle mainBundle] loadNibNamed:@"VENMaterialDetailsTranslationPageSearchWordAddNewWordsTableHeaderView" owner:nil options:nil].lastObject;
-    headerView.nnewWordsTextField.text = self.keyword;
-    headerView.nnewWordsTextField.userInteractionEnabled = NO;
-    headerView.translateTextField.text = self.translation;
-    headerView.translateTextField.userInteractionEnabled = NO;
+    headerView.isEdit = self.isEdit;
+    headerView.path = self.wordsInfoModel.path;
+    
+    headerView.addNewWordsBlock = ^(NSString *str) {
+        self.path = str;
+    };
+    
+    // 生词
+    headerView.nnewWordsTextField.text = [VENEmptyClass isEmptyString:self.keyword] ? self.wordsInfoModel.name : self.keyword;
+    [headerView.nnewWordsTextField addTarget:self action:@selector(nnewWordsTextFieldEditingChanged:) forControlEvents:UIControlEventEditingChanged];
+    
+    // 分类
+    headerView.categoryLabel.text = [VENEmptyClass isEmptyString:self.sort_name] ? @"请选择" : self.sort_name;
+    headerView.categoryLabel.textColor = [headerView.categoryLabel.text isEqualToString:@"请选择"] ? UIColorFromRGB(0xB2B2B2) : UIColorFromRGB(0x222222);
     [headerView.categoryButton addTarget:self action:@selector(categoryButtonClick) forControlEvents:UIControlEventTouchUpInside];
     
-    headerView.categoryLabel.text = [VENEmptyClass isEmptyString:self.sort_name] ? @"请选择" : self.sort_name;
+    // 释义
+    headerView.translateTextField.text = [VENEmptyClass isEmptyString:self.translation] ? self.wordsInfoModel.paraphrase : self.translation;
+    [headerView.translateTextField addTarget:self action:@selector(translateTextFieldEditingChanged:) forControlEvents:UIControlEventEditingChanged];
     
-    if ([headerView.categoryLabel.text isEqualToString:@"请选择"]) {
-        headerView.categoryLabel.textColor = UIColorFromRGB(0xB2B2B2);
-    } else {
-        headerView.categoryLabel.textColor = UIColorFromRGB(0x222222);
-    }
+    // 读音
+    headerView.pronunciationTextField.text = self.wordsInfoModel.pronunciation_words;
+    
+    // 例句
+    headerView.textViewOne.text = self.wordsInfoModel.sentences;
+    headerView.placeholderLabelOne.hidden = [VENEmptyClass isEmptyString:self.wordsInfoModel.sentences] ? NO : YES;
+    
+    // 联想
+    headerView.textViewTwo.text = self.wordsInfoModel.associate;
+    headerView.placeholderLabelTwo.hidden = [VENEmptyClass isEmptyString:self.wordsInfoModel.associate] ? NO : YES;
     
     _headerView = headerView;
     
@@ -59,7 +112,10 @@ static NSString *const cellIdentifier = @"cellIdentifier";
     UIView *footerView = [[UIView alloc] init];
     
     if (self.isEdit) {
-        UIButton *deleteButton = [[UIButton alloc] initWithFrame:CGRectMake(20, 25, kMainScreenWidth - 40, 48)];
+        
+        CGFloat width = (kMainScreenWidth - 20 * 2 - 15) / 2;
+        
+        UIButton *deleteButton = [[UIButton alloc] initWithFrame:CGRectMake(20, 25, width, 48)];
         deleteButton.backgroundColor = [UIColor whiteColor];
         [deleteButton setTitle:@"删除" forState:UIControlStateNormal];
         [deleteButton setTitleColor:UIColorFromRGB(0x222222) forState:UIControlStateNormal];
@@ -71,7 +127,7 @@ static NSString *const cellIdentifier = @"cellIdentifier";
         [deleteButton addTarget:self action:@selector(deleteButtonClick) forControlEvents:UIControlEventTouchUpInside];
         [footerView addSubview:deleteButton];
         
-        UIButton *saveButton = [[UIButton alloc] initWithFrame:CGRectMake(20, 25, kMainScreenWidth - 40, 48)];
+        UIButton *saveButton = [[UIButton alloc] initWithFrame:CGRectMake(20 + 15 + width, 25, width, 48)];
         saveButton.backgroundColor = UIColorFromRGB(0xFFDE02);
         [saveButton setTitle:@"保存" forState:UIControlStateNormal];
         [saveButton setTitleColor:UIColorFromRGB(0x222222) forState:UIControlStateNormal];
@@ -99,9 +155,21 @@ static NSString *const cellIdentifier = @"cellIdentifier";
     return 25 + 48;
 }
 
+- (void)nnewWordsTextFieldEditingChanged:(UITextField *)textField {
+    self.keyword = textField.text;
+}
+
+- (void)translateTextFieldEditingChanged:(UITextField *)textField {
+    self.translation = textField.text;
+}
+
 #pragma mark - 选择分类
-- (void)categoryButtonClick {    
+- (void)categoryButtonClick {
+    [self.headerView.nnewWordsTextField resignFirstResponder];
+    [self.headerView.translateTextField resignFirstResponder];
+    
     VENChooseCategoryView *chooseCategoryView = [[VENChooseCategoryView alloc] initWithFrame:CGRectMake(0, 0, kMainScreenWidth, kMainScreenHeight - kStatusBarAndNavigationBarHeight)];
+//    chooseCategoryView.sort_id = self.sort_id;
     chooseCategoryView.chooseCategoryViewBlock = ^(NSDictionary *dict) {
         self.sort_id = dict[@"sort_id"];
         self.sort_name = dict[@"sort_name"];
@@ -113,23 +181,142 @@ static NSString *const cellIdentifier = @"cellIdentifier";
 
 #pragma mark - 删除/保存/提交
 - (void)deleteButtonClick {
-    
+    [[VENNetworkingManager shareManager] requestWithType:HttpRequestTypePOST urlString:@"user/delWords" parameters:@{@"words_id" : self.words_id} successBlock:^(id responseObject) {
+        
+        [self.navigationController popViewControllerAnimated:YES];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"RefreshMyNewWordsPage" object:nil];
+        
+    } failureBlock:^(NSError *error) {
+        
+    }];
 }
 
 - (void)saveButtonClick {
-    
+    if (![VENEmptyClass isEmptyString:self.path]) { // 重新录音
+        [[VENNetworkingManager shareManager] requestWithType:HttpRequestTypeGET urlString:@"qiniu/createToken" parameters:nil successBlock:^(id responseObject) {
+            
+            NSString *token = responseObject[@"content"][@"token"];
+            NSString *path = self.path;
+            NSData *data= [NSData dataWithContentsOfFile:path];
+            NSString *keys = responseObject[@"content"][@"key"];
+            
+            QNUploadManager *upManager = [[QNUploadManager alloc] init];
+            [upManager putData:data key:keys token:token complete: ^(QNResponseInfo *info, NSString *key, NSDictionary *resp) {
+                NSLog(@"info - %@", info);
+                NSLog(@"resp - %@", resp);
+                
+                NSDictionary *parameters = @{@"source_id" : self.source_id,
+                                             @"words_id" : self.words_id,
+                                             @"name" : self.headerView.nnewWordsTextField.text,
+                                             @"sort_id" : self.sort_id,
+                                             @"paraphrase" : self.headerView.translateTextField.text,
+                                             @"pronunciation" : resp[@"key"],
+                                             @"pronunciation_words" : self.headerView.pronunciationTextField.text,
+                                             @"sentences" : self.headerView.textViewOne.text,
+                                             @"associate" : self.headerView.textViewTwo.text};
+                
+                [MBProgressHUD addLoading];
+                
+                [[VENNetworkingManager shareManager] requestWithType:HttpRequestTypePOST urlString:@"source/subWords" parameters:parameters successBlock:^(id responseObject) {
+                    
+                    [MBProgressHUD removeLoading];
+                    [self.navigationController popViewControllerAnimated:YES];
+                    [[NSNotificationCenter defaultCenter] postNotificationName:@"RefreshMyNewWordsPage" object:nil];
+                    
+                } failureBlock:^(NSError *error) {
+                    
+                }];
+                
+            } option:[QNUploadOption defaultOptions]];
+            
+        } failureBlock:^(NSError *error) {
+            
+        }];
+    } else { // 没有修改录音
+        NSDictionary *parameters = @{@"source_id" : self.source_id,
+                                     @"words_id" : self.words_id,
+                                     @"name" : self.headerView.nnewWordsTextField.text,
+                                     @"sort_id" : self.sort_id,
+                                     @"paraphrase" : self.headerView.translateTextField.text,
+                                     @"pronunciation" : self.wordsInfoModel.pronunciation,
+                                     @"pronunciation_words" : self.headerView.pronunciationTextField.text,
+                                     @"sentences" : self.headerView.textViewOne.text,
+                                     @"associate" : self.headerView.textViewTwo.text};
+        
+        [MBProgressHUD addLoading];
+        
+        [[VENNetworkingManager shareManager] requestWithType:HttpRequestTypePOST urlString:@"source/subWords" parameters:parameters successBlock:^(id responseObject) {
+            
+            [MBProgressHUD removeLoading];
+            [self.navigationController popViewControllerAnimated:YES];
+            
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"RefreshMyNewWordsPage" object:nil];
+            
+        } failureBlock:^(NSError *error) {
+            
+        }];
+    }
 }
 
 - (void)commitButtonClick {
-    NSDictionary *parameters = @{@"source_id" : self.source_id,
-                                 @"words_id" : @"0",
-                                 @"name" : self.keyword,
-                                 @"sort_id" : self.sort_id,
-                                 @"paraphrase" : self.translation,
-                                 @"sentences" : self.headerView.textViewOne.text,
-                                 @"associate" : self.headerView.textViewTwo.text};
+
+    if ([VENEmptyClass isEmptyString:self.path]) {
+        return;
+    }
     
-    [[VENNetworkingManager shareManager] requestWithType:HttpRequestTypePOST urlString:@"source/subWords" parameters:parameters successBlock:^(id responseObject) {
+    [[VENNetworkingManager shareManager] requestWithType:HttpRequestTypeGET urlString:@"qiniu/createToken" parameters:nil successBlock:^(id responseObject) {
+        
+        NSString *token = responseObject[@"content"][@"token"];
+        NSString *path = self.path;
+        NSData *data= [NSData dataWithContentsOfFile:path];
+        NSString *keys = responseObject[@"content"][@"key"];
+        
+        QNUploadManager *upManager = [[QNUploadManager alloc] init];
+        [upManager putData:data key:keys token:token complete: ^(QNResponseInfo *info, NSString *key, NSDictionary *resp) {
+            NSLog(@"info - %@", info);
+            NSLog(@"resp - %@", resp);
+            
+            NSDictionary *parameters = @{};
+            NSString *url = @"";
+            
+            if ([self.origin isEqualToString:@"PersonalCenter"]) {
+                parameters = @{@"source_id" : @"0",
+                               @"words_id" : @"0",
+                               @"name" : self.keyword,
+                               @"sort_id" : self.sort_id,
+                               @"paraphrase" : self.translation,
+                               @"pronunciation" : resp[@"key"],
+                               @"pronunciation_words" : self.headerView.pronunciationTextField.text,
+                               @"sentences" : self.headerView.textViewOne.text,
+                               @"associate" : self.headerView.textViewTwo.text,
+                               @"type" : @"0"};
+                url = @"user/reSubWords";
+            } else {
+                parameters = @{@"source_id" : self.source_id,
+                               @"words_id" : @"0",
+                               @"name" : self.keyword,
+                               @"sort_id" : self.sort_id,
+                               @"paraphrase" : self.translation,
+                               @"pronunciation" : resp[@"key"],
+                               @"pronunciation_words" : self.headerView.pronunciationTextField.text,
+                               @"sentences" : self.headerView.textViewOne.text,
+                               @"associate" : self.headerView.textViewTwo.text};
+                url = @"source/subWords";
+            }
+            
+            [MBProgressHUD addLoading];
+            
+            [[VENNetworkingManager shareManager] requestWithType:HttpRequestTypePOST urlString:url parameters:parameters successBlock:^(id responseObject) {
+                
+                [MBProgressHUD removeLoading];
+                [self.navigationController popViewControllerAnimated:YES];
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"RefreshMyNewWordsPage" object:nil];
+                
+            } failureBlock:^(NSError *error) {
+                
+            }];
+            
+        } option:[QNUploadOption defaultOptions]];
         
     } failureBlock:^(NSError *error) {
         

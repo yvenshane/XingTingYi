@@ -11,6 +11,8 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface VENAudioRecorder : NSObject
+@property (nonatomic, copy) NSString *path;
+
 + (instancetype)sharedAudioRecorder;
 
 - (void)beginReadAloud;

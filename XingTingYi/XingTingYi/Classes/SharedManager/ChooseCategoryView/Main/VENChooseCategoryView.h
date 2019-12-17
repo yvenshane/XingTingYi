@@ -13,8 +13,6 @@ NS_ASSUME_NONNULL_BEGIN
 typedef void (^chooseCategoryViewBlock)(NSDictionary *);
 @interface VENChooseCategoryView : UIView
 @property (nonatomic, copy) chooseCategoryViewBlock chooseCategoryViewBlock;
-
-@property (nonatomic, copy) NSString *id;
 @property (nonatomic, copy) NSString *sort_id;
 
 @end

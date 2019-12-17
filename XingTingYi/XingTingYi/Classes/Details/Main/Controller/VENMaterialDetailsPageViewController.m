@@ -18,6 +18,8 @@
 #import "VENMaterialDetailsMakeSubtitlesPageViewController.h" // 制作字幕
 #import "VENMaterialDetailsReadAloudPageViewController.h" // 朗读
 #import "VENMaterialDetailsTranslationPageViewController.h" // 翻译
+#import "VENAudioPlayer.h"
+#import "VENMinePageMyNewWordBookViewController.h" // 添加生词
 
 @interface VENMaterialDetailsPageViewController ()
 @property (nonatomic, strong) UIView *navigationView;
@@ -139,10 +141,26 @@ static NSString *const cellIdentifier2 = @"cellIdentifier2";
         VENMaterialDetailsPageModel *textInfoModel = self.textInfoArr[indexPath.row];
         
         cell.titleLabel.text = textInfoModel.content;
-        cell.contentLabel.text = @"";
         
-        cell.buttonOneBlock = ^{
-            
+        NSString *contentStr = textInfoModel.translation[@"content"];
+        NSString *grammar = textInfoModel.translation[@"grammar"];
+        NSString *words = textInfoModel.translation[@"words"];
+        
+        if (![VENEmptyClass isEmptyString:contentStr] && ![VENEmptyClass isEmptyString:grammar] && ![VENEmptyClass isEmptyString:words]) {
+            cell.contentLabel.text = [NSString stringWithFormat:@"翻译：%@\n语法：%@\n单词：%@", contentStr, grammar, words];
+        } else {
+            cell.contentLabel.text = @"";
+        }
+        
+        if (![VENEmptyClass isEmptyString:textInfoModel.read]) {
+            cell.buttonOne.selected = YES;
+        }
+        
+        cell.buttonOneBlock = ^(UIButton *button) {
+            if (button.selected) {
+                [[VENAudioPlayer sharedAudioPlayer] playWithURL:[NSURL URLWithString:textInfoModel.read]];
+                [[VENAudioPlayer sharedAudioPlayer] play];
+            }
         };
         
         cell.buttonTwoBlock = ^{
@@ -257,24 +275,33 @@ static NSString *const cellIdentifier2 = @"cellIdentifier2";
         [rightButton setTitle:isModify ? @"修改字幕" : @"制作字幕" forState:UIControlStateNormal];
     } else if ([self.infoModel.type isEqualToString:@"3"]) {
         [leftButton setTitle:@"添加生词" forState:UIControlStateNormal];
-        [rightButton setTitle:@"合成录音" forState:UIControlStateNormal];
         
-        
-//        BOOL isAgain = ![VENEmptyClass isEmptyArray:avInfoModel.subtitlesList];
-//        [rightButton setTitle:isModify ? @"合成录音" : @"再次合成录音" forState:UIControlStateNormal];
+        if ([VENEmptyClass isEmptyString:self.infoModel.merge_audio]) {
+            [rightButton setTitle:@"合成录音" forState:UIControlStateNormal];
+        } else {
+            [rightButton setTitle:@"再次合成录音" forState:UIControlStateNormal];
+        }
     } else {
         
     }
 }
 
-#pragma mark - 开始听写
+#pragma mark - 开始听写/继续听写/添加生词
 - (void)leftButtonClick:(UIButton *)button {
-    VENMaterialDetailsPageModel *model = self.avInfoArr[0];
-    
-    VENMaterialDetailsStartDictationPageViewController *vc = [[VENMaterialDetailsStartDictationPageViewController alloc] init];
-    vc.source_id = self.infoModel.id;
-    vc.source_period_id = model.id;
-    [self.navigationController pushViewController:vc animated:YES];
+    if ([self.infoModel.type isEqualToString:@"1"] || [self.infoModel.type isEqualToString:@"2"]) { // 开始听写/继续听写
+        VENMaterialDetailsPageModel *model = self.avInfoArr[0];
+        
+        VENMaterialDetailsStartDictationPageViewController *vc = [[VENMaterialDetailsStartDictationPageViewController alloc] init];
+        vc.source_id = self.infoModel.id;
+        vc.source_period_id = model.id;
+        [self.navigationController pushViewController:vc animated:YES];
+    } else if ([self.infoModel.type isEqualToString:@"3"]) { // 添加生词
+        VENMaterialDetailsPageModel *model = self.textInfoArr[0];
+        
+        VENMinePageMyNewWordBookViewController *vc = [[VENMinePageMyNewWordBookViewController alloc] init];
+        vc.source_id = model.source_id;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
 }
 
 #pragma mark - cell 开始听写
@@ -288,13 +315,26 @@ static NSString *const cellIdentifier2 = @"cellIdentifier2";
     [self.navigationController pushViewController:vc animated:YES];
 }
 
-#pragma mark - 制作字幕
+#pragma mark - 制作字幕/合成录音
 - (void)rightButtonClick:(UIButton *)button {
-    VENMaterialDetailsPageModel *model = self.avInfoArr[0];
-    
-    VENMaterialDetailsMakeSubtitlesPageViewController *vc = [[VENMaterialDetailsMakeSubtitlesPageViewController alloc] init];
-    vc.source_period_id = model.id;
-    [self.navigationController pushViewController:vc animated:YES];
+    if ([self.infoModel.type isEqualToString:@"1"] || [self.infoModel.type isEqualToString:@"2"]) { // 制作字幕
+        VENMaterialDetailsPageModel *model = self.avInfoArr[0];
+        
+        VENMaterialDetailsMakeSubtitlesPageViewController *vc = [[VENMaterialDetailsMakeSubtitlesPageViewController alloc] init];
+        vc.source_period_id = model.id;
+        [self.navigationController pushViewController:vc animated:YES];
+    } else if ([self.infoModel.type isEqualToString:@"3"]) { // 合成录音
+        NSDictionary *parameters = @{@"source_id" : self.infoModel.id,
+                                     @"type" : @"1"};
+        
+        [[VENNetworkingManager shareManager] requestWithType:HttpRequestTypePOST urlString:@"qiniu/mergeAudioInfo" parameters:parameters successBlock:^(id responseObject) {
+            
+            [self loadVideoMaterialDetailsPageData];
+            
+        } failureBlock:^(NSError *error) {
+            
+        }];
+    }
 }
 
 #pragma mark - cell 制作字幕
@@ -328,6 +368,7 @@ static NSString *const cellIdentifier2 = @"cellIdentifier2";
 #pragma mark - 返回
 - (void)backButtonClick {
     [self.navigationController popViewControllerAnimated:YES];
+    [[VENAudioPlayer sharedAudioPlayer] stop];
 }
 
 #pragma mark - 纠错
@@ -344,10 +385,13 @@ static NSString *const cellIdentifier2 = @"cellIdentifier2";
 
 #pragma mark - NSNotificationCenter
 - (void)refreshDetailPage:(NSNotification *)noti {
-    self.categoryViewContent = noti.userInfo[@"content"];
-    self.categoryViewTitle = noti.userInfo[@"title"];
-    
-    [self.tableView reloadData];
+    if (![VENEmptyClass isEmptyDictionary:noti.userInfo]) {
+        self.categoryViewContent = noti.userInfo[@"content"];
+        self.categoryViewTitle = noti.userInfo[@"title"];
+        [self.tableView reloadData];
+    } else {
+        [self loadVideoMaterialDetailsPageData];
+    }
 }
 
 - (void)shrinkButtonClick:(NSNotification *)noti {
