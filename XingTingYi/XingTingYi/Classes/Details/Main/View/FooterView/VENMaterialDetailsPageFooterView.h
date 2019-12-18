@@ -15,11 +15,14 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UIView *categoryContentView;
 @property (weak, nonatomic) IBOutlet UILabel *categoryContentLabel;
 @property (weak, nonatomic) IBOutlet UIView *myDictationView;
+@property (weak, nonatomic) IBOutlet UIView *bottomView;
+@property (weak, nonatomic) IBOutlet UILabel *sectionDictationTitleLabel;
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *categoryViewHeightLayoutConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *categoryContentViewHeightLayoutConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *myDictationViewHeightLayoutConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *sectionDictationViewHeightLayoutConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomViewHeightLayoutConstraint;
 
 @property (nonatomic, copy) NSDictionary *contentDict;
 @property (nonatomic, copy) NSString *categoryViewContent;

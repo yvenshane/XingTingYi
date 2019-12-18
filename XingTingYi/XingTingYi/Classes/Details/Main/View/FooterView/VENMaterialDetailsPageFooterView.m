@@ -24,6 +24,7 @@
     
     VENMaterialDetailsPageModel *infoModel = [VENMaterialDetailsPageModel yy_modelWithJSON:contentDict[@"info"]];
     NSArray *avInfoArr = [NSArray yy_modelArrayWithClass:[VENMaterialDetailsPageModel class] json:contentDict[@"avInfo"]];
+    NSArray *textInfoArr = [NSArray yy_modelArrayWithClass:[VENMaterialDetailsPageModel class] json:contentDict[@"textInfo"]];
     
     VENMaterialDetailsPageModel *avInfoModel;
     if (avInfoArr.count > 0) {
@@ -90,13 +91,36 @@
         self.myDictationViewHeightLayoutConstraint.constant = 0.0f;
     }
     
-    // sectionDictationView
-    if (avInfoArr.count > 1) {
-        self.sectionDictationView.hidden = NO;
-        self.sectionDictationViewHeightLayoutConstraint.constant = 83.0f;
+    // bottom view
+    if ([infoModel.type isEqualToString:@"1"] || [infoModel.type isEqualToString:@"2"] || [infoModel.type isEqualToString:@"3"]) {
+        self.bottomView.hidden = YES;
+        self.bottomViewHeightLayoutConstraint.constant = 0.0f;
     } else {
-        self.sectionDictationView.hidden = YES;
-        self.sectionDictationViewHeightLayoutConstraint.constant = 0.0f;
+        self.bottomView.hidden = NO;
+        self.bottomViewHeightLayoutConstraint.constant = 70.0f;
+    }
+    
+    // sectionDictationView
+    if ([infoModel.type isEqualToString:@"1"] || [infoModel.type isEqualToString:@"2"] || [infoModel.type isEqualToString:@"3"]) {
+        self.sectionDictationTitleLabel.text = @"分段听写";
+        
+        if (avInfoArr.count > 1) {
+            self.sectionDictationView.hidden = NO;
+            self.sectionDictationViewHeightLayoutConstraint.constant = 83.0f;
+        } else {
+            self.sectionDictationView.hidden = YES;
+            self.sectionDictationViewHeightLayoutConstraint.constant = 0.0f;
+        }
+    } else {
+        self.sectionDictationTitleLabel.text = @"朗读翻译";
+        
+        if (textInfoArr.count > 0) {
+            self.sectionDictationView.hidden = NO;
+            self.sectionDictationViewHeightLayoutConstraint.constant = 83.0f;
+        } else {
+            self.sectionDictationView.hidden = YES;
+            self.sectionDictationViewHeightLayoutConstraint.constant = 0.0f;
+        }
     }
 }
 

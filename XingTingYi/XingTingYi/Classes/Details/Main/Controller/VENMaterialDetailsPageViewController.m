@@ -73,8 +73,16 @@ static NSString *const cellIdentifier2 = @"cellIdentifier2";
         self.avInfoArr = [NSArray yy_modelArrayWithClass:[VENMaterialDetailsPageModel class] json:responseObject[@"content"][@"avInfo"]];
         self.textInfoArr = [NSArray yy_modelArrayWithClass:[VENMaterialDetailsPageModel class] json:responseObject[@"content"][@"textInfo"]];
         
-        self.tableView.frame = CGRectMake(0, 0, kMainScreenWidth, kMainScreenHeight - 60 - (kTabBarHeight - 49));
-        [self setupBottomToolBar];
+        if ([self.infoModel.type isEqualToString:@"1"] || [self.infoModel.type isEqualToString:@"2"] || [self.infoModel.type isEqualToString:@"3"]) {
+            if (self.avInfoArr.count > 1) {
+                self.tableView.frame = CGRectMake(0, 0, kMainScreenWidth, kMainScreenHeight - (kTabBarHeight - 49));
+            } else {
+                [self setupBottomToolBar];
+                self.tableView.frame = CGRectMake(0, 0, kMainScreenWidth, kMainScreenHeight - 60 - (kTabBarHeight - 49));
+            }
+        } else {
+            self.tableView.frame = CGRectMake(0, 0, kMainScreenWidth, kMainScreenHeight - (kTabBarHeight - 49));
+        }
         
         [self.tableView reloadData];
         
@@ -219,13 +227,53 @@ static NSString *const cellIdentifier2 = @"cellIdentifier2";
         
         return footerView;
     } else {
-        UIView *otherView = [[NSBundle mainBundle] loadNibNamed:@"VENMaterialDetailsPageOtherView" owner:nil options:nil].lastObject;
+        UIView *otherView = [[UIView alloc] init];
+        otherView.backgroundColor = [UIColor whiteColor];
+        
+        // otherView = [[NSBundle mainBundle] loadNibNamed:@"VENMaterialDetailsPageOtherView" owner:nil options:nil].lastObject;
+        
+        if ([self.infoModel.type isEqualToString:@"1"] || [self.infoModel.type isEqualToString:@"2"] || [self.infoModel.type isEqualToString:@"3"]) {
+            
+        } else {
+            
+            CGFloat width = (kMainScreenWidth - 40 - 15) / 2;
+            
+            UIButton *leftButton = [[UIButton alloc] initWithFrame:CGRectMake(20, 15, width, 40)];
+            leftButton.backgroundColor = UIColorFromRGB(0xFFDE02);
+            [leftButton setTitleColor:UIColorFromRGB(0x222222) forState:UIControlStateNormal];
+            leftButton.titleLabel.font = [UIFont systemFontOfSize:16.0f];
+            leftButton.layer.cornerRadius = 20.0f;
+            leftButton.layer.masksToBounds = YES;
+            [leftButton addTarget:self action:@selector(leftButtonClick:) forControlEvents:UIControlEventTouchUpInside];
+            [otherView addSubview:leftButton];
+            
+            UIButton *rightButton = [[UIButton alloc] initWithFrame:CGRectMake(20 + width + 15, 15, (kMainScreenWidth - 40 - 15) / 2, 40)];
+            rightButton.backgroundColor = UIColorFromRGB(0x222222);
+            [rightButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+            rightButton.titleLabel.font = [UIFont systemFontOfSize:16.0f];
+            rightButton.layer.cornerRadius = 20.0f;
+            rightButton.layer.masksToBounds = YES;
+            [rightButton addTarget:self action:@selector(rightButtonClick:) forControlEvents:UIControlEventTouchUpInside];
+            [otherView addSubview:rightButton];
+        }
         return otherView;
     }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView estimatedHeightForFooterInSection:(NSInteger)section {
-    return 475;
+    if ([self.infoModel.type isEqualToString:@"1"] || [self.infoModel.type isEqualToString:@"2"] || [self.infoModel.type isEqualToString:@"3"]) {
+        if (section == 0) {
+            return 475;
+        } else {
+            return 1;
+        }
+    } else {
+        if (section == 0) {
+            return 475;
+        } else {
+            return 85;
+        }
+    }
 }
 
 - (void)setupTableView {

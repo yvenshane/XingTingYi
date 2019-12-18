@@ -21,13 +21,19 @@ typedef void (^contentButtonBlock)(void);
 @property (weak, nonatomic) IBOutlet UIButton *contentButton;
 @property (weak, nonatomic) IBOutlet UIView *videoView;
 @property (weak, nonatomic) IBOutlet UIView *audioView;
+@property (weak, nonatomic) IBOutlet UIView *subtitleView;
+@property (weak, nonatomic) IBOutlet UILabel *subtitleLabel;
+@property (weak, nonatomic) IBOutlet UIButton *subtitleButton;
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *pictureImageViewHeightLayoutConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *videoViewHeightLayoutConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *audioViewHeightLayoutConstraint;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *videoViewYLayoutConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *audioViewYLayoutConstraint;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *audioViewBottomLayoutConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *contentViewHeightLayoutConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *contentViewYLayoutConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *subtitleViewHeightLayoutConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *subtitleViewYLayoutConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *subtitleViewBottomLayoutConstraint;
 
 @property (nonatomic, copy) contentButtonBlock contentButtonBlock;
 @property (nonatomic, copy) NSDictionary *contentDict;
