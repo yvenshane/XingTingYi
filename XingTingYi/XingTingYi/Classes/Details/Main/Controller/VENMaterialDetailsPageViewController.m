@@ -33,6 +33,9 @@
 @property (nonatomic, copy) NSString *categoryViewTitle;
 @property (nonatomic, copy) NSString *numberOfLines;
 
+@property (nonatomic, assign) BOOL isTextInfo; // 切换分段听写/朗读翻译
+@property (nonatomic, assign) BOOL isShowTextInfo;
+
 @end
 
 static NSString *const cellIdentifier = @"cellIdentifier";
@@ -99,10 +102,23 @@ static NSString *const cellIdentifier2 = @"cellIdentifier2";
     if (section == 0) {
         return 0;
     } else {
-        if (self.avInfoArr.count > 1) {
-            return self.avInfoArr.count;
-        } else if (self.textInfoArr.count > 0) {
-            return self.textInfoArr.count;
+        if (self.avInfoArr.count > 1 || self.textInfoArr.count > 0) {
+            
+            if (self.avInfoArr.count > 1 && self.textInfoArr.count < 1) {
+                self.isShowTextInfo = NO;
+                return self.avInfoArr.count;
+            } else if (self.avInfoArr.count < 1 && self.textInfoArr.count > 0) {
+                self.isShowTextInfo = YES;
+                return self.textInfoArr.count;
+            } else {
+                if (self.isTextInfo) {
+                    self.isShowTextInfo = YES;
+                    return self.textInfoArr.count;
+                } else {
+                    self.isShowTextInfo = NO;
+                    return self.avInfoArr.count;
+                }
+            }
         } else {
             return 0;
         }
@@ -110,7 +126,7 @@ static NSString *const cellIdentifier2 = @"cellIdentifier2";
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (self.avInfoArr.count > 1) {
+    if (!self.isShowTextInfo) {
         VENMaterialDetailsPageTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
@@ -142,7 +158,7 @@ static NSString *const cellIdentifier2 = @"cellIdentifier2";
         [cell.rightButton addTarget:self action:@selector(cellRightButtonClick:) forControlEvents:UIControlEventTouchUpInside];
         
         return cell;
-    } else if (self.textInfoArr.count > 0) {
+    } else {
         VENMaterialDetailsPageTableViewCellTwo *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier2 forIndexPath:indexPath];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
@@ -184,8 +200,6 @@ static NSString *const cellIdentifier2 = @"cellIdentifier2";
         };
         
         return cell;
-    } else {
-        return nil;
     }
 }
 
@@ -208,13 +222,18 @@ static NSString *const cellIdentifier2 = @"cellIdentifier2";
         
         return headerView;
     } else {
-        UIView *otherView = [[NSBundle mainBundle] loadNibNamed:@"VENMaterialDetailsPageOtherView" owner:nil options:nil].lastObject;
-        return otherView;
+        UIView *headerView = [[UIView alloc] init];
+        headerView.backgroundColor = [UIColor whiteColor];
+        return headerView;
     }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView estimatedHeightForHeaderInSection:(NSInteger)section {
-    return 965;
+    if (section == 0 && ![VENEmptyClass isEmptyDictionary:self.contentDict]) {
+        return 965;
+    } else {
+        return 1;
+    }
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
@@ -223,19 +242,18 @@ static NSString *const cellIdentifier2 = @"cellIdentifier2";
         footerView.categoryViewContent = self.categoryViewContent;
         footerView.categoryViewTitle = self.categoryViewTitle;
         footerView.numberOfLines = self.numberOfLines ? : @"3";
+        footerView.isTextInfo = self.isTextInfo;
+        
         footerView.contentDict = self.contentDict;
         
         return footerView;
     } else {
-        UIView *otherView = [[UIView alloc] init];
-        otherView.backgroundColor = [UIColor whiteColor];
+        UIView *footerView = [[UIView alloc] init];
+        footerView.backgroundColor = [UIColor whiteColor];
         
         // otherView = [[NSBundle mainBundle] loadNibNamed:@"VENMaterialDetailsPageOtherView" owner:nil options:nil].lastObject;
         
-        if ([self.infoModel.type isEqualToString:@"1"] || [self.infoModel.type isEqualToString:@"2"] || [self.infoModel.type isEqualToString:@"3"]) {
-            
-        } else {
-            
+        if (([self.infoModel.type isEqualToString:@"4"] || [self.infoModel.type isEqualToString:@"5"]) && self.isTextInfo) {
             CGFloat width = (kMainScreenWidth - 40 - 15) / 2;
             
             UIButton *leftButton = [[UIButton alloc] initWithFrame:CGRectMake(20, 15, width, 40)];
@@ -245,7 +263,7 @@ static NSString *const cellIdentifier2 = @"cellIdentifier2";
             leftButton.layer.cornerRadius = 20.0f;
             leftButton.layer.masksToBounds = YES;
             [leftButton addTarget:self action:@selector(leftButtonClick:) forControlEvents:UIControlEventTouchUpInside];
-            [otherView addSubview:leftButton];
+            [footerView addSubview:leftButton];
             
             UIButton *rightButton = [[UIButton alloc] initWithFrame:CGRectMake(20 + width + 15, 15, (kMainScreenWidth - 40 - 15) / 2, 40)];
             rightButton.backgroundColor = UIColorFromRGB(0x222222);
@@ -254,25 +272,20 @@ static NSString *const cellIdentifier2 = @"cellIdentifier2";
             rightButton.layer.cornerRadius = 20.0f;
             rightButton.layer.masksToBounds = YES;
             [rightButton addTarget:self action:@selector(rightButtonClick:) forControlEvents:UIControlEventTouchUpInside];
-            [otherView addSubview:rightButton];
+            [footerView addSubview:rightButton];
         }
-        return otherView;
+        return footerView;
     }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView estimatedHeightForFooterInSection:(NSInteger)section {
-    if ([self.infoModel.type isEqualToString:@"1"] || [self.infoModel.type isEqualToString:@"2"] || [self.infoModel.type isEqualToString:@"3"]) {
-        if (section == 0) {
-            return 475;
-        } else {
-            return 1;
-        }
+    if (section == 0 && ![VENEmptyClass isEmptyDictionary:self.contentDict]) {
+        return 475;
     } else {
-        if (section == 0) {
-            return 475;
-        } else {
+        if (([self.infoModel.type isEqualToString:@"4"] || [self.infoModel.type isEqualToString:@"5"]) && self.isTextInfo) {
             return 85;
         }
+        return 1;
     }
 }
 
@@ -434,8 +447,17 @@ static NSString *const cellIdentifier2 = @"cellIdentifier2";
 #pragma mark - NSNotificationCenter
 - (void)refreshDetailPage:(NSNotification *)noti {
     if (![VENEmptyClass isEmptyDictionary:noti.userInfo]) {
-        self.categoryViewContent = noti.userInfo[@"content"];
-        self.categoryViewTitle = noti.userInfo[@"title"];
+        if ([noti.userInfo[@"type"] isEqualToString:@"3"]) {
+            self.categoryViewContent = noti.userInfo[@"content"];
+            self.categoryViewTitle = noti.userInfo[@"title"];
+        } else {
+            if ([noti.userInfo[@"content"] isEqualToString:@"left"]) {
+                self.isTextInfo = NO;
+            } else {
+                self.isTextInfo = YES;
+            }
+        }
+        
         [self.tableView reloadData];
     } else {
         [self loadVideoMaterialDetailsPageData];

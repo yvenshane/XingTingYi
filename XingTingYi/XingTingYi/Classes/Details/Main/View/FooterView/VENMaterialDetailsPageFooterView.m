@@ -10,10 +10,12 @@
 #import "VENMaterialDetailsPageModel.h"
 #import "VENMaterialDetailsPageCategoryView.h"
 #import "VENMaterialDetailsPageMyDictationView.h"
+#import "VENAudioPlayerView.h"
 
 @interface VENMaterialDetailsPageFooterView ()
 @property (nonatomic, strong) VENMaterialDetailsPageCategoryView *categoryVieww;
 @property (nonatomic, strong) VENMaterialDetailsPageMyDictationView *myDictationVieww;
+@property (nonatomic, strong) VENAudioPlayerView *audioPlayerView;
 
 @end
 
@@ -59,7 +61,11 @@
                 tempStr = infoModel.answer;
             }
             
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"RefreshDetailPage" object:nil userInfo:@{@"content" : tempStr, @"title" : button.titleLabel.text}];
+            NSDictionary *userInfo = @{@"type" : @"3",
+                                       @"content" : tempStr,
+                                       @"title" : button.titleLabel.text};
+            
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"RefreshDetailPage" object:nil userInfo:userInfo];
         };
 
         self.categoryContentLabel.text = [VENEmptyClass isEmptyString:self.categoryViewContent] ? infoModel.notice : self.categoryViewContent;
@@ -96,32 +102,77 @@
         self.bottomView.hidden = YES;
         self.bottomViewHeightLayoutConstraint.constant = 0.0f;
     } else {
-        self.bottomView.hidden = NO;
-        self.bottomViewHeightLayoutConstraint.constant = 70.0f;
+        if (avInfoArr.count > 1) {
+            self.bottomView.hidden = YES;
+            self.bottomViewHeightLayoutConstraint.constant = 0.0f;
+        } else {
+            self.bottomView.hidden = NO;
+            self.bottomViewHeightLayoutConstraint.constant = 70.0f;
+        }
     }
     
+    self.sectionDictationView.hidden = YES;
+    self.sectionDictationViewHeightLayoutConstraint.constant = 0.0f;
+    self.categoryButtonView.hidden = YES;
+    self.categoryButtonViewHeightLayoutConstraint.constant = 0.0f;
+    self.audioView.hidden = YES;
+    self.audioViewHeightLayoutConstraint.constant = 0.0f;
+    
     // sectionDictationView
-    if ([infoModel.type isEqualToString:@"1"] || [infoModel.type isEqualToString:@"2"] || [infoModel.type isEqualToString:@"3"]) {
-        self.sectionDictationTitleLabel.text = @"分段听写";
-        
-        if (avInfoArr.count > 1) {
+    if (avInfoArr.count > 1 || textInfoArr.count > 0) {
+        if (avInfoArr.count > 1 && textInfoArr.count > 0) {
+            self.categoryButtonView.hidden = NO;
+            self.categoryButtonViewHeightLayoutConstraint.constant = 83.0f;
+            
+            if (self.isTextInfo) {
+                
+                self.categoryLeftLabel.textColor = UIColorFromRGB(0x999999);
+                self.categoryLeftView.hidden = YES;
+                
+                self.categoryRightLabel.textColor = UIColorFromRGB(0x222222);
+                self.categoryRightView.hidden = NO;
+                
+                if (![VENEmptyClass isEmptyString:infoModel.source_path]) {
+                    self.audioPlayerView.audioURL = infoModel.source_path;
+                    
+                    // audio
+                    self.audioView.hidden = NO;
+                    self.audioViewHeightLayoutConstraint.constant = (kMainScreenWidth - 40) / (335.0 / 120.0) + 25;
+                    self.audioPlayerView.frame = CGRectMake(0, 0, CGRectGetWidth(self.audioView.frame), CGRectGetHeight(self.audioView.frame) - 25);
+                }
+            }
+            
+        } else if (avInfoArr.count > 1 && textInfoArr.count < 1) {
             self.sectionDictationView.hidden = NO;
             self.sectionDictationViewHeightLayoutConstraint.constant = 83.0f;
+            
+            self.sectionDictationTitleLabel.text = @"分段听写";
         } else {
-            self.sectionDictationView.hidden = YES;
-            self.sectionDictationViewHeightLayoutConstraint.constant = 0.0f;
-        }
-    } else {
-        self.sectionDictationTitleLabel.text = @"朗读翻译";
-        
-        if (textInfoArr.count > 0) {
-            self.sectionDictationView.hidden = NO;
-            self.sectionDictationViewHeightLayoutConstraint.constant = 83.0f;
-        } else {
-            self.sectionDictationView.hidden = YES;
-            self.sectionDictationViewHeightLayoutConstraint.constant = 0.0f;
+            if (![infoModel.type isEqualToString:@"3"]) {
+                self.sectionDictationView.hidden = NO;
+                self.sectionDictationViewHeightLayoutConstraint.constant = 83.0f;
+                
+                self.sectionDictationTitleLabel.text = @"朗读翻译";
+            }
         }
     }
+    
+    [self.categoryLeftButton addTarget:self action:@selector(categoryLeftButtonClick) forControlEvents:UIControlEventTouchUpInside];
+    [self.categoryRightButton addTarget:self action:@selector(categoryRightButtonClick) forControlEvents:UIControlEventTouchUpInside];
+}
+
+- (void)categoryLeftButtonClick {
+    NSDictionary *userInfo = @{@"type" : @"2",
+                               @"content" : @"left"};
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"RefreshDetailPage" object:nil userInfo:userInfo];
+}
+
+- (void)categoryRightButtonClick {
+    NSDictionary *userInfo = @{@"type" : @"2",
+                               @"content" : @"right"};
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"RefreshDetailPage" object:nil userInfo:userInfo];
 }
 
 #pragma mark - 分类视图
@@ -140,6 +191,15 @@
         _myDictationVieww.frame = CGRectMake(0, 0, kMainScreenWidth, 200);
     }
     return _myDictationVieww;
+}
+
+#pragma mark - 音频播放器
+- (VENAudioPlayerView *)audioPlayerView {
+    if (!_audioPlayerView) {
+        _audioPlayerView = [[[NSBundle mainBundle] loadNibNamed:@"VENAudioPlayerView" owner:nil options:nil] firstObject];
+        [self.audioView addSubview:_audioPlayerView];
+    }
+    return _audioPlayerView;
 }
 
 /*
