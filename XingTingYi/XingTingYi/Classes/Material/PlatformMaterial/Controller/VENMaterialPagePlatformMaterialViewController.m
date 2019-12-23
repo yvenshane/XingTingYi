@@ -10,8 +10,7 @@
 #import "VENHomePageTableViewCellTwo.h"
 #import "VENMaterialSortSelectorView.h"
 #import "VENMaterialFormatSelectorView.h"
-#import "VENMaterialDetailsPageViewController.h"
-#import "VENMaterialDetailsPageViewController.h"
+#import "VENMaterialDetailPageViewController.h"
 #import "VENHomePageModel.h"
 
 @interface VENMaterialPagePlatformMaterialViewController () <UITableViewDelegate, UITableViewDataSource>
@@ -155,7 +154,7 @@ static NSString *const cellIdentifier = @"cellIdentifier";
     
     VENHomePageModel *model = self.dataSourceMuArr[indexPath.row];
     
-    VENMaterialDetailsPageViewController *vc = [[VENMaterialDetailsPageViewController alloc] init];
+    VENMaterialDetailPageViewController *vc = [[VENMaterialDetailPageViewController alloc] init];
     vc.id = model.id;
     vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];

@@ -236,6 +236,8 @@
 		2C699E50231927DD00BA8810 /* VENDynamicCirclePageListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C699E4E231927DD00BA8810 /* VENDynamicCirclePageListTableViewCell.m */; };
 		2C699E51231927DD00BA8810 /* VENDynamicCirclePageListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C699E4F231927DD00BA8810 /* VENDynamicCirclePageListTableViewCell.xib */; };
 		2C726A7023A2290B0024BED7 /* VENAudioRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C726A6F23A2290B0024BED7 /* VENAudioRecorder.m */; };
+		2C74228023AA451E00D217DA /* VENMaterialDetailPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C74227E23AA451E00D217DA /* VENMaterialDetailPageViewController.m */; };
+		2C74228123AA451E00D217DA /* VENMaterialDetailPageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C74227F23AA451E00D217DA /* VENMaterialDetailPageViewController.xib */; };
 		2C776B2723A083CE002926EA /* VENMaterialDetailsTranslationPageSearchWordAddNewWordsTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C776B2623A083CE002926EA /* VENMaterialDetailsTranslationPageSearchWordAddNewWordsTableHeaderView.m */; };
 		2C776B2923A083D6002926EA /* VENMaterialDetailsTranslationPageSearchWordAddNewWordsTableHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C776B2823A083D6002926EA /* VENMaterialDetailsTranslationPageSearchWordAddNewWordsTableHeaderView.xib */; };
 		2C817FE422F172FF00DA6F0B /* VENBaseCategoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C817FE322F172FF00DA6F0B /* VENBaseCategoryView.m */; };
@@ -336,7 +338,6 @@
 		2CE8E62423978B8B0048977F /* VENMaterialDetailsPageFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2CE8E62323978B8B0048977F /* VENMaterialDetailsPageFooterView.xib */; };
 		2CE8E62D2397D2B70048977F /* VENMaterialDetailsPageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CE8E62B2397D2B70048977F /* VENMaterialDetailsPageTableViewCell.m */; };
 		2CE8E62E2397D2B70048977F /* VENMaterialDetailsPageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2CE8E62C2397D2B70048977F /* VENMaterialDetailsPageTableViewCell.xib */; };
-		2CE8E6302397D8750048977F /* VENMaterialDetailsPageOtherView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2CE8E62F2397D8750048977F /* VENMaterialDetailsPageOtherView.xib */; };
 		2CE8E6352398ADDC0048977F /* VENMaterialDetailsArticleCorrectionPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CE8E6332398ADDC0048977F /* VENMaterialDetailsArticleCorrectionPageViewController.m */; };
 		2CE8E6362398ADDC0048977F /* VENMaterialDetailsArticleCorrectionPageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2CE8E6342398ADDC0048977F /* VENMaterialDetailsArticleCorrectionPageViewController.xib */; };
 		2CE8E63B2398DE9E0048977F /* VENMaterialDetailsMakeSubtitlesPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CE8E6392398DE9E0048977F /* VENMaterialDetailsMakeSubtitlesPageViewController.m */; };
@@ -818,6 +819,9 @@
 		2C699E4F231927DD00BA8810 /* VENDynamicCirclePageListTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VENDynamicCirclePageListTableViewCell.xib; sourceTree = "<group>"; };
 		2C726A6E23A2290B0024BED7 /* VENAudioRecorder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VENAudioRecorder.h; sourceTree = "<group>"; };
 		2C726A6F23A2290B0024BED7 /* VENAudioRecorder.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VENAudioRecorder.m; sourceTree = "<group>"; };
+		2C74227D23AA451E00D217DA /* VENMaterialDetailPageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VENMaterialDetailPageViewController.h; sourceTree = "<group>"; };
+		2C74227E23AA451E00D217DA /* VENMaterialDetailPageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VENMaterialDetailPageViewController.m; sourceTree = "<group>"; };
+		2C74227F23AA451E00D217DA /* VENMaterialDetailPageViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VENMaterialDetailPageViewController.xib; sourceTree = "<group>"; };
 		2C776B2523A083CE002926EA /* VENMaterialDetailsTranslationPageSearchWordAddNewWordsTableHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VENMaterialDetailsTranslationPageSearchWordAddNewWordsTableHeaderView.h; sourceTree = "<group>"; };
 		2C776B2623A083CE002926EA /* VENMaterialDetailsTranslationPageSearchWordAddNewWordsTableHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VENMaterialDetailsTranslationPageSearchWordAddNewWordsTableHeaderView.m; sourceTree = "<group>"; };
 		2C776B2823A083D6002926EA /* VENMaterialDetailsTranslationPageSearchWordAddNewWordsTableHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VENMaterialDetailsTranslationPageSearchWordAddNewWordsTableHeaderView.xib; sourceTree = "<group>"; };
@@ -991,7 +995,6 @@
 		2CE8E62A2397D2B70048977F /* VENMaterialDetailsPageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VENMaterialDetailsPageTableViewCell.h; sourceTree = "<group>"; };
 		2CE8E62B2397D2B70048977F /* VENMaterialDetailsPageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VENMaterialDetailsPageTableViewCell.m; sourceTree = "<group>"; };
 		2CE8E62C2397D2B70048977F /* VENMaterialDetailsPageTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VENMaterialDetailsPageTableViewCell.xib; sourceTree = "<group>"; };
-		2CE8E62F2397D8750048977F /* VENMaterialDetailsPageOtherView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VENMaterialDetailsPageOtherView.xib; sourceTree = "<group>"; };
 		2CE8E6322398ADDC0048977F /* VENMaterialDetailsArticleCorrectionPageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VENMaterialDetailsArticleCorrectionPageViewController.h; sourceTree = "<group>"; };
 		2CE8E6332398ADDC0048977F /* VENMaterialDetailsArticleCorrectionPageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VENMaterialDetailsArticleCorrectionPageViewController.m; sourceTree = "<group>"; };
 		2CE8E6342398ADDC0048977F /* VENMaterialDetailsArticleCorrectionPageViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VENMaterialDetailsArticleCorrectionPageViewController.xib; sourceTree = "<group>"; };
@@ -1901,6 +1904,9 @@
 			children = (
 				2C1E2B612327A8E70080C526 /* VENMaterialDetailsPageViewController.h */,
 				2C1E2B622327A8E70080C526 /* VENMaterialDetailsPageViewController.m */,
+				2C74227D23AA451E00D217DA /* VENMaterialDetailPageViewController.h */,
+				2C74227E23AA451E00D217DA /* VENMaterialDetailPageViewController.m */,
+				2C74227F23AA451E00D217DA /* VENMaterialDetailPageViewController.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1911,7 +1917,6 @@
 				2CE8E6292397D29D0048977F /* Cell */,
 				2CE68BD5238BEE6B00524CC4 /* HeaderView */,
 				2CE8E61F23978B4A0048977F /* FooterView */,
-				2CE8E62F2397D8750048977F /* VENMaterialDetailsPageOtherView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -3466,7 +3471,6 @@
 				2C9C8E9223A1DB260070C42C /* WechatIMG250.png in Resources */,
 				2C9C8E7523A09A290070C42C /* WechatIMG243.png in Resources */,
 				2CDD5780231E083700F64D57 /* VENLoginPageViewController.xib in Resources */,
-				2CE8E6302397D8750048977F /* VENMaterialDetailsPageOtherView.xib in Resources */,
 				2C776B2923A083D6002926EA /* VENMaterialDetailsTranslationPageSearchWordAddNewWordsTableHeaderView.xib in Resources */,
 				2CDD577B231E083700F64D57 /* VENBindingPhoneViewController.xib in Resources */,
 				2C4D5ED2234F06160010D5A1 /* Assets.xcassets in Resources */,
@@ -3482,6 +3486,7 @@
 				2CDF2BA5239FC47C00486747 /* VENMaterialDetailsTranslationPageSearchWordTableViewCell.xib in Resources */,
 				2C9C8E7123A0994C0070C42C /* WechatIMG241.png in Resources */,
 				2C3B46B923A762C200135F7C /* VENMaterialDetailsTranslationPageOtherTranslationTableViewCell.xib in Resources */,
+				2C74228123AA451E00D217DA /* VENMaterialDetailPageViewController.xib in Resources */,
 				2CA990A223068D190081CC0C /* VENListPickerViewCell.xib in Resources */,
 				2CDD577C231E083700F64D57 /* VENRegisterPageViewController.xib in Resources */,
 				2C4D5ED0234EDDF40010D5A1 /* VENMaterialDetailsStartDictationPageViewController.xib in Resources */,
@@ -3556,6 +3561,7 @@
 				2CF52809239540DF009B7C69 /* VENLabelPickerViewOne.m in Sources */,
 				2CA15354233B5ED1004CA0BA /* LMPhotoCollectionCell.m in Sources */,
 				2CECFDC822E1C2DE001D9F7F /* VENHomePageTableViewCellTwo.m in Sources */,
+				2C74228023AA451E00D217DA /* VENMaterialDetailPageViewController.m in Sources */,
 				2C3B469223A2336B00135F7C /* QNUrlSafeBase64.m in Sources */,
 				2C699E2723190E9F00BA8810 /* JXCategoryIndicatorComponentView.m in Sources */,
 				2C1C012922DC1EE400E4E9C4 /* MJRefreshConst.m in Sources */,

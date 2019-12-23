@@ -50,18 +50,10 @@
         lineImageView.hidden = NO;
         [button addSubview:lineImageView];
         
-        if (![VENEmptyClass isEmptyString:self.categoryViewTitle]) {
-            if (![self.categoryViewTitle isEqualToString:button.titleLabel.text]) {
-                [button setTitleColor:UIColorFromRGB(0x666666) forState:UIControlStateNormal];
-                button.titleLabel.font = [UIFont systemFontOfSize:16.0f weight:UIFontWeightMedium];
-                lineImageView.hidden = YES;
-            }
-        } else {
-            if (i != 0) {
-                [button setTitleColor:UIColorFromRGB(0x666666) forState:UIControlStateNormal];
-                button.titleLabel.font = [UIFont systemFontOfSize:16.0f weight:UIFontWeightMedium];
-                lineImageView.hidden = YES;
-            }
+        if (i != 0) {
+            [button setTitleColor:UIColorFromRGB(0x666666) forState:UIControlStateNormal];
+            button.titleLabel.font = [UIFont systemFontOfSize:16.0f weight:UIFontWeightMedium];
+            lineImageView.hidden = YES;
         }
         
         [self.buttonMuArr addObject:button];
@@ -69,26 +61,26 @@
 }
 
 - (void)buttonClick:(UIButton *)button {
-//    for (UIButton *button2 in self.buttonMuArr) {
-//        [button2 setTitleColor:UIColorFromRGB(0x666666) forState:UIControlStateNormal];
-//        button2.titleLabel.font = [UIFont systemFontOfSize:16.0f weight:UIFontWeightMedium];
-//
-//        for (UIImageView *imageView in button2.subviews) {
-//            if ([imageView isKindOfClass:[UIImageView class]]) {
-//                imageView.hidden = YES;
-//            }
-//        }
-//    }
-//
-//    [button setTitleColor:UIColorFromRGB(0x222222) forState:UIControlStateNormal];
-//    button.titleLabel.font = [UIFont systemFontOfSize:18.0f weight:UIFontWeightMedium];
-//
-//    for (UIImageView *imageView in button.subviews) {
-//        if ([imageView isKindOfClass:[UIImageView class]]) {
-//            imageView.hidden = NO;
-//        }
-//    }
-//
+    for (UIButton *button2 in self.buttonMuArr) {
+        [button2 setTitleColor:UIColorFromRGB(0x666666) forState:UIControlStateNormal];
+        button2.titleLabel.font = [UIFont systemFontOfSize:16.0f weight:UIFontWeightMedium];
+
+        for (UIImageView *imageView in button2.subviews) {
+            if ([imageView isKindOfClass:[UIImageView class]]) {
+                imageView.hidden = YES;
+            }
+        }
+    }
+
+    [button setTitleColor:UIColorFromRGB(0x222222) forState:UIControlStateNormal];
+    button.titleLabel.font = [UIFont systemFontOfSize:18.0f weight:UIFontWeightMedium];
+
+    for (UIImageView *imageView in button.subviews) {
+        if ([imageView isKindOfClass:[UIImageView class]]) {
+            imageView.hidden = NO;
+        }
+    }
+
     if (self.buttonClickBlock) {
         self.buttonClickBlock(button);
     }

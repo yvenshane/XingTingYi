@@ -210,7 +210,7 @@ static NSString *const cellIdentifier2 = @"cellIdentifier2";
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     if (section == 0 && ![VENEmptyClass isEmptyDictionary:self.contentDict]) {
         VENMaterialDetailsPageHeaderView *headerView = [[NSBundle mainBundle] loadNibNamed:@"VENMaterialDetailsPageHeaderView" owner:nil options:nil].lastObject;
-        headerView.contentDict = self.contentDict;
+//        headerView.contentDict = self.contentDict;
         headerView.contentButtonBlock = ^{
             VENBaseWebViewController *vc = [[VENBaseWebViewController alloc] init];
             vc.HTMLString = self.infoModel.descriptionn;
@@ -239,12 +239,9 @@ static NSString *const cellIdentifier2 = @"cellIdentifier2";
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
     if (section == 0 && ![VENEmptyClass isEmptyDictionary:self.contentDict]) {
         VENMaterialDetailsPageFooterView *footerView = [[NSBundle mainBundle] loadNibNamed:@"VENMaterialDetailsPageFooterView" owner:nil options:nil].lastObject;
-        footerView.categoryViewContent = self.categoryViewContent;
-        footerView.categoryViewTitle = self.categoryViewTitle;
-        footerView.numberOfLines = self.numberOfLines ? : @"3";
-        footerView.isTextInfo = self.isTextInfo;
         
-        footerView.contentDict = self.contentDict;
+        
+        
         
         return footerView;
     } else {

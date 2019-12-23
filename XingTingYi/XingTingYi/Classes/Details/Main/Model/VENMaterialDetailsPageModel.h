@@ -51,6 +51,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSDictionary *translation;
 @property (nonatomic, copy) NSString *merge_audio;
 
+@property (nonatomic, assign) CGFloat cellHeight;
+
 @end
 
 NS_ASSUME_NONNULL_END

@@ -11,7 +11,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="VENMaterialDetailsPageMyDictationView">
-            <rect key="frame" x="0.0" y="0.0" width="414" height="182"/>
+            <rect key="frame" x="0.0" y="0.0" width="414" height="151"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="19s-gC-jkR">
@@ -28,26 +28,26 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U7c-1W-OeX">
-                    <rect key="frame" x="20" y="73.5" width="374" height="108"/>
+                    <rect key="frame" x="20" y="73.5" width="374" height="77"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AAW-Ev-VvW">
-                            <rect key="frame" x="15" y="15" width="344" height="47"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AAW-Ev-VvW">
+                            <rect key="frame" x="15" y="15" width="344" height="16"/>
                             <constraints>
                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="16" id="jnr-aa-L43"/>
                             </constraints>
-                            <string key="text">LabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabel</string>
                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                             <color key="textColor" red="0.1333333333" green="0.1333333333" blue="0.1333333333" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YTF-8L-7Iv">
-                            <rect key="frame" x="167" y="62" width="40" height="46"/>
+                            <rect key="frame" x="167" y="31" width="40" height="46"/>
                             <constraints>
                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="0yo-wg-O00"/>
                                 <constraint firstAttribute="width" constant="40" id="5ac-Yn-xez"/>
                                 <constraint firstAttribute="height" constant="46" id="T0w-e1-lnG"/>
                             </constraints>
                             <state key="normal" image="icon_more_down"/>
+                            <state key="selected" image="icon_more_up"/>
                         </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -79,10 +79,11 @@
                 <outlet property="contentLabel" destination="AAW-Ev-VvW" id="49i-et-gIU"/>
                 <outlet property="contentVieww" destination="U7c-1W-OeX" id="65M-hE-aeN"/>
             </connections>
-            <point key="canvasLocation" x="137.68115942028987" y="52.901785714285715"/>
+            <point key="canvasLocation" x="137.68115942028987" y="42.522321428571423"/>
         </view>
     </objects>
     <resources>
         <image name="icon_more_down" width="17" height="12"/>
+        <image name="icon_more_up" width="17" height="12"/>
     </resources>
 </document>

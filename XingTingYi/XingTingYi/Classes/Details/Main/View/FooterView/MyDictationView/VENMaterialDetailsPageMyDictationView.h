@@ -10,12 +10,13 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef void (^myDictationViewBlock)(CGFloat);
 @interface VENMaterialDetailsPageMyDictationView : UIView
 @property (weak, nonatomic) IBOutlet UIView *contentVieww;
 @property (weak, nonatomic) IBOutlet UILabel *contentLabel;
 @property (weak, nonatomic) IBOutlet UIButton *contentButton;
 
-@property (nonatomic, copy) NSString *numberOfLines;
+@property (nonatomic, copy) myDictationViewBlock myDictationViewBlock;
 
 @end
 

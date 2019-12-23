@@ -26,17 +26,17 @@ typedef void (^contentButtonBlock)(void);
 @property (weak, nonatomic) IBOutlet UIButton *subtitleButton;
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *pictureImageViewHeightLayoutConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *contentViewHeightLayoutConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *contentViewTopLayoutConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *videoViewHeightLayoutConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *audioViewHeightLayoutConstraint;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *audioViewYLayoutConstraint;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *contentViewHeightLayoutConstraint;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *contentViewYLayoutConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *audioViewTopLayoutConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *subtitleViewHeightLayoutConstraint;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *subtitleViewYLayoutConstraint;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *subtitleViewBottomLayoutConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *subtitleViewTopLayoutConstraint;
 
 @property (nonatomic, copy) contentButtonBlock contentButtonBlock;
-@property (nonatomic, copy) NSDictionary *contentDict;
+
+- (CGFloat)getHeightFromData:(NSDictionary *)data;
 
 @end
 

@@ -13,7 +13,6 @@ NS_ASSUME_NONNULL_BEGIN
 typedef void (^buttonClickBlock)(UIButton *);
 @interface VENMaterialDetailsPageCategoryView : UIView
 @property (nonatomic, copy) NSArray *titleArr;
-@property (nonatomic, copy) NSString *categoryViewTitle;
 @property (nonatomic, copy) buttonClickBlock buttonClickBlock;
 
 @end

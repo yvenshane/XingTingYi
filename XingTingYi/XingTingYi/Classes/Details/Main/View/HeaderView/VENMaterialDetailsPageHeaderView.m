@@ -18,23 +18,36 @@
 
 @implementation VENMaterialDetailsPageHeaderView
 
-- (void)setContentDict:(NSDictionary *)contentDict {
-    _contentDict = contentDict;
+- (CGFloat)getHeightFromData:(NSDictionary *)data {
     
-    VENMaterialDetailsPageModel *infoModel = [VENMaterialDetailsPageModel yy_modelWithJSON:contentDict[@"info"]];
+    CGFloat viewHeight = 0;
+    
+    VENMaterialDetailsPageModel *infoModel = [VENMaterialDetailsPageModel yy_modelWithJSON:data[@"info"]];
     
     // banner
-    self.pictureImageViewHeightLayoutConstraint.constant = kMainScreenWidth / (375.0 / 250.0);
+    CGFloat bannerHeight = kMainScreenWidth / (375.0 / 250.0);
+    self.pictureImageViewHeightLayoutConstraint.constant = bannerHeight;
     self.pictureImageView.contentMode = UIViewContentModeScaleAspectFill;
-    
     [self.pictureImageView sd_setImageWithURL:[NSURL URLWithString:infoModel.image]];
+    
+    viewHeight += bannerHeight;
     
     // title
     self.titileLabel.text = infoModel.title;
     self.otherLabel.text = [NSString stringWithFormat:@"%@      %@人已浏览", infoModel.created_at, infoModel.view_count];
+    CGFloat titleHeight = [self.titileLabel sizeThatFits:CGSizeMake(kMainScreenWidth - 40, CGFLOAT_MAX)].height;
+    
+    viewHeight += 20 + titleHeight + 10 + 16 + 20;
     
     // more
+    self.contentViewTopLayoutConstraint.constant = 0.0f;
+    self.contentViewHeightLayoutConstraint.constant = 0.0f;
+    self.contentView.hidden = YES;
+    
     if ([infoModel.type isEqualToString:@"1"] || [infoModel.type isEqualToString:@"2"] || [infoModel.type isEqualToString:@"3"]) {
+        
+        self.contentView.hidden = NO;
+        
         self.contentView.layer.cornerRadius = 8.0f;
         self.contentView.layer.masksToBounds = YES;
         self.contentView.layer.borderWidth = 1.0f;
@@ -44,71 +57,75 @@
         [self.contentButton addTarget:self action:@selector(contentButtonClick) forControlEvents:UIControlEventTouchUpInside];
         
         CGFloat height = [self.contentLabel sizeThatFits:CGSizeMake(kMainScreenWidth - 70, CGFLOAT_MAX)].height;
+        CGFloat contentViewHeight = 15 + height + 46;
         
-        self.contentViewHeightLayoutConstraint.constant = 15 + height + 46;
-        
-    } else {
-        self.contentView.hidden = YES;
-        self.contentViewHeightLayoutConstraint.constant = 0;
-        self.contentViewYLayoutConstraint.constant = 0;
+        self.contentViewTopLayoutConstraint.constant = 20.0f;
+        self.contentViewHeightLayoutConstraint.constant = contentViewHeight;
+        viewHeight += contentViewHeight;
     }
     
     // audio/video
-    self.audioView.layer.cornerRadius = 8.0f;
-    self.audioView.layer.masksToBounds = YES;
-    
     self.audioViewHeightLayoutConstraint.constant = 0.0f;
-    self.audioViewYLayoutConstraint.constant = 0.0f;
+    self.audioViewTopLayoutConstraint.constant = 0.0f;
     self.videoViewHeightLayoutConstraint.constant = 0.0f;
     
-    if (![VENEmptyClass isEmptyString:infoModel.source_path]) {
-        self.audioPlayerView.audioURL = infoModel.source_path;
-        
-        // audio
-        self.audioViewHeightLayoutConstraint.constant = (kMainScreenWidth - 40) / (335.0 / 120.0);
-        self.audioPlayerView.frame = CGRectMake(0, 0, CGRectGetWidth(self.audioView.frame), CGRectGetHeight(self.audioView.frame));
-        
-        // video
-        if ([[infoModel.source_path substringFromIndex:infoModel.source_path.length - 1] isEqualToString:@"4"]) { // 如果是.MP4
-            self.videoViewHeightLayoutConstraint.constant = (kMainScreenWidth - 40) / (335.0 / 188.0);
-            self.audioViewYLayoutConstraint.constant = 20.0f;
-        }
-        
-        AVPlayerLayer *playerLayer = [[VENAudioPlayer sharedAudioPlayer] playerLayer];
-        [self.videoView.layer addSublayer:playerLayer];
-        playerLayer.frame = CGRectMake(0, 0, CGRectGetWidth(self.videoView.frame), CGRectGetHeight(self.videoView.frame));
-    }
+    NSString *audioURL = @"";
     
     if (![VENEmptyClass isEmptyString:infoModel.merge_audio]) {
-        self.audioPlayerView.audioURL = infoModel.merge_audio;
+        audioURL = infoModel.merge_audio;
+    } else {
+        audioURL = infoModel.source_path;
+
+    }
+    
+    if (![VENEmptyClass isEmptyString:audioURL]) {
+        self.audioPlayerView.audioURL = audioURL;
         
         // audio
-        self.audioViewHeightLayoutConstraint.constant = (kMainScreenWidth - 40) / (335.0 / 120.0);
+        self.audioView.layer.cornerRadius = 8.0f;
+        self.audioView.layer.masksToBounds = YES;
+        
+        CGFloat audioHeight = (kMainScreenWidth - 40) / (335.0 / 120.0);
+        self.audioViewHeightLayoutConstraint.constant = audioHeight;
         self.audioPlayerView.frame = CGRectMake(0, 0, CGRectGetWidth(self.audioView.frame), CGRectGetHeight(self.audioView.frame));
         
-        // video
-        if ([[infoModel.merge_audio substringFromIndex:infoModel.merge_audio.length - 1] isEqualToString:@"4"]) { // 如果是.MP4
-            self.videoViewHeightLayoutConstraint.constant = (kMainScreenWidth - 40) / (335.0 / 188.0);
-            self.audioViewYLayoutConstraint.constant = 20.0f;
-        }
+        viewHeight += 30 + audioHeight;
         
-        AVPlayerLayer *playerLayer = [[VENAudioPlayer sharedAudioPlayer] playerLayer];
-        [self.videoView.layer addSublayer:playerLayer];
-        playerLayer.frame = CGRectMake(0, 0, CGRectGetWidth(self.videoView.frame), CGRectGetHeight(self.videoView.frame));
+        // video
+        if ([[audioURL substringFromIndex:audioURL.length - 1] isEqualToString:@"4"]) { // 如果是.MP4
+            
+            CGFloat videoHeight = (kMainScreenWidth - 40) / (335.0 / 188.0);
+            
+            self.videoViewHeightLayoutConstraint.constant = videoHeight;
+            self.audioViewTopLayoutConstraint.constant = 20.0f;
+            
+            AVPlayerLayer *playerLayer = [[VENAudioPlayer sharedAudioPlayer] playerLayer];
+            [self.videoView.layer addSublayer:playerLayer];
+            playerLayer.frame = CGRectMake(0, 0, CGRectGetWidth(self.videoView.frame), CGRectGetHeight(self.videoView.frame));
+            
+            viewHeight += videoHeight + 20;
+        }
     }
     
     // 字幕
-    if ([VENEmptyClass isEmptyString:infoModel.subtitles]) {
-        self.subtitleView.hidden = YES;
-        self.subtitleViewHeightLayoutConstraint.constant = 0.0f;
-        self.subtitleViewYLayoutConstraint.constant = 0.0f;
-        self.subtitleViewBottomLayoutConstraint.constant = 13.0f;
-    } else {
+    self.subtitleView.hidden = YES;
+    self.subtitleViewHeightLayoutConstraint.constant = 0.0f;
+    self.subtitleViewTopLayoutConstraint.constant = 0.0f;
+    
+    if (![VENEmptyClass isEmptyString:infoModel.subtitles]) {
+        self.subtitleView.hidden = NO;
+        
         self.subtitleView.layer.cornerRadius = 8.0f;
-        self.subtitleView.layer.shadowColor = UIColorFromRGB(0x000000).CGColor;
-        self.subtitleView.layer.shadowOpacity = 0.1;
-        self.subtitleView.layer.shadowRadius = 2.5;
-        self.subtitleView.layer.shadowOffset = CGSizeMake(0,0);
+        self.subtitleView.layer.masksToBounds = YES;
+        self.subtitleView.layer.borderWidth = 1.0f;
+        self.subtitleView.layer.borderColor = UIColorFromRGB(0xE8E8E8).CGColor;
+        
+//        self.subtitleView.layer.cornerRadius = 8.0f;
+//        self.subtitleView.layer.masksToBounds = YES;
+//        self.subtitleView.layer.shadowColor = UIColorFromRGB(0x000000).CGColor;
+//        self.subtitleView.layer.shadowOpacity = 0.1;
+//        self.subtitleView.layer.shadowRadius = 2.5;
+//        self.subtitleView.layer.shadowOffset = CGSizeMake(0,0);
         
         NSString *lrc = [NSString stringWithContentsOfURL:[NSURL URLWithString:infoModel.subtitles] encoding:NSUTF8StringEncoding error:nil];
         
@@ -135,9 +152,14 @@
         CGFloat height = [self.subtitleLabel sizeThatFits:CGSizeMake(kMainScreenWidth - 70, CGFLOAT_MAX)].height;
         
         self.subtitleViewHeightLayoutConstraint.constant = 20 + height + 44;
-        self.subtitleViewYLayoutConstraint.constant = 20.0f;
-        self.subtitleViewBottomLayoutConstraint.constant = 30.0f;
+        self.subtitleViewTopLayoutConstraint.constant = 20.0f;
+        
+        viewHeight += 20 + height + 44;
     }
+    
+    viewHeight += 30;
+    
+    return viewHeight;
 }
 
 - (void)contentButtonClick {
