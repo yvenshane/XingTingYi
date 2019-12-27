@@ -13,9 +13,12 @@
 #import "VENMyOtherViewController.h"
 #import "VENMinePageMemberCenterViewController.h"
 #import "VENMinePageMyNewWordBookViewController.h"
+#import "VENMinePageModel.h"
 
 @interface VENMinePageViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, copy) NSArray *titleArr;
+@property (nonatomic, strong) VENMinePageModel *model;
+@property (nonatomic, assign) BOOL isRefresh;
 
 @end
 
@@ -26,6 +29,10 @@ static NSString *const cellIdentifier = @"cellIdentifier";
     [super viewWillAppear:animated];
     
     [self.navigationController setNavigationBarHidden:YES animated:animated];
+    
+    if (self.isRefresh) {
+        [self.tableView.mj_header beginRefreshing];
+    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -38,14 +45,23 @@ static NSString *const cellIdentifier = @"cellIdentifier";
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    self.tableView.backgroundColor = [UIColor whiteColor];
-    [self.tableView registerNib:[UINib nibWithNibName:@"VENMinePageTableViewCell" bundle:nil] forCellReuseIdentifier:cellIdentifier];
-    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    [self.view addSubview:self.tableView];
+    [self setupTableView];
     
-    //    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-    //
-    //    }];
+    [self.tableView.mj_header beginRefreshing];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loginOutClick) name:@"Login_Out" object:nil];
+}
+
+- (void)loadMinePageData {
+    [[VENNetworkingManager shareManager] requestWithType:HttpRequestTypeGET urlString:@"user/userCenter" parameters:nil successBlock:^(id responseObject) {
+        
+        self.model = [VENMinePageModel yy_modelWithJSON:responseObject[@"content"][@"userinfo"]];
+        
+        [self.tableView reloadData];
+        
+    } failureBlock:^(NSError *error) {
+        
+    }];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -60,10 +76,8 @@ static NSString *const cellIdentifier = @"cellIdentifier";
     cell.titleLabel.text = self.titleArr[indexPath.row][@"title"];
     cell.descriptionLabel.hidden = indexPath.row == 5 ? NO : YES;
     
-    NSString *str = @"11";
-    
-    NSMutableAttributedString *mutableAttributedString = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"会员剩余天数%@天", str]];
-    [mutableAttributedString setAttributes:@{NSForegroundColorAttributeName : [UIColor redColor]} range:NSMakeRange(6, str.length)];
+    NSMutableAttributedString *mutableAttributedString = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"会员剩余天数%@天", self.model.days]];
+    [mutableAttributedString setAttributes:@{NSForegroundColorAttributeName : [UIColor redColor]} range:NSMakeRange(6, self.model.days.length)];
     
     cell.descriptionLabel.attributedText = mutableAttributedString;
     cell.iconImageViewCenterYLayoutConstraint.constant = indexPath.row == 0 ? -7 : 0;
@@ -108,6 +122,7 @@ static NSString *const cellIdentifier = @"cellIdentifier";
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     VENMinePageTableHeaderView *headerView = [[VENMinePageTableHeaderView alloc] init];
+    headerView.model = self.model;
     [headerView.setttingButton addTarget:self action:@selector(setttingButton) forControlEvents:UIControlEventTouchUpInside];
     
     return headerView;
@@ -125,10 +140,26 @@ static NSString *const cellIdentifier = @"cellIdentifier";
     return CGFLOAT_MIN;
 }
 
+- (void)setupTableView {
+    self.tableView.backgroundColor = [UIColor whiteColor];
+    [self.tableView registerNib:[UINib nibWithNibName:@"VENMinePageTableViewCell" bundle:nil] forCellReuseIdentifier:cellIdentifier];
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    [self.view addSubview:self.tableView];
+    
+    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        [self loadMinePageData];
+    }];
+}
+
 - (void)setttingButton {
     VENSettingViewController *vc = [[VENSettingViewController alloc] init];
     vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (void)loginOutClick {
+    self.isRefresh = YES;
+    self.tabBarController.selectedIndex = 0;
 }
 
 - (NSArray *)titleArr {

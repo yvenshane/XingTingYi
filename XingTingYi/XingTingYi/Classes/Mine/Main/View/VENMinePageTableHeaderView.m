@@ -7,6 +7,7 @@
 //
 
 #import "VENMinePageTableHeaderView.h"
+#import "VENMinePageModel.h"
 
 @interface VENMinePageTableHeaderView ()
 @property (nonatomic, strong) UIButton *iconButton;
@@ -31,13 +32,13 @@
         
         // 头像
         UIButton *iconButton = [[UIButton alloc] init];
-        iconButton.backgroundColor = [UIColor colorWithRed:arc4random_uniform(255)/255.0 green:arc4random_uniform(255)/255.0 blue:arc4random_uniform(255)/255.0 alpha:1];
+//        iconButton.backgroundColor = [UIColor colorWithRed:arc4random_uniform(255)/255.0 green:arc4random_uniform(255)/255.0 blue:arc4random_uniform(255)/255.0 alpha:1];
         [self addSubview:iconButton];
         ViewRadius(iconButton, 35.0f);
         
         // 姓名
         UILabel *nameLabel = [[UILabel alloc] init];
-        nameLabel.text = @"labellabellabellabellabellabellabellabellabellabellabellabellabel";
+//        nameLabel.text = @"labellabellabellabellabellabellabellabellabellabellabellabellabel";
         nameLabel.textColor = UIColorFromRGB(0x222222);
         nameLabel.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:18.0];
         [self addSubview:nameLabel];
@@ -60,7 +61,7 @@
         [memberView addSubview:memberImageView];
         
         UILabel *memberLabel = [[UILabel alloc] init];
-        memberLabel.text = @"猩听译会员";
+//        memberLabel.text = @"猩听译会员";
         memberLabel.textColor = [UIColor whiteColor];
         memberLabel.font = [UIFont systemFontOfSize:10.0f];
         [memberView addSubview:memberLabel];
@@ -99,6 +100,22 @@
     self.memberLabel.frame = CGRectMake(7 + 10 + 3, 3, width, 12);
     self.memberView.frame = CGRectMake(20 + 70 + 15, 20 + 55 + 6 + 25 + 12 + 17, width + 28, 18);
     self.radiusView.frame = CGRectMake(0, 176, kMainScreenWidth, 14);
+}
+
+- (void)setModel:(VENMinePageModel *)model {
+    _model = model;
+    
+    [self.iconButton sd_setImageWithURL:[NSURL URLWithString:model.avatar] forState:UIControlStateNormal];
+    self.nameLabel.text = model.nickname;
+    self.descriptionLabel.text = model.sign;
+    
+    if ([model.type isEqualToString:@"1"]) {
+        self.memberLabel.text = @"普通会员";
+    } else if ([model.type isEqualToString:@"2"]) {
+        self.memberLabel.text = @"猩听译会员";
+    } else if ([model.type isEqualToString:@"3"]) {
+        self.memberLabel.text = @"永久会员";
+    }
 }
 
 /*

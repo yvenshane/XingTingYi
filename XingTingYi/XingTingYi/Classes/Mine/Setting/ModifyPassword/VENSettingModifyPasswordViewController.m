@@ -24,14 +24,7 @@ static NSString *const cellIdentifier = @"cellIdentifier";
     
     self.navigationItem.title = @"修改密码";
 
-    self.tableView.backgroundColor = UIColorFromRGB(0xF8F8F8);
-    [self.tableView registerNib:[UINib nibWithNibName:@"VENSettingTableViewCell" bundle:nil] forCellReuseIdentifier:cellIdentifier];
-    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    [self.view addSubview:self.tableView];
-    
-    //    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-    //
-    //    }];
+    [self setupTableView];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -84,7 +77,28 @@ static NSString *const cellIdentifier = @"cellIdentifier";
 }
 
 - (void)confirmButtonClick {
-    NSLog(@"好的");
+    
+    VENSettingTableViewCell *cell = (VENSettingTableViewCell*)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+    VENSettingTableViewCell *cell2 = (VENSettingTableViewCell*)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]];
+    VENSettingTableViewCell *cell3 = (VENSettingTableViewCell*)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:0]];
+    
+    NSDictionary *parameters = @{@"password" : cell.descriptionTextField.text,
+                                 @"newPwd" : cell2.descriptionTextField.text,
+                                 @"reNewPwd" : cell3.descriptionTextField.text};
+    [[VENNetworkingManager shareManager] requestWithType:HttpRequestTypePOST urlString:@"user/modifyPwd" parameters:parameters successBlock:^(id responseObject) {
+        
+        [self.navigationController popViewControllerAnimated:YES];
+        
+    } failureBlock:^(NSError *error) {
+        
+    }];
+}
+
+- (void)setupTableView {
+    self.tableView.backgroundColor = UIColorFromRGB(0xF8F8F8);
+    [self.tableView registerNib:[UINib nibWithNibName:@"VENSettingTableViewCell" bundle:nil] forCellReuseIdentifier:cellIdentifier];
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    [self.view addSubview:self.tableView];
 }
 
 - (NSArray *)titleArr {

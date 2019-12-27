@@ -12,6 +12,7 @@
 @property (weak, nonatomic) IBOutlet UITextView *contentTextView;
 @property (weak, nonatomic) IBOutlet UIButton *determineButton;
 @property (weak, nonatomic) IBOutlet UILabel *placeholderLabel;
+@property (weak, nonatomic) IBOutlet UIView *feedbackSuccessView;
 
 @end
 
@@ -28,13 +29,23 @@
     self.determineButton.layer.masksToBounds = YES;
     
     self.contentTextView.delegate = self;
-    
-    [self setupRightButton];
 }
 
 #pragma mark - UITextView
 - (void)textViewDidChange:(UITextView *)textView {
     self.placeholderLabel.hidden = textView.text.length > 0 ? YES : NO;
+}
+
+- (IBAction)determineButtonClick:(id)sender {
+    [[VENNetworkingManager shareManager] requestWithType:HttpRequestTypePOST urlString:@"user/suggest" parameters:@{@"content" : self.contentTextView.text} successBlock:^(id responseObject) {
+        
+        [self.contentTextView resignFirstResponder];
+        self.feedbackSuccessView.hidden = NO;
+        [self setupRightButton];
+        
+    } failureBlock:^(NSError *error) {
+        
+    }];
 }
 
 - (void)setupRightButton {

@@ -11,6 +11,7 @@
 #import "VENSettingModifyPasswordViewController.h"
 #import "VENSettingPersonalInformationViewController.h"
 #import "VENSettingFeedbackViewController.h"
+#import "VENBaseWebViewController.h"
 
 @interface VENSettingViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, copy) NSArray *titleArr;
@@ -54,7 +55,7 @@ static NSString *const cellIdentifier = @"cellIdentifier";
     
     if (indexPath.section == 1) {
         if (indexPath.row == 1) {
-            cell.descriptionTextField.text = [NSString stringWithFormat:@"%ldM", [SDImageCache sharedImageCache].getSize];
+            cell.descriptionTextField.text = [NSString stringWithFormat:@"%@", [self fileSizeWithInteger:[SDImageCache sharedImageCache].getSize]];
             cell.descriptionTextFieldRightLayoutConstraint.constant = 10 + 7 + 20;
         }
     }
@@ -73,11 +74,35 @@ static NSString *const cellIdentifier = @"cellIdentifier";
         }
     } else {
         if (indexPath.row == 0) {
-            
+            [[VENNetworkingManager shareManager] requestWithType:HttpRequestTypePOST urlString:@"user/userAgreement" parameters:nil successBlock:^(id responseObject) {
+                
+                VENBaseWebViewController *vc = [[VENBaseWebViewController alloc] init];
+                vc.HTMLString = responseObject[@"content"][@"content"];
+                vc.navigationItem.title = @"用户协议";
+                vc.isPresent = YES;
+                VENNavigationController *nav = [[VENNavigationController alloc] initWithRootViewController:vc];
+                [self presentViewController:nav animated:YES completion:nil];
+                
+            } failureBlock:^(NSError *error) {
+                
+            }];
         } else if (indexPath.row == 1) {
             [[SDImageCache sharedImageCache] clearDiskOnCompletion:^{
                 [MBProgressHUD showText:@"清除缓存成功"];
                 [self.tableView reloadData];
+            }];
+        } else if (indexPath.row == 2) {
+            [[VENNetworkingManager shareManager] requestWithType:HttpRequestTypePOST urlString:@"user/aboutUs" parameters:nil successBlock:^(id responseObject) {
+                
+                VENBaseWebViewController *vc = [[VENBaseWebViewController alloc] init];
+                vc.HTMLString = responseObject[@"content"][@"content"];
+                vc.navigationItem.title = @"关于我们";
+                vc.isPresent = YES;
+                VENNavigationController *nav = [[VENNavigationController alloc] initWithRootViewController:vc];
+                [self presentViewController:nav animated:YES completion:nil];
+                
+            } failureBlock:^(NSError *error) {
+                
             }];
         } else if (indexPath.row == 3) {
             VENSettingFeedbackViewController *vc = [[VENSettingFeedbackViewController alloc] init];
@@ -127,15 +152,21 @@ static NSString *const cellIdentifier = @"cellIdentifier";
     UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"再看看" style:UIAlertActionStyleDestructive handler:nil];
     UIAlertAction *determineAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         
-        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"LOGIN"];
-        
-//        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"AutoLogin"];
-        
-//        [[NSNotificationCenter defaultCenter] postNotificationName:@"Login_Out" object:nil];
-//
-//        NSLog(@"%d", [[VENUserStatusManager sharedManager] isLogin]);
-        
-        [self.navigationController popViewControllerAnimated:YES];
+        [[VENNetworkingManager shareManager] requestWithType:HttpRequestTypeGET urlString:@"user/exitLogin" parameters:nil successBlock:^(id responseObject) {
+            
+            [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"LOGIN"];
+            
+            //        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"AutoLogin"];
+                    
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"Login_Out" object:nil];
+            
+            //        NSLog(@"%d", [[VENUserStatusManager sharedManager] isLogin]);
+            
+            [self.navigationController popViewControllerAnimated:YES];
+            
+        } failureBlock:^(NSError *error) {
+            
+        }];
     }];
     [determineAction setValue:[UIColor blackColor] forKey:@"titleTextColor"];
     
@@ -143,6 +174,23 @@ static NSString *const cellIdentifier = @"cellIdentifier";
     [alert addAction:determineAction];
     
     [self presentViewController:alert animated:YES completion:nil];
+}
+
+// 根据数据计算出大小
+- (NSString *) fileSizeWithInteger:(NSInteger)size{
+    // 1K = 1024dB, 1M = 1024K,1G = 1024M
+    if (size < 1024) {// 小于1k
+        return [NSString stringWithFormat:@"%ldB",(long)size];
+    }else if (size < 1024 * 1024){// 小于1m
+        CGFloat aFloat = size/1024;
+        return [NSString stringWithFormat:@"%.0fK",aFloat];
+    }else if (size < 1024 * 1024 * 1024){// 小于1G
+        CGFloat aFloat = size/(1024 * 1024);
+        return [NSString stringWithFormat:@"%.1fM",aFloat];
+    }else{
+        CGFloat aFloat = size/(1024*1024*1024);
+        return [NSString stringWithFormat:@"%.1fG",aFloat];
+    }
 }
 
 - (NSArray *)titleArr {

@@ -260,6 +260,7 @@
 		2C888E6B2326513200CD0510 /* VENMaterialSortSelectorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C888E6A2326513200CD0510 /* VENMaterialSortSelectorView.m */; };
 		2C888E6F23277F2700CD0510 /* VENMaterialSortSelectorViewCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C888E6D23277F2700CD0510 /* VENMaterialSortSelectorViewCollectionViewCell.m */; };
 		2C888E7023277F2700CD0510 /* VENMaterialSortSelectorViewCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C888E6E23277F2700CD0510 /* VENMaterialSortSelectorViewCollectionViewCell.xib */; };
+		2C8EED4723B600D1000EF302 /* VENMinePageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C8EED4623B600D1000EF302 /* VENMinePageModel.m */; };
 		2C98B1452340480400E2C700 /* VENStyleSettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C98B1442340480400E2C700 /* VENStyleSettingsController.m */; };
 		2C98B14C23404CF900E2C700 /* VENColorStyleSettingsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C98B14A23404CF900E2C700 /* VENColorStyleSettingsTableViewCell.m */; };
 		2C98B14D23404CF900E2C700 /* VENColorStyleSettingsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C98B14B23404CF900E2C700 /* VENColorStyleSettingsTableViewCell.xib */; };
@@ -861,6 +862,8 @@
 		2C888E6C23277F2700CD0510 /* VENMaterialSortSelectorViewCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VENMaterialSortSelectorViewCollectionViewCell.h; sourceTree = "<group>"; };
 		2C888E6D23277F2700CD0510 /* VENMaterialSortSelectorViewCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VENMaterialSortSelectorViewCollectionViewCell.m; sourceTree = "<group>"; };
 		2C888E6E23277F2700CD0510 /* VENMaterialSortSelectorViewCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VENMaterialSortSelectorViewCollectionViewCell.xib; sourceTree = "<group>"; };
+		2C8EED4523B600D1000EF302 /* VENMinePageModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VENMinePageModel.h; sourceTree = "<group>"; };
+		2C8EED4623B600D1000EF302 /* VENMinePageModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VENMinePageModel.m; sourceTree = "<group>"; };
 		2C98B1432340480400E2C700 /* VENStyleSettingsController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VENStyleSettingsController.h; sourceTree = "<group>"; };
 		2C98B1442340480400E2C700 /* VENStyleSettingsController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VENStyleSettingsController.m; sourceTree = "<group>"; };
 		2C98B14923404CF900E2C700 /* VENColorStyleSettingsTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VENColorStyleSettingsTableViewCell.h; sourceTree = "<group>"; };
@@ -1545,6 +1548,8 @@
 		2C1C01CD22DC619400E4E9C4 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				2C8EED4523B600D1000EF302 /* VENMinePageModel.h */,
+				2C8EED4623B600D1000EF302 /* VENMinePageModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -3666,6 +3671,7 @@
 				2C3D63C2237BFB94001754E4 /* YYTextView.m in Sources */,
 				2C3D63D1237BFB94001754E4 /* YYTextRubyAnnotation.m in Sources */,
 				2C699E2823190E9F00BA8810 /* JXCategoryIndicatorDotLineView.m in Sources */,
+				2C8EED4723B600D1000EF302 /* VENMinePageModel.m in Sources */,
 				2C699E3023190E9F00BA8810 /* JXCategoryTitleImageView.m in Sources */,
 				2C1C015E22DC1EE400E4E9C4 /* MASConstraintMaker.m in Sources */,
 				2C1C012822DC1EE400E4E9C4 /* UIScrollView+MJRefresh.m in Sources */,
