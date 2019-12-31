@@ -122,6 +122,11 @@ static NSString *const cellIdentifier = @"cellIdentifier";
         headerView.lineImageView.hidden = YES;
         headerView.model = self.model;
         
+        if (self.isMine) {
+            headerView.deleteButton.hidden = NO;
+            [headerView.deleteButton addTarget:self action:@selector(deleteButtonClick) forControlEvents:UIControlEventTouchUpInside];
+        }
+        
         return headerView;
     } else {
         UIView *headerView = [[UIView alloc] init];
@@ -239,6 +244,33 @@ static NSString *const cellIdentifier = @"cellIdentifier";
 
 - (IBAction)backgroundButtonClick:(id)sender {
     [self.view endEditing:YES];
+}
+
+// 删除动态
+- (void)deleteButtonClick {
+    
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:@"您确定要删除此动态吗？" preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *determineAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        
+        [[VENNetworkingManager shareManager] requestWithType:HttpRequestTypePOST urlString:@"user/delCircle" parameters:@{@"id" : self.model.id} successBlock:^(id responseObject) {
+            
+            [self.navigationController popViewControllerAnimated:YES];
+            
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"RefreshMyTidingsListPage" object:nil];
+            
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"RefreshDynamicCircleListPage" object:nil userInfo:@{@"sort_id" : self.model.id}];
+            
+        } failureBlock:^(NSError *error) {
+            
+        }];
+    }];
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:nil];
+    
+    [alert addAction:cancelAction];
+    [alert addAction:determineAction];
+    
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 #pragma mark - back

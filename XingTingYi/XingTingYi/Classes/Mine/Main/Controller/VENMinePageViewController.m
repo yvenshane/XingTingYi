@@ -14,6 +14,7 @@
 #import "VENMinePageMemberCenterViewController.h"
 #import "VENMinePageMyNewWordBookViewController.h"
 #import "VENMinePageModel.h"
+#import "VENMinePageMyTidingsViewController.h"
 
 @interface VENMinePageViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, copy) NSArray *titleArr;
@@ -32,6 +33,7 @@ static NSString *const cellIdentifier = @"cellIdentifier";
     
     if (self.isRefresh) {
         [self.tableView.mj_header beginRefreshing];
+        self.isRefresh = NO;
     }
 }
 
@@ -97,7 +99,9 @@ static NSString *const cellIdentifier = @"cellIdentifier";
         vc.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:vc animated:YES];
     } else if (indexPath.row == 6) {
-        
+        VENMinePageMyTidingsViewController *vc = [[VENMinePageMyTidingsViewController alloc] init];
+        vc.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:vc animated:YES];
     } else {
         VENMyOtherViewController *vc = [[VENMyOtherViewController alloc] init];
         

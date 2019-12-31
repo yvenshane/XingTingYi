@@ -21,6 +21,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *title;
 @property (nonatomic, copy) NSString *user_id;
 
+@property (nonatomic, copy) NSString *created_at;
+@property (nonatomic, copy) NSString *num;
+
 @end
 
 NS_ASSUME_NONNULL_END

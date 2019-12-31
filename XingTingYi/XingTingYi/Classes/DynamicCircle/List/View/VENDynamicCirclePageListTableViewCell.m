@@ -25,8 +25,14 @@
     //    cell.bannerImageView.contentMode = UIViewContentModeScaleAspectFill;
     self.nameLabel.text = model.nickname;
     self.timeLabel.text = model.time;
+    if ([VENEmptyClass isEmptyString:model.time]) {
+        self.timeLabel.text = model.created_at;
+    }
     self.contentLabel.text = model.title;
     self.commentLabel.text = [NSString stringWithFormat:@"评论(%@)", model.count];
+    if ([VENEmptyClass isEmptyString:model.count]) {
+        self.commentLabel.text = [NSString stringWithFormat:@"评论(%@)", model.num];
+    }
     
     // 图片
     for (UIView *subview in self.pictureView.subviews) {

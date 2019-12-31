@@ -174,6 +174,7 @@ static NSString *const cellIdentifier = @"cellIdentifier";
         [self.navigationController popViewControllerAnimated:YES];
         
         [[NSNotificationCenter defaultCenter] postNotificationName:@"RefreshDynamicCircleListPage" object:nil userInfo:@{@"sort_id" : self.sort_id}];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"RefreshMyTidingsListPage" object:nil];
         
     } failureBlock:^(NSError *error) {
         

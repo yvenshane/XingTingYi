@@ -20,6 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *pictureHeightLayoutConstraint;
 @property (weak, nonatomic) IBOutlet UILabel *commentLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *lineImageView;
+@property (weak, nonatomic) IBOutlet UIButton *deleteButton;
 
 @property (nonatomic, strong) VENDynamicCirclePageListModel *model;
 
