@@ -7,9 +7,12 @@
 //
 
 #import "VENMinePageMemberCenterViewController.h"
+#import "VENMinePageMemberCenterModel.h"
 
 @interface VENMinePageMemberCenterViewController ()
 @property (nonatomic, strong) NSMutableArray *priceButtonMuArr;
+@property (nonatomic, copy) NSArray *dataSourceArr;
+@property (nonatomic, copy) NSString *userVip;
 
 @end
 
@@ -46,7 +49,22 @@
     self.tableView.frame = CGRectMake(0, 0, kMainScreenWidth, kMainScreenHeight - kStatusBarAndNavigationBarHeight - 60);
     [self.view addSubview:self.tableView];
     
-    [self setupBottomBar];
+//    [self setupBottomBar];
+    
+    [self loadMemberCenterData];
+}
+
+- (void)loadMemberCenterData {
+    [[VENNetworkingManager shareManager] requestWithType:HttpRequestTypeGET urlString:@"order/userConfig" parameters:nil successBlock:^(id responseObject) {
+        
+        self.dataSourceArr = [NSArray yy_modelArrayWithClass:[VENMinePageMemberCenterModel class] json:responseObject[@"content"][@"userConfig"]];
+        self.userVip = responseObject[@"content"][@"userVip"];
+        
+        [self.tableView reloadData];
+        
+    } failureBlock:^(NSError *error) {
+        
+    }];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -56,35 +74,35 @@
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     UIView *headerView = [[UIView alloc] init];
     
-    UIView *backgroundView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kMainScreenWidth, 209)];
+    UIView *backgroundView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kMainScreenWidth, 180)];
     backgroundView.backgroundColor = UIColorFromRGB(0xFFDE02);
     [headerView addSubview:backgroundView];
     
-    CGFloat y = 12;
+    CGFloat y = 30;
     
-    UILabel *titleLabel = [[UILabel alloc] init];
-    titleLabel.textColor = UIColorFromRGB(0x222222);
-    titleLabel.font = [UIFont systemFontOfSize:13.0f];
-    
-    NSString *count = @"3";
-    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"您当前是普通会员，剩余可听写次数%@次", count]];
-    [attributedString addAttribute:NSForegroundColorAttributeName value:UIColorFromRGB(0xDB233A) range:NSMakeRange(16, count.length)];
-    
-    titleLabel.attributedText = attributedString;
-    CGFloat width = [titleLabel sizeThatFits:CGSizeMake(CGFLOAT_MAX, 16)].width;
-    titleLabel.frame = CGRectMake(kMainScreenWidth / 2 - width / 2, y, width, 16);
-    [headerView addSubview:titleLabel];
-    
-    y += 16;
+//    UILabel *titleLabel = [[UILabel alloc] init];
+//    titleLabel.textColor = UIColorFromRGB(0x222222);
+//    titleLabel.font = [UIFont systemFontOfSize:13.0f];
+//
+//    NSString *count = @"3";
+//    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"您当前是普通会员，剩余可听写次数%@次", count]];
+//    [attributedString addAttribute:NSForegroundColorAttributeName value:UIColorFromRGB(0xDB233A) range:NSMakeRange(16, count.length)];
+//
+//    titleLabel.attributedText = attributedString;
+//    CGFloat width = [titleLabel sizeThatFits:CGSizeMake(CGFLOAT_MAX, 16)].width;
+//    titleLabel.frame = CGRectMake(kMainScreenWidth / 2 - width / 2, y, width, 16);
+//    [headerView addSubview:titleLabel];
+//
+//    y += 16;
     
     // card
-    UIImageView *memberCarImageView = [[UIImageView alloc] initWithFrame:CGRectMake(15, y + 22, kMainScreenWidth - 30, 150)];
+    UIImageView *memberCarImageView = [[UIImageView alloc] initWithFrame:CGRectMake(15, y, kMainScreenWidth - 30, 150)];
     memberCarImageView.image = [UIImage imageNamed:@"icon_member_card"];
     memberCarImageView.layer.cornerRadius = 12.0f;
     memberCarImageView.layer.masksToBounds = YES;
     [headerView addSubview:memberCarImageView];
     
-    y += 22 + 150;
+    y += 150;
     
     UIImageView *memberCarBackgroundImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, y - 32 + 10, kMainScreenWidth, 32)];
     memberCarBackgroundImageView.image = [UIImage imageNamed:@"icon_card_bg"];
@@ -137,21 +155,14 @@
     CGFloat buttonWidth = (kMainScreenWidth - 20 - 30) / 3.5;
     CGFloat buttonHeight = buttonWidth * 80 / 90;
     
-    NSArray *arr = @[@{@"id" : @"1", @"title" : @"1个月", @"price" : @"100"},
-                     @{@"id" : @"2", @"title" : @"2个月", @"price" : @"200"},
-                     @{@"id" : @"3", @"title" : @"3个月", @"price" : @"300"},
-                     @{@"id" : @"4", @"title" : @"4个月", @"price" : @"400"},
-                     @{@"id" : @"5", @"title" : @"5个月", @"price" : @"500"},
-                     @{@"id" : @"6", @"title" : @"6个月", @"price" : @"600"}];
-    
     UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(20, y + 16, kMainScreenWidth - 20, buttonHeight)];
-    scrollView.contentSize = CGSizeMake(arr.count * (buttonWidth + 10), buttonHeight);
+    scrollView.contentSize = CGSizeMake(self.dataSourceArr.count * (buttonWidth + 10), buttonHeight);
     scrollView.showsHorizontalScrollIndicator = NO;
     [headerView addSubview:scrollView];
     
     [self.priceButtonMuArr removeAllObjects];
     
-    for (NSInteger i = 0; i < arr.count; i++) {
+    for (NSInteger i = 0; i < self.dataSourceArr.count; i++) {
         UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(i * (buttonWidth + 10), 0, buttonWidth, buttonHeight)];
         button.backgroundColor = i == 0 ? UIColorFromRGB(0xFFDE02) : [UIColor whiteColor];
         button.tag = i;
@@ -164,8 +175,10 @@
         
         [self.priceButtonMuArr addObject:button];
         
+        VENMinePageMemberCenterModel *model = self.dataSourceArr[i];
+        
         UILabel *titleLabel = [[UILabel alloc] init];
-        titleLabel.text = arr[i][@"title"];
+        titleLabel.text = model.userDemo;
         titleLabel.textColor = UIColorFromRGB(0x222222);
         titleLabel.font = [UIFont systemFontOfSize:12.0f];
         titleLabel.textAlignment = NSTextAlignmentCenter;
@@ -176,7 +189,7 @@
         priceLabel.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:24.0f];
         priceLabel.textAlignment = NSTextAlignmentCenter;
         
-        NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"¥%@", arr[i][@"price"]]];
+        NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"¥%@", model.price]];
         [attributedString addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"PingFangSC-Semibold" size:14.0f] range:NSMakeRange(0, 1)];
         priceLabel.attributedText = attributedString;
         [button addSubview:priceLabel];

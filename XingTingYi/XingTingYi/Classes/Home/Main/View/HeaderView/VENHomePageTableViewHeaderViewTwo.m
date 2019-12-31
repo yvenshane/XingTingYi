@@ -112,7 +112,9 @@ static NSString *const bannerCellIdentifier = @"bannerCellIdentifier";
 - (void)setModel:(VENHomePageModel *)model {
     _model = model;
     
-    self.descriptionLabel.text = self.model.aboutUs[0][@"description"];
+    NSAttributedString *attributedString = [[NSAttributedString alloc] initWithData:[model.aboutUs[0][@"description"] dataUsingEncoding:NSUnicodeStringEncoding] options:@{NSDocumentTypeDocumentAttribute : NSHTMLTextDocumentType} documentAttributes:nil error:nil];
+    
+    self.descriptionLabel.attributedText = attributedString;
 }
 
 - (void)moreButtonClick {
