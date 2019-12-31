@@ -24,6 +24,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *source_id;
 @property (nonatomic, copy) NSString *type;
 @property (nonatomic, copy) NSString *user_id;
+@property (nonatomic, copy) NSString *nickname;
+@property (nonatomic, copy) NSString *is_exist;
 
 @end
 

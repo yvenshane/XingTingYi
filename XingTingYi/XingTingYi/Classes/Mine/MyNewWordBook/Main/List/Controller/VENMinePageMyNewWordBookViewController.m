@@ -7,14 +7,20 @@
 //
 
 #import "VENMinePageMyNewWordBookViewController.h"
-#import "VENChooseCategoryView.h"
+#import "VENChooseCategoryViewTwo.h"
 #import "VENMinePageMyNewWordBookTableViewCell.h"
 #import "VENMinePageMyNewWordBookModel.h"
 #import "VENMaterialDetailsTranslationPageSearchWordAddNewWordsViewController.h"
+#import "VENMinePageMyNewWordBookDetailsPageViewController.h"
+#import "VENMinePageMyNewWordBookSearchPageViewController.h"
 
 @interface VENMinePageMyNewWordBookViewController ()
 @property (nonatomic, assign) NSInteger page;
 @property (nonatomic, strong) NSMutableArray *dataSourceMuArr;
+
+@property (nonatomic, strong) VENChooseCategoryViewTwo *chooseCategoryView;
+@property (nonatomic, copy) NSString *pid;
+@property (nonatomic, copy) NSString *sort_id;
 
 @end
 
@@ -50,17 +56,23 @@ static NSString *const cellIdentifier = @"cellIdentifier";
 
 - (void)loadMinePageMyNewWordBookDataWithPage:(NSString *)page {
     
-    NSDictionary *parameters = @{};
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
     NSString *url = @"";
     
     if ([self.origin isEqualToString:@"PersonalCenter"]) {
-        parameters = @{@"page" : page,
-                       @"pid" : @"",
-                       @"sort_id" : @""};
+        [parameters setObject:page forKey:@"page"];
+        if (![VENEmptyClass isEmptyString:self.pid]) {
+            [parameters setObject:self.pid forKey:@"pid"];
+        }
+        if (![VENEmptyClass isEmptyString:self.sort_id]) {
+            [parameters setObject:self.sort_id forKey:@"sort_id"];
+        }
+        
         url = @"user/myWordsList";
     } else {
-        parameters = @{@"page" : page,
-                       @"source_id" : self.source_id};
+        [parameters setObject:page forKey:@"page"];
+        [parameters setObject:self.source_id forKey:@"source_id"];
+        
         url = @"source/sourceWordList";
     }
     
@@ -114,7 +126,13 @@ static NSString *const cellIdentifier = @"cellIdentifier";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if ([self.origin isEqualToString:@"PersonalCenter"]) {
+        VENMinePageMyNewWordBookModel *model = self.dataSourceMuArr[indexPath.row];
         
+        VENMinePageMyNewWordBookDetailsPageViewController *vc = [[VENMinePageMyNewWordBookDetailsPageViewController alloc] init];
+        vc.words_id = model.id;
+        vc.indexPathRow = indexPath.row;
+        vc.dataSourceArr = self.dataSourceMuArr;
+        [self.navigationController pushViewController:vc animated:YES];
     } else {
         VENMinePageMyNewWordBookModel *model = self.dataSourceMuArr[indexPath.row];
         
@@ -200,14 +218,35 @@ static NSString *const cellIdentifier = @"cellIdentifier";
     self.navigationItem.rightBarButtonItems = @[barButtonItem, barButtonItem2];
 }
 
+#pragma mark - 搜索
 - (void)searchButtonClick {
-    
+    VENMinePageMyNewWordBookSearchPageViewController *vc = [[VENMinePageMyNewWordBookSearchPageViewController alloc] init];
+    VENNavigationController *nav = [[VENNavigationController alloc] initWithRootViewController:vc];
+    [self presentViewController:nav animated:YES completion:nil];
 }
 
+#pragma mark - 分类
 - (void)categoryButtonClick {
-    VENChooseCategoryView *chooseCategoryView = [[VENChooseCategoryView alloc] initWithFrame:CGRectMake(0, 0, kMainScreenWidth, kMainScreenHeight - kStatusBarAndNavigationBarHeight)];
-//    [[UIApplication sharedApplication].keyWindow addSubview:chooseCategoryView];
-    [self.view addSubview:chooseCategoryView];
+    if (_chooseCategoryView) {
+        [self.chooseCategoryView removeFromSuperview];
+//        self.chooseCategoryView = nil;
+    }
+    
+    __weak typeof(self) weakSelf = self;
+    self.chooseCategoryView.chooseCategoryViewTwoBlock = ^(NSDictionary *dict) {
+        weakSelf.pid = dict[@"pid"];
+        weakSelf.sort_id = dict[@"sort_id"];
+        
+        [weakSelf.tableView.mj_header beginRefreshing];
+    };
+    [self.view addSubview:self.chooseCategoryView];
+}
+
+- (VENChooseCategoryViewTwo *)chooseCategoryView {
+    if (!_chooseCategoryView) {
+        _chooseCategoryView = [[VENChooseCategoryViewTwo alloc] initWithFrame:CGRectMake(0, 0, kMainScreenWidth, kMainScreenHeight - kStatusBarAndNavigationBarHeight)];
+    }
+    return _chooseCategoryView;
 }
 
 /*

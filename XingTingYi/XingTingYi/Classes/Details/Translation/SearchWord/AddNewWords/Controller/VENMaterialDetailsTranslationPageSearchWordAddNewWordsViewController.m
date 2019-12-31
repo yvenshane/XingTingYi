@@ -170,11 +170,12 @@ static NSString *const cellIdentifier = @"cellIdentifier";
     
     VENChooseCategoryView *chooseCategoryView = [[VENChooseCategoryView alloc] initWithFrame:CGRectMake(0, 0, kMainScreenWidth, kMainScreenHeight - kStatusBarAndNavigationBarHeight)];
 //    chooseCategoryView.sort_id = self.sort_id;
+    __weak typeof(self) weakSelf = self;
     chooseCategoryView.chooseCategoryViewBlock = ^(NSDictionary *dict) {
-        self.sort_id = dict[@"sort_id"];
-        self.sort_name = dict[@"sort_name"];
+        weakSelf.sort_id = dict[@"sort_id"];
+        weakSelf.sort_name = dict[@"sort_name"];
         
-        [self.tableView reloadData];
+        [weakSelf.tableView reloadData];
     };
     [self.view addSubview:chooseCategoryView];
 }

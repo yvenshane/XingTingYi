@@ -138,9 +138,10 @@ static NSString *const cellIdentifier = @"cellIdentifier";
         
         VENListPickerView *listPickerView = [[VENListPickerView alloc] initWithFrame:CGRectMake(0, 0, kMainScreenWidth, kMainScreenHeight)];
         listPickerView.dataSourceArr = responseObject[@"content"][@"categoryList"];
+        __weak typeof(self) weakSelf = self;
         listPickerView.listPickerViewBlock = ^(NSDictionary *dict) {
-            self.titleLabel.text = dict[@"name"];
-            self.sort_id = dict[@"id"];
+            weakSelf.titleLabel.text = dict[@"name"];
+            weakSelf.sort_id = dict[@"id"];
         };
         [[UIApplication sharedApplication].keyWindow addSubview:listPickerView];
         
