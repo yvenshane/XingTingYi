@@ -22,6 +22,7 @@
 @property (nonatomic, strong) VENMaterialDetailsPageModel *infoModel;
 
 @property (nonatomic, strong) VENAudioRecorder *audioRecorder;
+@property (nonatomic, copy) NSString *path;
 
 @end
 
@@ -87,7 +88,7 @@
 
 #pragma mark - 播放
 - (void)leftButtonClick {
-    [self.audioRecorder playReadAloud];
+    [self.audioRecorder playReadAloudWithPath:self.path];
 }
 
 #pragma mark - 完成
@@ -96,7 +97,7 @@
     [[VENNetworkingManager shareManager] requestWithType:HttpRequestTypeGET urlString:@"qiniu/createToken" parameters:nil successBlock:^(id responseObject) {
         
         NSString *token = responseObject[@"content"][@"token"];
-        NSString *path = self.audioRecorder.path;
+        NSString *path = self.path;
         NSData *data= [NSData dataWithContentsOfFile:path];
         NSString *keys = responseObject[@"content"][@"key"];
         
@@ -136,7 +137,7 @@
         self.rightView.hidden = NO;
         self.beginLabel.text = @"点击重新朗读";
         isReset = YES;
-        [self.audioRecorder finishReadAloud]; // 完成录音
+        self.path = [self.audioRecorder finishReadAloud][@"path"]; // 完成录音
     } else {
         button.selected = YES;
         if (isReset) {

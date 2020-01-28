@@ -11,6 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface VENMyOtherViewController : VENBaseViewController
+@property (nonatomic, copy) NSString *dotype;
 
 @end
 

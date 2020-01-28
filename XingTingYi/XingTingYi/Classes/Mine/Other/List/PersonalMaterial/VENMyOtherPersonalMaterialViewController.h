@@ -11,6 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface VENMyOtherPersonalMaterialViewController : UIViewController
+@property (nonatomic, copy) NSString *dotype;
 
 @end
 

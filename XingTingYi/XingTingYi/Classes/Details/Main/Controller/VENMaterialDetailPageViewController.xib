@@ -70,7 +70,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oQN-Ep-xHK">
-                                            <rect key="frame" x="136" y="69.5" width="102" height="16"/>
+                                            <rect key="frame" x="128.5" y="69.5" width="117" height="16"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                             <state key="normal" title="  听写结束后可见" image="icon_lock">
                                                 <color key="titleColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

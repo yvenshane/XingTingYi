@@ -43,9 +43,11 @@ static NSString *const url = @"https://www.yuanqilanguage.com/index.php/";
     
     NSLog(@"请求接口：%@%@", url, urlString);
     
-    if (parameters == nil) parameters = @{};
-    
-    NSLog(@"请求参数：%@", parameters);
+    if ([VENEmptyClass isEmptyDictionary:parameters]) {
+        parameters = @{};
+    } else {
+        NSLog(@"请求参数：%@", parameters);
+    }
     
     if ([[VENUserStatusManager sharedManager] isLogin]) {
         // 取出存放的 cookies 设置 cookie
@@ -53,7 +55,7 @@ static NSString *const url = @"https://www.yuanqilanguage.com/index.php/";
         NSHTTPCookieStorage *cookieStorage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
         for (NSHTTPCookie *cookie in cookies){
             [cookieStorage setCookie:cookie];
-            NSLog(@"%@, %@", cookie.name, cookie.value);
+//            NSLog(@"%@, %@", cookie.name, cookie.value);
         }
     }
     

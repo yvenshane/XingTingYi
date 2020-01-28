@@ -1,20 +1,20 @@
 //
-//  VENMyOtherPersonalMaterialViewController.m
+//  VENMyOtherCourseMaterialViewController.m
 //  XingTingYi
 //
-//  Created by YVEN on 2019/8/13.
+//  Created by YVEN on 2019/12/31.
 //  Copyright © 2019 Hefei Haiba Network Technology Co., Ltd. All rights reserved.
 //
 
-#import "VENMyOtherPersonalMaterialViewController.h"
+#import "VENMyOtherCourseMaterialViewController.h"
 #import "VENHomePageTableViewCellTwo.h"
 
-@interface VENMyOtherPersonalMaterialViewController ()<UITableViewDelegate, UITableViewDataSource>
+@interface VENMyOtherCourseMaterialViewController () <UITableViewDelegate, UITableViewDataSource>
 
 @end
 
 static NSString *const cellIdentifier = @"cellIdentifier";
-@implementation VENMyOtherPersonalMaterialViewController
+@implementation VENMyOtherCourseMaterialViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -23,7 +23,6 @@ static NSString *const cellIdentifier = @"cellIdentifier";
     self.view.backgroundColor = [UIColor whiteColor];
     
     [self setupTableView];
-    [self setupBottomView];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -65,36 +64,17 @@ static NSString *const cellIdentifier = @"cellIdentifier";
 }
 
 - (void)setupTableView {
-    UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, kMainScreenWidth, kMainScreenHeight - kStatusBarAndNavigationBarHeight - 40 - 68) style:UITableViewStyleGrouped];
+    UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, kMainScreenWidth, kMainScreenHeight - kStatusBarAndNavigationBarHeight - 40) style:UITableViewStyleGrouped];
     tableView.backgroundColor = UIColorMake(245, 245, 245);
     tableView.delegate = self;
     tableView.dataSource = self;
     [tableView registerNib:[UINib nibWithNibName:@"VENHomePageTableViewCellTwo" bundle:nil] forCellReuseIdentifier:cellIdentifier];
     tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    tableView.tableFooterView = [[UIView alloc] init];
     [self.view addSubview:tableView];
     
     //    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
     //
     //    }];
-}
-
-- (void)setupBottomView {
-    UIView *bottomView = [[UIView alloc] initWithFrame:CGRectMake(0, kMainScreenHeight - kStatusBarAndNavigationBarHeight - 40 - 68, kMainScreenWidth, 68)];
-    bottomView.backgroundColor = [UIColor whiteColor];
-    [self.view addSubview:bottomView];
-    
-    UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kMainScreenWidth, 1)];
-    lineView.backgroundColor = UIColorFromRGB(0xF1F1F1);
-    [bottomView addSubview:lineView];
-    
-    UIButton *addButton = [[UIButton alloc] initWithFrame:CGRectMake(20, 10, kMainScreenWidth - 40, 48)];
-    addButton.backgroundColor = UIColorFromRGB(0xFFDE02);
-    [addButton setTitle:@"添加个人素材" forState:UIControlStateNormal];
-    [addButton setTitleColor:UIColorFromRGB(0x222222) forState:UIControlStateNormal];
-    addButton.titleLabel.font = [UIFont systemFontOfSize:16.0f];
-    [bottomView addSubview:addButton];
-    ViewRadius(addButton, 24.0f);
 }
 
 /*

@@ -74,10 +74,10 @@
 
 - (void)playButtonClick:(UIButton *)button {
     if ([VENEmptyClass isEmptyString:self.path]) {
-        [self.audioRecorder playReadAloud];
+        [self.audioRecorder playReadAloudWithPath:self.path];
     } else {
         if (self.isPlayFile) {
-            [self.audioRecorder playReadAloud];
+            [self.audioRecorder playReadAloudWithPath:self.path];
         } else {
             [[VENAudioPlayer sharedAudioPlayer] playWithURL:[NSURL URLWithString:self.path]];
             [[VENAudioPlayer sharedAudioPlayer] play];
@@ -90,10 +90,10 @@
         button.selected = NO;
         self.playButton.hidden = NO;
         
-        [self.audioRecorder finishReadAloud]; // 完成录音
+        self.path = [self.audioRecorder finishReadAloud][@"path"]; // 完成录音
         
         if (self.addNewWordsBlock) {
-            self.addNewWordsBlock([self.audioRecorder path]);
+            self.addNewWordsBlock(self.path);
         }
         
     } else {

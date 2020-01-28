@@ -12,6 +12,10 @@
 
 @interface VENAudioRecorder ()
 @property (nonatomic, strong) AVAudioRecorder *audioRecorder; // 录音器
+@property (nonatomic, strong) NSMutableDictionary *audioSetting;
+@property (nonatomic, copy) NSString *path;
+@property (nonatomic, strong) NSTimer *voiceTimer; // 录音音量计时器
+@property (nonatomic, assign) NSInteger time;
 
 @end
 
@@ -26,91 +30,124 @@
     return instance;
 }
 
-- (instancetype)init {
-    if (self = [super init]) {
-        
-        NSMutableDictionary *audioSetting = [NSMutableDictionary dictionary];
-        // 设置录音格式 kAudioFormatMPEGLayer3设置貌似是没用的 默认设置就行
-        //[audioSetting setObject:@(kAudioFormatMPEGLayer3) forKey:AVFormatIDKey];
-        // 设置录音采样率，8000 44100 96000，对于一般录音已经够了
-        [audioSetting setObject:@(22150) forKey:AVSampleRateKey];
-        // 设置通道 1 2
-        [audioSetting setObject:@(1) forKey:AVNumberOfChannelsKey];
-        // 每个采样点位数,分为8、16、24、32
-        [audioSetting setObject:@(16) forKey:AVLinearPCMBitDepthKey];
-        // 是否使用浮点数采样 如果不是MP3需要用Lame转码为mp3的一定记得设置NO！(不然转码之后的声音一直都是杂音)
-        [audioSetting setObject:@(YES) forKey:AVLinearPCMIsFloatKey];
-        // 录音质量
-        [audioSetting setObject:@(AVAudioQualityHigh) forKey:AVEncoderAudioQualityKey];
-        
-        
-        // 在Documents目录下创建一个名为FileData的文件夹
-        self.path = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:@"Cache/AudioData"];
-        
-        NSFileManager *fileManager = [NSFileManager defaultManager];
-        BOOL isDir = FALSE;
-        BOOL isDirExist = [fileManager fileExistsAtPath:self.path isDirectory:&isDir];
-        if (!(isDirExist && isDir)) {
-            BOOL bCreateDir = [fileManager createDirectoryAtPath:self.path withIntermediateDirectories:YES attributes:nil error:nil];
-            if (!bCreateDir) {
-                NSLog(@"创建文件夹失败！");
-            }
-            NSLog(@"创建文件夹成功，文件路径%@", self.path);
-        }
-        
-        // 每次启动后都保存一个新的文件中
-        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-        [formatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"zh_CN"]];
-        [formatter setDateFormat:@"yyyyMMddHHmmss"];
-        
-        NSString *dateStr = [formatter stringFromDate:[NSDate date]];
-        
-        // 想要录制MP3格式的 这里 MP3 必须大写 ！！！！(苹果的所有后缀名都是大写，所以这是个坑)
-        self.path = [self.path stringByAppendingFormat:@"/%@.MP3", dateStr];
-        NSLog(@"%@", self.path);
-        
-        // 创建录音对象
-        self.audioRecorder = [[AVAudioRecorder alloc] initWithURL:[NSURL URLWithString:self.path] settings:audioSetting error:nil];
-    }
-    return self;
-}
-
 #pragma mark - 开始录音
 - (void)beginReadAloud {
     if (self.audioRecorder) {
         [[VENAudioPlayer sharedAudioPlayer] stop];
         [self.audioRecorder stop];
-        // 删除录音
-        [self.audioRecorder deleteRecording];
     }
-    //准备录音
-    [self.audioRecorder prepareToRecord];
-    //开始录音
-    [self.audioRecorder record];
-    // 几秒后开始录音
-    // [self.audioRecorder recordAtTime:self.audioRecorder.deviceCurrentTime + 5];
-    // 录音录多久
-    [self.audioRecorder recordForDuration:60];
+    
+    // 创建文件
+    [self createFile];
+    
+    if (self.audioRecorder) {
+        // 录音时设置audioSession属性，否则不兼容Ios7
+        AVAudioSession *recordSession = [AVAudioSession sharedInstance];
+        [recordSession setCategory:AVAudioSessionCategoryRecord error:nil];
+        [recordSession setActive:YES error:nil];
+        
+        if ([self.audioRecorder prepareToRecord]) {
+            [self.audioRecorder record];
+            
+            // 开始计时
+            self.voiceTimer = [NSTimer timerWithTimeInterval:1.0 target:self selector:@selector(detectionVoice) userInfo:nil repeats: YES];
+            [[NSRunLoop currentRunLoop] addTimer:self.voiceTimer forMode:NSRunLoopCommonModes];
+            [self.voiceTimer setFireDate:[NSDate distantPast]];
+        }
+    }
+}
+
+- (void)detectionVoice {
+    ++self.time;
+    
+    if (self.time == 60) {
+        if (self.recorderEndBlock) {
+            self.recorderEndBlock([self finishReadAloud]);
+        }
+    }
+    
+    NSLog(@"%ld", (long)self.time);
+}
+
+- (void)createFile {
+    // 在Documents目录下创建一个名为FileData的文件夹
+    NSString *path = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:@"Cache/AudioData"];
+    
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    BOOL isDir = FALSE;
+    BOOL isDirExist = [fileManager fileExistsAtPath:path isDirectory:&isDir];
+    if (!(isDirExist && isDir)) {
+        BOOL bCreateDir = [fileManager createDirectoryAtPath:path withIntermediateDirectories:YES attributes:nil error:nil];
+        if (!bCreateDir) {
+            NSLog(@"创建文件夹失败！");
+        }
+        NSLog(@"创建文件夹成功，文件路径%@", path);
+    }
+    
+    // 每次启动后都保存一个新的文件中
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"zh_CN"]];
+    [formatter setDateFormat:@"yyyyMMddHHmmss"];
+    
+    NSString *dateStr = [formatter stringFromDate:[NSDate date]];
+    
+    // 想要录制MP3格式的 这里 MP3 必须大写 ！！！！(苹果的所有后缀名都是大写，所以这是个坑)
+    path = [path stringByAppendingFormat:@"/%@.MP3", dateStr];
+    // 创建录音对象
+    self.audioRecorder = [[AVAudioRecorder alloc] initWithURL:[NSURL URLWithString:path] settings:self.audioSetting error:nil];
+    
+    self.path = path;
 }
 
 #pragma mark - 完成录音
-- (void)finishReadAloud {
-//    if (self.audioRecorder.currentTime > 2) {
-//        [self.audioRecorder stop];
-//    } else {
-//        NSLog(@"录音时间不超过2秒，删除");
-//        [self.audioRecorder stop];
-//        [self.audioRecorder deleteRecording];
-//    }
-    
+- (NSDictionary *)finishReadAloud {
     [self.audioRecorder stop];
+    
+    [self.voiceTimer setFireDate:[NSDate distantFuture]];
+    if ([self.voiceTimer isValid]) {
+        [self.voiceTimer invalidate];
+    }
+    self.voiceTimer = nil;
+    
+    NSLog(@"%@-%ld", self.path, (long)self.time);
+    NSDictionary *dict = @{@"path" : self.path,
+                           @"time" : [NSString stringWithFormat:@"%ld", (long)self.time]};
+    
+    self.time = 0; // 置为0
+    
+    return dict;
 }
 
 #pragma mark - 播放录音
-- (void)playReadAloud {
-    if ([[VENAudioPlayer sharedAudioPlayer] isPlaying]) return;
-    [[VENAudioPlayer sharedAudioPlayer] playWithURL:[NSURL fileURLWithPath:self.path]];
-    [[VENAudioPlayer sharedAudioPlayer] play];
+- (void)playReadAloudWithPath:(NSString *)path {    
+    if ([[VENAudioPlayer sharedAudioPlayer] isPlaying]) {
+        [[VENAudioPlayer sharedAudioPlayer] stop];
+    }
+    
+    if (path) {
+        [[VENAudioPlayer sharedAudioPlayer] playWithURL:[NSURL fileURLWithPath:path]];
+        [[VENAudioPlayer sharedAudioPlayer] play];
+    }
+}
+
+#pragma mark - audioSetting
+- (NSMutableDictionary *)audioSetting {
+    if (!_audioSetting) {
+        _audioSetting = [NSMutableDictionary dictionary];
+        // 设置录音格式 kAudioFormatMPEGLayer3设置貌似是没用的 默认设置就行
+        //[audioSetting setObject:@(kAudioFormatMPEGLayer3) forKey:AVFormatIDKey];
+        // 设置录音采样率，8000 44100 96000，对于一般录音已经够了
+        [_audioSetting setObject:@(22150) forKey:AVSampleRateKey];
+        // 设置通道 1 2
+        [_audioSetting setObject:@(1) forKey:AVNumberOfChannelsKey];
+        // 每个采样点位数,分为8、16、24、32
+        [_audioSetting setObject:@(16) forKey:AVLinearPCMBitDepthKey];
+        // 是否使用浮点数采样 如果不是MP3需要用Lame转码为mp3的一定记得设置NO！(不然转码之后的声音一直都是杂音)
+        [_audioSetting setObject:@(YES) forKey:AVLinearPCMIsFloatKey];
+        // 录音质量
+        [_audioSetting setObject:@(AVAudioQualityHigh) forKey:AVEncoderAudioQualityKey];
+    }
+    return _audioSetting;
 }
 
 // 获取当前时间戳

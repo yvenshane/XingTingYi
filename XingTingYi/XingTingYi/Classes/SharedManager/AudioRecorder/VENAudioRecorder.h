@@ -10,14 +10,15 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef void (^recorderEndBlock)(NSDictionary *);
 @interface VENAudioRecorder : NSObject
-@property (nonatomic, copy) NSString *path;
+@property (nonatomic, copy) recorderEndBlock recorderEndBlock;
 
 + (instancetype)sharedAudioRecorder;
 
 - (void)beginReadAloud;
-- (void)finishReadAloud;
-- (void)playReadAloud;
+- (NSDictionary *)finishReadAloud;
+- (void)playReadAloudWithPath:(NSString *)path;
 
 @end
 

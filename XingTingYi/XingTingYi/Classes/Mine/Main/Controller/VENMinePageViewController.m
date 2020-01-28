@@ -105,8 +105,10 @@ static NSString *const cellIdentifier = @"cellIdentifier";
     } else {
         VENMyOtherViewController *vc = [[VENMyOtherViewController alloc] init];
         
+        // 1我的听写 2朗读 3翻译 4字幕
         if (indexPath.row == 0) {
             vc.navigationItem.title = @"我的听写";
+            vc.dotype = @"1";
         } else if (indexPath.row == 1) {
             vc.navigationItem.title = @"我的朗读";
         } else if (indexPath.row == 2) {

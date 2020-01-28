@@ -95,24 +95,38 @@ static NSString *const cellIdentifier2 = @"cellIdentifier2";
         // tableView height
         if (self.avInfoArr.count > 1 && self.textInfoArr.count > 0) {
             if (self.isTextInfo) {
-                self.tableContentViewHeightLayoutConstraint.constant = [self getTextInfoHeight] + 60;
+                CGFloat height = [self getTextInfoHeight];
+                self.tableContentViewHeightLayoutConstraint.constant = height + 60;
+                self.tableView.frame = CGRectMake(0, 0, kMainScreenWidth, height + 60);
             } else {
                 if (self.avInfoArr.count > 1) {
-                    self.tableContentViewHeightLayoutConstraint.constant = [self getAvInfoHeight];
+                    CGFloat height = [self getAvInfoHeight];
+                    self.tableContentViewHeightLayoutConstraint.constant = height;
+                    self.tableView.frame = CGRectMake(0, 0, kMainScreenWidth, height);
                 } else {
                     self.tableContentViewHeightLayoutConstraint.constant = 0;
+                    self.tableView.frame = CGRectZero;
                 }
             }
         } else if (self.avInfoArr.count > 1 && self.textInfoArr.count < 1) {
-            self.tableContentViewHeightLayoutConstraint.constant = [self getAvInfoHeight];
+            CGFloat height = [self getAvInfoHeight];
+            self.tableContentViewHeightLayoutConstraint.constant = height;
+            self.tableView.frame = CGRectMake(0, 0, kMainScreenWidth, height);
         } else if (self.avInfoArr.count < 2 && self.textInfoArr.count > 0) {
-            if ([self.infoModel.type isEqualToString:@"3"]) {
-                self.tableContentViewHeightLayoutConstraint.constant = [self getTextInfoHeight];
-            } else {
-                self.tableContentViewHeightLayoutConstraint.constant = [self getTextInfoHeight] + 60;
-            }
+            CGFloat height = [self getTextInfoHeight];
+//            if ([self.infoModel.type isEqualToString:@"3"]) {
+//                self.tableContentViewHeightLayoutConstraint.constant = height;
+//                self.tableView.frame = CGRectMake(0, 0, kMainScreenWidth, height);
+//            } else {
+//                self.tableContentViewHeightLayoutConstraint.constant = height + 60;
+//                self.tableView.frame = CGRectMake(0, 0, kMainScreenWidth, height + 60);
+//            }
+            
+            self.tableContentViewHeightLayoutConstraint.constant = height + 60;
+            self.tableView.frame = CGRectMake(0, 0, kMainScreenWidth, height + 60);
         } else {
             self.tableContentViewHeightLayoutConstraint.constant = 0;
+            self.tableView.frame = CGRectZero;
         }
         
         // bottomView
@@ -448,7 +462,6 @@ static NSString *const cellIdentifier2 = @"cellIdentifier2";
 #pragma mark - tableView
 - (void)setupTableView {
     self.tableView.backgroundColor = [UIColor whiteColor];
-    self.tableView.frame = CGRectMake(0, 0, kMainScreenWidth, kMainScreenHeight - (kTabBarHeight - 49));
     self.tableView.scrollEnabled = NO;
     [self.tableView registerNib:[UINib nibWithNibName:@"VENMaterialDetailsPageTableViewCell" bundle:nil] forCellReuseIdentifier:cellIdentifier];
     [self.tableView registerNib:[UINib nibWithNibName:@"VENMaterialDetailsPageTableViewCellTwo" bundle:nil] forCellReuseIdentifier:cellIdentifier2];
@@ -466,13 +479,21 @@ static NSString *const cellIdentifier2 = @"cellIdentifier2";
     footerView.categoryButtonBlock = ^(NSInteger tag, BOOL isShowAudioView) {
         if (tag == 998) {
             self.isTextInfo = NO;
-            self.tableContentViewHeightLayoutConstraint.constant = [self getAvInfoHeight];
+            
+            CGFloat height = [self getAvInfoHeight];
+            self.tableContentViewHeightLayoutConstraint.constant = height;
+            self.tableView.frame = CGRectMake(0, 0, kMainScreenWidth, height);
+            
             [self.tableView reloadData];
             
             weakSelf.footerViewHeightLayoutConstraint.constant = height;
         } else {
             self.isTextInfo = YES;
-            self.tableContentViewHeightLayoutConstraint.constant = [self getTextInfoHeight] + 60;
+            
+            CGFloat height = [self getTextInfoHeight];
+            self.tableContentViewHeightLayoutConstraint.constant = height + 60;
+            self.tableView.frame = CGRectMake(0, 0, kMainScreenWidth, height + 60);
+            
             [self.tableView reloadData];
             
             weakSelf.footerViewHeightLayoutConstraint.constant = isShowAudioView ? height + (kMainScreenWidth - 40) / (335.0 / 120.0) + 25 : height;

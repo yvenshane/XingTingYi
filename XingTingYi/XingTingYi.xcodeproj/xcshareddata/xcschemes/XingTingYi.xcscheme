@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "2C9D240822D8333B00B15896"
-               BuildableName = "XingTingYi.app"
+               BuildableName = "&#x7329;&#x542c;&#x8bd1;.app"
                BlueprintName = "XingTingYi"
                ReferencedContainer = "container:XingTingYi.xcodeproj">
             </BuildableReference>
@@ -45,7 +45,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2C9D240822D8333B00B15896"
-            BuildableName = "XingTingYi.app"
+            BuildableName = "&#x7329;&#x542c;&#x8bd1;.app"
             BlueprintName = "XingTingYi"
             ReferencedContainer = "container:XingTingYi.xcodeproj">
          </BuildableReference>
@@ -62,7 +62,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2C9D240822D8333B00B15896"
-            BuildableName = "XingTingYi.app"
+            BuildableName = "&#x7329;&#x542c;&#x8bd1;.app"
             BlueprintName = "XingTingYi"
             ReferencedContainer = "container:XingTingYi.xcodeproj">
          </BuildableReference>

@@ -9,6 +9,10 @@
 #import "VENMyOtherViewController.h"
 #import "VENBaseCategoryView.h"
 
+#import "VENMyOtherPlatformMaterialViewController.h"
+#import "VENMyOtherCourseMaterialViewController.h"
+#import "VENMyOtherPersonalMaterialViewController.h"
+
 @interface VENMyOtherViewController () <UIScrollViewDelegate>
 @property (nonatomic, weak) VENBaseCategoryView *categoryView;
 @property (nonatomic, weak) UIScrollView *scrollView;
@@ -34,7 +38,7 @@
     CGFloat offsetX = scrollView.contentOffset.x;
 //    NSLog(@"%f____%f", offsetX, kMainScreenWidth);
     // 需要将偏移量交给分类视图!
-    _categoryView.offset_X = offsetX / 2;
+    _categoryView.offset_X = offsetX / 3;
     
     // 计算滚动
     //    NSInteger idx = offsetX / 4 / _categoryView.btnsArr[0].bounds.size.width + 0.5;
@@ -66,7 +70,7 @@
 }
 
 - (void)setupCategoryView {
-    VENBaseCategoryView *categoryV = [[VENBaseCategoryView alloc] initWithFrame:CGRectZero andTitles:@[@"平台素材", @"个人素材"]];
+    VENBaseCategoryView *categoryV = [[VENBaseCategoryView alloc] initWithFrame:CGRectZero andTitles:@[@"平台素材", @"课程素材", @"个人素材"]];
     categoryV.backgroundColor = [UIColor whiteColor];
     [categoryV addTarget:self action:@selector(categoryViewValueChanged:) forControlEvents:UIControlEventValueChanged];
     [self.view addSubview:categoryV];
@@ -100,23 +104,22 @@
     scrollV.delegate = self;
     scrollV.showsHorizontalScrollIndicator = NO;
     
-    NSArray<NSString *> *vcNamesArr = @[@"VENMyOtherPlatformMaterialViewController", @"VENMyOtherPersonalMaterialViewController"];
-    
     NSMutableArray<UIView *> *vcViewsArrM = [NSMutableArray array];
     
-    [vcNamesArr enumerateObjectsUsingBlock:^(NSString * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        
-        // 2.1 创建vc对象
-        Class cls = NSClassFromString(obj);
-        UIViewController *vc = [[cls alloc] init];
-        
-        // 2.2 建立控制器的父子关系
-        [self addChildController:vc intoView:scrollV];
-        
-        // 2.3添加控制器的视图到view中
-        [vcViewsArrM addObject:vc.view];
-        
-    }];
+    VENMyOtherPlatformMaterialViewController *vc = [[VENMyOtherPlatformMaterialViewController alloc] init];
+    vc.dotype = self.dotype;
+    [self addChildController:vc intoView:scrollV];
+    [vcViewsArrM addObject:vc.view];
+    
+    VENMyOtherCourseMaterialViewController *vc2 = [[VENMyOtherCourseMaterialViewController alloc] init];
+    vc2.dotype = self.dotype;
+    [self addChildController:vc2 intoView:scrollV];
+    [vcViewsArrM addObject:vc2.view];
+    
+    VENMyOtherPersonalMaterialViewController *vc3 = [[VENMyOtherPersonalMaterialViewController alloc] init];
+    vc3.dotype = self.dotype;
+    [self addChildController:vc3 intoView:scrollV];
+    [vcViewsArrM addObject:vc3.view];
     
     [vcViewsArrM mas_distributeViewsAlongAxis:MASAxisTypeHorizontal withFixedSpacing:0 leadSpacing:0 tailSpacing:0];
     

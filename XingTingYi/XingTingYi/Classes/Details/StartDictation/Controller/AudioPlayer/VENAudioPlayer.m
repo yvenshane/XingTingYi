@@ -62,6 +62,10 @@
 }
 
 - (void)play {
+    AVAudioSession *playerSession = [AVAudioSession sharedInstance];
+    [playerSession setCategory:AVAudioSessionCategoryPlayback error:nil];
+    [playerSession setActive:YES error:nil];
+    
     [self.player play];
 }
 
@@ -107,7 +111,7 @@
                 self.playerLoadSuceessHander(self.durationTime);
             }
         } else if (status == AVPlayerStatusFailed) {
-            NSLog(@"AVPlayerStatusFailed");
+            NSLog(@"AVPlayerStatusFailed - %@", item.error.description);
             if (self.playerLoadFailHander) {
                 self.playerLoadFailHander();
             }
