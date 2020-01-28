@@ -102,17 +102,6 @@ static NSString *const cellIdentifier = @"cellIdentifier";
             }
         }
         
-        if (self.avInfoOriginalArr.count > 1) {
-            // tableView
-            [self setupTableView];
-            
-            CGFloat height = [self getAvInfoHeight];
-            self.bottomContentViewHeightLayoutConstarint.constant = height;
-            self.tableView.frame = CGRectMake(0, 0, kMainScreenWidth, height);
-        } else {
-            self.bottomContentViewHeightLayoutConstarint.constant = 0;
-        }
-        
         [self setupContentWithDict:responseObject[@"content"]];
         
     } failureBlock:^(NSError *error) {
@@ -205,6 +194,17 @@ static NSString *const cellIdentifier = @"cellIdentifier";
         self.middleToolsBarContentViewHeightLayoutConstraint.constant = 0.0f;
         self.middleToolsBarContentView2.hidden = NO;
         self.middleToolsBarContentViewHeightLayoutConstraint2.constant = 60.0f;
+        
+        self.addNewWordsBookButton2.layer.cornerRadius = 20.0f;
+        self.addNewWordsBookButton2.layer.masksToBounds = YES;
+        
+        CGFloat height = [self getAvInfoHeight];
+        self.bottomContentViewHeightLayoutConstarint.constant = height;
+        
+        // tableView
+        [self setupTableView];
+        
+        self.tableView.frame = CGRectMake(0, 0, kMainScreenWidth, height);
     } else {
         self.middleToolsBarContentView.hidden = NO;
         self.middleToolsBarContentViewHeightLayoutConstraint.constant = 70.0f;
@@ -289,7 +289,7 @@ static NSString *const cellIdentifier = @"cellIdentifier";
     VENMaterialDetailsPageModel *avInfoModel = self.avInfoNewMuArr[indexPath.row];
     
     if (!avInfoModel.cellHeight) {
-        return [self getAvInfoHeight];
+        return CGFLOAT_MIN;
     } else {
         return avInfoModel.cellHeight;
     }
@@ -313,6 +313,9 @@ static NSString *const cellIdentifier = @"cellIdentifier";
 
 #pragma mark - tableView
 - (void)setupTableView {
+    self.tableView.frame = CGRectZero;
+    self.tableView.autoresizingMask = UIViewAutoresizingNone;
+    
     self.tableView.backgroundColor = [UIColor whiteColor];
     self.tableView.scrollEnabled = NO;
     [self.tableView registerNib:[UINib nibWithNibName:@"VENMaterialDetailsPageTableViewCellTwo" bundle:nil] forCellReuseIdentifier:cellIdentifier];
@@ -378,6 +381,12 @@ static NSString *const cellIdentifier = @"cellIdentifier";
 
 // 添加生词
 - (IBAction)addNewWordsBookButtonClick:(id)sender {
+    VENMaterialDetailsTranslationPageSearchWordAddNewWordsViewController *vc = [[VENMaterialDetailsTranslationPageSearchWordAddNewWordsViewController alloc] init];
+    vc.source_id = self.source_id;
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (IBAction)addNewWordsBookButton2Click:(id)sender {
     VENMaterialDetailsTranslationPageSearchWordAddNewWordsViewController *vc = [[VENMaterialDetailsTranslationPageSearchWordAddNewWordsViewController alloc] init];
     vc.source_id = self.source_id;
     [self.navigationController pushViewController:vc animated:YES];
