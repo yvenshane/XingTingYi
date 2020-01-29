@@ -11,6 +11,7 @@
 #import "VENMyDictationDetailsViewController.h"
 #import "VENHomePageModel.h"
 #import "VENMyReadingDetailsViewController.h"
+#import "VENMyTranslationDetailsViewController.h"
 
 @interface VENMyOtherPlatformMaterialViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) UITableView *tableView;
@@ -83,6 +84,13 @@ static NSString *const cellIdentifier = @"cellIdentifier";
         [self.navigationController pushViewController:vc animated:YES];
     } else if ([self.dotype isEqualToString:@"2"]) {
         VENMyReadingDetailsViewController *vc = [[VENMyReadingDetailsViewController alloc] init];
+        vc.source_id = model.source_id;
+        vc.deleteBlock = ^{
+            [self loadPlatformMaterialData:@"1"];
+        };
+        [self.navigationController pushViewController:vc animated:YES];
+    } else if ([self.dotype isEqualToString:@"3"]) {
+        VENMyTranslationDetailsViewController *vc = [[VENMyTranslationDetailsViewController alloc] init];
         vc.source_id = model.source_id;
         vc.deleteBlock = ^{
             [self loadPlatformMaterialData:@"1"];
