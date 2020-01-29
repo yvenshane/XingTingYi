@@ -103,7 +103,7 @@
     // 修改按钮的状态!
     // 计算通过偏移量得出对应的索引值
     NSInteger idx = offset_X / _btnsArr[0].bounds.size.width + 0.5;
-    NSLog(@"%zd", idx); // 1 ~ 1.9   + 0.5  1.5
+//    NSLog(@"%zd", idx); // 1 ~ 1.9   + 0.5  1.5
     
     // 修改按钮的状态
     // - 取消之前的

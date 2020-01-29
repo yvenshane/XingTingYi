@@ -10,6 +10,7 @@
 #import "VENHomePageTableViewCellTwo.h"
 #import "VENMyDictationDetailsViewController.h"
 #import "VENHomePageModel.h"
+#import "VENMyReadingDetailsViewController.h"
 
 @interface VENMyOtherPlatformMaterialViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) UITableView *tableView;
@@ -73,12 +74,23 @@ static NSString *const cellIdentifier = @"cellIdentifier";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     VENHomePageModel *model = self.dataSourceMuArr[indexPath.row];
     
-    VENMyDictationDetailsViewController *vc = [[VENMyDictationDetailsViewController alloc] init];
-    vc.source_id = model.source_id;
-    vc.deleteBlock = ^{
-        [self loadPlatformMaterialData:@"1"];
-    };
-    [self.navigationController pushViewController:vc animated:YES];
+    if ([self.dotype isEqualToString:@"1"]) {
+        VENMyDictationDetailsViewController *vc = [[VENMyDictationDetailsViewController alloc] init];
+        vc.source_id = model.source_id;
+        vc.deleteBlock = ^{
+            [self loadPlatformMaterialData:@"1"];
+        };
+        [self.navigationController pushViewController:vc animated:YES];
+    } else if ([self.dotype isEqualToString:@"2"]) {
+        VENMyReadingDetailsViewController *vc = [[VENMyReadingDetailsViewController alloc] init];
+        vc.source_id = model.source_id;
+        vc.deleteBlock = ^{
+            [self loadPlatformMaterialData:@"1"];
+        };
+        [self.navigationController pushViewController:vc animated:YES];
+    } else {
+        
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {

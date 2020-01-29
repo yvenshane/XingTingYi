@@ -111,10 +111,13 @@ static NSString *const cellIdentifier = @"cellIdentifier";
             vc.dotype = @"1";
         } else if (indexPath.row == 1) {
             vc.navigationItem.title = @"我的朗读";
+            vc.dotype = @"2";
         } else if (indexPath.row == 2) {
             vc.navigationItem.title = @"我的翻译";
+            vc.dotype = @"3";
         } else {
             vc.navigationItem.title = @"我的字幕";
+            vc.dotype = @"4";
         }
         
         vc.hidesBottomBarWhenPushed = YES;

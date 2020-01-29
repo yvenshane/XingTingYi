@@ -206,6 +206,10 @@
 		2C4D5EE0235174320010D5A1 /* VENAudioPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C4D5EDF235174320010D5A1 /* VENAudioPlayerView.m */; };
 		2C4D5EE22351743F0010D5A1 /* VENAudioPlayerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C4D5EE12351743F0010D5A1 /* VENAudioPlayerView.xib */; };
 		2C5CC94E23018A8D00FAC842 /* VENMinePageTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C5CC94D23018A8D00FAC842 /* VENMinePageTableHeaderView.m */; };
+		2C68466423E02F3400B16568 /* VENMyReadingDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C68466223E02F3400B16568 /* VENMyReadingDetailsViewController.m */; };
+		2C68466523E02F3400B16568 /* VENMyReadingDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C68466323E02F3400B16568 /* VENMyReadingDetailsViewController.xib */; };
+		2C68466B23E1499D00B16568 /* VENMyReadingDetailsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C68466923E1499D00B16568 /* VENMyReadingDetailsTableViewCell.m */; };
+		2C68466C23E1499D00B16568 /* VENMyReadingDetailsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C68466A23E1499D00B16568 /* VENMyReadingDetailsTableViewCell.xib */; };
 		2C699E1F23190E9F00BA8810 /* JXCategoryTitleVerticalZoomCellModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C699DC823190E9F00BA8810 /* JXCategoryTitleVerticalZoomCellModel.m */; };
 		2C699E2023190E9F00BA8810 /* JXCategoryTitleVerticalZoomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C699DC923190E9F00BA8810 /* JXCategoryTitleVerticalZoomCell.m */; };
 		2C699E2123190E9F00BA8810 /* JXCategoryTitleVerticalZoomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C699DCA23190E9F00BA8810 /* JXCategoryTitleVerticalZoomView.m */; };
@@ -781,6 +785,12 @@
 		2C4D5EE12351743F0010D5A1 /* VENAudioPlayerView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VENAudioPlayerView.xib; sourceTree = "<group>"; };
 		2C5CC94C23018A8D00FAC842 /* VENMinePageTableHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VENMinePageTableHeaderView.h; sourceTree = "<group>"; };
 		2C5CC94D23018A8D00FAC842 /* VENMinePageTableHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VENMinePageTableHeaderView.m; sourceTree = "<group>"; };
+		2C68466123E02F3400B16568 /* VENMyReadingDetailsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VENMyReadingDetailsViewController.h; sourceTree = "<group>"; };
+		2C68466223E02F3400B16568 /* VENMyReadingDetailsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VENMyReadingDetailsViewController.m; sourceTree = "<group>"; };
+		2C68466323E02F3400B16568 /* VENMyReadingDetailsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VENMyReadingDetailsViewController.xib; sourceTree = "<group>"; };
+		2C68466823E1499D00B16568 /* VENMyReadingDetailsTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VENMyReadingDetailsTableViewCell.h; sourceTree = "<group>"; };
+		2C68466923E1499D00B16568 /* VENMyReadingDetailsTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VENMyReadingDetailsTableViewCell.m; sourceTree = "<group>"; };
+		2C68466A23E1499D00B16568 /* VENMyReadingDetailsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VENMyReadingDetailsTableViewCell.xib; sourceTree = "<group>"; };
 		2C699DC523190E9F00BA8810 /* JXCategoryTitleVerticalZoomCellModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JXCategoryTitleVerticalZoomCellModel.h; sourceTree = "<group>"; };
 		2C699DC623190E9F00BA8810 /* JXCategoryTitleVerticalZoomCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JXCategoryTitleVerticalZoomCell.h; sourceTree = "<group>"; };
 		2C699DC723190E9F00BA8810 /* JXCategoryTitleVerticalZoomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JXCategoryTitleVerticalZoomView.h; sourceTree = "<group>"; };
@@ -2332,10 +2342,8 @@
 		2C42ACF823BB63FA00A5B57B /* Details */ = {
 			isa = PBXGroup;
 			children = (
-				2C42ACFF23BB841600A5B57B /* Main */,
-				2C42AD0023BB841E00A5B57B /* Recording */,
-				2C41C83E23BDE67B00D817D6 /* Translation */,
-				2C7E527623C2C54000B64672 /* Label */,
+				2C68465F23E02D8B00B16568 /* MyReading */,
+				2C68465E23E02D6900B16568 /* MyDictation */,
 			);
 			path = Details;
 			sourceTree = "<group>";
@@ -2480,6 +2488,46 @@
 				2C42ACF123BAF9A600A5B57B /* VENMinePageMemberCenterModel.m */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		2C68465E23E02D6900B16568 /* MyDictation */ = {
+			isa = PBXGroup;
+			children = (
+				2C42ACFF23BB841600A5B57B /* Main */,
+				2C42AD0023BB841E00A5B57B /* Recording */,
+				2C41C83E23BDE67B00D817D6 /* Translation */,
+				2C7E527623C2C54000B64672 /* Label */,
+			);
+			path = MyDictation;
+			sourceTree = "<group>";
+		};
+		2C68465F23E02D8B00B16568 /* MyReading */ = {
+			isa = PBXGroup;
+			children = (
+				2C68466723E1491300B16568 /* View */,
+				2C68466623E1490700B16568 /* Controller */,
+			);
+			path = MyReading;
+			sourceTree = "<group>";
+		};
+		2C68466623E1490700B16568 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				2C68466123E02F3400B16568 /* VENMyReadingDetailsViewController.h */,
+				2C68466223E02F3400B16568 /* VENMyReadingDetailsViewController.m */,
+				2C68466323E02F3400B16568 /* VENMyReadingDetailsViewController.xib */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		2C68466723E1491300B16568 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				2C68466823E1499D00B16568 /* VENMyReadingDetailsTableViewCell.h */,
+				2C68466923E1499D00B16568 /* VENMyReadingDetailsTableViewCell.m */,
+				2C68466A23E1499D00B16568 /* VENMyReadingDetailsTableViewCell.xib */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		2C699DC323190E9F00BA8810 /* JXCategoryView */ = {
@@ -3682,6 +3730,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2C68466523E02F3400B16568 /* VENMyReadingDetailsViewController.xib in Resources */,
 				2C9C8E6F23A099470070C42C /* WechatIMG240.png in Resources */,
 				2C0F87CE23165EA7003E9DB3 /* VENSettingFeedbackViewController.xib in Resources */,
 				2C84931F239E34BB0075F2AB /* VENMaterialDetailsReadAloudPageViewController.xib in Resources */,
@@ -3692,6 +3741,7 @@
 				2C776B2923A083D6002926EA /* VENMaterialDetailsTranslationPageSearchWordAddNewWordsTableHeaderView.xib in Resources */,
 				2CDD577B231E083700F64D57 /* VENBindingPhoneViewController.xib in Resources */,
 				2C4D5ED2234F06160010D5A1 /* Assets.xcassets in Resources */,
+				2C68466C23E1499D00B16568 /* VENMyReadingDetailsTableViewCell.xib in Resources */,
 				2C9C8E7323A099E20070C42C /* WechatIMG242.png in Resources */,
 				2C4D5ED8234F083B0010D5A1 /* VENBottomToolsBarView.xib in Resources */,
 				2CA152F0233B5E8B004CA0BA /* LMWord.storyboard in Resources */,
@@ -3921,6 +3971,7 @@
 				2C8278AB22E59C970066B0C2 /* VENHomePageTableViewHeaderViewTwo.m in Sources */,
 				2CBCDEB52302B89B0010BD11 /* VENMyOtherPersonalMaterialViewController.m in Sources */,
 				2C1C01AA22DC1EE400E4E9C4 /* SDWebImageDownloader.m in Sources */,
+				2C68466423E02F3400B16568 /* VENMyReadingDetailsViewController.m in Sources */,
 				2CBCDEB22302B8860010BD11 /* VENMyOtherPlatformMaterialViewController.m in Sources */,
 				2C1C018822DC1EE400E4E9C4 /* IQUITextFieldView+Additions.m in Sources */,
 				2C3D63D7237BFB94001754E4 /* UIView+YYText.m in Sources */,
@@ -3944,6 +3995,7 @@
 				2C817FFC22F190B100DA6F0B /* VENMaterialPagePersonalMaterialViewController.m in Sources */,
 				2CDD577A231E083700F64D57 /* VENBindingPhoneViewController.m in Sources */,
 				2C123B482372AFC300F2B1A3 /* VENDynamicCirclePageListModel.m in Sources */,
+				2C68466B23E1499D00B16568 /* VENMyReadingDetailsTableViewCell.m in Sources */,
 				2C4D5ECF234EDDF40010D5A1 /* VENMaterialDetailsStartDictationPageViewController.m in Sources */,
 				2C8278A222E55F930066B0C2 /* TYCyclePagerTransformLayout.m in Sources */,
 				2CBCDEAF2302B8460010BD11 /* VENMyOtherViewController.m in Sources */,
