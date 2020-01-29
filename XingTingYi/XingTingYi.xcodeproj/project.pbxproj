@@ -17,6 +17,10 @@
 		2C11BFAF23E170E2004291E1 /* VENMyTranslationDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C11BFAD23E170E2004291E1 /* VENMyTranslationDetailsViewController.xib */; };
 		2C11BFB523E179C7004291E1 /* VENMyTranslationDetailsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C11BFB323E179C7004291E1 /* VENMyTranslationDetailsTableViewCell.m */; };
 		2C11BFB623E179C7004291E1 /* VENMyTranslationDetailsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C11BFB423E179C7004291E1 /* VENMyTranslationDetailsTableViewCell.xib */; };
+		2C11BFBB23E19D96004291E1 /* VENMySubtitleDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C11BFB923E19D96004291E1 /* VENMySubtitleDetailsViewController.m */; };
+		2C11BFBC23E19D96004291E1 /* VENMySubtitleDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C11BFBA23E19D96004291E1 /* VENMySubtitleDetailsViewController.xib */; };
+		2C11BFC223E1A1B1004291E1 /* VENMySubtitleDetailsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C11BFC023E1A1B1004291E1 /* VENMySubtitleDetailsTableViewCell.m */; };
+		2C11BFC323E1A1B1004291E1 /* VENMySubtitleDetailsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C11BFC123E1A1B1004291E1 /* VENMySubtitleDetailsTableViewCell.xib */; };
 		2C123B482372AFC300F2B1A3 /* VENDynamicCirclePageListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C123B472372AFC300F2B1A3 /* VENDynamicCirclePageListModel.m */; };
 		2C123B4D2378F03F00F2B1A3 /* VENSettingPersonalInformationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C123B4C2378F03F00F2B1A3 /* VENSettingPersonalInformationModel.m */; };
 		2C148FB223223C4000DC9BA3 /* VENDynamicCirclePageDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C148FB023223C4000DC9BA3 /* VENDynamicCirclePageDetailsViewController.m */; };
@@ -405,6 +409,12 @@
 		2C11BFB223E179C7004291E1 /* VENMyTranslationDetailsTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VENMyTranslationDetailsTableViewCell.h; sourceTree = "<group>"; };
 		2C11BFB323E179C7004291E1 /* VENMyTranslationDetailsTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VENMyTranslationDetailsTableViewCell.m; sourceTree = "<group>"; };
 		2C11BFB423E179C7004291E1 /* VENMyTranslationDetailsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VENMyTranslationDetailsTableViewCell.xib; sourceTree = "<group>"; };
+		2C11BFB823E19D96004291E1 /* VENMySubtitleDetailsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VENMySubtitleDetailsViewController.h; sourceTree = "<group>"; };
+		2C11BFB923E19D96004291E1 /* VENMySubtitleDetailsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VENMySubtitleDetailsViewController.m; sourceTree = "<group>"; };
+		2C11BFBA23E19D96004291E1 /* VENMySubtitleDetailsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VENMySubtitleDetailsViewController.xib; sourceTree = "<group>"; };
+		2C11BFBF23E1A1B1004291E1 /* VENMySubtitleDetailsTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VENMySubtitleDetailsTableViewCell.h; sourceTree = "<group>"; };
+		2C11BFC023E1A1B1004291E1 /* VENMySubtitleDetailsTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VENMySubtitleDetailsTableViewCell.m; sourceTree = "<group>"; };
+		2C11BFC123E1A1B1004291E1 /* VENMySubtitleDetailsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VENMySubtitleDetailsTableViewCell.xib; sourceTree = "<group>"; };
 		2C123B462372AFC300F2B1A3 /* VENDynamicCirclePageListModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VENDynamicCirclePageListModel.h; sourceTree = "<group>"; };
 		2C123B472372AFC300F2B1A3 /* VENDynamicCirclePageListModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VENDynamicCirclePageListModel.m; sourceTree = "<group>"; };
 		2C123B4B2378F03F00F2B1A3 /* VENSettingPersonalInformationModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VENSettingPersonalInformationModel.h; sourceTree = "<group>"; };
@@ -1173,6 +1183,35 @@
 				2C11BFB223E179C7004291E1 /* VENMyTranslationDetailsTableViewCell.h */,
 				2C11BFB323E179C7004291E1 /* VENMyTranslationDetailsTableViewCell.m */,
 				2C11BFB423E179C7004291E1 /* VENMyTranslationDetailsTableViewCell.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		2C11BFB723E19D7E004291E1 /* MySubtitle */ = {
+			isa = PBXGroup;
+			children = (
+				2C11BFBE23E1A19B004291E1 /* View */,
+				2C11BFBD23E1A192004291E1 /* Controller */,
+			);
+			path = MySubtitle;
+			sourceTree = "<group>";
+		};
+		2C11BFBD23E1A192004291E1 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				2C11BFB823E19D96004291E1 /* VENMySubtitleDetailsViewController.h */,
+				2C11BFB923E19D96004291E1 /* VENMySubtitleDetailsViewController.m */,
+				2C11BFBA23E19D96004291E1 /* VENMySubtitleDetailsViewController.xib */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		2C11BFBE23E1A19B004291E1 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				2C11BFBF23E1A1B1004291E1 /* VENMySubtitleDetailsTableViewCell.h */,
+				2C11BFC023E1A1B1004291E1 /* VENMySubtitleDetailsTableViewCell.m */,
+				2C11BFC123E1A1B1004291E1 /* VENMySubtitleDetailsTableViewCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2372,6 +2411,7 @@
 		2C42ACF823BB63FA00A5B57B /* Details */ = {
 			isa = PBXGroup;
 			children = (
+				2C11BFB723E19D7E004291E1 /* MySubtitle */,
 				2C5B360023E1709B00685573 /* MyTranslation */,
 				2C68465F23E02D8B00B16568 /* MyReading */,
 				2C68465E23E02D6900B16568 /* MyDictation */,
@@ -3771,6 +3811,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2C11BFB623E179C7004291E1 /* VENMyTranslationDetailsTableViewCell.xib in Resources */,
+				2C11BFBC23E19D96004291E1 /* VENMySubtitleDetailsViewController.xib in Resources */,
 				2C68466523E02F3400B16568 /* VENMyReadingDetailsViewController.xib in Resources */,
 				2C9C8E6F23A099470070C42C /* WechatIMG240.png in Resources */,
 				2C0F87CE23165EA7003E9DB3 /* VENSettingFeedbackViewController.xib in Resources */,
@@ -3795,6 +3836,7 @@
 				2C4D5EE22351743F0010D5A1 /* VENAudioPlayerView.xib in Resources */,
 				2C9C8E7D23A0CC590070C42C /* WechatIMG246.png in Resources */,
 				2CA473DE23D85B3F0033B4D0 /* SandBoxPreviewTool.bundle in Resources */,
+				2C11BFC323E1A1B1004291E1 /* VENMySubtitleDetailsTableViewCell.xib in Resources */,
 				2C0ED37823B6310900CAD6B4 /* VENMinePageMyNewWordBookDetailsPageViewController.xib in Resources */,
 				2C9C8E8C23A10F140070C42C /* WechatIMG247.png in Resources */,
 				2C42ACFD23BB649E00A5B57B /* VENMyDictationDetailsViewController.xib in Resources */,
@@ -3988,6 +4030,7 @@
 				2CA152DD233B4D3F004CA0BA /* NSTextAttachment+LMText.m in Sources */,
 				2C1C013322DC1EE400E4E9C4 /* MJRefreshAutoNormalFooter.m in Sources */,
 				2C3D63C2237BFB94001754E4 /* YYTextView.m in Sources */,
+				2C11BFC223E1A1B1004291E1 /* VENMySubtitleDetailsTableViewCell.m in Sources */,
 				2C3D63D1237BFB94001754E4 /* YYTextRubyAnnotation.m in Sources */,
 				2C699E2823190E9F00BA8810 /* JXCategoryIndicatorDotLineView.m in Sources */,
 				2C8EED4723B600D1000EF302 /* VENMinePageModel.m in Sources */,
@@ -4031,6 +4074,7 @@
 				2C1C019A22DC1EE400E4E9C4 /* AFNetworkReachabilityManager.m in Sources */,
 				2C1C01A322DC1EE400E4E9C4 /* TADotView.m in Sources */,
 				2CF5280523954074009B7C69 /* VENLabelPickerViewTwo.m in Sources */,
+				2C11BFBB23E19D96004291E1 /* VENMySubtitleDetailsViewController.m in Sources */,
 				2C888E6F23277F2700CD0510 /* VENMaterialSortSelectorViewCollectionViewCell.m in Sources */,
 				2C98B14C23404CF900E2C700 /* VENColorStyleSettingsTableViewCell.m in Sources */,
 				2C3D63D0237BFB94001754E4 /* YYTextArchiver.m in Sources */,

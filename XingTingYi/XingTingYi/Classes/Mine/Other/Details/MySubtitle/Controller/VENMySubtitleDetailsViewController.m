@@ -1,17 +1,18 @@
 //
-//  VENMyTranslationDetailsViewController.m
+//  VENMySubtitleDetailsViewController.m
 //  XingTingYi
 //
 //  Created by YVEN on 2020/1/29.
 //  Copyright © 2020 Hefei Haiba Network Technology Co., Ltd. All rights reserved.
 //
 
-#import "VENMyTranslationDetailsViewController.h"
+#import "VENMySubtitleDetailsViewController.h"
 #import "VENMaterialDetailsPageModel.h"
-#import "VENMyTranslationDetailsTableViewCell.h"
 #import "VENMaterialDetailPageViewController.h"
+#import "VENMySubtitleDetailsTableViewCell.h"
+#import "VENMaterialDetailsMakeSubtitlesPageViewController.h"
 
-@interface VENMyTranslationDetailsViewController ()
+@interface VENMySubtitleDetailsViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *pictureImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *tagImageView;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
@@ -21,34 +22,40 @@
 @property (weak, nonatomic) IBOutlet UIView *bottomToolsBar;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomContentViewHeightLayoutConstarint;
 
-@property (nonatomic, copy) NSArray *textInfoArr;
+@property (nonatomic, strong) NSMutableArray *subtitleMuArr;
 @property (nonatomic, strong) VENMaterialDetailsPageModel *infoModel;
 
 @property (nonatomic, strong) UILabel *cellLabelTwo;
-@property (nonatomic, strong) UILabel *cellLabelThree;
 
 @end
 
 static NSString *const cellIdentifier = @"cellIdentifier";
-@implementation VENMyTranslationDetailsViewController
+@implementation VENMySubtitleDetailsViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    self.navigationItem.title = @"翻译详情";
+    self.navigationItem.title = @"字幕详情";
     
     self.pictureImageView.layer.cornerRadius = 4.0f;
     self.pictureImageView.layer.masksToBounds = YES;
     
     [self setupBottomToolBar];
-    [self loadMyTranslationDetailsPageData];
+    [self loadMySubtitleDetailsPageData];
 }
 
-- (void)loadMyTranslationDetailsPageData {
+- (void)loadMySubtitleDetailsPageData {
     [[VENNetworkingManager shareManager] requestWithType:HttpRequestTypePOST urlString:@"source/sourceInfo" parameters:@{@"id" : self.source_id} successBlock:^(id responseObject) {
         
-        self.textInfoArr = [NSArray yy_modelArrayWithClass:[VENMaterialDetailsPageModel class] json:responseObject[@"content"][@"textInfo"]];
+        NSArray *avInfoArr = [NSArray yy_modelArrayWithClass:[VENMaterialDetailsPageModel class] json:responseObject[@"content"][@"avInfo"]];
+        
+        [self.subtitleMuArr removeAllObjects];
+        for (VENMaterialDetailsPageModel *model in avInfoArr) {
+            if (![VENEmptyClass isEmptyArray:model.subtitlesList]) {
+                [self.subtitleMuArr addObject:model];
+            }
+        }
         
         [self setupContentWithDict:responseObject[@"content"]];
         
@@ -78,8 +85,8 @@ static NSString *const cellIdentifier = @"cellIdentifier";
         self.tagImageView.image = [UIImage imageNamed:@"icon_tag_video_text"];
     }
     
-    if (self.textInfoArr.count > 0) {
-        CGFloat height = [self getTextInfoHeight];
+    if (self.subtitleMuArr.count > 0) {
+        CGFloat height = [self getSubtitleHeight];
         self.bottomContentViewHeightLayoutConstarint.constant = height;
         
         // tableView
@@ -92,39 +99,38 @@ static NSString *const cellIdentifier = @"cellIdentifier";
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.textInfoArr.count;
+    return self.subtitleMuArr.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    VENMyTranslationDetailsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
+    VENMySubtitleDetailsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
-    VENMaterialDetailsPageModel *textInfoModel = self.textInfoArr[indexPath.row];
+    VENMaterialDetailsPageModel *subtitleModel = self.subtitleMuArr[indexPath.row];
     
-    NSAttributedString *attributedString = [[NSAttributedString alloc] initWithData:[textInfoModel.content dataUsingEncoding:NSUnicodeStringEncoding] options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType} documentAttributes:nil error:nil];
-    
-    cell.titleLabel.attributedText = attributedString;
-    
-    NSString *contentStr = textInfoModel.translation[@"content"];
-    NSString *grammar = textInfoModel.translation[@"grammar"];
-    NSString *words = textInfoModel.translation[@"words"];
-    
-    if (![VENEmptyClass isEmptyString:contentStr] && ![VENEmptyClass isEmptyString:grammar] && ![VENEmptyClass isEmptyString:words]) {
-        cell.contentLabel.text = [NSString stringWithFormat:@"翻译：%@\n语法：%@\n单词：%@", contentStr, grammar, words];
+    if (indexPath.row < 10) {
+        cell.numberLabel.text = [NSString stringWithFormat:@"0%ld", (long)indexPath.row + 1];
     } else {
-        cell.contentLabel.text = @"";
+        cell.numberLabel.text = [NSString stringWithFormat:@"%ld", (long)indexPath.row + 1];
     }
+    cell.titleLabel.text = subtitleModel.subtitlesList[0][@"content"];
+    
+    cell.checkButtonClickBlock = ^{
+        VENMaterialDetailsMakeSubtitlesPageViewController *vc = [[VENMaterialDetailsMakeSubtitlesPageViewController alloc] init];
+        vc.source_period_id = subtitleModel.id;
+        [self.navigationController pushViewController:vc animated:YES];
+    };
     
     return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    VENMaterialDetailsPageModel *textInfoModel = self.textInfoArr[indexPath.row];
+    VENMaterialDetailsPageModel *subtitleModel = self.subtitleMuArr[indexPath.row];
     
-    if (!textInfoModel.cellHeight) {
+    if (!subtitleModel.cellHeight) {
         return CGFLOAT_MIN;
     } else {
-        return textInfoModel.cellHeight;
+        return subtitleModel.cellHeight;
     }
 }
 
@@ -151,35 +157,22 @@ static NSString *const cellIdentifier = @"cellIdentifier";
     
     self.tableView.backgroundColor = [UIColor whiteColor];
     self.tableView.scrollEnabled = NO;
-    [self.tableView registerNib:[UINib nibWithNibName:@"VENMyTranslationDetailsTableViewCell" bundle:nil] forCellReuseIdentifier:cellIdentifier];
+    [self.tableView registerNib:[UINib nibWithNibName:@"VENMySubtitleDetailsTableViewCell" bundle:nil] forCellReuseIdentifier:cellIdentifier];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.bottomContentView addSubview:self.tableView];
 }
 
 #pragma mark - TableView Height
-- (CGFloat)getTextInfoHeight {
+- (CGFloat)getSubtitleHeight {
     CGFloat tableViewHeight = 0;
-    for (VENMaterialDetailsPageModel *textInfoModel in self.textInfoArr) {
+    for (VENMaterialDetailsPageModel *subtitleModel in self.subtitleMuArr) {
         
-        NSAttributedString *attributedString = [[NSAttributedString alloc] initWithData:[textInfoModel.content dataUsingEncoding:NSUnicodeStringEncoding] options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType} documentAttributes:nil error:nil];
+        self.cellLabelTwo.text = subtitleModel.subtitlesList[0][@"content"];
         
-        self.cellLabelTwo.attributedText = attributedString;
+        CGFloat labelHeight = [self.cellLabelTwo sizeThatFits:CGSizeMake(kMainScreenWidth - 75 - 35 - 40, CGFLOAT_MAX)].height;
+        CGFloat height = 5 + 25 + 20 + labelHeight + 1 + 44 + 5;
         
-        NSString *contentStr = textInfoModel.translation[@"content"];
-        NSString *grammar = textInfoModel.translation[@"grammar"];
-        NSString *words = textInfoModel.translation[@"words"];
-        
-        if (![VENEmptyClass isEmptyString:contentStr] && ![VENEmptyClass isEmptyString:grammar] && ![VENEmptyClass isEmptyString:words]) {
-            self.cellLabelThree.text = [NSString stringWithFormat:@"翻译：%@\n语法：%@\n单词：%@", contentStr, grammar, words];
-        } else {
-            self.cellLabelThree.text = @"";
-        }
-        
-        CGFloat labelHeight = [self.cellLabelTwo sizeThatFits:CGSizeMake(kMainScreenWidth - 40 - 30, CGFLOAT_MAX)].height;
-        CGFloat labelHeight2 = [self.cellLabelThree sizeThatFits:CGSizeMake(kMainScreenWidth - 40 - 30, CGFLOAT_MAX)].height;
-        CGFloat height = 5 + 15 + labelHeight + 10 + labelHeight2 + 25 + 15;
-        
-        textInfoModel.cellHeight = height;
+        subtitleModel.cellHeight = height;
         tableViewHeight += height;
     }
     return tableViewHeight;
@@ -209,8 +202,8 @@ static NSString *const cellIdentifier = @"cellIdentifier";
     rightButton.layer.masksToBounds = YES;
     [self.bottomToolsBar addSubview:rightButton];
     
-    [leftButton setTitle:@"删除翻译" forState:UIControlStateNormal];
-    [rightButton setTitle:@"重新翻译" forState:UIControlStateNormal];
+    [leftButton setTitle:@"删除字幕" forState:UIControlStateNormal];
+    [rightButton setTitle:@"重新制作字幕" forState:UIControlStateNormal];
     
     [leftButton addTarget:self action:@selector(leftButtonClick) forControlEvents:UIControlEventTouchUpInside];
     [rightButton addTarget:self action:@selector(rightButtonClick) forControlEvents:UIControlEventTouchUpInside];
@@ -219,7 +212,7 @@ static NSString *const cellIdentifier = @"cellIdentifier";
 - (void)leftButtonClick {
     NSDictionary *parameters = @{@"source_id" : self.source_id,
                                  @"sourceType" : @"1",
-                                 @"doType" : @"3"};
+                                 @"doType" : @"4"};
     
     [[VENNetworkingManager shareManager] requestWithType:HttpRequestTypePOST urlString:@"user/delDosource" parameters:parameters successBlock:^(id responseObject) {
         
@@ -240,22 +233,20 @@ static NSString *const cellIdentifier = @"cellIdentifier";
     [self.navigationController pushViewController:vc animated:YES];
 }
 
+- (NSMutableArray *)subtitleMuArr {
+    if (!_subtitleMuArr) {
+        _subtitleMuArr = [NSMutableArray array];
+    }
+    return _subtitleMuArr;
+}
+
 - (UILabel *)cellLabelTwo {
     if (!_cellLabelTwo) {
         _cellLabelTwo = [[UILabel alloc] init];
-        _cellLabelTwo.font = [UIFont systemFontOfSize:14.0f];
-        _cellLabelTwo.numberOfLines = 0;
+        _cellLabelTwo.font = [UIFont systemFontOfSize:16.0f];
+        _cellLabelTwo.numberOfLines = 2;
     }
     return _cellLabelTwo;
-}
-
-- (UILabel *)cellLabelThree {
-    if (!_cellLabelThree) {
-        _cellLabelThree = [[UILabel alloc] init];
-        _cellLabelThree.font = [UIFont systemFontOfSize:14.0f];
-        _cellLabelThree.numberOfLines = 0;
-    }
-    return _cellLabelThree;
 }
 
 /*

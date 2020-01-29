@@ -12,6 +12,7 @@
 #import "VENHomePageModel.h"
 #import "VENMyReadingDetailsViewController.h"
 #import "VENMyTranslationDetailsViewController.h"
+#import "VENMySubtitleDetailsViewController.h"
 
 @interface VENMyOtherPlatformMaterialViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) UITableView *tableView;
@@ -97,7 +98,12 @@ static NSString *const cellIdentifier = @"cellIdentifier";
         };
         [self.navigationController pushViewController:vc animated:YES];
     } else {
-        
+        VENMySubtitleDetailsViewController *vc = [[VENMySubtitleDetailsViewController alloc] init];
+        vc.source_id = model.source_id;
+        vc.deleteBlock = ^{
+            [self loadPlatformMaterialData:@"1"];
+        };
+        [self.navigationController pushViewController:vc animated:YES];
     }
 }
 
