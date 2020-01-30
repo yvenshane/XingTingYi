@@ -151,6 +151,10 @@
         
         CGFloat height = [self.subtitleLabel sizeThatFits:CGSizeMake(kMainScreenWidth - 70, CGFLOAT_MAX)].height;
         
+        if (height < 17) {
+            height = 17;
+        }
+        
         self.subtitleViewHeightLayoutConstraint.constant = 20 + height + 44;
         self.subtitleViewTopLayoutConstraint.constant = 20.0f;
         

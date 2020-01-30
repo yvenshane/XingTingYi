@@ -127,7 +127,7 @@ static NSString *const cellIdentifier2 = @"cellIdentifier2";
             self.tableContentViewHeightLayoutConstraint.constant = height + 60;
             self.tableView.frame = CGRectMake(0, 0, kMainScreenWidth, height + 60);
         } else {
-            self.tableContentViewHeightLayoutConstraint.constant = 0;
+            self.tableContentViewHeightLayoutConstraint.constant = 30;
             self.tableView.frame = CGRectZero;
         }
         
