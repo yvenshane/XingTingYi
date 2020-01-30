@@ -15,6 +15,7 @@
 #import "VENHomePageRecommendMaterialViewController.h"
 #import "VENHomePageModel.h"
 #import "VENBaseWebViewController.h"
+#import "VENHomePageSignViewController.h"
 
 @interface VENHomePageViewController ()
 @property (nonatomic, strong) VENHomePageModel *model;
@@ -52,12 +53,19 @@ static NSString *const cellIdentifier3 = @"cellIdentifier3";
     
     self.view.autoresizesSubviews = YES;
     
-    // logo
     UIView *titleView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kMainScreenWidth, 44)];
+    self.navigationItem.titleView = titleView;
+    
+    // logo
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(8, 8, 84, 28)];
     imageView.image = [UIImage imageNamed:@"icon_logo"];
     [titleView addSubview:imageView];
-    self.navigationItem.titleView = titleView;
+    
+    // 签到
+    UIButton *signButton = [[UIButton alloc] initWithFrame:CGRectMake(kMainScreenWidth - 44 - 12, 0, 44, 44)];
+    [signButton setImage:[UIImage imageNamed:@"icon_home_sign"] forState:UIControlStateNormal];
+    [signButton addTarget:self action:@selector(signButtonClick) forControlEvents:UIControlEventTouchUpInside];
+    [titleView addSubview:signButton];
     
     [self setupTableView];
     
@@ -211,6 +219,13 @@ static NSString *const cellIdentifier3 = @"cellIdentifier3";
         vc.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:vc animated:YES];
     }
+}
+
+#pragma mark - 签到
+- (void)signButtonClick {
+    VENHomePageSignViewController *vc = [[VENHomePageSignViewController alloc] init];
+    vc.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 /*

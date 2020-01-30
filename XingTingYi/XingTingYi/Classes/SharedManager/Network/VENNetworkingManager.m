@@ -74,18 +74,13 @@ static NSString *const url = @"https://www.yuanqilanguage.com/index.php/";
                 [MBProgressHUD showText:responseObject[@"msg"]];
                 
                 if ([responseObject[@"ret"] integerValue] == 203) { // 未登录
+                    
+                    [[self getCurrentTopVC].navigationController popViewControllerAnimated:YES];
+                    
                     VENLoginPageViewController *vc = [[VENLoginPageViewController alloc] init];
                     VENNavigationController *nav = [[VENNavigationController alloc] initWithRootViewController:vc];
-                    
-                    
-//                    vc.loginSuccessBlock = ^{
-//                        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-//                            [[self getCurrentTopVC].navigationController popViewControllerAnimated:YES];
-//                        });
-//                    };
-                    
-                    
                     [[self getCurrentTopVC] presentViewController:nav animated:YES completion:nil];
+                    
                     return;
                 }
                 
@@ -118,9 +113,13 @@ static NSString *const url = @"https://www.yuanqilanguage.com/index.php/";
                 [MBProgressHUD showText:responseObject[@"msg"]];
                 
                 if ([responseObject[@"ret"] integerValue] == 203) { // 未登录
+                    
+                    [[self getCurrentTopVC].navigationController popViewControllerAnimated:YES];
+                    
                     VENLoginPageViewController *vc = [[VENLoginPageViewController alloc] init];
                     VENNavigationController *nav = [[VENNavigationController alloc] initWithRootViewController:vc];
                     [[self getCurrentTopVC] presentViewController:nav animated:YES completion:nil];
+                    
                     return;
                 }
                 

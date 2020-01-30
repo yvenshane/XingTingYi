@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface VENBaseViewController : UIViewController
 @property (nonatomic, strong) UITableView *tableView;
-@property (nonatomic, strong) UICollectionView *collectionView;
+//@property (nonatomic, strong) UICollectionView *collectionView;
 
 - (void)setupNavigationItemLeftBarButtonItem;
 @property (nonatomic, assign) BOOL isPresent;
