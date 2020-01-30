@@ -76,6 +76,8 @@ static NSString *const cellIdentifier2 = @"cellIdentifier2";
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    self.tableView.frame = CGRectZero;
+    
     [self setupNavigationView];
     
     self.scrollView.delegate = self;
@@ -461,6 +463,8 @@ static NSString *const cellIdentifier2 = @"cellIdentifier2";
 
 #pragma mark - tableView
 - (void)setupTableView {
+    self.tableView.autoresizingMask = UIViewAutoresizingNone;
+    
     self.tableView.backgroundColor = [UIColor whiteColor];
     self.tableView.scrollEnabled = NO;
     [self.tableView registerNib:[UINib nibWithNibName:@"VENMaterialDetailsPageTableViewCell" bundle:nil] forCellReuseIdentifier:cellIdentifier];
@@ -472,31 +476,31 @@ static NSString *const cellIdentifier2 = @"cellIdentifier2";
 #pragma mark - footerView
 - (void)setupFooterView {
     VENMaterialDetailsPageFooterView *footerView = [[NSBundle mainBundle] loadNibNamed:@"VENMaterialDetailsPageFooterView" owner:nil options:nil].lastObject;
-    CGFloat height = [footerView getHeightFromData:self.contentDict];
-    self.footerViewHeightLayoutConstraint.constant = height;
+    CGFloat footerViewHeight = [footerView getHeightFromData:self.contentDict];
+    self.footerViewHeightLayoutConstraint.constant = footerViewHeight;
     
     __weak typeof(self) weakSelf = self;
     footerView.categoryButtonBlock = ^(NSInteger tag, BOOL isShowAudioView) {
         if (tag == 998) {
-            self.isTextInfo = NO;
+            weakSelf.isTextInfo = NO;
             
-            CGFloat height = [self getAvInfoHeight];
-            self.tableContentViewHeightLayoutConstraint.constant = height;
-            self.tableView.frame = CGRectMake(0, 0, kMainScreenWidth, height);
+            CGFloat height = [weakSelf getAvInfoHeight];
+            weakSelf.tableContentViewHeightLayoutConstraint.constant = height;
+            weakSelf.tableView.frame = CGRectMake(0, 0, kMainScreenWidth, height);
             
-            [self.tableView reloadData];
+            [weakSelf.tableView reloadData];
             
-            weakSelf.footerViewHeightLayoutConstraint.constant = height;
+//            weakSelf.footerViewHeightLayoutConstraint.constant = height;
         } else {
-            self.isTextInfo = YES;
+            weakSelf.isTextInfo = YES;
             
-            CGFloat height = [self getTextInfoHeight];
-            self.tableContentViewHeightLayoutConstraint.constant = height + 60;
-            self.tableView.frame = CGRectMake(0, 0, kMainScreenWidth, height + 60);
+            CGFloat height = [weakSelf getTextInfoHeight];
+            weakSelf.tableContentViewHeightLayoutConstraint.constant = height + 60;
+            weakSelf.tableView.frame = CGRectMake(0, 0, kMainScreenWidth, height + 60);
             
-            [self.tableView reloadData];
+            [weakSelf.tableView reloadData];
             
-            weakSelf.footerViewHeightLayoutConstraint.constant = isShowAudioView ? height + (kMainScreenWidth - 40) / (335.0 / 120.0) + 25 : height;
+//            weakSelf.footerViewHeightLayoutConstraint.constant = isShowAudioView ? height + (kMainScreenWidth - 40) / (335.0 / 120.0) + 25 : height;
         }
     };
     
