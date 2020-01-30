@@ -35,7 +35,7 @@
     self.bottomViewHeightLayoutConstraint.constant = 0.0f;
     
     if ([self.infoModel.type isEqualToString:@"4"] || [self.infoModel.type isEqualToString:@"5"]) {
-        if (avInfoArr.count > 0 && [VENEmptyClass isEmptyArray:textInfoArr]) {
+        if (avInfoArr.count < 2) {
             self.bottomView.hidden = NO;
             self.bottomViewHeightLayoutConstraint.constant = 70.0f;
             
