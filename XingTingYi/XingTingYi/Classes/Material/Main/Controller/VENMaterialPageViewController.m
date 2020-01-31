@@ -20,6 +20,8 @@
 @property (nonatomic, strong) UIView *selectorView;
 @property (nonatomic, strong) UIScrollView *scrollView;
 
+@property (nonatomic, assign) BOOL isRefresh;
+
 @end
 
 
@@ -85,7 +87,10 @@
     
     // 滚动 加载数据
     if (offsetX / kMainScreenWidth == 1) {
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"RefreshPersonalMaterialAudioPage" object:nil];
+        if (!self.isRefresh) {
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"RefreshPersonalMaterialAudioPage" object:nil];
+            self.isRefresh = YES;
+        }
     }
 }
 
@@ -178,7 +183,10 @@
         CGRect rect = CGRectMake(self.scrollView.bounds.size.width, 0, self.scrollView.bounds.size.width, self.scrollView.bounds.size.height);
         [self.scrollView scrollRectToVisible:rect animated:YES];
         
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"RefreshPersonalMaterialAudioPage" object:nil];
+        if (!self.isRefresh) {
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"RefreshPersonalMaterialAudioPage" object:nil];
+            self.isRefresh = YES;
+        }
     }
 }
 

@@ -267,10 +267,15 @@
 		2C699E50231927DD00BA8810 /* VENDynamicCirclePageListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C699E4E231927DD00BA8810 /* VENDynamicCirclePageListTableViewCell.m */; };
 		2C699E51231927DD00BA8810 /* VENDynamicCirclePageListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C699E4F231927DD00BA8810 /* VENDynamicCirclePageListTableViewCell.xib */; };
 		2C726A7023A2290B0024BED7 /* VENAudioRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C726A6F23A2290B0024BED7 /* VENAudioRecorder.m */; };
+		2C72A45623E3FD7D0078A120 /* VENMaterialPageAddPersonalTextMaterialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C72A45423E3FD7D0078A120 /* VENMaterialPageAddPersonalTextMaterialViewController.m */; };
+		2C72A45723E3FD7D0078A120 /* VENMaterialPageAddPersonalTextMaterialViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C72A45523E3FD7D0078A120 /* VENMaterialPageAddPersonalTextMaterialViewController.xib */; };
+		2C72A45B23E3FD910078A120 /* VENMaterialPageAddPersonalAudioVideoMaterialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C72A45923E3FD910078A120 /* VENMaterialPageAddPersonalAudioVideoMaterialViewController.m */; };
+		2C72A45C23E3FD910078A120 /* VENMaterialPageAddPersonalAudioVideoMaterialViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C72A45A23E3FD910078A120 /* VENMaterialPageAddPersonalAudioVideoMaterialViewController.xib */; };
 		2C74228023AA451E00D217DA /* VENMaterialDetailPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C74227E23AA451E00D217DA /* VENMaterialDetailPageViewController.m */; };
 		2C74228123AA451E00D217DA /* VENMaterialDetailPageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C74227F23AA451E00D217DA /* VENMaterialDetailPageViewController.xib */; };
 		2C776B2723A083CE002926EA /* VENMaterialDetailsTranslationPageSearchWordAddNewWordsTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C776B2623A083CE002926EA /* VENMaterialDetailsTranslationPageSearchWordAddNewWordsTableHeaderView.m */; };
 		2C776B2923A083D6002926EA /* VENMaterialDetailsTranslationPageSearchWordAddNewWordsTableHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C776B2823A083D6002926EA /* VENMaterialDetailsTranslationPageSearchWordAddNewWordsTableHeaderView.xib */; };
+		2C79184423E3EF15006BBDDF /* VENMaterialPageAddPersonalMaterialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C79184323E3EF15006BBDDF /* VENMaterialPageAddPersonalMaterialViewController.m */; };
 		2C7E527923C2C57000B64672 /* VENMyDictationDetailsLabelPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C7E527823C2C57000B64672 /* VENMyDictationDetailsLabelPageViewController.m */; };
 		2C817FE422F172FF00DA6F0B /* VENBaseCategoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C817FE322F172FF00DA6F0B /* VENBaseCategoryView.m */; };
 		2C817FEE22F1795E00DA6F0B /* VENMaterialPagePersonalMaterialAudioViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C817FED22F1795E00DA6F0B /* VENMaterialPagePersonalMaterialAudioViewController.m */; };
@@ -918,11 +923,19 @@
 		2C699E4F231927DD00BA8810 /* VENDynamicCirclePageListTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VENDynamicCirclePageListTableViewCell.xib; sourceTree = "<group>"; };
 		2C726A6E23A2290B0024BED7 /* VENAudioRecorder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VENAudioRecorder.h; sourceTree = "<group>"; };
 		2C726A6F23A2290B0024BED7 /* VENAudioRecorder.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VENAudioRecorder.m; sourceTree = "<group>"; };
+		2C72A45323E3FD7D0078A120 /* VENMaterialPageAddPersonalTextMaterialViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VENMaterialPageAddPersonalTextMaterialViewController.h; sourceTree = "<group>"; };
+		2C72A45423E3FD7D0078A120 /* VENMaterialPageAddPersonalTextMaterialViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VENMaterialPageAddPersonalTextMaterialViewController.m; sourceTree = "<group>"; };
+		2C72A45523E3FD7D0078A120 /* VENMaterialPageAddPersonalTextMaterialViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VENMaterialPageAddPersonalTextMaterialViewController.xib; sourceTree = "<group>"; };
+		2C72A45823E3FD910078A120 /* VENMaterialPageAddPersonalAudioVideoMaterialViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VENMaterialPageAddPersonalAudioVideoMaterialViewController.h; sourceTree = "<group>"; };
+		2C72A45923E3FD910078A120 /* VENMaterialPageAddPersonalAudioVideoMaterialViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VENMaterialPageAddPersonalAudioVideoMaterialViewController.m; sourceTree = "<group>"; };
+		2C72A45A23E3FD910078A120 /* VENMaterialPageAddPersonalAudioVideoMaterialViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VENMaterialPageAddPersonalAudioVideoMaterialViewController.xib; sourceTree = "<group>"; };
 		2C74227E23AA451E00D217DA /* VENMaterialDetailPageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VENMaterialDetailPageViewController.m; sourceTree = "<group>"; };
 		2C74227F23AA451E00D217DA /* VENMaterialDetailPageViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VENMaterialDetailPageViewController.xib; sourceTree = "<group>"; };
 		2C776B2523A083CE002926EA /* VENMaterialDetailsTranslationPageSearchWordAddNewWordsTableHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VENMaterialDetailsTranslationPageSearchWordAddNewWordsTableHeaderView.h; sourceTree = "<group>"; };
 		2C776B2623A083CE002926EA /* VENMaterialDetailsTranslationPageSearchWordAddNewWordsTableHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VENMaterialDetailsTranslationPageSearchWordAddNewWordsTableHeaderView.m; sourceTree = "<group>"; };
 		2C776B2823A083D6002926EA /* VENMaterialDetailsTranslationPageSearchWordAddNewWordsTableHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VENMaterialDetailsTranslationPageSearchWordAddNewWordsTableHeaderView.xib; sourceTree = "<group>"; };
+		2C79184223E3EF15006BBDDF /* VENMaterialPageAddPersonalMaterialViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VENMaterialPageAddPersonalMaterialViewController.h; sourceTree = "<group>"; };
+		2C79184323E3EF15006BBDDF /* VENMaterialPageAddPersonalMaterialViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VENMaterialPageAddPersonalMaterialViewController.m; sourceTree = "<group>"; };
 		2C7E527723C2C57000B64672 /* VENMyDictationDetailsLabelPageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VENMyDictationDetailsLabelPageViewController.h; sourceTree = "<group>"; };
 		2C7E527823C2C57000B64672 /* VENMyDictationDetailsLabelPageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VENMyDictationDetailsLabelPageViewController.m; sourceTree = "<group>"; };
 		2C817FE222F172FF00DA6F0B /* VENBaseCategoryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VENBaseCategoryView.h; sourceTree = "<group>"; };
@@ -2917,6 +2930,34 @@
 			path = AudioRecorder;
 			sourceTree = "<group>";
 		};
+		2C72A45023E3F1910078A120 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				2C79184123E3EEF3006BBDDF /* Controller */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		2C72A45123E3FC040078A120 /* Text */ = {
+			isa = PBXGroup;
+			children = (
+				2C72A45323E3FD7D0078A120 /* VENMaterialPageAddPersonalTextMaterialViewController.h */,
+				2C72A45423E3FD7D0078A120 /* VENMaterialPageAddPersonalTextMaterialViewController.m */,
+				2C72A45523E3FD7D0078A120 /* VENMaterialPageAddPersonalTextMaterialViewController.xib */,
+			);
+			path = Text;
+			sourceTree = "<group>";
+		};
+		2C72A45223E3FC130078A120 /* AudioVideo */ = {
+			isa = PBXGroup;
+			children = (
+				2C72A45823E3FD910078A120 /* VENMaterialPageAddPersonalAudioVideoMaterialViewController.h */,
+				2C72A45923E3FD910078A120 /* VENMaterialPageAddPersonalAudioVideoMaterialViewController.m */,
+				2C72A45A23E3FD910078A120 /* VENMaterialPageAddPersonalAudioVideoMaterialViewController.xib */,
+			);
+			path = AudioVideo;
+			sourceTree = "<group>";
+		};
 		2C776B2423A083B4002926EA /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -2925,6 +2966,33 @@
 				2C776B2823A083D6002926EA /* VENMaterialDetailsTranslationPageSearchWordAddNewWordsTableHeaderView.xib */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		2C79183F23E3EE03006BBDDF /* AddPersonalMaterial */ = {
+			isa = PBXGroup;
+			children = (
+				2C72A45023E3F1910078A120 /* Main */,
+				2C72A45223E3FC130078A120 /* AudioVideo */,
+				2C72A45123E3FC040078A120 /* Text */,
+			);
+			path = AddPersonalMaterial;
+			sourceTree = "<group>";
+		};
+		2C79184023E3EE15006BBDDF /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				2C817FF722F1901400DA6F0B /* Controller */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		2C79184123E3EEF3006BBDDF /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				2C79184223E3EF15006BBDDF /* VENMaterialPageAddPersonalMaterialViewController.h */,
+				2C79184323E3EF15006BBDDF /* VENMaterialPageAddPersonalMaterialViewController.m */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		2C7E527623C2C54000B64672 /* Label */ = {
@@ -3018,9 +3086,7 @@
 			isa = PBXGroup;
 			children = (
 				2C817FF922F1902B00DA6F0B /* Main */,
-				2C817FEA22F178EB00DA6F0B /* Audio */,
-				2C817FE622F178EB00DA6F0B /* Video */,
-				2C817FE822F178EB00DA6F0B /* Text */,
+				2C79183F23E3EE03006BBDDF /* AddPersonalMaterial */,
 			);
 			path = PersonalMaterial;
 			sourceTree = "<group>";
@@ -3046,7 +3112,10 @@
 		2C817FF922F1902B00DA6F0B /* Main */ = {
 			isa = PBXGroup;
 			children = (
-				2C817FF722F1901400DA6F0B /* Controller */,
+				2C79184023E3EE15006BBDDF /* Main */,
+				2C817FEA22F178EB00DA6F0B /* Audio */,
+				2C817FE622F178EB00DA6F0B /* Video */,
+				2C817FE822F178EB00DA6F0B /* Text */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -3946,6 +4015,7 @@
 				2C148FBA2322449500DC9BA3 /* VENDynamicCirclePageDetailsCommentTableViewCell.xib in Resources */,
 				2C4D5EE22351743F0010D5A1 /* VENAudioPlayerView.xib in Resources */,
 				2CAFE64B23E1BC86008E7377 /* VENHomePageSignViewController.xib in Resources */,
+				2C72A45C23E3FD910078A120 /* VENMaterialPageAddPersonalAudioVideoMaterialViewController.xib in Resources */,
 				2C9C8E7D23A0CC590070C42C /* WechatIMG246.png in Resources */,
 				2CA473DE23D85B3F0033B4D0 /* SandBoxPreviewTool.bundle in Resources */,
 				2CAFE65223E1D09A008E7377 /* VENHomePageSignCollectionViewCell.xib in Resources */,
@@ -3983,6 +4053,7 @@
 				2C42AD0523BB848A00A5B57B /* VENMyDictationDetailsRecordingPageViewController.xib in Resources */,
 				2C84932F239F35F90075F2AB /* VENMaterialDetailsTranslationPageTableHeaderView.xib in Resources */,
 				2CE8E62E2397D2B70048977F /* VENMaterialDetailsPageTableViewCell.xib in Resources */,
+				2C72A45723E3FD7D0078A120 /* VENMaterialPageAddPersonalTextMaterialViewController.xib in Resources */,
 				2C699E51231927DD00BA8810 /* VENDynamicCirclePageListTableViewCell.xib in Resources */,
 				2C1C012A22DC1EE400E4E9C4 /* MJRefresh.bundle in Resources */,
 				2C888E7023277F2700CD0510 /* VENMaterialSortSelectorViewCollectionViewCell.xib in Resources */,
@@ -4100,6 +4171,7 @@
 				2C3D63CF237BFB94001754E4 /* YYTextAttribute.m in Sources */,
 				2CA473E023D85B3F0033B4D0 /* LJ_FileInfoController.m in Sources */,
 				2C1C01AE22DC1EE400E4E9C4 /* SDWebImagePrefetcher.m in Sources */,
+				2C72A45623E3FD7D0078A120 /* VENMaterialPageAddPersonalTextMaterialViewController.m in Sources */,
 				2C148FC0232253C600DC9BA3 /* VENHomePageNewsViewController.m in Sources */,
 				2C1C01C222DC1EE400E4E9C4 /* VENUserStatusManager.m in Sources */,
 				2C11BFAE23E170E2004291E1 /* VENMyTranslationDetailsViewController.m in Sources */,
@@ -4250,6 +4322,7 @@
 				2C1C019622DC1EE400E4E9C4 /* AFURLResponseSerialization.m in Sources */,
 				2C3B469C23A2336B00135F7C /* QNSessionManager.m in Sources */,
 				2C3D638C237BF68F001754E4 /* VENDynamicCirclePageDetailsModel.m in Sources */,
+				2C79184423E3EF15006BBDDF /* VENMaterialPageAddPersonalMaterialViewController.m in Sources */,
 				2C1C015F22DC1EE400E4E9C4 /* MASLayoutConstraint.m in Sources */,
 				2C1E2B6E2328EEEF0080C526 /* VENMaterialDetailsPageModel.m in Sources */,
 				2CA15353233B5ED1004CA0BA /* LMStyleFontSizeCell.m in Sources */,
@@ -4263,6 +4336,7 @@
 				2C8278A122E55F930066B0C2 /* TYCyclePagerView.m in Sources */,
 				2C1C019522DC1EE400E4E9C4 /* AFImageDownloader.m in Sources */,
 				2C1C018922DC1EE400E4E9C4 /* IQUIScrollView+Additions.m in Sources */,
+				2C72A45B23E3FD910078A120 /* VENMaterialPageAddPersonalAudioVideoMaterialViewController.m in Sources */,
 				2C1C013822DC1EE400E4E9C4 /* MJRefreshHeader.m in Sources */,
 				2C9C8E7B23A09FA60070C42C /* VENChooseCategoryView.m in Sources */,
 				2C1C013922DC1EE400E4E9C4 /* MJRefreshBackFooter.m in Sources */,

@@ -70,7 +70,6 @@ static NSString *const url = @"https://www.yuanqilanguage.com/index.php/";
                 NSArray *cookies = [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookies];
                 [NSKeyedArchiver archiveRootObject:cookies toFile:CookieStoragePath];
                 
-                [[NSNotificationCenter defaultCenter] postNotificationName:@"EndRefreshing" object:nil];
                 [MBProgressHUD showText:responseObject[@"msg"]];
                 
                 if ([responseObject[@"ret"] integerValue] == 203) { // 未登录
@@ -91,7 +90,6 @@ static NSString *const url = @"https://www.yuanqilanguage.com/index.php/";
                 if (successBlock) successBlock(responseObject);
             } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
                 [MBProgressHUD removeLoading];
-                [[NSNotificationCenter defaultCenter] postNotificationName:@"EndRefreshing" object:nil];
                 NSLog(@"%@", error);
                 if (failureBlock) failureBlock(error);
             }];
@@ -109,7 +107,6 @@ static NSString *const url = @"https://www.yuanqilanguage.com/index.php/";
                 NSArray *cookies = [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookies];
                 [NSKeyedArchiver archiveRootObject:cookies toFile:CookieStoragePath];
                 
-                [[NSNotificationCenter defaultCenter] postNotificationName:@"EndRefreshing" object:nil];
                 [MBProgressHUD showText:responseObject[@"msg"]];
                 
                 if ([responseObject[@"ret"] integerValue] == 203) { // 未登录
@@ -130,7 +127,7 @@ static NSString *const url = @"https://www.yuanqilanguage.com/index.php/";
                 if (successBlock) successBlock(responseObject);
             } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
                 [MBProgressHUD removeLoading];
-                [[NSNotificationCenter defaultCenter] postNotificationName:@"EndRefreshing" object:nil];
+                
                 NSLog(@"%@", error);
                 if (failureBlock) failureBlock(error);
             }];
@@ -181,13 +178,16 @@ static NSString *const url = @"https://www.yuanqilanguage.com/index.php/";
         NSArray *cookies = [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookies];
         [NSKeyedArchiver archiveRootObject:cookies toFile:CookieStoragePath];
         
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"EndRefreshing" object:nil];
         [MBProgressHUD showText:responseObject[@"msg"]];
         
         if ([responseObject[@"ret"] integerValue] == 203) { // 未登录
+            
+            [[self getCurrentTopVC].navigationController popViewControllerAnimated:YES];
+            
             VENLoginPageViewController *vc = [[VENLoginPageViewController alloc] init];
             VENNavigationController *nav = [[VENNavigationController alloc] initWithRootViewController:vc];
             [[self getCurrentTopVC] presentViewController:nav animated:YES completion:nil];
+            
             return;
         }
         
@@ -198,7 +198,7 @@ static NSString *const url = @"https://www.yuanqilanguage.com/index.php/";
         if (successBlock) successBlock(responseObject);
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [MBProgressHUD removeLoading];
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"EndRefreshing" object:nil];
+        
         NSLog(@"%@", error);
         if (failureBlock) failureBlock(error);
     }];

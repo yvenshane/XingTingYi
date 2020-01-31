@@ -14,6 +14,9 @@
 @property (nonatomic, weak) UIScrollView *scrollView;
 @property (nonatomic, assign) NSInteger pageIdx;
 
+@property (nonatomic, assign) BOOL isRefresh2;
+@property (nonatomic, assign) BOOL isRefresh3;
+
 @end
 
 @implementation VENMaterialPagePersonalMaterialViewController
@@ -46,9 +49,15 @@
     
     // 滚动 加载数据
     if (_pageIdx == 1) {
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"RefreshPersonalMaterialVideoPage" object:nil];
+        if (!self.isRefresh2) {
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"RefreshPersonalMaterialVideoPage" object:nil];
+            self.isRefresh2 = YES;
+        }
     } else if (_pageIdx == 2) {
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"RefreshPersonalMaterialTextPage" object:nil];
+        if (!self.isRefresh3) {
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"RefreshPersonalMaterialTextPage" object:nil];
+            self.isRefresh3 = YES;
+        }
     }
 }
 
@@ -63,9 +72,15 @@
     
     // 点击 加载数据
     if (_pageIdx == 1) {
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"RefreshPersonalMaterialVideoPage" object:nil];
+        if (!self.isRefresh2) {
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"RefreshPersonalMaterialVideoPage" object:nil];
+            self.isRefresh2 = YES;
+        }
     } else if (_pageIdx == 2) {
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"RefreshPersonalMaterialTextPage" object:nil];
+        if (!self.isRefresh3) {
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"RefreshPersonalMaterialTextPage" object:nil];
+            self.isRefresh3 = YES;
+        }
     }
 }
 

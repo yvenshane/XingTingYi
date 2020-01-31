@@ -51,8 +51,6 @@
     
     // 解决 自定义 View 高度少 64/88 问题
     self.view.autoresizesSubviews = NO;
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(endRefreshing) name:@"EndRefreshing" object:nil];
 }
 
 #pragma mark - TableView
@@ -110,12 +108,6 @@
     UIGraphicsEndImageContext();
     
     return image;
-}
-
-#pragma mark - NSNotificationCenter
-- (void)endRefreshing {
-    [self.tableView.mj_header endRefreshing];
-    [self.tableView.mj_footer endRefreshing];
 }
 
 #pragma mark - dealloc

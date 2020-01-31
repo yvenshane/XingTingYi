@@ -9,12 +9,11 @@
 #import "VENMaterialPagePersonalMaterialTextViewController.h"
 #import "VENHomePageTableViewCellTwo.h"
 #import "VENHomePageModel.h"
+#import "VENMaterialPageAddPersonalMaterialViewController.h"
 
 @interface VENMaterialPagePersonalMaterialTextViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, assign) NSInteger page;
 @property (nonatomic, strong) NSMutableArray *dataSourceMuArr;
-
-@property (nonatomic, assign) BOOL isRefresh;
 
 @end
 
@@ -29,8 +28,7 @@ static NSString *const cellIdentifier = @"cellIdentifier";
     
     [self setupTableView];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshPersonalMaterialAudioPage) name:@"RefreshPersonalMaterialTextPage" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(endRefreshing) name:@"EndRefreshing" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshPersonalMaterialTextPage) name:@"RefreshPersonalMaterialTextPage" object:nil];
 }
 
 - (void)loadPersonalMaterialTextPageData:(NSString *)page {
@@ -43,13 +41,13 @@ static NSString *const cellIdentifier = @"cellIdentifier";
         if ([page integerValue] == 1) {
             [self.tableView.mj_header endRefreshing];
             
-            self.dataSourceMuArr = [NSMutableArray arrayWithArray:[NSArray yy_modelArrayWithClass:[VENHomePageModel class] json:responseObject[@"content"][@"sourcelist"]]];
+            self.dataSourceMuArr = [NSMutableArray arrayWithArray:[NSArray yy_modelArrayWithClass:[VENHomePageModel class] json:responseObject[@"content"][@"userSourceList"]]];
             
             self.page = 1;
         } else {
             [self.tableView.mj_footer endRefreshing];
             
-            [self.dataSourceMuArr addObjectsFromArray:[NSArray yy_modelArrayWithClass:[VENHomePageModel class] json:responseObject[@"content"][@"sourcelist"]]];
+            [self.dataSourceMuArr addObjectsFromArray:[NSArray yy_modelArrayWithClass:[VENHomePageModel class] json:responseObject[@"content"][@"userSourceList"]]];
         }
         
         [self.tableView reloadData];
@@ -74,6 +72,14 @@ static NSString *const cellIdentifier = @"cellIdentifier";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
+    
+    VENHomePageModel *model = self.dataSourceMuArr[indexPath.row];
+    
+    [[VENNetworkingManager shareManager] requestWithType:HttpRequestTypePOST urlString:@"userSource/userSourceInfo" parameters:@{@"source_id" : model.id} successBlock:^(id responseObject) {
+        
+    } failureBlock:^(NSError *error) {
+        
+    }];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -89,11 +95,18 @@ static NSString *const cellIdentifier = @"cellIdentifier";
     [addButton setTitle:@"添加个人素材" forState:UIControlStateNormal];
     [addButton setTitleColor:UIColorFromRGB(0x222222) forState:UIControlStateNormal];
     addButton.titleLabel.font = [UIFont systemFontOfSize:16.0f];
+    [addButton addTarget:self action:@selector(addButtonClick) forControlEvents:UIControlEventTouchUpInside];
     [headerView addSubview:addButton];
     
     ViewRadius(addButton, 24.0f);
     
     return headerView;
+}
+
+- (void)addButtonClick {
+    VENMaterialPageAddPersonalMaterialViewController *vc = [[VENMaterialPageAddPersonalMaterialViewController alloc] init];
+    vc.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
@@ -130,16 +143,8 @@ static NSString *const cellIdentifier = @"cellIdentifier";
 }
 
 #pragma mark - NSNotificationCenter
-- (void)refreshPersonalMaterialAudioPage {
-    if (!self.isRefresh) {
-        [self.tableView.mj_header beginRefreshing];
-        self.isRefresh = YES;
-    }
-}
-
-- (void)endRefreshing {
-    [self.tableView.mj_header endRefreshing];
-    [self.tableView.mj_footer endRefreshing];
+- (void)refreshPersonalMaterialTextPage {
+    [self.tableView.mj_header beginRefreshing];
 }
 
 - (void)dealloc {
