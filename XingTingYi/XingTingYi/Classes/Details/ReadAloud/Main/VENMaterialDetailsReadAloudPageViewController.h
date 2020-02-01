@@ -12,6 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface VENMaterialDetailsReadAloudPageViewController : VENBaseViewController
 @property (nonatomic, copy) NSString *source_period_id;
+@property (nonatomic, assign) BOOL isPersonalMaterial;
 
 @end
 

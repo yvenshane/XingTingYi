@@ -20,6 +20,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) BOOL isEdit;
 @property (nonatomic, copy) NSString *words_id;
 
+@property (nonatomic, assign) BOOL isPersonalMaterial;
+
 @end
 
 NS_ASSUME_NONNULL_END

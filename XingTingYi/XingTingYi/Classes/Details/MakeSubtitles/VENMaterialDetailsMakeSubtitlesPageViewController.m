@@ -84,7 +84,15 @@
 
 // 进入制作字幕
 - (void)loadMaterialDetailsMakeSubtitlesPageData {
-    [[VENNetworkingManager shareManager] requestWithType:HttpRequestTypePOST urlString:@"source/subtitlesInfo" parameters:@{@"source_period_id" : self.source_period_id} successBlock:^(id responseObject) {
+    NSString *url = @"";
+    
+    if (self.isPersonalMaterial) {
+        url = @"userSource/userSubtitlesInfo";
+    } else {
+        url = @"source/subtitlesInfo";
+    }
+    
+    [[VENNetworkingManager shareManager] requestWithType:HttpRequestTypePOST urlString:url parameters:@{@"source_period_id" : self.source_period_id} successBlock:^(id responseObject) {
         
         self.sourceInfoModel = [VENMaterialDetailsPageModel yy_modelWithJSON:responseObject[@"content"][@"sourceInfo"]];
         self.audioPlayerView.audioURL = self.sourceInfoModel.path;
@@ -282,8 +290,16 @@
     
     NSDictionary *parameters = @{@"source_period_id" : self.source_period_id,
                                  @"content" : tempMuStr};
-
-    [[VENNetworkingManager shareManager] requestWithType:HttpRequestTypePOST urlString:@"source/subtitles" parameters:parameters successBlock:^(id responseObject) {
+    
+    NSString *url = @"";
+    
+    if (self.isPersonalMaterial) {
+        url = @"userSource/userSubtitles";
+    } else {
+        url = @"source/subtitles";
+    }
+    
+    [[VENNetworkingManager shareManager] requestWithType:HttpRequestTypePOST urlString:url parameters:parameters successBlock:^(id responseObject) {
 
         [self.navigationController popViewControllerAnimated:YES];
 

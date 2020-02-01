@@ -125,10 +125,19 @@
 
 // 进入听写数据
 - (void)loadMaterialDetailsStartDictationPageData {
-    NSDictionary *parameters = @{@"source_id" : self.source_id,
-                                 @"source_period_id" : self.source_period_id};
+    NSString *url = @"";
+    NSDictionary *parameters = @{};
     
-    [[VENNetworkingManager shareManager] requestWithType:HttpRequestTypePOST urlString:@"source/dictationInfo" parameters:parameters successBlock:^(id responseObject) {
+    if (self.isPersonalMaterial) {
+        url = @"userSource/dictationInfo";
+        parameters = @{@"source_id" : self.source_id};
+    } else {
+        url = @"source/dictationInfo";
+        parameters = @{@"source_id" : self.source_id,
+                       @"source_period_id" : self.source_period_id};
+    }
+    
+    [[VENNetworkingManager shareManager] requestWithType:HttpRequestTypePOST urlString:url parameters:parameters successBlock:^(id responseObject) {
         
         self.avInfoModel = [VENMaterialDetailsPageModel yy_modelWithJSON:responseObject[@"content"][@"avInfo"]];
         self.audioPlayerView.audioURL = self.avInfoModel.path;
@@ -429,12 +438,24 @@
         [tempMuArr addObject:dict[@"id"]];
     }
     
-    NSDictionary *parameters = @{@"id" : self.source_period_id,
-                                 @"content" : [self exportHTML],
-                                 @"time" : self.time,
-                                 @"dictation_tag" : [tempMuArr componentsJoinedByString:@","]};
+    NSString *url = @"";
+    NSDictionary *parameters = @{};
 
-    [[VENNetworkingManager shareManager] requestWithType:HttpRequestTypePOST urlString:@"source/dictation" parameters:parameters successBlock:^(id responseObject) {
+    if (self.isPersonalMaterial) {
+        url = @"userSource/userDictation";
+        parameters = @{@"source_id" : self.source_period_id,
+                       @"content" : [self exportHTML],
+                       @"time" : self.time,
+                       @"dictation_tag" : [tempMuArr componentsJoinedByString:@","]};
+    } else {
+        url = @"source/dictation";
+        parameters = @{@"id" : self.source_period_id,
+                       @"content" : [self exportHTML],
+                       @"time" : self.time,
+                       @"dictation_tag" : [tempMuArr componentsJoinedByString:@","]};
+    }
+    
+    [[VENNetworkingManager shareManager] requestWithType:HttpRequestTypePOST urlString:url parameters:parameters successBlock:^(id responseObject) {
 
         [self.timer invalidate];
         self.timer = nil;

@@ -82,6 +82,12 @@ static NSString *const cellIdentifier2 = @"cellIdentifier2";
     
     self.scrollView.delegate = self;
     
+    if (@available(iOS 11.0, *)) {
+        self.scrollView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+    } else {
+        self.automaticallyAdjustsScrollViewInsets = false;
+    }
+    
     [self loadVideoMaterialDetailsPageData];
 }
 
@@ -346,7 +352,7 @@ static NSString *const cellIdentifier2 = @"cellIdentifier2";
 }
 
 - (void)setupBottomToolBar {
-    UIView *bottomToolBar = [[UIView alloc] initWithFrame:CGRectMake(0, kMainScreenHeight - 60 - (kTabBarHeight - 49), kMainScreenWidth, 60)];
+    UIView *bottomToolBar = [[UIView alloc] initWithFrame:CGRectMake(0, kMainScreenHeight - 60 - (kTabBarHeight - 49), kMainScreenWidth, 60 + (kTabBarHeight - 49))];
     bottomToolBar.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:bottomToolBar];
     

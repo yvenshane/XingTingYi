@@ -15,6 +15,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *source_period_id;
 @property (nonatomic, assign) BOOL isSectionDictation;
 
+@property (nonatomic, assign) BOOL isPersonalMaterial;
+
 @end
 
 NS_ASSUME_NONNULL_END

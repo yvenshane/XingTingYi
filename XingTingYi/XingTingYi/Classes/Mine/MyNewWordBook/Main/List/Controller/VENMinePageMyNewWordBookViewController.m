@@ -73,7 +73,11 @@ static NSString *const cellIdentifier = @"cellIdentifier";
         [parameters setObject:page forKey:@"page"];
         [parameters setObject:self.source_id forKey:@"source_id"];
         
-        url = @"source/sourceWordList";
+        if (self.isPersonalMaterial) {
+            url = @"userSource/userSourceWordList";
+        } else {
+            url = @"source/sourceWordList";
+        }
     }
     
     [[VENNetworkingManager shareManager] requestWithType:HttpRequestTypePOST urlString:url parameters:parameters successBlock:^(id responseObject) {
@@ -137,6 +141,7 @@ static NSString *const cellIdentifier = @"cellIdentifier";
         VENMinePageMyNewWordBookModel *model = self.dataSourceMuArr[indexPath.row];
         
         VENMaterialDetailsTranslationPageSearchWordAddNewWordsViewController *vc = [[VENMaterialDetailsTranslationPageSearchWordAddNewWordsViewController alloc] init];
+        vc.isPersonalMaterial = self.isPersonalMaterial;
         vc.isEdit = YES;
         vc.words_id = model.id;
         vc.source_id = self.source_id;

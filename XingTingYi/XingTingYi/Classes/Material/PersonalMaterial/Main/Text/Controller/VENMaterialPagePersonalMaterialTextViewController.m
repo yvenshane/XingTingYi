@@ -10,6 +10,7 @@
 #import "VENHomePageTableViewCellTwo.h"
 #import "VENHomePageModel.h"
 #import "VENMaterialPageAddPersonalMaterialViewController.h"
+#import "VENPersonalMaterialDetailPageViewController.h"
 
 @interface VENMaterialPagePersonalMaterialTextViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, assign) NSInteger page;
@@ -71,15 +72,12 @@ static NSString *const cellIdentifier = @"cellIdentifier";
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    
     VENHomePageModel *model = self.dataSourceMuArr[indexPath.row];
     
-    [[VENNetworkingManager shareManager] requestWithType:HttpRequestTypePOST urlString:@"userSource/userSourceInfo" parameters:@{@"source_id" : model.id} successBlock:^(id responseObject) {
-        
-    } failureBlock:^(NSError *error) {
-        
-    }];
+    VENPersonalMaterialDetailPageViewController *vc = [[VENPersonalMaterialDetailPageViewController alloc] init];
+    vc.source_id = model.id;
+    vc.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {

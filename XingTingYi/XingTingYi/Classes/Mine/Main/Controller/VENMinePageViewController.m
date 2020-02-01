@@ -61,6 +61,8 @@ static NSString *const cellIdentifier = @"cellIdentifier";
         
         [self.tableView reloadData];
         
+        [self.tableView.mj_header endRefreshing];
+        
     } failureBlock:^(NSError *error) {
         
     }];

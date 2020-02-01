@@ -43,8 +43,22 @@ static NSString *const cellIdentifier = @"cellIdentifier";
     }
 }
 
+//userSource/subUserWords
+
 - (void)loadEditNewWordsData {
-    [[VENNetworkingManager shareManager] requestWithType:HttpRequestTypePOST urlString:@"source/wordsInfo" parameters:@{@"words_id" : self.words_id} successBlock:^(id responseObject) {
+    NSString *url = @"";
+    NSDictionary *parameters = @{};
+    
+    if (self.isPersonalMaterial) {
+        url = @"userSource/userWordsInfo";
+        parameters = @{@"words_id" : self.words_id,
+                       @"source_id" : self.source_id};
+    } else {
+        url = @"source/wordsInfo";
+        parameters = @{@"words_id" : self.words_id};
+    }
+    
+    [[VENNetworkingManager shareManager] requestWithType:HttpRequestTypePOST urlString:url parameters:parameters successBlock:^(id responseObject) {
         
         self.wordsInfoModel = [VENMaterialDetailsAddNewWordsEditNewWordsModel yy_modelWithJSON:responseObject[@"content"][@"wordsInfo"]];
         
@@ -218,7 +232,14 @@ static NSString *const cellIdentifier = @"cellIdentifier";
                 
                 [MBProgressHUD addLoading];
                 
-                [[VENNetworkingManager shareManager] requestWithType:HttpRequestTypePOST urlString:@"source/subWords" parameters:parameters successBlock:^(id responseObject) {
+                NSString *url = @"";
+                if (self.isPersonalMaterial) {
+                    url = @"userSource/subUserWords";
+                } else {
+                    url = @"source/subWords";
+                }
+                
+                [[VENNetworkingManager shareManager] requestWithType:HttpRequestTypePOST urlString:url parameters:parameters successBlock:^(id responseObject) {
                     
                     [MBProgressHUD removeLoading];
                     [self.navigationController popViewControllerAnimated:YES];
@@ -246,7 +267,14 @@ static NSString *const cellIdentifier = @"cellIdentifier";
         
         [MBProgressHUD addLoading];
         
-        [[VENNetworkingManager shareManager] requestWithType:HttpRequestTypePOST urlString:@"source/subWords" parameters:parameters successBlock:^(id responseObject) {
+        NSString *url = @"";
+        if (self.isPersonalMaterial) {
+            url = @"userSource/subUserWords";
+        } else {
+            url = @"source/subWords";
+        }
+        
+        [[VENNetworkingManager shareManager] requestWithType:HttpRequestTypePOST urlString:url parameters:parameters successBlock:^(id responseObject) {
             
             [MBProgressHUD removeLoading];
             [self.navigationController popViewControllerAnimated:YES];
@@ -302,7 +330,12 @@ static NSString *const cellIdentifier = @"cellIdentifier";
                                @"pronunciation_words" : self.headerView.pronunciationTextField.text,
                                @"sentences" : self.headerView.textViewOne.text,
                                @"associate" : self.headerView.textViewTwo.text};
-                url = @"source/subWords";
+                
+                if (self.isPersonalMaterial) {
+                    url = @"userSource/subUserWords";
+                } else {
+                    url = @"source/subWords";
+                }
             }
             
             [MBProgressHUD addLoading];

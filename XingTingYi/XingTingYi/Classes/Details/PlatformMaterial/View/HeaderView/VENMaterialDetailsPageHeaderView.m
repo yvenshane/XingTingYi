@@ -22,7 +22,7 @@
     
     CGFloat viewHeight = 0;
     
-    VENMaterialDetailsPageModel *infoModel = [VENMaterialDetailsPageModel yy_modelWithJSON:data[@"info"]];
+    VENMaterialDetailsPageModel *infoModel = [VENMaterialDetailsPageModel yy_modelWithJSON:data[self.isPersonalMaterial ? @"sourceInfo" : @"info"]];
     
     // banner
     CGFloat bannerHeight = kMainScreenWidth / (375.0 / 250.0);
@@ -34,7 +34,11 @@
     
     // title
     self.titileLabel.text = infoModel.title;
-    self.otherLabel.text = [NSString stringWithFormat:@"%@      %@人已浏览", infoModel.created_at, infoModel.view_count];
+    if ([VENEmptyClass isEmptyString:infoModel.view_count]) {
+        self.otherLabel.text = infoModel.created_at;
+    } else {
+        self.otherLabel.text = [NSString stringWithFormat:@"%@      %@人已浏览", infoModel.created_at, infoModel.view_count];
+    }
     CGFloat titleHeight = [self.titileLabel sizeThatFits:CGSizeMake(kMainScreenWidth - 40, CGFLOAT_MAX)].height;
     
     viewHeight += 20 + titleHeight + 10 + 16 + 20;
@@ -44,8 +48,7 @@
     self.contentViewHeightLayoutConstraint.constant = 0.0f;
     self.contentView.hidden = YES;
     
-    if ([infoModel.type isEqualToString:@"1"] || [infoModel.type isEqualToString:@"2"] || [infoModel.type isEqualToString:@"3"]) {
-        
+    if (![VENEmptyClass isEmptyString:infoModel.descriptionn]) {
         self.contentView.hidden = NO;
         
         self.contentView.layer.cornerRadius = 8.0f;
@@ -71,11 +74,27 @@
     
     NSString *audioURL = @"";
     
-    if (![VENEmptyClass isEmptyString:infoModel.merge_audio]) {
-        audioURL = infoModel.merge_audio;
+    if (self.isPersonalMaterial) {
+        if ([VENEmptyClass isEmptyString:audioURL] && [VENEmptyClass isEmptyArray:data[@"sourceText"]]) {
+            UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(20, viewHeight, kMainScreenWidth - 20 * 2, 120)];
+            label.backgroundColor = UIColorFromRGB(0xF8F8F8);
+            label.text = @"音频素材未上传";
+            label.textColor = UIColorFromRGB(0xB2B2B2);
+            label.font = [UIFont systemFontOfSize:14.0f];
+            label.textAlignment = NSTextAlignmentCenter;
+            label.layer.cornerRadius = 8.0f;
+            label.layer.masksToBounds = YES;
+            [self addSubview:label];
+            
+            viewHeight += 120;
+        }
     } else {
-        audioURL = infoModel.source_path;
+        if (![VENEmptyClass isEmptyString:infoModel.merge_audio]) {
+            audioURL = infoModel.merge_audio;
+        } else {
+            audioURL = infoModel.source_path;
 
+        }
     }
     
     if (![VENEmptyClass isEmptyString:audioURL]) {
@@ -161,7 +180,7 @@
         viewHeight += 20 + height + 44;
     }
     
-    viewHeight += 30;
+    viewHeight += self.isPersonalMaterial ? 0 : 30;
     
     return viewHeight;
 }

@@ -36,7 +36,7 @@
 }
 
 - (void)loadMaterialDetailsTranslationPageData {
-    [[VENNetworkingManager shareManager] requestWithType:HttpRequestTypePOST urlString:@"source/translationInfo" parameters:@{@"source_period_id" : self.source_period_id} successBlock:^(id responseObject) {
+    [[VENNetworkingManager shareManager] requestWithType:HttpRequestTypePOST urlString:self.isPersonalMaterial ? @"userSource/userTranslationInfo" : @"source/translationInfo" parameters:@{@"source_period_id" : self.source_period_id} successBlock:^(id responseObject) {
         
         self.infoModel = [VENMaterialDetailsPageModel yy_modelWithJSON:responseObject[@"content"][@"info"]];
         self.translationInfoModel = [VENMaterialDetailsTranslationPageModel yy_modelWithJSON:responseObject[@"content"][@"translationInfo"]];
@@ -147,7 +147,7 @@
                                  @"grammar" : self.headerView.otherTextField.text,
                                  @"words" : self.headerView.otherTextFieldTwo.text};
     
-    [[VENNetworkingManager shareManager] requestWithType:HttpRequestTypePOST urlString:@"source/translation" parameters:parameters successBlock:^(id responseObject) {
+    [[VENNetworkingManager shareManager] requestWithType:HttpRequestTypePOST urlString:self.isPersonalMaterial ? @"userSource/userTranslation" : @"source/translation" parameters:parameters successBlock:^(id responseObject) {
         
         [self.navigationController popViewControllerAnimated:YES];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"RefreshDetailPage" object:nil userInfo:nil];

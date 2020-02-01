@@ -35,6 +35,7 @@ typedef void (^contentButtonBlock)(void);
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *subtitleViewTopLayoutConstraint;
 
 @property (nonatomic, copy) contentButtonBlock contentButtonBlock;
+@property (nonatomic, assign) BOOL isPersonalMaterial;
 
 - (CGFloat)getHeightFromData:(NSDictionary *)data;
 
