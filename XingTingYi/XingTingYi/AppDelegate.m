@@ -26,7 +26,7 @@
     [_window makeKeyAndVisible];
     
     //创建window以后向window添加悬浮球
-//    [self createDebugSuspensionButton];
+    [self createDebugSuspensionButton];
     
     return YES;
 }

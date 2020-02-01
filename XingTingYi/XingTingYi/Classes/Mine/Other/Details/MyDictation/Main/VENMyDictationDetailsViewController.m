@@ -16,6 +16,7 @@
 #import "VENAudioPlayer.h"
 #import "VENMyDictationDetailsLabelPageViewController.h"
 #import "VENMaterialDetailsTranslationPageSearchWordAddNewWordsViewController.h"
+#import "VENPersonalMaterialDetailPageViewController.h"
 
 @interface VENMyDictationDetailsViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *pictureImageView;
@@ -91,7 +92,19 @@ static NSString *const cellIdentifier = @"cellIdentifier";
 }
 
 - (void)loadMyDictationDetailsPageData {
-    [[VENNetworkingManager shareManager] requestWithType:HttpRequestTypePOST urlString:@"source/sourceInfo" parameters:@{@"id" : self.source_id} successBlock:^(id responseObject) {
+    
+    NSString *url = @"";
+    NSDictionary *parameters = @{};
+    
+    if (self.isPersonalMaterial) {
+        url = @"userSource/userSourceInfo";
+        parameters = @{@"source_id" : self.source_id};
+    } else {
+        url = @"source/sourceInfo";
+        parameters = @{@"id" : self.source_id};
+    }
+    
+    [[VENNetworkingManager shareManager] requestWithType:HttpRequestTypePOST urlString:url parameters:parameters successBlock:^(id responseObject) {
         
         self.avInfoOriginalArr = [NSArray yy_modelArrayWithClass:[VENMaterialDetailsPageModel class] json:responseObject[@"content"][@"avInfo"]];
         
@@ -110,8 +123,11 @@ static NSString *const cellIdentifier = @"cellIdentifier";
 }
 
 - (void)setupContentWithDict:(NSDictionary *)dict {
-    
-    self.infoModel = [VENMaterialDetailsPageModel yy_modelWithJSON:dict[@"info"]];
+    if (self.isPersonalMaterial) {
+        self.infoModel = [VENMaterialDetailsPageModel yy_modelWithJSON:dict[@"sourceInfo"]];
+    } else {
+        self.infoModel = [VENMaterialDetailsPageModel yy_modelWithJSON:dict[@"info"]];
+    }
     
     self.pictureImageView.contentMode = UIViewContentModeScaleToFill;
     [self.pictureImageView sd_setImageWithURL:[NSURL URLWithString:self.infoModel.image]];
@@ -134,16 +150,23 @@ static NSString *const cellIdentifier = @"cellIdentifier";
     self.labelContentView.hidden = YES;
     self.labelContentViewHeightLayoutConstraint.constant = 0.0f;
     
-    if (![VENEmptyClass isEmptyArray:self.infoModel.dictation_tag]) {
+    NSArray *tempArr = @[];
+    if (self.isPersonalMaterial) {
+        tempArr = self.infoModel.dictation_tag_info;
+    } else {
+        tempArr = self.infoModel.dictation_tag;
+    }
+    
+    if (![VENEmptyClass isEmptyArray:tempArr]) {
         self.labelContentView.hidden = NO;
         self.labelContentViewHeightLayoutConstraint.constant = 40.0f;
         
         CGFloat x = 0.0f;
         
-        for (NSInteger i = 0; i < self.infoModel.dictation_tag.count; i++) {
+        for (NSInteger i = 0; i < tempArr.count; i++) {
             UIButton *button = [[UIButton alloc] init];
             button.tag = i;
-            [button setTitle:self.infoModel.dictation_tag[i][@"name"] forState:UIControlStateNormal];
+            [button setTitle:tempArr[i][@"name"] forState:UIControlStateNormal];
             [button setTitleColor:UIColorFromRGB(0x222222) forState:UIControlStateNormal];
             button.titleLabel.font = [UIFont systemFontOfSize:12.0f];
             
@@ -211,8 +234,15 @@ static NSString *const cellIdentifier = @"cellIdentifier";
         self.middleToolsBarContentView2.hidden = YES;
         self.middleToolsBarContentViewHeightLayoutConstraint2.constant = 0.0f;
         
+        NSString *content = @"";
+        if (self.isPersonalMaterial) {
+            content = self.infoModel.content;
+        } else {
+            content = avInfoModel.dictationInfo[@"content"];
+        }
+        
         // content
-        NSAttributedString *attributedString = [[NSAttributedString alloc] initWithData:[avInfoModel.dictationInfo[@"content"] dataUsingEncoding:NSUnicodeStringEncoding] options:@{NSDocumentTypeDocumentAttribute : NSHTMLTextDocumentType} documentAttributes:nil error:nil];
+        NSAttributedString *attributedString = [[NSAttributedString alloc] initWithData:[content dataUsingEncoding:NSUnicodeStringEncoding] options:@{NSDocumentTypeDocumentAttribute : NSHTMLTextDocumentType} documentAttributes:nil error:nil];
         
         UILabel *contenLabel = [[UILabel alloc] init];
         contenLabel.textColor = UIColorFromRGB(0x222222);
@@ -355,27 +385,44 @@ static NSString *const cellIdentifier = @"cellIdentifier";
 #pragma mark - middleToolsBar
 // 播放
 - (IBAction)playButtonClick:(id)sender {
-    [MBProgressHUD showText:@"播放"];
+    if (self.isPersonalMaterial) {
+        [[VENAudioPlayer sharedAudioPlayer] playWithURL:[NSURL URLWithString:self.infoModel.dictationRead[@"path"]]];
+        [[VENAudioPlayer sharedAudioPlayer] play];
+    } else {
+        VENMaterialDetailsPageModel *model = self.avInfoOriginalArr[0];
+        [[VENAudioPlayer sharedAudioPlayer] playWithURL:[NSURL URLWithString:model.dictationRead[@"path"]]];
+        [[VENAudioPlayer sharedAudioPlayer] play];
+    }
 }
 
 // 录音
 - (IBAction)recordingButtonClick:(id)sender {
-    VENMaterialDetailsPageModel *model = self.avInfoOriginalArr[0];
-    
     VENMyDictationDetailsRecordingPageViewController *vc = [[VENMyDictationDetailsRecordingPageViewController alloc] init];
-    vc.source_id = model.dictationInfo[@"source_id"];
-    vc.source_period_id = model.dictationInfo[@"source_period_id"];
+    if (self.isPersonalMaterial) {
+        vc.source_id = self.infoModel.id;
+        vc.isPersonalMaterial = self.isPersonalMaterial;
+    } else {
+        VENMaterialDetailsPageModel *model = self.avInfoOriginalArr[0];
+        vc.source_id = model.dictationInfo[@"source_id"];
+        vc.source_period_id = model.dictationInfo[@"source_period_id"];
+    }
     [self.navigationController pushViewController:vc animated:YES];
 }
 
 // 翻译
 - (IBAction)translationButtonClick:(id)sender {
-    VENMaterialDetailsPageModel *model = self.avInfoOriginalArr[0];
-    
     VENMyDictationDetailsTranslationPageViewController *vc = [[VENMyDictationDetailsTranslationPageViewController alloc] init];
-    vc.source_id = model.dictationInfo[@"source_id"];
-    vc.source_period_id = model.dictationInfo[@"source_period_id"];
-    vc.type = @"1"; // 平台素材
+    if (self.isPersonalMaterial) {
+        vc.source_id = self.infoModel.id;
+        vc.source_period_id = @"0";
+        vc.type = @"2"; // 个人素材
+    } else {
+        VENMaterialDetailsPageModel *model = self.avInfoOriginalArr[0];
+        vc.source_id = model.dictationInfo[@"source_id"];
+        vc.source_period_id = model.dictationInfo[@"source_period_id"];
+        vc.type = @"1"; // 平台素材
+    }
+    
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -395,9 +442,16 @@ static NSString *const cellIdentifier = @"cellIdentifier";
 #pragma mark - 标签点击
 - (void)tagButtonClick:(UIButton *)button {
     VENMyDictationDetailsLabelPageViewController *vc = [[VENMyDictationDetailsLabelPageViewController alloc] init];
-    vc.navigationItem.title = self.infoModel.dictation_tag[button.tag][@"name"];
-    vc.dictation_tag = self.infoModel.dictation_tag[button.tag][@"id"];
-    vc.type = @"1"; // 平台素材
+    NSArray *tempArr = @[];
+    if (self.isPersonalMaterial) {
+        tempArr = self.infoModel.dictation_tag_info;
+        vc.type = @"2"; // 个人素材
+    } else {
+        tempArr = self.infoModel.dictation_tag;
+        vc.type = @"1"; // 平台素材
+    }
+    vc.navigationItem.title = tempArr[button.tag][@"name"];
+    vc.dictation_tag = tempArr[button.tag][@"id"];
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -434,7 +488,7 @@ static NSString *const cellIdentifier = @"cellIdentifier";
 
 - (void)leftButtonClick {
     NSDictionary *parameters = @{@"source_id" : self.source_id,
-                                 @"sourceType" : @"1",  
+                                 @"sourceType" : self.isPersonalMaterial ? @"2" : @"1",
                                  @"doType" : @"1"};
     
     [[VENNetworkingManager shareManager] requestWithType:HttpRequestTypePOST urlString:@"user/delDosource" parameters:parameters successBlock:^(id responseObject) {
@@ -451,9 +505,15 @@ static NSString *const cellIdentifier = @"cellIdentifier";
 }
 
 - (void)rightButtonClick {
-    VENMaterialDetailPageViewController *vc = [[VENMaterialDetailPageViewController alloc] init];
-    vc.id = self.source_id;
-    [self.navigationController pushViewController:vc animated:YES];
+    if (self.isPersonalMaterial) {
+        VENPersonalMaterialDetailPageViewController *vc = [[VENPersonalMaterialDetailPageViewController alloc] init];
+        vc.source_id = self.source_id;
+        [self.navigationController pushViewController:vc animated:YES];
+    } else {
+        VENMaterialDetailPageViewController *vc = [[VENMaterialDetailPageViewController alloc] init];
+        vc.id = self.source_id;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
 }
 
 #pragma mark - 音频播放器

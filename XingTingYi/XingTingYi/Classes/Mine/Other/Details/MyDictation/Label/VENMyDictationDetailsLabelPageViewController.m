@@ -10,6 +10,7 @@
 #import "VENHomePageTableViewCellTwo.h"
 #import "VENHomePageModel.h"
 #import "VENMaterialDetailPageViewController.h"
+#import "VENPersonalMaterialDetailPageViewController.h"
 
 @interface VENMyDictationDetailsLabelPageViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, assign) NSInteger page;
@@ -69,12 +70,14 @@ static NSString *const cellIdentifier = @"cellIdentifier";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     VENHomePageModel *model = self.dataSourceMuArr[indexPath.row];
     
-    if ([model.type isEqualToString:@"1"]) {
+    if ([self.type isEqualToString:@"1"]) {
         VENMaterialDetailPageViewController *vc = [[VENMaterialDetailPageViewController alloc] init];
         vc.id = model.id;
         [self.navigationController pushViewController:vc animated:YES];
-    } else if ([model.type isEqualToString:@"2"]) {
-        [MBProgressHUD showText:@"平台素材"];
+    } else if ([self.type isEqualToString:@"2"]) {
+        VENPersonalMaterialDetailPageViewController *vc = [[VENPersonalMaterialDetailPageViewController alloc] init];
+        vc.source_id = model.id;
+        [self.navigationController pushViewController:vc animated:YES];
     }
 }
 

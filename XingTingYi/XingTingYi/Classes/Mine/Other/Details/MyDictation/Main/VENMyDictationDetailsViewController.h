@@ -15,6 +15,8 @@ typedef void (^deleteBlock)(void);
 @property (nonatomic, copy) NSString *source_id;
 @property (nonatomic, copy) deleteBlock deleteBlock;
 
+@property (nonatomic, assign) BOOL isPersonalMaterial;
+
 @end
 
 NS_ASSUME_NONNULL_END

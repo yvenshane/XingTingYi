@@ -8,8 +8,9 @@
 
 #import "VENMyOtherPlatformMaterialViewController.h"
 #import "VENHomePageTableViewCellTwo.h"
-#import "VENMyDictationDetailsViewController.h"
 #import "VENHomePageModel.h"
+
+#import "VENMyDictationDetailsViewController.h"
 #import "VENMyReadingDetailsViewController.h"
 #import "VENMyTranslationDetailsViewController.h"
 #import "VENMySubtitleDetailsViewController.h"

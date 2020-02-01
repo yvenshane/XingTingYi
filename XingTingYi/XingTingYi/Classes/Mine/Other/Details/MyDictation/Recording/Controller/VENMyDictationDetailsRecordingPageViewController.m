@@ -47,10 +47,19 @@ static NSString *const cellIdentifier = @"cellIdentifier";
 
 - (void)loadMyDictationDetailsRecordingPageData {
     
-    NSDictionary *parameters = @{@"source_id" : self.source_id,
-                                 @"source_period_id" : self.source_period_id};
+    NSString *url = @"";
+    NSDictionary *parameters = @{};
     
-    [[VENNetworkingManager shareManager] requestWithType:HttpRequestTypePOST urlString:@"source/dictationInfo" parameters:parameters successBlock:^(id responseObject) {
+    if (self.isPersonalMaterial) {
+        url = @"userSource/dictationInfo";
+        parameters = @{@"source_id" : self.source_id};
+    } else {
+        url = @"source/dictationInfo";
+        parameters = @{@"source_id" : self.source_id,
+                       @"source_period_id" : self.source_period_id};
+    }
+    
+    [[VENNetworkingManager shareManager] requestWithType:HttpRequestTypePOST urlString:url parameters:parameters successBlock:^(id responseObject) {
         
         VENMaterialDetailsPageModel *dictationInfoModel = [VENMaterialDetailsPageModel yy_modelWithJSON:responseObject[@"content"][@"dictationInfo"]];
         
@@ -154,12 +163,11 @@ static NSString *const cellIdentifier = @"cellIdentifier";
     
     NSMutableArray *audioList = [NSMutableArray array];
     
-    [self.audioRecorderMuArr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        
+    for (NSDictionary *dict in self.audioRecorderMuArr) {
         [[VENNetworkingManager shareManager] requestWithType:HttpRequestTypeGET urlString:@"qiniu/createToken" parameters:nil successBlock:^(id responseObject) {
             
             NSString *token = responseObject[@"content"][@"token"];
-            NSString *path = obj[@"path"];
+            NSString *path = dict[@"path"];
             NSData *data= [NSData dataWithContentsOfFile:path];
             NSString *keys = responseObject[@"content"][@"key"];
             
@@ -170,15 +178,24 @@ static NSString *const cellIdentifier = @"cellIdentifier";
                 
                 [audioList addObject:resp[@"key"]];
                 
-                if (idx == self.audioRecorderMuArr.count - 1) {
+                if (audioList.count == self.audioRecorderMuArr.count) {
                     
                     [[VENNetworkingManager shareManager] requestWithType:HttpRequestTypeGET urlString:@"qiniu/createToken" parameters:nil successBlock:^(id responseObject) {
                         
-                        NSDictionary *parameters = @{@"source_id" : self.source_id,
-                                                     @"source_period_id" : self.source_period_id,
-                                                     @"path" : responseObject[@"content"][@"key"],
-                                                     @"audioList[]" : [audioList componentsJoinedByString:@","],
-                                                     @"type" : @"1"};
+                        NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+                        [parameters setValue:self.source_id forKey:@"source_id"];
+                        [parameters setValue:self.source_period_id forKey:@"source_period_id"];
+                        [parameters setValue:responseObject[@"content"][@"key"] forKey:@"path"];
+                        
+                        if (self.isPersonalMaterial) {
+                            [parameters setValue:@"2" forKey:@"type"];
+                        } else {
+                            [parameters setValue:@"1" forKey:@"type"];
+                        }
+                        
+                        for (NSInteger i = 0; i < audioList.count; i++) {
+                            [parameters setValue:audioList[i] forKey:[NSString stringWithFormat:@"audioList[%ld]", i]];
+                        }
                         
                         [[VENNetworkingManager shareManager] requestWithType:HttpRequestTypePOST urlString:@"user/reRead" parameters:parameters successBlock:^(id responseObject) {
                             
@@ -192,8 +209,6 @@ static NSString *const cellIdentifier = @"cellIdentifier";
                     } failureBlock:^(NSError *error) {
                         
                     }];
-                    
-                    
                 }
                 
             } option:[QNUploadOption defaultOptions]];
@@ -201,7 +216,7 @@ static NSString *const cellIdentifier = @"cellIdentifier";
         } failureBlock:^(NSError *error) {
             
         }];
-    }];
+    }
 }
 
 #pragma mark - 录音

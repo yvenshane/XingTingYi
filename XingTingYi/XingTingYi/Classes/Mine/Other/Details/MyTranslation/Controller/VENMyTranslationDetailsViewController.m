@@ -10,6 +10,7 @@
 #import "VENMaterialDetailsPageModel.h"
 #import "VENMyTranslationDetailsTableViewCell.h"
 #import "VENMaterialDetailPageViewController.h"
+#import "VENPersonalMaterialDetailPageViewController.h"
 
 @interface VENMyTranslationDetailsViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *pictureImageView;
@@ -46,10 +47,26 @@ static NSString *const cellIdentifier = @"cellIdentifier";
 }
 
 - (void)loadMyTranslationDetailsPageData {
-    [[VENNetworkingManager shareManager] requestWithType:HttpRequestTypePOST urlString:@"source/sourceInfo" parameters:@{@"id" : self.source_id} successBlock:^(id responseObject) {
+    
+    NSString *url = @"";
+    NSDictionary *parameters = @{};
+    
+    if (self.isPersonalMaterial) {
+        url = @"userSource/userSourceInfo";
+        parameters = @{@"source_id" : self.source_id};
+    } else {
+        url = @"source/sourceInfo";
+        parameters = @{@"id" : self.source_id};
+    }
+    
+    [[VENNetworkingManager shareManager] requestWithType:HttpRequestTypePOST urlString:url parameters:parameters successBlock:^(id responseObject) {
         
-        self.textInfoArr = [NSArray yy_modelArrayWithClass:[VENMaterialDetailsPageModel class] json:responseObject[@"content"][@"textInfo"]];
-        
+        if (self.isPersonalMaterial) {
+            self.textInfoArr = [NSArray yy_modelArrayWithClass:[VENMaterialDetailsPageModel class] json:responseObject[@"content"][@"sourceText"]];
+        } else {
+            self.textInfoArr = [NSArray yy_modelArrayWithClass:[VENMaterialDetailsPageModel class] json:responseObject[@"content"][@"textInfo"]];
+        }
+            
         [self setupContentWithDict:responseObject[@"content"]];
         
     } failureBlock:^(NSError *error) {
@@ -58,8 +75,11 @@ static NSString *const cellIdentifier = @"cellIdentifier";
 }
 
 - (void)setupContentWithDict:(NSDictionary *)dict {
-    
-    self.infoModel = [VENMaterialDetailsPageModel yy_modelWithJSON:dict[@"info"]];
+    if (self.isPersonalMaterial) {
+        self.infoModel = [VENMaterialDetailsPageModel yy_modelWithJSON:dict[@"sourceInfo"]];
+    } else {
+        self.infoModel = [VENMaterialDetailsPageModel yy_modelWithJSON:dict[@"info"]];
+    }
     
     self.pictureImageView.contentMode = UIViewContentModeScaleToFill;
     [self.pictureImageView sd_setImageWithURL:[NSURL URLWithString:self.infoModel.image]];
@@ -105,15 +125,27 @@ static NSString *const cellIdentifier = @"cellIdentifier";
     
     cell.titleLabel.attributedText = attributedString;
     
-    NSString *contentStr = textInfoModel.translation[@"content"];
-    NSString *grammar = textInfoModel.translation[@"grammar"];
-    NSString *words = textInfoModel.translation[@"words"];
+    NSString *contentStr = @"";
+    NSString *grammar = @"";
+    NSString *words = @"";
+    
+    if (self.isPersonalMaterial) {
+        contentStr = textInfoModel.info[@"content"];
+        grammar = textInfoModel.info[@"grammar"];
+        words = textInfoModel.info[@"words"];
+    } else {
+        contentStr = textInfoModel.translation[@"content"];
+        grammar = textInfoModel.translation[@"grammar"];
+        words = textInfoModel.translation[@"words"];
+    }
     
     if (![VENEmptyClass isEmptyString:contentStr] && ![VENEmptyClass isEmptyString:grammar] && ![VENEmptyClass isEmptyString:words]) {
         cell.contentLabel.text = [NSString stringWithFormat:@"翻译：%@\n语法：%@\n单词：%@", contentStr, grammar, words];
     } else {
         cell.contentLabel.text = @"";
     }
+    
+    cell.goodView.hidden = self.isPersonalMaterial ? YES : NO;
     
     return cell;
 }
@@ -165,9 +197,19 @@ static NSString *const cellIdentifier = @"cellIdentifier";
         
         self.cellLabelTwo.attributedText = attributedString;
         
-        NSString *contentStr = textInfoModel.translation[@"content"];
-        NSString *grammar = textInfoModel.translation[@"grammar"];
-        NSString *words = textInfoModel.translation[@"words"];
+        NSString *contentStr = @"";
+        NSString *grammar = @"";
+        NSString *words = @"";
+        
+        if (self.isPersonalMaterial) {
+            contentStr = textInfoModel.info[@"content"];
+            grammar = textInfoModel.info[@"grammar"];
+            words = textInfoModel.info[@"words"];
+        } else {
+            contentStr = textInfoModel.translation[@"content"];
+            grammar = textInfoModel.translation[@"grammar"];
+            words = textInfoModel.translation[@"words"];
+        }
         
         if (![VENEmptyClass isEmptyString:contentStr] && ![VENEmptyClass isEmptyString:grammar] && ![VENEmptyClass isEmptyString:words]) {
             self.cellLabelThree.text = [NSString stringWithFormat:@"翻译：%@\n语法：%@\n单词：%@", contentStr, grammar, words];
@@ -177,7 +219,13 @@ static NSString *const cellIdentifier = @"cellIdentifier";
         
         CGFloat labelHeight = [self.cellLabelTwo sizeThatFits:CGSizeMake(kMainScreenWidth - 40 - 30, CGFLOAT_MAX)].height;
         CGFloat labelHeight2 = [self.cellLabelThree sizeThatFits:CGSizeMake(kMainScreenWidth - 40 - 30, CGFLOAT_MAX)].height;
-        CGFloat height = 5 + 15 + labelHeight + 10 + labelHeight2 + 25 + 15;
+        
+        CGFloat height = 0;
+        if (self.isPersonalMaterial) {
+            height = 5 + 15 + labelHeight + 10 + labelHeight2 + 15;
+        } else {
+            height = 5 + 15 + labelHeight + 10 + labelHeight2 + 25 + 15;
+        }
         
         textInfoModel.cellHeight = height;
         tableViewHeight += height;
@@ -218,7 +266,7 @@ static NSString *const cellIdentifier = @"cellIdentifier";
 
 - (void)leftButtonClick {
     NSDictionary *parameters = @{@"source_id" : self.source_id,
-                                 @"sourceType" : @"1",
+                                 @"sourceType" : self.isPersonalMaterial ? @"2" : @"1",
                                  @"doType" : @"3"};
     
     [[VENNetworkingManager shareManager] requestWithType:HttpRequestTypePOST urlString:@"user/delDosource" parameters:parameters successBlock:^(id responseObject) {
@@ -235,9 +283,15 @@ static NSString *const cellIdentifier = @"cellIdentifier";
 }
 
 - (void)rightButtonClick {
-    VENMaterialDetailPageViewController *vc = [[VENMaterialDetailPageViewController alloc] init];
-    vc.id = self.source_id;
-    [self.navigationController pushViewController:vc animated:YES];
+    if (self.isPersonalMaterial) {
+        VENPersonalMaterialDetailPageViewController *vc = [[VENPersonalMaterialDetailPageViewController alloc] init];
+        vc.source_id = self.source_id;
+        [self.navigationController pushViewController:vc animated:YES];
+    } else {
+        VENMaterialDetailPageViewController *vc = [[VENMaterialDetailPageViewController alloc] init];
+        vc.id = self.source_id;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
 }
 
 - (UILabel *)cellLabelTwo {

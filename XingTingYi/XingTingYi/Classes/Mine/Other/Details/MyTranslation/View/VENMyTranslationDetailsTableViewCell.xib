@@ -85,6 +85,7 @@
             <connections>
                 <outlet property="backgroundVieww" destination="5V1-Bt-hbv" id="015-L0-nje"/>
                 <outlet property="contentLabel" destination="gE0-hK-GgZ" id="FXT-An-9u5"/>
+                <outlet property="goodView" destination="utq-Pk-TIU" id="Opc-Vp-Nbs"/>
                 <outlet property="titleLabel" destination="E8q-gs-CPp" id="e6b-3L-dfO"/>
             </connections>
             <point key="canvasLocation" x="137.68115942028987" y="189.17410714285714"/>

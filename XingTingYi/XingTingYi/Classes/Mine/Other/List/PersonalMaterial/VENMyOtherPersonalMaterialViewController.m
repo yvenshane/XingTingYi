@@ -8,8 +8,18 @@
 
 #import "VENMyOtherPersonalMaterialViewController.h"
 #import "VENHomePageTableViewCellTwo.h"
+#import "VENHomePageModel.h"
+
+#import "VENMyDictationDetailsViewController.h"
+#import "VENMyReadingDetailsViewController.h"
+#import "VENMyTranslationDetailsViewController.h"
+#import "VENMySubtitleDetailsViewController.h"
 
 @interface VENMyOtherPersonalMaterialViewController () <UITableViewDelegate, UITableViewDataSource>
+@property (nonatomic, strong) UITableView *tableView;
+
+@property (nonatomic, assign) NSInteger page;
+@property (nonatomic, strong) NSMutableArray *dataSourceMuArr;
 
 @end
 
@@ -24,24 +34,84 @@ static NSString *const cellIdentifier = @"cellIdentifier";
     
     [self setupTableView];
     [self setupBottomView];
+    
+    [self.tableView.mj_header beginRefreshing];
 }
 
+- (void)loadPersonalMaterialData:(NSString *)page {
+    NSDictionary *parameters = @{@"page" : page,
+                                 @"type" : @"2",
+                                 @"dotype" : self.dotype};
+    [[VENNetworkingManager shareManager] requestWithType:HttpRequestTypePOST urlString:@"user/myDictationList" parameters:parameters successBlock:^(id responseObject) {
+        
+        if ([page integerValue] == 1) {
+            [self.tableView.mj_header endRefreshing];
+            
+            self.dataSourceMuArr = [NSMutableArray arrayWithArray:[NSArray yy_modelArrayWithClass:[VENHomePageModel class] json:responseObject[@"content"][@"sourceList"]]];
+            
+            self.page = 1;
+        } else {
+            [self.tableView.mj_footer endRefreshing];
+            
+            [self.dataSourceMuArr addObjectsFromArray:[NSArray yy_modelArrayWithClass:[VENHomePageModel class] json:responseObject[@"content"][@"sourceList"]]];
+        }
+        
+        [self.tableView reloadData];
+        
+    } failureBlock:^(NSError *error) {
+        
+    }];
+}
+
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 10;
+    return self.dataSourceMuArr.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     VENHomePageTableViewCellTwo *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    
-    cell.iconImageView.backgroundColor = [UIColor colorWithRed:arc4random_uniform(255)/255.0 green:arc4random_uniform(255)/255.0 blue:arc4random_uniform(255)/255.0 alpha:1];
-    cell.tagImageView.backgroundColor = [UIColor colorWithRed:arc4random_uniform(255)/255.0 green:arc4random_uniform(255)/255.0 blue:arc4random_uniform(255)/255.0 alpha:1];
+    cell.model = self.dataSourceMuArr[indexPath.row];
     
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    VENHomePageModel *model = self.dataSourceMuArr[indexPath.row];
     
+    if ([self.dotype isEqualToString:@"1"]) {
+        VENMyDictationDetailsViewController *vc = [[VENMyDictationDetailsViewController alloc] init];
+        vc.isPersonalMaterial = YES;
+        vc.source_id = model.source_id;
+        vc.deleteBlock = ^{
+            [self loadPersonalMaterialData:@"1"];
+        };
+        [self.navigationController pushViewController:vc animated:YES];
+    } else if ([self.dotype isEqualToString:@"2"]) {
+        VENMyReadingDetailsViewController *vc = [[VENMyReadingDetailsViewController alloc] init];
+        vc.isPersonalMaterial = YES;
+        vc.source_id = model.source_id;
+        vc.deleteBlock = ^{
+            [self loadPersonalMaterialData:@"1"];
+        };
+        [self.navigationController pushViewController:vc animated:YES];
+    } else if ([self.dotype isEqualToString:@"3"]) {
+        VENMyTranslationDetailsViewController *vc = [[VENMyTranslationDetailsViewController alloc] init];
+        vc.isPersonalMaterial = YES;
+        vc.source_id = model.source_id;
+        vc.deleteBlock = ^{
+            [self loadPersonalMaterialData:@"1"];
+        };
+        [self.navigationController pushViewController:vc animated:YES];
+    } else {
+        VENMySubtitleDetailsViewController *vc = [[VENMySubtitleDetailsViewController alloc] init];
+        vc.isPersonalMaterial = YES;
+        vc.source_id = model.source_id;
+        vc.deleteBlock = ^{
+            [self loadPersonalMaterialData:@"1"];
+        };
+        [self.navigationController pushViewController:vc animated:YES];
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -72,10 +142,16 @@ static NSString *const cellIdentifier = @"cellIdentifier";
     [tableView registerNib:[UINib nibWithNibName:@"VENHomePageTableViewCellTwo" bundle:nil] forCellReuseIdentifier:cellIdentifier];
     tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:tableView];
+
+    tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        [self loadPersonalMaterialData:@"1"];
+    }];
     
-    //    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-    //
-    //    }];
+    tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
+        [self loadPersonalMaterialData:[NSString stringWithFormat:@"%ld", ++self.page]];
+    }];
+    
+    _tableView = tableView;
 }
 
 - (void)setupBottomView {

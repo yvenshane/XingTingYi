@@ -11,6 +11,7 @@
 #import "VENMaterialDetailPageViewController.h"
 #import "VENMySubtitleDetailsTableViewCell.h"
 #import "VENMaterialDetailsMakeSubtitlesPageViewController.h"
+#import "VENPersonalMaterialDetailPageViewController.h"
 
 @interface VENMySubtitleDetailsViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *pictureImageView;
@@ -46,7 +47,19 @@ static NSString *const cellIdentifier = @"cellIdentifier";
 }
 
 - (void)loadMySubtitleDetailsPageData {
-    [[VENNetworkingManager shareManager] requestWithType:HttpRequestTypePOST urlString:@"source/sourceInfo" parameters:@{@"id" : self.source_id} successBlock:^(id responseObject) {
+    
+    NSString *url = @"";
+    NSDictionary *parameters = @{};
+    
+    if (self.isPersonalMaterial) {
+        url = @"userSource/userSourceInfo";
+        parameters = @{@"source_id" : self.source_id};
+    } else {
+        url = @"source/sourceInfo";
+        parameters = @{@"id" : self.source_id};
+    }
+    
+    [[VENNetworkingManager shareManager] requestWithType:HttpRequestTypePOST urlString:url parameters:parameters successBlock:^(id responseObject) {
         
         NSArray *avInfoArr = [NSArray yy_modelArrayWithClass:[VENMaterialDetailsPageModel class] json:responseObject[@"content"][@"avInfo"]];
         
@@ -65,8 +78,11 @@ static NSString *const cellIdentifier = @"cellIdentifier";
 }
 
 - (void)setupContentWithDict:(NSDictionary *)dict {
-    
-    self.infoModel = [VENMaterialDetailsPageModel yy_modelWithJSON:dict[@"info"]];
+    if (self.isPersonalMaterial) {
+        self.infoModel = [VENMaterialDetailsPageModel yy_modelWithJSON:dict[@"sourceInfo"]];
+    } else {
+        self.infoModel = [VENMaterialDetailsPageModel yy_modelWithJSON:dict[@"info"]];
+    }
     
     self.pictureImageView.contentMode = UIViewContentModeScaleToFill;
     [self.pictureImageView sd_setImageWithURL:[NSURL URLWithString:self.infoModel.image]];
@@ -94,7 +110,27 @@ static NSString *const cellIdentifier = @"cellIdentifier";
         
         self.tableView.frame = CGRectMake(0, 0, kMainScreenWidth, height);
     } else {
-        self.bottomContentViewHeightLayoutConstarint.constant = 0;
+        if (self.isPersonalMaterial) {
+            NSString *content = self.infoModel.content;
+            
+            // content
+            NSAttributedString *attributedString = [[NSAttributedString alloc] initWithData:[content dataUsingEncoding:NSUnicodeStringEncoding] options:@{NSDocumentTypeDocumentAttribute : NSHTMLTextDocumentType} documentAttributes:nil error:nil];
+            
+            UILabel *contenLabel = [[UILabel alloc] init];
+            contenLabel.textColor = UIColorFromRGB(0x222222);
+            contenLabel.font = [UIFont systemFontOfSize:14.0f];
+            contenLabel.attributedText = attributedString;
+            contenLabel.numberOfLines = 0;
+            
+            CGFloat height = [contenLabel sizeThatFits:CGSizeMake(kMainScreenWidth - 40, CGFLOAT_MAX)].height;
+            contenLabel.frame = CGRectMake(20, 0, kMainScreenWidth - 40, height);
+            
+            [self.bottomContentView addSubview:contenLabel];
+            
+            self.bottomContentViewHeightLayoutConstarint.constant = height;
+        } else {
+            self.bottomContentViewHeightLayoutConstarint.constant = 0;
+        }
     }
 }
 
@@ -211,7 +247,7 @@ static NSString *const cellIdentifier = @"cellIdentifier";
 
 - (void)leftButtonClick {
     NSDictionary *parameters = @{@"source_id" : self.source_id,
-                                 @"sourceType" : @"1",
+                                 @"sourceType" : self.isPersonalMaterial ? @"2" : @"1",
                                  @"doType" : @"4"};
     
     [[VENNetworkingManager shareManager] requestWithType:HttpRequestTypePOST urlString:@"user/delDosource" parameters:parameters successBlock:^(id responseObject) {
@@ -228,9 +264,15 @@ static NSString *const cellIdentifier = @"cellIdentifier";
 }
 
 - (void)rightButtonClick {
-    VENMaterialDetailPageViewController *vc = [[VENMaterialDetailPageViewController alloc] init];
-    vc.id = self.source_id;
-    [self.navigationController pushViewController:vc animated:YES];
+    if (self.isPersonalMaterial) {
+        VENPersonalMaterialDetailPageViewController *vc = [[VENPersonalMaterialDetailPageViewController alloc] init];
+        vc.source_id = self.source_id;
+        [self.navigationController pushViewController:vc animated:YES];
+    } else {
+        VENMaterialDetailPageViewController *vc = [[VENMaterialDetailPageViewController alloc] init];
+        vc.id = self.source_id;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
 }
 
 - (NSMutableArray *)subtitleMuArr {

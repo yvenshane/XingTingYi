@@ -87,10 +87,22 @@ static NSString *const cellIdentifier = @"cellIdentifier";
                 
             }];
         } else if (indexPath.row == 1) {
-            [[SDImageCache sharedImageCache] clearDiskOnCompletion:^{
-                [MBProgressHUD showText:@"清除缓存成功"];
+            
+            [MBProgressHUD addLoading];
+            
+            // 清除录音
+            NSString *path = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:@"Cache/AudioData"];
+            NSFileManager *fileManager = [NSFileManager defaultManager];
+            [fileManager removeItemAtPath:path error:nil];
+            
+            // 清除图片
+            [[SDImageCache sharedImageCache] clearDiskOnCompletion:nil];
+            
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [MBProgressHUD removeLoading];
                 [self.tableView reloadData];
-            }];
+                [MBProgressHUD showText:@"清除缓存成功"];
+            });
         } else if (indexPath.row == 2) {
             [[VENNetworkingManager shareManager] requestWithType:HttpRequestTypePOST urlString:@"user/aboutUs" parameters:nil successBlock:^(id responseObject) {
                 
@@ -177,7 +189,7 @@ static NSString *const cellIdentifier = @"cellIdentifier";
 }
 
 // 根据数据计算出大小
-- (NSString *) fileSizeWithInteger:(NSInteger)size{
+- (NSString *)fileSizeWithInteger:(NSInteger)size{
     // 1K = 1024dB, 1M = 1024K,1G = 1024M
     if (size < 1024) {// 小于1k
         return [NSString stringWithFormat:@"%ldB",(long)size];

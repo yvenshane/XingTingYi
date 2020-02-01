@@ -14,6 +14,7 @@
 #import "VENAudioPlayer.h"
 #import "VENMaterialDetailsStartDictationPageViewController.h"
 #import "VENMaterialDetailsMakeSubtitlesPageViewController.h"
+#import "VENPersonalMaterialDetailPageViewController.h"
 
 @interface VENMyReadingDetailsViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *pictureImageView;
@@ -32,7 +33,7 @@
 @property (weak, nonatomic) IBOutlet UIView *bottomToolsBar;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomContentViewHeightLayoutConstarint;
 
-@property (nonatomic, copy) NSArray *textInfoArr;
+@property (nonatomic, strong) NSMutableArray *textInfoMuArr;
 @property (nonatomic, copy) NSArray *avInfoArr;
 @property (nonatomic, strong) VENMaterialDetailsPageModel *infoModel;
 
@@ -57,10 +58,34 @@ static NSString *const cellIdentifier = @"cellIdentifier";
 }
 
 - (void)loadMyReadingDetailsPageData {
-    [[VENNetworkingManager shareManager] requestWithType:HttpRequestTypePOST urlString:@"source/sourceInfo" parameters:@{@"id" : self.source_id} successBlock:^(id responseObject) {
+    
+    NSString *url = @"";
+    NSDictionary *parameters = @{};
+    
+    if (self.isPersonalMaterial) {
+        url = @"userSource/userSourceInfo";
+        parameters = @{@"source_id" : self.source_id};
+    } else {
+        url = @"source/sourceInfo";
+        parameters = @{@"id" : self.source_id};
+    }
+    
+    [[VENNetworkingManager shareManager] requestWithType:HttpRequestTypePOST urlString:url parameters:parameters successBlock:^(id responseObject) {
         
         self.avInfoArr = [NSArray yy_modelArrayWithClass:[VENMaterialDetailsPageModel class] json:responseObject[@"content"][@"avInfo"]];
-        self.textInfoArr = [NSArray yy_modelArrayWithClass:[VENMaterialDetailsPageModel class] json:responseObject[@"content"][@"textInfo"]];
+        
+        if (self.isPersonalMaterial) {
+            self.textInfoMuArr = [NSMutableArray arrayWithArray:[NSArray yy_modelArrayWithClass:[VENMaterialDetailsPageModel class] json:responseObject[@"content"][@"sourceText"]]];
+            
+            for (VENMaterialDetailsPageModel *model in self.textInfoMuArr.copy) {
+                if ([VENEmptyClass isEmptyDictionary:model.readInfo]) {
+                    [self.textInfoMuArr removeObject:model];
+                }
+            }
+            
+        } else {
+            self.textInfoMuArr = [NSMutableArray arrayWithArray:[NSArray yy_modelArrayWithClass:[VENMaterialDetailsPageModel class] json:responseObject[@"content"][@"textInfo"]]];
+        }
         
         [self setupContentWithDict:responseObject[@"content"]];
         
@@ -70,8 +95,11 @@ static NSString *const cellIdentifier = @"cellIdentifier";
 }
 
 - (void)setupContentWithDict:(NSDictionary *)dict {
-    
-    self.infoModel = [VENMaterialDetailsPageModel yy_modelWithJSON:dict[@"info"]];
+    if (self.isPersonalMaterial) {
+        self.infoModel = [VENMaterialDetailsPageModel yy_modelWithJSON:dict[@"sourceInfo"]];
+    } else {
+        self.infoModel = [VENMaterialDetailsPageModel yy_modelWithJSON:dict[@"info"]];
+    }
     
     self.pictureImageView.contentMode = UIViewContentModeScaleToFill;
     [self.pictureImageView sd_setImageWithURL:[NSURL URLWithString:self.infoModel.image]];
@@ -121,7 +149,7 @@ static NSString *const cellIdentifier = @"cellIdentifier";
         }
     }
     
-    if (self.textInfoArr.count > 0) {
+    if (self.textInfoMuArr.count > 0) {
         CGFloat height = [self getTextInfoHeight];
         self.bottomContentViewHeightLayoutConstarint.constant = height;
         
@@ -135,20 +163,27 @@ static NSString *const cellIdentifier = @"cellIdentifier";
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.textInfoArr.count;
+    return self.textInfoMuArr.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     VENMyReadingDetailsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
-    VENMaterialDetailsPageModel *textInfoModel = self.textInfoArr[indexPath.row];
+    VENMaterialDetailsPageModel *textInfoModel = self.textInfoMuArr[indexPath.row];
     
     cell.titleLabel.text = textInfoModel.content;
     
     // 播放
     cell.playButtonClickBlock = ^() {
-        [[VENAudioPlayer sharedAudioPlayer] playWithURL:[NSURL URLWithString:textInfoModel.read]];
+        NSString *url = @"";
+        if (self.isPersonalMaterial) {
+            url = textInfoModel.readInfo[@"path"];
+        } else {
+            url = textInfoModel.read;
+        }
+        
+        [[VENAudioPlayer sharedAudioPlayer] playWithURL:[NSURL URLWithString:url]];
         [[VENAudioPlayer sharedAudioPlayer] play];
     };
     
@@ -156,7 +191,7 @@ static NSString *const cellIdentifier = @"cellIdentifier";
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    VENMaterialDetailsPageModel *textInfoModel = self.textInfoArr[indexPath.row];
+    VENMaterialDetailsPageModel *textInfoModel = self.textInfoMuArr[indexPath.row];
     
     if (!textInfoModel.cellHeight) {
         return CGFLOAT_MIN;
@@ -196,7 +231,7 @@ static NSString *const cellIdentifier = @"cellIdentifier";
 #pragma mark - TableView Height
 - (CGFloat)getTextInfoHeight {
     CGFloat tableViewHeight = 0;
-    for (VENMaterialDetailsPageModel *textInfoModel in self.textInfoArr) {
+    for (VENMaterialDetailsPageModel *textInfoModel in self.textInfoMuArr) {
         
         self.cellLabelTwo.text = textInfoModel.content;
         
@@ -267,7 +302,7 @@ static NSString *const cellIdentifier = @"cellIdentifier";
 
 - (void)leftButtonClick {
     NSDictionary *parameters = @{@"source_id" : self.source_id,
-                                 @"sourceType" : @"1",
+                                 @"sourceType" : self.isPersonalMaterial ? @"2" : @"1",
                                  @"doType" : @"2"};
     
     [[VENNetworkingManager shareManager] requestWithType:HttpRequestTypePOST urlString:@"user/delDosource" parameters:parameters successBlock:^(id responseObject) {
@@ -284,9 +319,15 @@ static NSString *const cellIdentifier = @"cellIdentifier";
 }
 
 - (void)rightButtonClick {
-    VENMaterialDetailPageViewController *vc = [[VENMaterialDetailPageViewController alloc] init];
-    vc.id = self.source_id;
-    [self.navigationController pushViewController:vc animated:YES];
+    if (self.isPersonalMaterial) {
+        VENPersonalMaterialDetailPageViewController *vc = [[VENPersonalMaterialDetailPageViewController alloc] init];
+        vc.source_id = self.source_id;
+        [self.navigationController pushViewController:vc animated:YES];
+    } else {
+        VENMaterialDetailPageViewController *vc = [[VENMaterialDetailPageViewController alloc] init];
+        vc.id = self.source_id;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
 }
 
 #pragma mark - 音频播放器

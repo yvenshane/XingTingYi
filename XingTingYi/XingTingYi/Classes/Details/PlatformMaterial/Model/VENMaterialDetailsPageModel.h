@@ -56,6 +56,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSDictionary *info;
 @property (nonatomic, copy) NSDictionary *readInfo;
 @property (nonatomic, copy) NSArray *dictation_tag_info;
+@property (nonatomic, copy) NSDictionary *dictationRead;
 
 @end
 
