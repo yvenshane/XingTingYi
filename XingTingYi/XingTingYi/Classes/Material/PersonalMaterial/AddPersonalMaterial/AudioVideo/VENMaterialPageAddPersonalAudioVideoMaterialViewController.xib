@@ -14,6 +14,7 @@
                 <outlet property="submitButton" destination="AkY-cO-dbw" id="tus-s8-ZiU"/>
                 <outlet property="titleTextField" destination="2Xd-qG-WX9" id="eSV-hF-FFE"/>
                 <outlet property="uploadButton" destination="NpP-aA-12n" id="O6T-s7-87T"/>
+                <outlet property="uploadSuccessView" destination="ThB-Qa-fGf" id="b6a-1u-REo"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -122,6 +123,33 @@
                         <action selector="submitButtonClick:" destination="-1" eventType="touchUpInside" id="0X1-X4-Tvq"/>
                     </connections>
                 </button>
+                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ThB-Qa-fGf">
+                    <rect key="frame" x="314" y="259.5" width="80" height="20"/>
+                    <subviews>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_add_success" translatesAutoresizingMaskIntoConstraints="NO" id="UW5-mE-6oN">
+                            <rect key="frame" x="0.0" y="2" width="16" height="16"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="16" id="f0N-rL-KgH"/>
+                                <constraint firstAttribute="width" constant="16" id="hLp-Rg-07e"/>
+                            </constraints>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="上传完成" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nVJ-O0-VED">
+                            <rect key="frame" x="21" y="1.5" width="58" height="17"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <color key="textColor" red="0.93725490196078431" green="0.078431372549019607" blue="0.1764705882352941" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                    <constraints>
+                        <constraint firstItem="nVJ-O0-VED" firstAttribute="leading" secondItem="UW5-mE-6oN" secondAttribute="trailing" constant="5" id="D9a-0v-CwW"/>
+                        <constraint firstItem="UW5-mE-6oN" firstAttribute="leading" secondItem="ThB-Qa-fGf" secondAttribute="leading" id="Egd-Ya-fXH"/>
+                        <constraint firstItem="nVJ-O0-VED" firstAttribute="centerY" secondItem="ThB-Qa-fGf" secondAttribute="centerY" id="WZY-LC-eX4"/>
+                        <constraint firstAttribute="height" constant="20" id="eKB-2J-xOO"/>
+                        <constraint firstItem="UW5-mE-6oN" firstAttribute="centerY" secondItem="ThB-Qa-fGf" secondAttribute="centerY" id="eRc-BG-X6U"/>
+                        <constraint firstAttribute="width" constant="80" id="m09-cp-NMh"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
@@ -143,6 +171,7 @@
                 <constraint firstItem="sMj-DB-6Db" firstAttribute="leading" secondItem="ZvN-Sb-yVP" secondAttribute="leading" id="Vzc-Ry-PLK"/>
                 <constraint firstItem="sMj-DB-6Db" firstAttribute="top" secondItem="ZvN-Sb-yVP" secondAttribute="bottom" constant="10" id="WuA-oV-nz7"/>
                 <constraint firstItem="Xjw-bP-LXC" firstAttribute="top" secondItem="BaR-VX-PCW" secondAttribute="bottom" constant="15" id="Wwa-d1-QwO"/>
+                <constraint firstItem="ThB-Qa-fGf" firstAttribute="centerY" secondItem="KeB-3u-T5T" secondAttribute="centerY" id="Z2L-i1-RLW"/>
                 <constraint firstItem="KeB-3u-T5T" firstAttribute="top" secondItem="dbH-H6-Apo" secondAttribute="bottom" constant="14" id="bKK-e4-K36"/>
                 <constraint firstItem="AkY-cO-dbw" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" constant="20" id="cqb-fi-L8a"/>
                 <constraint firstAttribute="trailing" secondItem="aRl-c3-gJB" secondAttribute="trailing" constant="30" id="f5d-hD-hBH"/>
@@ -153,16 +182,18 @@
                 <constraint firstItem="2Xd-qG-WX9" firstAttribute="top" secondItem="1ox-nl-6VO" secondAttribute="bottom" id="pdO-4c-rU6"/>
                 <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="1ox-nl-6VO" secondAttribute="trailing" id="q4o-8y-rm9"/>
                 <constraint firstItem="NpP-aA-12n" firstAttribute="top" secondItem="dbH-H6-Apo" secondAttribute="bottom" constant="50" id="qrF-nD-hHG"/>
+                <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="ThB-Qa-fGf" secondAttribute="trailing" constant="20" id="shb-2A-D2L"/>
                 <constraint firstItem="ZvN-Sb-yVP" firstAttribute="top" secondItem="BaR-VX-PCW" secondAttribute="bottom" constant="31" id="srX-TD-XO8"/>
                 <constraint firstItem="1ox-nl-6VO" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" id="tE8-Wb-9DC"/>
                 <constraint firstItem="2Xd-qG-WX9" firstAttribute="leading" secondItem="nHH-mE-KSA" secondAttribute="trailing" constant="20" id="w1L-5N-HmZ"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
-            <point key="canvasLocation" x="139" y="84"/>
+            <point key="canvasLocation" x="137.68115942028987" y="83.705357142857139"/>
         </view>
     </objects>
     <resources>
         <image name="icon_add_photo02" width="120" height="80"/>
+        <image name="icon_add_success" width="16" height="16"/>
         <image name="icon_upload" width="16" height="16"/>
     </resources>
 </document>

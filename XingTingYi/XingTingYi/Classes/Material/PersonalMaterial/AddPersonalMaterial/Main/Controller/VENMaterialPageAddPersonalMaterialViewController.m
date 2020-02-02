@@ -8,6 +8,8 @@
 
 #import "VENMaterialPageAddPersonalMaterialViewController.h"
 #import "VENBaseCategoryView.h"
+#import "VENMaterialPageAddPersonalAudioVideoMaterialViewController.h"
+#import "VENMaterialPageAddPersonalTextMaterialViewController.h"
 
 @interface VENMaterialPageAddPersonalMaterialViewController () <UIScrollViewDelegate>
 @property (nonatomic, weak) VENBaseCategoryView *categoryView;
@@ -123,23 +125,19 @@
     scrollV.delegate = self;
     scrollV.showsHorizontalScrollIndicator = NO;
     
-    NSArray<NSString *> *vcNamesArr = @[@"VENMaterialPageAddPersonalAudioVideoMaterialViewController", @"VENMaterialPageAddPersonalTextMaterialViewController"];
-    
     NSMutableArray<UIView *> *vcViewsArrM = [NSMutableArray array];
     
-    [vcNamesArr enumerateObjectsUsingBlock:^(NSString * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        
-        // 2.1 创建vc对象
-        Class cls = NSClassFromString(obj);
-        UIViewController *vc = [[cls alloc] init];
-        
-        // 2.2 建立控制器的父子关系
-        [self addChildController:vc intoView:scrollV];
-        
-        // 2.3添加控制器的视图到view中
-        [vcViewsArrM addObject:vc.view];
-        
-    }];
+    VENMaterialPageAddPersonalAudioVideoMaterialViewController *vc = [[VENMaterialPageAddPersonalAudioVideoMaterialViewController alloc] init];
+    vc.name = self.name;
+    vc.picture = self.picture;
+    vc.type = self.type;
+    vc.user_source_id = self.user_source_id;
+    [self addChildController:vc intoView:scrollV];
+    [vcViewsArrM addObject:vc.view];
+    
+    VENMaterialPageAddPersonalTextMaterialViewController *vc2 = [[VENMaterialPageAddPersonalTextMaterialViewController alloc] init];
+    [self addChildController:vc2 intoView:scrollV];
+    [vcViewsArrM addObject:vc2.view];
     
     [vcViewsArrM mas_distributeViewsAlongAxis:MASAxisTypeHorizontal withFixedSpacing:0 leadSpacing:0 tailSpacing:0];
     

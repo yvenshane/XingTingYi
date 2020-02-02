@@ -14,6 +14,7 @@
 #import "VENMyReadingDetailsViewController.h"
 #import "VENMyTranslationDetailsViewController.h"
 #import "VENMySubtitleDetailsViewController.h"
+#import "VENMaterialPageAddPersonalMaterialViewController.h"
 
 @interface VENMyOtherPersonalMaterialViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) UITableView *tableView;
@@ -168,8 +169,15 @@ static NSString *const cellIdentifier = @"cellIdentifier";
     [addButton setTitle:@"添加个人素材" forState:UIControlStateNormal];
     [addButton setTitleColor:UIColorFromRGB(0x222222) forState:UIControlStateNormal];
     addButton.titleLabel.font = [UIFont systemFontOfSize:16.0f];
+    [addButton addTarget:self action:@selector(addButtonClick) forControlEvents:UIControlEventTouchUpInside];
     [bottomView addSubview:addButton];
     ViewRadius(addButton, 24.0f);
+}
+
+- (void)addButtonClick {
+    VENMaterialPageAddPersonalMaterialViewController *vc = [[VENMaterialPageAddPersonalMaterialViewController alloc] init];
+    vc.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 /*

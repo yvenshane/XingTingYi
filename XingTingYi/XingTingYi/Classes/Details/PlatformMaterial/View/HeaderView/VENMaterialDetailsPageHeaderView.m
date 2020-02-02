@@ -74,8 +74,14 @@
     
     NSString *audioURL = @"";
     
+    if (![VENEmptyClass isEmptyString:infoModel.merge_audio]) {
+        audioURL = infoModel.merge_audio;
+    } else {
+        audioURL = infoModel.source_path;
+    }
+    
     if (self.isPersonalMaterial) {
-        if ([VENEmptyClass isEmptyString:audioURL] && [VENEmptyClass isEmptyArray:data[@"sourceText"]]) {
+        if ([VENEmptyClass isEmptyString:self.videoURL] && [VENEmptyClass isEmptyArray:data[@"sourceText"]]) {
             UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(20, viewHeight, kMainScreenWidth - 20 * 2, 120)];
             label.backgroundColor = UIColorFromRGB(0xF8F8F8);
             label.text = @"音频素材未上传";
@@ -87,32 +93,22 @@
             [self addSubview:label];
             
             viewHeight += 120;
-        }
-    } else {
-        if (![VENEmptyClass isEmptyString:infoModel.merge_audio]) {
-            audioURL = infoModel.merge_audio;
         } else {
-            audioURL = infoModel.source_path;
-
-        }
-    }
-    
-    if (![VENEmptyClass isEmptyString:audioURL]) {
-        self.audioPlayerView.audioURL = audioURL;
-        
-        // audio
-        self.audioView.layer.cornerRadius = 8.0f;
-        self.audioView.layer.masksToBounds = YES;
-        
-        CGFloat audioHeight = (kMainScreenWidth - 40) / (335.0 / 120.0);
-        self.audioViewHeightLayoutConstraint.constant = audioHeight;
-        self.audioPlayerView.frame = CGRectMake(0, 0, CGRectGetWidth(self.audioView.frame), CGRectGetHeight(self.audioView.frame));
-        
-        viewHeight += 30 + audioHeight;
-        
-        // video
-        if ([[audioURL substringFromIndex:audioURL.length - 1] isEqualToString:@"4"]) { // 如果是.MP4
+            self.audioPlayerView.loctionAudioURL = audioURL;
             
+            // audio
+            self.audioView.layer.cornerRadius = 8.0f;
+            self.audioView.layer.masksToBounds = YES;
+            
+            CGFloat audioHeight = (kMainScreenWidth - 40) / (335.0 / 120.0);
+            self.audioViewHeightLayoutConstraint.constant = audioHeight;
+            self.audioPlayerView.frame = CGRectMake(0, 0, CGRectGetWidth(self.audioView.frame), CGRectGetHeight(self.audioView.frame));
+            
+            viewHeight += 30 + audioHeight;
+            
+            // video
+//            if ([[audioURL substringFromIndex:audioURL.length - 1] isEqualToString:@"4"]) { // 如果是.MP4
+                
             CGFloat videoHeight = (kMainScreenWidth - 40) / (335.0 / 188.0);
             
             self.videoViewHeightLayoutConstraint.constant = videoHeight;
@@ -123,6 +119,37 @@
             playerLayer.frame = CGRectMake(0, 0, CGRectGetWidth(self.videoView.frame), CGRectGetHeight(self.videoView.frame));
             
             viewHeight += videoHeight + 20;
+            viewHeight += 30;
+//            }
+        }
+    } else {
+        if (![VENEmptyClass isEmptyString:audioURL]) {
+            self.audioPlayerView.audioURL = audioURL;
+            
+            // audio
+            self.audioView.layer.cornerRadius = 8.0f;
+            self.audioView.layer.masksToBounds = YES;
+            
+            CGFloat audioHeight = (kMainScreenWidth - 40) / (335.0 / 120.0);
+            self.audioViewHeightLayoutConstraint.constant = audioHeight;
+            self.audioPlayerView.frame = CGRectMake(0, 0, CGRectGetWidth(self.audioView.frame), CGRectGetHeight(self.audioView.frame));
+            
+            viewHeight += 30 + audioHeight;
+            
+            // video
+            if ([[audioURL substringFromIndex:audioURL.length - 1] isEqualToString:@"4"]) { // 如果是.MP4
+                
+                CGFloat videoHeight = (kMainScreenWidth - 40) / (335.0 / 188.0);
+                
+                self.videoViewHeightLayoutConstraint.constant = videoHeight;
+                self.audioViewTopLayoutConstraint.constant = 20.0f;
+                
+                AVPlayerLayer *playerLayer = [[VENAudioPlayer sharedAudioPlayer] playerLayer];
+                [self.videoView.layer addSublayer:playerLayer];
+                playerLayer.frame = CGRectMake(0, 0, CGRectGetWidth(self.videoView.frame), CGRectGetHeight(self.videoView.frame));
+                
+                viewHeight += videoHeight + 20;
+            }
         }
     }
     

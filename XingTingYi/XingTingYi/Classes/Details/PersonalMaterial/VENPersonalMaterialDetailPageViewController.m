@@ -17,6 +17,7 @@
 #import "VENMaterialDetailsStartDictationPageViewController.h" // 继续听写
 #import "VENMaterialDetailsMakeSubtitlesPageViewController.h" // 添加字幕
 #import "VENMinePageMyNewWordBookViewController.h" // 添加生词
+#import "VENMaterialPageAddPersonalMaterialViewController.h"
 
 @interface VENPersonalMaterialDetailPageViewController () <UIScrollViewDelegate>
 @property (nonatomic, strong) UIView *navigationView; // 导航栏
@@ -33,10 +34,10 @@
 @property (nonatomic, strong) VENMaterialDetailsPageModel *infoModel;
 @property (nonatomic, copy) NSArray *textInfoArr; // 朗读
 
-@property (nonatomic, copy) NSString *materialURL;
-
 @property (nonatomic, strong) UILabel *cellLabelTwo;
 @property (nonatomic, strong) UILabel *cellLabelThree;
+
+@property (nonatomic, copy) NSString *videoURL;
 
 @end
 
@@ -72,6 +73,9 @@ static NSString *const cellIdentifier = @"cellIdentifier";
     }
     
     [self loadVideoMaterialDetailsPageData];
+    
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    self.videoURL = [userDefaults objectForKey:self.source_id];
 }
 
 - (void)loadVideoMaterialDetailsPageData {
@@ -227,6 +231,7 @@ static NSString *const cellIdentifier = @"cellIdentifier";
 - (void)setupHeaderView {
     VENMaterialDetailsPageHeaderView *headerView = [[NSBundle mainBundle] loadNibNamed:@"VENMaterialDetailsPageHeaderView" owner:nil options:nil].lastObject;
     headerView.isPersonalMaterial = YES;
+    headerView.videoURL = self.videoURL;
     self.headerViewHeightLayoutConstraint.constant = [headerView getHeightFromData:self.contentDict];
     [self.headerView addSubview:headerView];
 }
@@ -308,27 +313,64 @@ static NSString *const cellIdentifier = @"cellIdentifier";
 
 #pragma mark - 开始听写/继续听写
 - (void)startDictation {
-    if ([VENEmptyClass isEmptyString:self.materialURL]) {
+    if ([VENEmptyClass isEmptyString:self.videoURL]) {
+        
+        BOOL isContinue = ![VENEmptyClass isEmptyArray:self.infoModel.dictation_tag_info];
+        
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:[NSString stringWithFormat:@"%@需要重新添加素材", isContinue ? @"继续听写" : @"开始听写"] message:nil preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction *appropriateAction = [UIAlertAction actionWithTitle:@"去添加" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            [self pushToAddMaterialPage];
+        }];
+        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+        
+        [alert addAction:cancelAction];
+        [alert addAction:appropriateAction];
+
+        [self presentViewController:alert animated:YES completion:nil];
         
     } else {
         VENMaterialDetailsStartDictationPageViewController *vc = [[VENMaterialDetailsStartDictationPageViewController alloc] init];
         vc.isPersonalMaterial = YES;
         vc.source_id = self.infoModel.id;
-        vc.source_period_id = self.infoModel.dictation_tag_info[0][@"id"];
+        vc.source_period_id = [VENEmptyClass isEmptyArray:self.infoModel.dictation_tag_info] ? @"0" : self.infoModel.dictation_tag_info[0][@"id"];
         [self.navigationController pushViewController:vc animated:YES];
     }
 }
 
 #pragma mark - 制作字幕
 - (void)makeSubtitles {
-    if ([VENEmptyClass isEmptyString:self.materialURL]) {
+    if ([VENEmptyClass isEmptyString:self.videoURL]) {
+        
+        BOOL isModify = ![VENEmptyClass isEmptyArray:self.infoModel.subtitlesList];
+        
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:[NSString stringWithFormat:@"%@需要重新添加素材", isModify ? @"修改字幕" : @"制作字幕"] message:nil preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction *appropriateAction = [UIAlertAction actionWithTitle:@"去添加" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            [self pushToAddMaterialPage];
+        }];
+        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+        
+        [alert addAction:cancelAction];
+        [alert addAction:appropriateAction];
+
+        [self presentViewController:alert animated:YES completion:nil];
         
     } else {
         VENMaterialDetailsMakeSubtitlesPageViewController *vc = [[VENMaterialDetailsMakeSubtitlesPageViewController alloc] init];
         vc.isPersonalMaterial = YES;
-        vc.source_period_id = self.infoModel.dictation_tag_info[0][@"id"];
+        vc.source_period_id = [VENEmptyClass isEmptyArray:self.infoModel.dictation_tag_info] ? @"0" : self.infoModel.dictation_tag_info[0][@"id"];
         [self.navigationController pushViewController:vc animated:YES];
     }
+}
+
+- (void)pushToAddMaterialPage {
+    VENMaterialPageAddPersonalMaterialViewController *vc = [[VENMaterialPageAddPersonalMaterialViewController alloc] init];
+    vc.name = self.infoModel.title;
+    vc.picture = self.infoModel.image;
+    vc.type = self.infoModel.type;
+    vc.user_source_id = self.source_id;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 #pragma mark - 添加生词

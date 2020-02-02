@@ -7,10 +7,12 @@
 //
 
 #import "VENMaterialPageAddPersonalAudioVideoMaterialViewController.h"
+#import <AVFoundation/AVBase.h>
+#import <AVFoundation/AVMediaFormat.h>
 
 @interface VENMaterialPageAddPersonalAudioVideoMaterialViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 @property (nonatomic, strong) UIImage *tempImage;
-@property (nonatomic, copy) NSString *type;
+@property (nonatomic, copy) NSString *videoURL;
 
 @end
 
@@ -25,6 +27,18 @@
     
     self.submitButton.layer.cornerRadius = 24.0f;
     self.submitButton.layer.masksToBounds = YES;
+    
+    
+    
+    
+    if (![VENEmptyClass isEmptyString:self.name]) {
+        self.titleTextField.text = self.name;
+    }
+    
+    if (![VENEmptyClass isEmptyString:self.picture]) {
+        [self.addCoverButton sd_setImageWithURL:[NSURL URLWithString:self.picture] forState:UIControlStateNormal];
+        self.tempImage = self.addCoverButton.imageView.image;
+    }
 }
 
 #pragma mark - 上传
@@ -35,10 +49,28 @@
         
         UIAlertAction *appropriateAction = [UIAlertAction actionWithTitle:@"音频" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             self.type = @"1";
+            
+            UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
+            imagePickerController.delegate = self;
+            imagePickerController.allowsEditing = NO;
+            //            imagePickerController.videoMaximumDuration = 1.0; // 视频最长长度
+            imagePickerController.videoQuality = UIImagePickerControllerQualityTypeMedium; // 视频质量
+            imagePickerController.mediaTypes = [NSArray arrayWithObjects:@"public.movie", nil];
+            imagePickerController.sourceType= UIImagePickerControllerSourceTypeSavedPhotosAlbum;
+            [self presentViewController:imagePickerController animated:YES completion:nil];
         }];
         
         UIAlertAction *undeterminedAction = [UIAlertAction actionWithTitle:@"视频" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             self.type = @"2";
+            
+            UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
+            imagePickerController.delegate = self;
+            imagePickerController.allowsEditing = NO;
+//            imagePickerController.videoMaximumDuration = 1.0; // 视频最长长度
+            imagePickerController.videoQuality = UIImagePickerControllerQualityTypeMedium; // 视频质量
+            imagePickerController.mediaTypes = [NSArray arrayWithObjects:@"public.movie", nil];
+            imagePickerController.sourceType= UIImagePickerControllerSourceTypeSavedPhotosAlbum;
+            [self presentViewController:imagePickerController animated:YES completion:nil];
         }];
         
         UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
@@ -97,10 +129,24 @@
         return;
     }
     
-    NSDictionary *parameters = @{@"title" : self.titleTextField.text,
-                                 @"type" : self.type};
+    NSDictionary *parameters = @{};
+    if (![VENEmptyClass isEmptyString:self.name]) {
+        parameters = @{@"title" : self.titleTextField.text,
+                       @"type" : self.type,
+                       @"user_source_id" : self.user_source_id,
+                       @"images" : self.picture};
+    } else {
+        parameters = @{@"title" : self.titleTextField.text,
+                       @"type" : self.type};
+    }
     
     [[VENNetworkingManager shareManager] uploadImageWithUrlString:@"userSource/uploadSource" parameters:parameters images:self.tempImage ? @[self.tempImage] : @[] keyName:@"image" successBlock:^(id responseObject) {
+        
+        NSString *key = [NSString stringWithFormat:@"%@", responseObject[@"content"][@"userSourceId"]];
+        
+        NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+        [userDefaults setObject:self.videoURL forKey:key];
+        [userDefaults synchronize];
         
         [[NSNotificationCenter defaultCenter] postNotificationName:@"UploadMaterialSuccess" object:nil userInfo:@{@"type" : self.type}];
         
@@ -112,12 +158,15 @@
 #pragma mark - UIImagePickerController
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<UIImagePickerControllerInfoKey,id> *)info {
     
-    self.tempImage = [info objectForKey:UIImagePickerControllerEditedImage];
-    
-    [self.addCoverButton setImage:self.tempImage forState:UIControlStateNormal];
+    if ([[info objectForKey:UIImagePickerControllerMediaType] isEqualToString:@"public.movie"]){
+        self.videoURL = [info[UIImagePickerControllerMediaURL] absoluteString];
+        self.uploadSuccessView.hidden = NO;
+    } else {
+        self.tempImage = [info objectForKey:UIImagePickerControllerEditedImage];
+        [self.addCoverButton setImage:self.tempImage forState:UIControlStateNormal];
+    }
     
     [picker dismissViewControllerAnimated:YES completion:nil];
-    
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {

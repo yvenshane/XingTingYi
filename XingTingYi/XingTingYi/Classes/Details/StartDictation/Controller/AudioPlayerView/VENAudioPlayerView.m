@@ -69,6 +69,53 @@
     [self.endButton addTarget:self action:@selector(endButtonClick) forControlEvents:UIControlEventTouchUpInside];
 }
 
+- (void)setLoctionAudioURL:(NSString *)loctionAudioURL {
+    if ([VENEmptyClass isEmptyString:loctionAudioURL]) {
+        return;
+    }
+    
+    self.audioPlayer = [VENAudioPlayer sharedAudioPlayer];
+    [self.audioPlayer playWithURL:[NSURL fileURLWithPath:loctionAudioURL]];
+    
+    __weak typeof(self) weakSelf = self;
+    
+    [self.audioPlayer setPlayingUIHander:^(float currentTime) {
+        // 进度条
+        weakSelf.progressBarSlider.value = currentTime;
+        // 播放时间
+        [weakSelf.minTimeButton setTitle:[NSString stringWithFormat:@"%@", [weakSelf convertTime:currentTime]] forState:UIControlStateNormal];
+        
+        if (weakSelf.isLoop) {
+            if (currentTime > weakSelf.endTime) {
+                [weakSelf.audioPlayer playAtTime:weakSelf.startTime];
+            }
+        }
+    }];
+    
+    // 播放完成
+    self.audioPlayer.playerEndHander = ^{
+        if (weakSelf.isLoop) {
+            [weakSelf.audioPlayer playAtTime:weakSelf.startTime];
+            [weakSelf.audioPlayer play];
+        } else {
+            // 还原播放按钮
+            weakSelf.playButton.selected = NO;
+            weakSelf.isPause = NO;
+            weakSelf.playProgress = 0;
+            
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"playDidFinish" object:nil];
+        }
+    };
+    
+    // 加载成功
+    self.audioPlayer.playerLoadSuceessHander = ^(float audioDuration) {
+        // 进度条最大值
+        weakSelf.progressBarSlider.maximumValue = audioDuration;
+        // 最大进度
+        weakSelf.maxTimeLabel.text = [weakSelf convertTime:audioDuration];
+    };
+}
+
 - (void)setAudioURL:(NSString *)audioURL {
     
     if ([VENEmptyClass isEmptyString:audioURL]) {

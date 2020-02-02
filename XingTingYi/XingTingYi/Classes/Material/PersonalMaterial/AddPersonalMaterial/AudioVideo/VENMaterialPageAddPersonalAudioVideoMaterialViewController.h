@@ -15,6 +15,12 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UIButton *addCoverButton;
 @property (weak, nonatomic) IBOutlet UIButton *submitButton;
 @property (weak, nonatomic) IBOutlet UIButton *uploadButton;
+@property (weak, nonatomic) IBOutlet UIView *uploadSuccessView;
+
+@property (nonatomic, copy) NSString *name;
+@property (nonatomic, copy) NSString *picture;
+@property (nonatomic, copy) NSString *type;
+@property (nonatomic, copy) NSString *user_source_id;
 
 @end
 

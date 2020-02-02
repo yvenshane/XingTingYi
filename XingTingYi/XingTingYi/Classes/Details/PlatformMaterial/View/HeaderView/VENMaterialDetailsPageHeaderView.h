@@ -36,6 +36,7 @@ typedef void (^contentButtonBlock)(void);
 
 @property (nonatomic, copy) contentButtonBlock contentButtonBlock;
 @property (nonatomic, assign) BOOL isPersonalMaterial;
+@property (nonatomic, copy) NSString *videoURL;
 
 - (CGFloat)getHeightFromData:(NSDictionary *)data;
 
