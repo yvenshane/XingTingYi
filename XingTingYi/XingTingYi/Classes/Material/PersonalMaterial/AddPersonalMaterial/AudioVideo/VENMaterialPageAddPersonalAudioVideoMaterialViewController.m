@@ -7,12 +7,10 @@
 //
 
 #import "VENMaterialPageAddPersonalAudioVideoMaterialViewController.h"
-#import <AVFoundation/AVBase.h>
-#import <AVFoundation/AVMediaFormat.h>
 
 @interface VENMaterialPageAddPersonalAudioVideoMaterialViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 @property (nonatomic, strong) UIImage *tempImage;
-@property (nonatomic, copy) NSString *videoURL;
+@property (nonatomic, strong) NSURL *videoURL;
 
 @end
 
@@ -145,7 +143,7 @@
         NSString *key = [NSString stringWithFormat:@"%@", responseObject[@"content"][@"userSourceId"]];
         
         NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-        [userDefaults setObject:self.videoURL forKey:key];
+        [userDefaults setURL:self.videoURL forKey:key];
         [userDefaults synchronize];
         
         [[NSNotificationCenter defaultCenter] postNotificationName:@"UploadMaterialSuccess" object:nil userInfo:@{@"type" : self.type}];
@@ -159,7 +157,7 @@
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<UIImagePickerControllerInfoKey,id> *)info {
     
     if ([[info objectForKey:UIImagePickerControllerMediaType] isEqualToString:@"public.movie"]){
-        self.videoURL = [info[UIImagePickerControllerMediaURL] absoluteString];
+        self.videoURL = info[UIImagePickerControllerMediaURL];
         self.uploadSuccessView.hidden = NO;
     } else {
         self.tempImage = [info objectForKey:UIImagePickerControllerEditedImage];

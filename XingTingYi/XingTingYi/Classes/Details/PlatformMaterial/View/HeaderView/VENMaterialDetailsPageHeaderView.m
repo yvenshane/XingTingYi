@@ -81,7 +81,7 @@
     }
     
     if (self.isPersonalMaterial) {
-        if ([VENEmptyClass isEmptyString:self.videoURL] && [VENEmptyClass isEmptyArray:data[@"sourceText"]]) {
+        if (!self.videoURL && [VENEmptyClass isEmptyArray:data[@"sourceText"]]) {
             UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(20, viewHeight, kMainScreenWidth - 20 * 2, 120)];
             label.backgroundColor = UIColorFromRGB(0xF8F8F8);
             label.text = @"音频素材未上传";
@@ -93,8 +93,8 @@
             [self addSubview:label];
             
             viewHeight += 120;
-        } else if (![VENEmptyClass isEmptyString:self.videoURL] && [VENEmptyClass isEmptyArray:data[@"sourceText"]]) {
-            self.audioPlayerView.loctionAudioURL = audioURL;
+        } else if (self.videoURL && [VENEmptyClass isEmptyArray:data[@"sourceText"]]) {
+            self.audioPlayerView.loctionAudioURL = self.videoURL;
             
             // audio
             self.audioView.layer.cornerRadius = 8.0f;

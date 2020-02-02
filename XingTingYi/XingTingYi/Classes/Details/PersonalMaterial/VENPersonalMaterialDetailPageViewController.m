@@ -37,7 +37,7 @@
 @property (nonatomic, strong) UILabel *cellLabelTwo;
 @property (nonatomic, strong) UILabel *cellLabelThree;
 
-@property (nonatomic, copy) NSString *videoURL;
+@property (nonatomic, strong) NSURL *videoURL;
 
 @end
 
@@ -75,7 +75,7 @@ static NSString *const cellIdentifier = @"cellIdentifier";
     [self loadVideoMaterialDetailsPageData];
     
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    self.videoURL = [userDefaults objectForKey:self.source_id];
+    self.videoURL = [userDefaults URLForKey:self.source_id];
 }
 
 - (void)loadVideoMaterialDetailsPageData {
@@ -314,7 +314,7 @@ static NSString *const cellIdentifier = @"cellIdentifier";
 
 #pragma mark - 开始听写/继续听写
 - (void)startDictation {
-    if ([VENEmptyClass isEmptyString:self.videoURL]) {
+    if (!self.videoURL) {
         
         BOOL isContinue = ![VENEmptyClass isEmptyArray:self.infoModel.dictation_tag_info];
         
@@ -341,7 +341,7 @@ static NSString *const cellIdentifier = @"cellIdentifier";
 
 #pragma mark - 制作字幕
 - (void)makeSubtitles {
-    if ([VENEmptyClass isEmptyString:self.videoURL]) {
+    if (!self.videoURL) {
         
         BOOL isModify = ![VENEmptyClass isEmptyArray:self.infoModel.subtitlesList];
         

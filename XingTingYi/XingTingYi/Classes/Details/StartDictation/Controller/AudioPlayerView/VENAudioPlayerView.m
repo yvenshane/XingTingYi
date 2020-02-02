@@ -69,13 +69,13 @@
     [self.endButton addTarget:self action:@selector(endButtonClick) forControlEvents:UIControlEventTouchUpInside];
 }
 
-- (void)setLoctionAudioURL:(NSString *)loctionAudioURL {
-    if ([VENEmptyClass isEmptyString:loctionAudioURL]) {
+- (void)setLoctionAudioURL:(NSURL *)loctionAudioURL {
+    if (!loctionAudioURL) {
         return;
     }
     
     self.audioPlayer = [VENAudioPlayer sharedAudioPlayer];
-    [self.audioPlayer playWithURL:[NSURL fileURLWithPath:loctionAudioURL]];
+    [self.audioPlayer playWithURL:loctionAudioURL];
     
     __weak typeof(self) weakSelf = self;
     
