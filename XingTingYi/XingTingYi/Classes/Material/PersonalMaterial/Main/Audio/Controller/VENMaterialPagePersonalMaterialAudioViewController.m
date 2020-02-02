@@ -142,7 +142,7 @@ static NSString *const cellIdentifier = @"cellIdentifier";
 
 #pragma mark - NSNotificationCenter
 - (void)refreshPersonalMaterialAudioPage {
-    [self.tableView.mj_header beginRefreshing];
+    [self loadPersonalMaterialAudioPageData:@"1"];
 }
 
 - (void)dealloc {

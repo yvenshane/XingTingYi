@@ -30,13 +30,13 @@ static NSString *const cellIdentifier = @"cellIdentifier";
     [self setupRightButton];
     [self setupTableView];
     
-    [self.tableView.mj_header beginRefreshing];
+    [self loadDynamicCirclePageListData:@"1"];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshMyTidingsListPage) name:@"RefreshMyTidingsListPage" object:nil];
 }
 
 - (void)refreshMyTidingsListPage {
-    [self.tableView.mj_header beginRefreshing];
+    [self loadDynamicCirclePageListData:@"1"];
 }
 
 - (void)loadDynamicCirclePageListData:(NSString *)page {
@@ -117,7 +117,7 @@ static NSString *const cellIdentifier = @"cellIdentifier";
         
         [[VENNetworkingManager shareManager] requestWithType:HttpRequestTypePOST urlString:@"user/delCircle" parameters:@{@"id" : model.id} successBlock:^(id responseObject) {
             
-            [self.tableView.mj_header beginRefreshing];
+            [self loadDynamicCirclePageListData:@"1"];
             
             [[NSNotificationCenter defaultCenter] postNotificationName:@"RefreshDynamicCircleListPage" object:nil userInfo:@{@"sort_id" : model.id}];
             

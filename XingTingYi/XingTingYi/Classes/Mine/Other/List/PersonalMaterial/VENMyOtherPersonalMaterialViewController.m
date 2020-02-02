@@ -36,7 +36,7 @@ static NSString *const cellIdentifier = @"cellIdentifier";
     [self setupTableView];
     [self setupBottomView];
     
-    [self.tableView.mj_header beginRefreshing];
+    [self loadPersonalMaterialData:@"1"];
 }
 
 - (void)loadPersonalMaterialData:(NSString *)page {

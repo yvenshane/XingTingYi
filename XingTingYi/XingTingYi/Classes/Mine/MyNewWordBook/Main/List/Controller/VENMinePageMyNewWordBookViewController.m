@@ -49,7 +49,7 @@ static NSString *const cellIdentifier = @"cellIdentifier";
     [self setupTableView];
     [self setupBottomBar];
     
-    [self.tableView.mj_header beginRefreshing];
+    [self loadMinePageMyNewWordBookDataWithPage:@"1"];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshMyNewWordsPage) name:@"RefreshMyNewWordsPage" object:nil];
 }
@@ -205,7 +205,7 @@ static NSString *const cellIdentifier = @"cellIdentifier";
 }
 
 - (void)refreshMyNewWordsPage {
-    [self.tableView.mj_header beginRefreshing];
+    [self loadMinePageMyNewWordBookDataWithPage:@"1"];
 }
 
 #pragma mark - right buttons

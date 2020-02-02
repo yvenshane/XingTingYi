@@ -142,7 +142,7 @@ static NSString *const cellIdentifier = @"cellIdentifier";
 
 #pragma mark - NSNotificationCenter
 - (void)refreshPersonalMaterialTextPage {
-    [self.tableView.mj_header beginRefreshing];
+    [self loadPersonalMaterialTextPageData:@"1"];
 }
 
 - (void)dealloc {

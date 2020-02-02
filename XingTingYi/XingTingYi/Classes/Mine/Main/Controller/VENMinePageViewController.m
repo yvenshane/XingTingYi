@@ -32,7 +32,7 @@ static NSString *const cellIdentifier = @"cellIdentifier";
     [self.navigationController setNavigationBarHidden:YES animated:animated];
     
     if (self.isRefresh) {
-        [self.tableView.mj_header beginRefreshing];
+        [self loadMinePageData];
         self.isRefresh = NO;
     }
 }
@@ -49,7 +49,7 @@ static NSString *const cellIdentifier = @"cellIdentifier";
     
     [self setupTableView];
     
-    [self.tableView.mj_header beginRefreshing];
+    [self loadMinePageData];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loginOutClick) name:@"Login_Out" object:nil];
 }

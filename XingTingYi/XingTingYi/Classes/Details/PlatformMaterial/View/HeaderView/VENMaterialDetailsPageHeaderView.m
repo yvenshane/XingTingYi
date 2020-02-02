@@ -93,7 +93,7 @@
             [self addSubview:label];
             
             viewHeight += 120;
-        } else {
+        } else if (![VENEmptyClass isEmptyString:self.videoURL] && [VENEmptyClass isEmptyArray:data[@"sourceText"]]) {
             self.audioPlayerView.loctionAudioURL = audioURL;
             
             // audio
@@ -119,7 +119,6 @@
             playerLayer.frame = CGRectMake(0, 0, CGRectGetWidth(self.videoView.frame), CGRectGetHeight(self.videoView.frame));
             
             viewHeight += videoHeight + 20;
-            viewHeight += 30;
 //            }
         }
     } else {

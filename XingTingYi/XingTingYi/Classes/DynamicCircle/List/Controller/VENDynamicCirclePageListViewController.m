@@ -27,7 +27,7 @@ static NSString *const cellIdentifier = @"cellIdentifier";
     
     [self setupTableView];
     
-    [self.tableView.mj_header beginRefreshing];
+    [self loadDynamicCirclePageListData:@"1"];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshDynamicCircleListPage:) name:@"RefreshDynamicCircleListPage" object:nil];
 }
@@ -113,7 +113,7 @@ static NSString *const cellIdentifier = @"cellIdentifier";
 
 - (void)refreshDynamicCircleListPage:(NSNotification *)noti {
     if ([noti.userInfo[@"sort_id"] isEqualToString:self.sort_id]) {
-        [self.tableView.mj_header beginRefreshing];
+        [self loadDynamicCirclePageListData:@"1"];
     }
 }
 

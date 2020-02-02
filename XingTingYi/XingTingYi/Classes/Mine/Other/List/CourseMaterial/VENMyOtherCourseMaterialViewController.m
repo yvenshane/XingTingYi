@@ -34,7 +34,7 @@ static NSString *const cellIdentifier = @"cellIdentifier";
     
     [self setupTableView];
     
-    [self.tableView.mj_header beginRefreshing];
+    [self loadCourseMaterialData:@"1"];
 }
 
 - (void)loadCourseMaterialData:(NSString *)page {

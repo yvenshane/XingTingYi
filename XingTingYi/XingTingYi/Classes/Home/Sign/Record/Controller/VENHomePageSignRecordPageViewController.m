@@ -27,7 +27,7 @@ static NSString *const cellIdentifier = @"cellIdentifier";
     
     [self setupTableView];
        
-    [self.tableView.mj_header beginRefreshing];
+    [self loadHomePageSignRecordPageDataWith:@"1"];
 }
 
 - (void)loadHomePageSignRecordPageDataWith:(NSString *)page {

@@ -27,7 +27,7 @@ static NSString *const cellIdentifier = @"cellIdentifier";
     
     [self setupTableView];
     
-    [self.tableView.mj_header beginRefreshing];
+    [self loadHomePageRecommendMaterialListData:@"1"];
 }
 
 - (void)loadHomePageRecommendMaterialListData:(NSString *)page {

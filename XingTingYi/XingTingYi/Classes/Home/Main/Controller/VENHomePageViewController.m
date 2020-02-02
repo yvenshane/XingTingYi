@@ -69,7 +69,7 @@ static NSString *const cellIdentifier3 = @"cellIdentifier3";
     
     [self setupTableView];
     
-    [self.tableView.mj_header beginRefreshing];
+    [self loadHomePageData];
 }
 
 - (void)loadHomePageData {

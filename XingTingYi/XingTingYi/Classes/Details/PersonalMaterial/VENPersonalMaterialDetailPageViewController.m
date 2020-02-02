@@ -92,7 +92,7 @@ static NSString *const cellIdentifier = @"cellIdentifier";
             self.tableContentViewHeightLayoutConstraint.constant = height + 60;
             self.tableView.frame = CGRectMake(0, 0, kMainScreenWidth, height + 60);
         } else {
-            self.tableContentViewHeightLayoutConstraint.constant = 30;
+            self.tableContentViewHeightLayoutConstraint.constant = 30 + 60;
             self.tableView.frame = CGRectZero;
         }
         
@@ -254,6 +254,7 @@ static NSString *const cellIdentifier = @"cellIdentifier";
         
         CGFloat height = [myDictationView.contentLabel sizeThatFits:CGSizeMake(kMainScreenWidth - 35 * 2, CGFLOAT_MAX)].height;
         myDictationView.frame = CGRectMake(0, 0, kMainScreenWidth, 135 + height);
+        
         self.myDictationViewHeightLayoutConstraint.constant = 135 + height;
     }
 }

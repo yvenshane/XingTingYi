@@ -31,7 +31,7 @@ static NSString *const cellIdentifier = @"cellIdentifier";
     
     [self setupTableView];
     
-    [self.tableView.mj_header beginRefreshing];
+    [self loadSettingPersonalInformationData];
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             // 公共数据
@@ -219,7 +219,7 @@ static NSString *const cellIdentifier = @"cellIdentifier";
     [[VENNetworkingManager shareManager] requestWithType:HttpRequestTypePOST urlString:@"user/updateUserData" parameters:parameters successBlock:^(id responseObject) {
         
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [self.tableView.mj_header beginRefreshing];
+            [self loadSettingPersonalInformationData];
         });
         
     } failureBlock:^(NSError *error) {

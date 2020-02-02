@@ -28,7 +28,7 @@ static NSString *const cellIdentifier = @"cellIdentifier";
     
     [self setupTableView];
     
-    [self.tableView.mj_header beginRefreshing];
+    [self loadHomePageNewsDataWithPage:@"1"];
 }
 
 - (void)loadHomePageNewsDataWithPage:(NSString *)page {

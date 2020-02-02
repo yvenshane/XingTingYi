@@ -53,8 +53,7 @@ static NSString *const cellIdentifier = @"cellIdentifier";
     [self setupTableView];
     
     [self loadMaterialSortSelectorData];
-    
-    [self.tableView.mj_header beginRefreshing];
+    [self loadPlatformMaterialPageData:@"1"];
 }
 
 - (void)notificationCenter:(NSNotification *)noti {
