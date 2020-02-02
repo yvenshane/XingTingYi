@@ -142,9 +142,7 @@
         
         NSString *key = [NSString stringWithFormat:@"%@", responseObject[@"content"][@"userSourceId"]];
         
-        NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-        [userDefaults setURL:self.videoURL forKey:key];
-        [userDefaults synchronize];
+        [[VENTempDataManager shareManager] setValue:self.videoURL forKey:key];
         
         [[NSNotificationCenter defaultCenter] postNotificationName:@"UploadMaterialSuccess" object:nil userInfo:@{@"type" : self.type}];
         

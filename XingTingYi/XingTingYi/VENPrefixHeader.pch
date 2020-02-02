@@ -33,6 +33,7 @@
 #import "VENNavigationController.h"
 #import "VENNetworkingManager.h"
 #import "VENUserStatusManager.h"
+#import "VENTempDataManager.h"
 
 // 获取屏幕宽高
 #define kMainScreenFrameRect [UIScreen mainScreen].bounds

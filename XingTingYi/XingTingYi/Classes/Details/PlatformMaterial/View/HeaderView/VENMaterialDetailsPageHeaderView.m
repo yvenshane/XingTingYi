@@ -107,19 +107,19 @@
             viewHeight += 30 + audioHeight;
             
             // video
-//            if ([[audioURL substringFromIndex:audioURL.length - 1] isEqualToString:@"4"]) { // 如果是.MP4
+            if (![infoModel.type isEqualToString:@"1"]) { // 如果是.MP4
                 
-            CGFloat videoHeight = (kMainScreenWidth - 40) / (335.0 / 188.0);
-            
-            self.videoViewHeightLayoutConstraint.constant = videoHeight;
-            self.audioViewTopLayoutConstraint.constant = 20.0f;
-            
-            AVPlayerLayer *playerLayer = [[VENAudioPlayer sharedAudioPlayer] playerLayer];
-            [self.videoView.layer addSublayer:playerLayer];
-            playerLayer.frame = CGRectMake(0, 0, CGRectGetWidth(self.videoView.frame), CGRectGetHeight(self.videoView.frame));
-            
-            viewHeight += videoHeight + 20;
-//            }
+                CGFloat videoHeight = (kMainScreenWidth - 40) / (335.0 / 188.0);
+                
+                self.videoViewHeightLayoutConstraint.constant = videoHeight;
+                self.audioViewTopLayoutConstraint.constant = 20.0f;
+                
+                AVPlayerLayer *playerLayer = [[VENAudioPlayer sharedAudioPlayer] playerLayer];
+                [self.videoView.layer addSublayer:playerLayer];
+                playerLayer.frame = CGRectMake(0, 0, CGRectGetWidth(self.videoView.frame), CGRectGetHeight(self.videoView.frame));
+                
+                viewHeight += videoHeight + 20;
+            }
         }
     } else {
         if (![VENEmptyClass isEmptyString:audioURL]) {

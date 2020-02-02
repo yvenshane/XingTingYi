@@ -74,11 +74,22 @@ static NSString *const cellIdentifier = @"cellIdentifier";
     
     [self loadVideoMaterialDetailsPageData];
     
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    self.videoURL = [userDefaults URLForKey:self.source_id];
+    self.videoURL = [[VENTempDataManager shareManager] objectForKey:self.source_id];
 }
 
 - (void)loadVideoMaterialDetailsPageData {
+    for (UIView *subviews in self.headerView.subviews) {
+        [subviews removeFromSuperview];
+    }
+    
+    for (UIView *subviews in self.myDictationView.subviews) {
+        [subviews removeFromSuperview];
+    }
+    
+    for (UIView *subviews in self.tableContentView.subviews) {
+        [subviews removeFromSuperview];
+    }
+    
     [[VENNetworkingManager shareManager] requestWithType:HttpRequestTypePOST urlString:@"userSource/userSourceInfo" parameters:@{@"source_id" : self.source_id} successBlock:^(id responseObject) {
         
         self.contentDict = responseObject[@"content"];
@@ -260,7 +271,10 @@ static NSString *const cellIdentifier = @"cellIdentifier";
 }
 
 - (void)setupBottomToolBar {
+    [[self.view viewWithTag:99088] removeFromSuperview];
+    
     UIView *bottomToolBar = [[UIView alloc] initWithFrame:CGRectMake(0, kMainScreenHeight - 60 - (kTabBarHeight - 49), kMainScreenWidth, 60 + (kTabBarHeight - 49))];
+    bottomToolBar.tag = 99088;
     bottomToolBar.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:bottomToolBar];
     
