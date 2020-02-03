@@ -72,9 +72,11 @@ static NSString *const cellIdentifier = @"cellIdentifier";
         self.automaticallyAdjustsScrollViewInsets = false;
     }
     
+    self.videoURL = [[VENTempDataManager shareManager] objectForKey:self.source_id];
+    
     [self loadVideoMaterialDetailsPageData];
     
-    self.videoURL = [[VENTempDataManager shareManager] objectForKey:self.source_id];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshPersonalMaterialDetailPage:) name:@"RefreshPersonalMaterialDetailPage" object:nil];
 }
 
 - (void)loadVideoMaterialDetailsPageData {
@@ -347,6 +349,7 @@ static NSString *const cellIdentifier = @"cellIdentifier";
     } else {
         VENMaterialDetailsStartDictationPageViewController *vc = [[VENMaterialDetailsStartDictationPageViewController alloc] init];
         vc.isPersonalMaterial = YES;
+        vc.videoURL = self.videoURL;
         vc.source_id = self.infoModel.id;
         vc.source_period_id = [VENEmptyClass isEmptyArray:self.infoModel.dictation_tag_info] ? @"0" : self.infoModel.dictation_tag_info[0][@"id"];
         [self.navigationController pushViewController:vc animated:YES];
@@ -374,7 +377,8 @@ static NSString *const cellIdentifier = @"cellIdentifier";
     } else {
         VENMaterialDetailsMakeSubtitlesPageViewController *vc = [[VENMaterialDetailsMakeSubtitlesPageViewController alloc] init];
         vc.isPersonalMaterial = YES;
-        vc.source_period_id = [VENEmptyClass isEmptyArray:self.infoModel.dictation_tag_info] ? @"0" : self.infoModel.dictation_tag_info[0][@"id"];
+        vc.videoURL = self.videoURL;
+        vc.source_period_id = self.infoModel.id;
         [self.navigationController pushViewController:vc animated:YES];
     }
 }
@@ -401,7 +405,7 @@ static NSString *const cellIdentifier = @"cellIdentifier";
 #pragma mark - 合成录音
 - (void)syntheticRecording {
     NSDictionary *parameters = @{@"source_id" : self.infoModel.id,
-                                 @"type" : @"1"};
+                                 @"type" : @"2"};
     
     [[VENNetworkingManager shareManager] requestWithType:HttpRequestTypePOST urlString:@"qiniu/mergeAudioInfo" parameters:parameters successBlock:^(id responseObject) {
         
@@ -434,6 +438,13 @@ static NSString *const cellIdentifier = @"cellIdentifier";
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     self.navigationView.backgroundColor = [UIColor colorWithRed:255.0f / 255.0f green:255.0f / 255.0f blue:255.0f / 255.0f alpha:scrollView.contentOffset.y / kStatusBarAndNavigationBarHeight];
+}
+
+#pragma mark - 刷新详情页
+- (void)refreshPersonalMaterialDetailPage:(NSNotification *)noti {
+    self.videoURL = noti.userInfo[@"url"];
+    
+    [self loadVideoMaterialDetailsPageData];
 }
 
 - (UILabel *)cellLabelTwo {

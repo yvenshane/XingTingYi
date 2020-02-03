@@ -85,19 +85,26 @@
 // 进入制作字幕
 - (void)loadMaterialDetailsMakeSubtitlesPageData {
     NSString *url = @"";
+    NSDictionary *parameters = @{};
     
     if (self.isPersonalMaterial) {
         url = @"userSource/userSubtitlesInfo";
+        parameters = @{@"source_id" : self.source_period_id};
     } else {
         url = @"source/subtitlesInfo";
+        parameters = @{@"source_period_id" : self.source_period_id};
     }
     
-    [[VENNetworkingManager shareManager] requestWithType:HttpRequestTypePOST urlString:url parameters:@{@"source_period_id" : self.source_period_id} successBlock:^(id responseObject) {
+    [[VENNetworkingManager shareManager] requestWithType:HttpRequestTypePOST urlString:url parameters:parameters successBlock:^(id responseObject) {
         
         self.sourceInfoModel = [VENMaterialDetailsPageModel yy_modelWithJSON:responseObject[@"content"][@"sourceInfo"]];
-        self.audioPlayerView.audioURL = self.sourceInfoModel.path;
-        
         self.subtitlesListArr = responseObject[@"content"][@"subtitlesList"];
+        
+        if (self.isPersonalMaterial) {
+            self.audioPlayerView.loctionAudioURL = self.videoURL;
+        } else {
+            self.audioPlayerView.audioURL = self.sourceInfoModel.path;
+        }
         
         NSString *tempStr = @"";
         for (NSDictionary *dict in self.subtitlesListArr) {
@@ -288,15 +295,18 @@
     }
 //    self.contentTextView.text = tempMuStr;
     
-    NSDictionary *parameters = @{@"source_period_id" : self.source_period_id,
-                                 @"content" : tempMuStr};
+    NSDictionary *parameters = @{};
     
     NSString *url = @"";
     
     if (self.isPersonalMaterial) {
         url = @"userSource/userSubtitles";
+        parameters = @{@"source_id" : self.source_period_id,
+                       @"content" : tempMuStr};
     } else {
         url = @"source/subtitles";
+        parameters = @{@"source_period_id" : self.source_period_id,
+                       @"content" : tempMuStr};
     }
     
     [[VENNetworkingManager shareManager] requestWithType:HttpRequestTypePOST urlString:url parameters:parameters successBlock:^(id responseObject) {

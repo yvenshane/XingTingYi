@@ -145,6 +145,7 @@
         [[VENTempDataManager shareManager] setValue:self.videoURL forKey:key];
         
         [[NSNotificationCenter defaultCenter] postNotificationName:@"UploadMaterialSuccess" object:nil userInfo:@{@"type" : self.type}];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"RefreshPersonalMaterialDetailPage" object:nil userInfo:@{@"url" : self.videoURL}];
         
     } failureBlock:^(NSError *error) {
         

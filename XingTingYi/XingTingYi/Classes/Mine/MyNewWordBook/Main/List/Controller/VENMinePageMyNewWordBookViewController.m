@@ -200,6 +200,7 @@ static NSString *const cellIdentifier = @"cellIdentifier";
 - (void)addButtonClick {
     VENMaterialDetailsTranslationPageSearchWordAddNewWordsViewController *vc = [[VENMaterialDetailsTranslationPageSearchWordAddNewWordsViewController alloc] init];
     vc.origin = self.origin;
+    vc.isPersonalMaterial = self.isPersonalMaterial;
     vc.source_id = self.source_id;
     [self.navigationController pushViewController:vc animated:YES];
 }

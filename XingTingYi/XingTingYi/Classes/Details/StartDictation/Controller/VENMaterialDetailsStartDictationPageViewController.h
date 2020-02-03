@@ -16,6 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) BOOL isSectionDictation;
 
 @property (nonatomic, assign) BOOL isPersonalMaterial;
+@property (nonatomic, strong) NSURL *videoURL;
 
 @end
 

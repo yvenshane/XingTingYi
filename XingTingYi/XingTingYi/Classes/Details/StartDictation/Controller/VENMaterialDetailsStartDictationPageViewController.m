@@ -140,8 +140,13 @@
     [[VENNetworkingManager shareManager] requestWithType:HttpRequestTypePOST urlString:url parameters:parameters successBlock:^(id responseObject) {
         
         self.avInfoModel = [VENMaterialDetailsPageModel yy_modelWithJSON:responseObject[@"content"][@"avInfo"]];
-        self.audioPlayerView.audioURL = self.avInfoModel.path;
         self.dictationInfoModel = [VENMaterialDetailsPageModel yy_modelWithJSON:responseObject[@"content"][@"dictationInfo"]];
+        
+        if (self.isPersonalMaterial) {
+            self.audioPlayerView.loctionAudioURL = self.videoURL;
+        } else {
+            self.audioPlayerView.audioURL = self.avInfoModel.path;
+        }
         
         // 顶部 title
         if (self.isSectionDictation) {
@@ -443,7 +448,7 @@
 
     if (self.isPersonalMaterial) {
         url = @"userSource/userDictation";
-        parameters = @{@"source_id" : self.source_period_id,
+        parameters = @{@"source_id" : self.source_id,
                        @"content" : [self exportHTML],
                        @"time" : self.time,
                        @"dictation_tag" : [tempMuArr componentsJoinedByString:@","]};
@@ -462,6 +467,10 @@
         
         [self.labelPickerViewOne removeFromSuperview];
         self.labelPickerViewOne = nil;
+        
+        if (self.isPersonalMaterial) {
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"RefreshPersonalMaterialDetailPage" object:nil userInfo:@{@"url" : self.videoURL}];
+        }
         
         [self.navigationController popViewControllerAnimated:YES];
 

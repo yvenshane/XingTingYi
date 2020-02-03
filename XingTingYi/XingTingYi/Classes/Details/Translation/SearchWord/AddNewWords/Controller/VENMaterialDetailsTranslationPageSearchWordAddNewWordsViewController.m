@@ -318,7 +318,7 @@ static NSString *const cellIdentifier = @"cellIdentifier";
                                @"pronunciation_words" : self.headerView.pronunciationTextField.text,
                                @"sentences" : self.headerView.textViewOne.text,
                                @"associate" : self.headerView.textViewTwo.text,
-                               @"type" : @"0"};
+                               @"type" : self.isPersonalMaterial ? @"2" : @"1"};
                 url = @"user/reSubWords";
             } else {
                 parameters = @{@"source_id" : self.source_id,
