@@ -11,6 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 typedef void (^palyButtonBlock)(BOOL);
+typedef void (^playProgressBlock)(float);
 @interface VENAudioPlayerView : UIView
 @property (nonatomic, copy) NSString *audioURL;
 @property (nonatomic, strong) NSURL *loctionAudioURL;
@@ -18,6 +19,11 @@ typedef void (^palyButtonBlock)(BOOL);
 @property (weak, nonatomic) IBOutlet UIButton *playButton; // ▶️/⏸
 @property (weak, nonatomic) IBOutlet UIButton *loopButton; // 循环
 @property (nonatomic, copy) palyButtonBlock palyButtonBlock;
+@property (nonatomic, copy) playProgressBlock playProgressBlock;
+
+@property (weak, nonatomic) IBOutlet UIButton *subtitlesButton;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *subtitlesButtonWidthLayoutConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *subtitlesButtonRightLayoutConstraint;
 
 - (void)playButtonClick:(UIButton *)button;
 - (void)forwardButtonClick;

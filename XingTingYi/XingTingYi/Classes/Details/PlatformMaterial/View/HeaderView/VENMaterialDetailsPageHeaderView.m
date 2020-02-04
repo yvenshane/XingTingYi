@@ -10,9 +10,11 @@
 #import "VENMaterialDetailsPageModel.h"
 #import "VENAudioPlayerView.h"
 #import "VENAudioPlayer.h"
+#import "VENMaterialDetailsSubtitlesDetailsPageModel.h"
 
 @interface VENMaterialDetailsPageHeaderView ()
 @property (nonatomic, strong) VENAudioPlayerView *audioPlayerView;
+@property (nonatomic, strong) NSMutableArray *dataSourceMuArr;
 
 @end
 
@@ -133,6 +135,17 @@
             self.audioViewHeightLayoutConstraint.constant = audioHeight;
             self.audioPlayerView.frame = CGRectMake(0, 0, CGRectGetWidth(self.audioView.frame), CGRectGetHeight(self.audioView.frame));
             
+            if (![VENEmptyClass isEmptyArray:data[@"avInfo"][0][@"subtitlesList"]]) {
+                self.audioPlayerView.subtitlesButton.hidden = NO;
+                self.audioPlayerView.subtitlesButtonWidthLayoutConstraint.constant = 20.0f;
+                self.audioPlayerView.subtitlesButtonRightLayoutConstraint.constant = 15.0f;
+                [self.audioPlayerView.subtitlesButton addTarget:self action:@selector(subtitlesButtonClick:) forControlEvents:UIControlEventTouchUpInside];
+                
+                for (NSDictionary *dict in data[@"avInfo"][0][@"subtitlesList"]) {
+                    [self.dataSourceMuArr addObject:[VENMaterialDetailsSubtitlesDetailsPageModel yy_modelWithDictionary:dict]];
+                }
+            }
+            
             viewHeight += 30 + audioHeight;
             
             // video
@@ -203,6 +216,9 @@
         self.subtitleViewHeightLayoutConstraint.constant = 20 + height + 44;
         self.subtitleViewTopLayoutConstraint.constant = 20.0f;
         
+        // 查看字幕详情
+        [self.subtitleButton addTarget:self action:@selector(subtitleButtonClick) forControlEvents:UIControlEventTouchUpInside];
+        
         viewHeight += 20 + height + 44;
     }
     
@@ -217,13 +233,62 @@
     }
 }
 
+- (void)subtitleButtonClick {
+    if (self.subtitleButtonBlock) {
+        self.subtitleButtonBlock();
+    }
+}
+
+- (void)subtitlesButtonClick:(UIButton *)button {
+    if (self.subtitlesButtonBlock) {
+        self.subtitlesButtonBlock(button);
+    }
+}
+
+- (NSMutableArray *)dataSourceMuArr {
+    if (!_dataSourceMuArr) {
+        _dataSourceMuArr = [NSMutableArray array];
+    }
+    return _dataSourceMuArr;
+}
+
 #pragma mark - 音频播放器
 - (VENAudioPlayerView *)audioPlayerView {
     if (!_audioPlayerView) {
         _audioPlayerView = [[[NSBundle mainBundle] loadNibNamed:@"VENAudioPlayerView" owner:nil options:nil] firstObject];
         [self.audioView addSubview:_audioPlayerView];
+        
+        __weak typeof(self) weakSelf = self;
+        _audioPlayerView.playProgressBlock = ^(float time) {
+            
+            NSString *timeStr = [NSString stringWithFormat:@"[%@]", [weakSelf convertTime:time]];
+
+            for (NSInteger i = 0; i < weakSelf.dataSourceMuArr.count; i++) {
+                VENMaterialDetailsSubtitlesDetailsPageModel *model = weakSelf.dataSourceMuArr[i];
+                if ([[NSString stringWithFormat:@"[%@]", model.time] isEqualToString:timeStr]) {
+                    
+                    if (weakSelf.popupViewBlock) {
+                        weakSelf.popupViewBlock(model.content);
+                    }
+                    
+                }
+            }
+        };
     }
     return _audioPlayerView;
+}
+
+- (NSString *)convertTime:(CGFloat)second {
+    NSDate *date = [NSDate dateWithTimeIntervalSince1970:second];
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    
+    if (second / 3600 >= 1) {
+        [formatter setDateFormat:@"HH:mm:ss"];
+    } else {
+        [formatter setDateFormat:@"mm:ss"];
+    }
+    
+    return [formatter stringFromDate:date];
 }
 
 /*

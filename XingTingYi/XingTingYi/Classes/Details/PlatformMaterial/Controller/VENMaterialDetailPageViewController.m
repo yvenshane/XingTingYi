@@ -22,6 +22,8 @@
 #import "VENAudioPlayer.h" // 播放器
 #import "VENMaterialDetailsPageCategoryView.h" // 提示词/生词汇总/标准答案
 #import "VENMaterialDetailsPageMyDictationView.h" // 我的听写
+#import "VENMaterialDetailsSubtitlesDetailsPageViewController.h" // 字幕详情
+#import "VENMaterialDetailsSubtitlesPopupView.h"
 
 @interface VENMaterialDetailPageViewController () <UIScrollViewDelegate>
 @property (nonatomic, strong) UIView *navigationView; // 导航栏
@@ -53,6 +55,8 @@
 @property (nonatomic, strong) UILabel *cellLabelOne;
 @property (nonatomic, strong) UILabel *cellLabelTwo;
 @property (nonatomic, strong) UILabel *cellLabelThree;
+
+@property (nonatomic, strong) VENMaterialDetailsSubtitlesPopupView *popupView;
 
 @end
 
@@ -623,6 +627,43 @@ static NSString *const cellIdentifier2 = @"cellIdentifier2";
         VENNavigationController *nav = [[VENNavigationController alloc] initWithRootViewController:vc];
         [self presentViewController:nav animated:YES completion:nil];
     };
+    
+    // 查看字幕详情
+    headerView.subtitleButtonBlock = ^{
+        VENMaterialDetailsPageModel *model = self.avInfoArr[0];
+        
+        VENMaterialDetailsSubtitlesDetailsPageViewController *vc = [[VENMaterialDetailsSubtitlesDetailsPageViewController alloc] init];
+        vc.audioURL = self.infoModel.source_path;
+        vc.subtitles = self.infoModel.subtitles;
+        vc.subtitlesList = model.subtitlesList;
+        [self.navigationController pushViewController:vc animated:YES];
+    };
+    
+    // 播放器字幕按钮
+    headerView.subtitlesButtonBlock = ^(UIButton *button) {
+        if (button.selected) {
+            button.selected = NO;
+            self.popupView.hidden = YES;
+        } else {
+            button.selected = YES;
+            self.popupView.hidden = NO;
+        }
+    };
+    
+    // popupView
+    headerView.popupViewBlock = ^(NSString *content) {
+        self.popupView.contentLabel.text = content;
+    };
+}
+
+- (VENMaterialDetailsSubtitlesPopupView *)popupView {
+    if (!_popupView) {
+        _popupView = [[[NSBundle mainBundle] loadNibNamed:@"VENMaterialDetailsSubtitlesPopupView" owner:nil options:nil] firstObject];
+        _popupView.frame = CGRectMake(0, kMainScreenHeight - 64 - 10 - (kTabBarHeight - 49) - kStatusBarAndNavigationBarHeight, kMainScreenWidth, 64);
+        _popupView.hidden = YES;
+        [self.view addSubview:_popupView];
+    }
+    return _popupView;
 }
 
 #pragma mark - 导航栏

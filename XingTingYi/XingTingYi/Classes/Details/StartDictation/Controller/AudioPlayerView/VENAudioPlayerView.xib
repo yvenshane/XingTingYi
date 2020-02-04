@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -106,6 +106,14 @@
                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </state>
                 </button>
+                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iIW-Mt-HMn">
+                    <rect key="frame" x="340" y="75" width="0.0" height="20"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="20" id="Fwn-YM-tbA"/>
+                        <constraint firstAttribute="width" id="PiY-8c-shy"/>
+                    </constraints>
+                    <state key="normal" image="icon_player_subtitles"/>
+                </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
@@ -125,17 +133,19 @@
                 <constraint firstItem="Cj9-ns-DzT" firstAttribute="leading" secondItem="Eld-Qu-lNn" secondAttribute="trailing" constant="25" id="YHT-wg-HIW"/>
                 <constraint firstItem="Eld-Qu-lNn" firstAttribute="leading" secondItem="EdU-fP-SVA" secondAttribute="trailing" constant="25" id="Yws-bR-5NN"/>
                 <constraint firstItem="T68-hl-rTb" firstAttribute="top" secondItem="F9j-T2-e3I" secondAttribute="bottom" constant="6" id="boG-l7-AVb"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="iIW-Mt-HMn" secondAttribute="trailing" constant="-5" id="dTa-KY-Uoa"/>
                 <constraint firstAttribute="bottom" secondItem="Cj9-ns-DzT" secondAttribute="bottom" constant="20" id="dv8-Uc-Kgz"/>
                 <constraint firstItem="6Ak-V5-bJQ" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="9" id="eoM-dP-dG6"/>
                 <constraint firstItem="FRB-ez-bjK" firstAttribute="top" secondItem="F9j-T2-e3I" secondAttribute="bottom" constant="6" id="g5X-VT-frx"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="RmG-uM-QFp" secondAttribute="trailing" constant="15" id="gZh-0R-VYJ"/>
                 <constraint firstItem="F9j-T2-e3I" firstAttribute="top" secondItem="KdC-0e-R9d" secondAttribute="bottom" constant="3" id="iI8-zM-zbk"/>
                 <constraint firstItem="EdU-fP-SVA" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="15" id="l7Y-u0-oBS"/>
                 <constraint firstAttribute="bottom" secondItem="xSY-3V-7zQ" secondAttribute="bottom" constant="25" id="llh-7Z-Mg9"/>
                 <constraint firstAttribute="bottom" secondItem="EdU-fP-SVA" secondAttribute="bottom" constant="20" id="n61-6E-akA"/>
                 <constraint firstAttribute="bottom" secondItem="Eld-Qu-lNn" secondAttribute="bottom" constant="20" id="qiy-ER-bE2"/>
                 <constraint firstItem="F9j-T2-e3I" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="33" id="s5m-Sn-rzw"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="iIW-Mt-HMn" secondAttribute="bottom" constant="25" id="vds-ie-uZw"/>
                 <constraint firstItem="6Ak-V5-bJQ" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="15" id="wEj-lF-V3H"/>
+                <constraint firstItem="iIW-Mt-HMn" firstAttribute="leading" secondItem="RmG-uM-QFp" secondAttribute="trailing" constant="20" id="zPK-va-hTm"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
@@ -151,6 +161,9 @@
                 <outlet property="retreatButton" destination="EdU-fP-SVA" id="pMo-VX-Qnf"/>
                 <outlet property="startButton" destination="xSY-3V-7zQ" id="nQA-at-6AZ"/>
                 <outlet property="startImageView" destination="6Ak-V5-bJQ" id="Q8u-Sn-1Jn"/>
+                <outlet property="subtitlesButton" destination="iIW-Mt-HMn" id="m80-Wq-DfB"/>
+                <outlet property="subtitlesButtonRightLayoutConstraint" destination="dTa-KY-Uoa" id="KpD-s3-pkx"/>
+                <outlet property="subtitlesButtonWidthLayoutConstraint" destination="PiY-8c-shy" id="yXx-ko-78A"/>
             </connections>
             <point key="canvasLocation" x="-71.739130434782609" y="-64.955357142857139"/>
         </view>
@@ -165,6 +178,7 @@
         <image name="icon_player_retreat" width="30" height="30"/>
         <image name="icon_player_start" width="20" height="20"/>
         <image name="icon_player_start01" width="12" height="15"/>
+        <image name="icon_player_subtitles" width="20" height="20"/>
         <image name="img_player_bg" width="335" height="120"/>
     </resources>
 </document>

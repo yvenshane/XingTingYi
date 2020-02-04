@@ -138,6 +138,10 @@
                 [weakSelf.audioPlayer playAtTime:weakSelf.startTime];
             }
         }
+        
+        if (weakSelf.playProgressBlock) {
+            weakSelf.playProgressBlock(currentTime);
+        }
     }];
     
     // 播放完成

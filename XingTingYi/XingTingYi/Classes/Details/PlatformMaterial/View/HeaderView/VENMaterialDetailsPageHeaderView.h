@@ -12,6 +12,11 @@
 NS_ASSUME_NONNULL_BEGIN
 
 typedef void (^contentButtonBlock)(void);
+typedef void (^subtitleButtonBlock)(void);
+
+typedef void (^subtitlesButtonBlock)(UIButton *);
+typedef void (^popupViewBlock)(NSString *);
+
 @interface VENMaterialDetailsPageHeaderView : UIView
 @property (weak, nonatomic) IBOutlet UIImageView *pictureImageView;
 @property (weak, nonatomic) IBOutlet UILabel *titileLabel;
@@ -35,6 +40,11 @@ typedef void (^contentButtonBlock)(void);
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *subtitleViewTopLayoutConstraint;
 
 @property (nonatomic, copy) contentButtonBlock contentButtonBlock;
+@property (nonatomic, copy) subtitleButtonBlock subtitleButtonBlock;
+
+@property (nonatomic, copy) subtitlesButtonBlock subtitlesButtonBlock;
+@property (nonatomic, copy) popupViewBlock popupViewBlock;
+
 @property (nonatomic, assign) BOOL isPersonalMaterial;
 @property (nonatomic, strong) NSURL *videoURL;
 

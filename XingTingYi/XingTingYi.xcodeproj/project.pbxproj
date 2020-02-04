@@ -366,6 +366,10 @@
 		2CBCDEC02302BF270010BD11 /* VENSettingTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CBCDEBE2302BF270010BD11 /* VENSettingTableViewCell.m */; };
 		2CBCDEC12302BF270010BD11 /* VENSettingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2CBCDEBF2302BF270010BD11 /* VENSettingTableViewCell.xib */; };
 		2CC9B9D623E732FB00DB9B20 /* VENTempDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CC9B9D523E732FB00DB9B20 /* VENTempDataManager.m */; };
+		2CC9B9DB23E7D2D000DB9B20 /* VENMaterialDetailsSubtitlesDetailsPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CC9B9D923E7D2D000DB9B20 /* VENMaterialDetailsSubtitlesDetailsPageViewController.m */; };
+		2CC9B9DC23E7D2D000DB9B20 /* VENMaterialDetailsSubtitlesDetailsPageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2CC9B9DA23E7D2D000DB9B20 /* VENMaterialDetailsSubtitlesDetailsPageViewController.xib */; };
+		2CC9B9E223E7E78F00DB9B20 /* VENMaterialDetailsSubtitlesDetailsPageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CC9B9E023E7E78F00DB9B20 /* VENMaterialDetailsSubtitlesDetailsPageTableViewCell.m */; };
+		2CC9B9E323E7E78F00DB9B20 /* VENMaterialDetailsSubtitlesDetailsPageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2CC9B9E123E7E78F00DB9B20 /* VENMaterialDetailsSubtitlesDetailsPageTableViewCell.xib */; };
 		2CD13C632302E8A6007974C9 /* VENSettingModifyPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CD13C622302E8A6007974C9 /* VENSettingModifyPasswordViewController.m */; };
 		2CD24F6023711BF000138207 /* VENHomePageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CD24F5F23711BF000138207 /* VENHomePageModel.m */; };
 		2CDD577A231E083700F64D57 /* VENBindingPhoneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CDD5769231E083700F64D57 /* VENBindingPhoneViewController.m */; };
@@ -386,6 +390,9 @@
 		2CDF2BA4239FC47C00486747 /* VENMaterialDetailsTranslationPageSearchWordTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CDF2BA2239FC47C00486747 /* VENMaterialDetailsTranslationPageSearchWordTableViewCell.m */; };
 		2CDF2BA5239FC47C00486747 /* VENMaterialDetailsTranslationPageSearchWordTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2CDF2BA3239FC47C00486747 /* VENMaterialDetailsTranslationPageSearchWordTableViewCell.xib */; };
 		2CE189DD2317CBBF002E15F5 /* VENMinePageMemberCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CE189DC2317CBBF002E15F5 /* VENMinePageMemberCenterViewController.m */; };
+		2CE3AB7623E855570023483A /* VENMaterialDetailsSubtitlesDetailsPageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CE3AB7523E855570023483A /* VENMaterialDetailsSubtitlesDetailsPageModel.m */; };
+		2CE3AB7923E902DC0023483A /* VENMaterialDetailsSubtitlesPopupView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CE3AB7823E902DC0023483A /* VENMaterialDetailsSubtitlesPopupView.m */; };
+		2CE3AB7B23E902EB0023483A /* VENMaterialDetailsSubtitlesPopupView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2CE3AB7A23E902EB0023483A /* VENMaterialDetailsSubtitlesPopupView.xib */; };
 		2CE68BDA238BF12700524CC4 /* VENMaterialDetailsPageMyDictationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CE68BD9238BF12700524CC4 /* VENMaterialDetailsPageMyDictationView.m */; };
 		2CE68BDC238BF13500524CC4 /* VENMaterialDetailsPageMyDictationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2CE68BDB238BF13500524CC4 /* VENMaterialDetailsPageMyDictationView.xib */; };
 		2CE829E5239F459A005F6D55 /* VENMaterialDetailsTranslationPageSearchWordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CE829E4239F459A005F6D55 /* VENMaterialDetailsTranslationPageSearchWordViewController.m */; };
@@ -1100,6 +1107,12 @@
 		2CBCDEBF2302BF270010BD11 /* VENSettingTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VENSettingTableViewCell.xib; sourceTree = "<group>"; };
 		2CC9B9D423E732FB00DB9B20 /* VENTempDataManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VENTempDataManager.h; sourceTree = "<group>"; };
 		2CC9B9D523E732FB00DB9B20 /* VENTempDataManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VENTempDataManager.m; sourceTree = "<group>"; };
+		2CC9B9D823E7D2D000DB9B20 /* VENMaterialDetailsSubtitlesDetailsPageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VENMaterialDetailsSubtitlesDetailsPageViewController.h; sourceTree = "<group>"; };
+		2CC9B9D923E7D2D000DB9B20 /* VENMaterialDetailsSubtitlesDetailsPageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VENMaterialDetailsSubtitlesDetailsPageViewController.m; sourceTree = "<group>"; };
+		2CC9B9DA23E7D2D000DB9B20 /* VENMaterialDetailsSubtitlesDetailsPageViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VENMaterialDetailsSubtitlesDetailsPageViewController.xib; sourceTree = "<group>"; };
+		2CC9B9DF23E7E78F00DB9B20 /* VENMaterialDetailsSubtitlesDetailsPageTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VENMaterialDetailsSubtitlesDetailsPageTableViewCell.h; sourceTree = "<group>"; };
+		2CC9B9E023E7E78F00DB9B20 /* VENMaterialDetailsSubtitlesDetailsPageTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VENMaterialDetailsSubtitlesDetailsPageTableViewCell.m; sourceTree = "<group>"; };
+		2CC9B9E123E7E78F00DB9B20 /* VENMaterialDetailsSubtitlesDetailsPageTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VENMaterialDetailsSubtitlesDetailsPageTableViewCell.xib; sourceTree = "<group>"; };
 		2CCE27F123BECA350077312D /* VENMaterialDetailPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VENMaterialDetailPageViewController.h; sourceTree = "<group>"; };
 		2CD13C612302E8A6007974C9 /* VENSettingModifyPasswordViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VENSettingModifyPasswordViewController.h; sourceTree = "<group>"; };
 		2CD13C622302E8A6007974C9 /* VENSettingModifyPasswordViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VENSettingModifyPasswordViewController.m; sourceTree = "<group>"; };
@@ -1133,6 +1146,11 @@
 		2CDF2BA3239FC47C00486747 /* VENMaterialDetailsTranslationPageSearchWordTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VENMaterialDetailsTranslationPageSearchWordTableViewCell.xib; sourceTree = "<group>"; };
 		2CE189DB2317CBBF002E15F5 /* VENMinePageMemberCenterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VENMinePageMemberCenterViewController.h; sourceTree = "<group>"; };
 		2CE189DC2317CBBF002E15F5 /* VENMinePageMemberCenterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VENMinePageMemberCenterViewController.m; sourceTree = "<group>"; };
+		2CE3AB7423E855570023483A /* VENMaterialDetailsSubtitlesDetailsPageModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VENMaterialDetailsSubtitlesDetailsPageModel.h; sourceTree = "<group>"; };
+		2CE3AB7523E855570023483A /* VENMaterialDetailsSubtitlesDetailsPageModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VENMaterialDetailsSubtitlesDetailsPageModel.m; sourceTree = "<group>"; };
+		2CE3AB7723E902DC0023483A /* VENMaterialDetailsSubtitlesPopupView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VENMaterialDetailsSubtitlesPopupView.h; sourceTree = "<group>"; };
+		2CE3AB7823E902DC0023483A /* VENMaterialDetailsSubtitlesPopupView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VENMaterialDetailsSubtitlesPopupView.m; sourceTree = "<group>"; };
+		2CE3AB7A23E902EB0023483A /* VENMaterialDetailsSubtitlesPopupView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VENMaterialDetailsSubtitlesPopupView.xib; sourceTree = "<group>"; };
 		2CE68BD8238BF12700524CC4 /* VENMaterialDetailsPageMyDictationView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VENMaterialDetailsPageMyDictationView.h; sourceTree = "<group>"; };
 		2CE68BD9238BF12700524CC4 /* VENMaterialDetailsPageMyDictationView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VENMaterialDetailsPageMyDictationView.m; sourceTree = "<group>"; };
 		2CE68BDB238BF13500524CC4 /* VENMaterialDetailsPageMyDictationView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VENMaterialDetailsPageMyDictationView.xib; sourceTree = "<group>"; };
@@ -2182,6 +2200,7 @@
 				2CE8E6372398DE520048977F /* MakeSubtitles */,
 				2C84931A239E32D40075F2AB /* ReadAloud */,
 				2C849320239F32360075F2AB /* Translation */,
+				2CC9B9D723E7D26C00DB9B20 /* SubtitlesDetails */,
 			);
 			path = Details;
 			sourceTree = "<group>";
@@ -3610,6 +3629,39 @@
 			path = ModifyPassword;
 			sourceTree = "<group>";
 		};
+		2CC9B9D723E7D26C00DB9B20 /* SubtitlesDetails */ = {
+			isa = PBXGroup;
+			children = (
+				2CE3AB7323E855400023483A /* Model */,
+				2CC9B9DE23E7E77900DB9B20 /* View */,
+				2CC9B9DD23E7E77100DB9B20 /* Controller */,
+			);
+			path = SubtitlesDetails;
+			sourceTree = "<group>";
+		};
+		2CC9B9DD23E7E77100DB9B20 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				2CC9B9D823E7D2D000DB9B20 /* VENMaterialDetailsSubtitlesDetailsPageViewController.h */,
+				2CC9B9D923E7D2D000DB9B20 /* VENMaterialDetailsSubtitlesDetailsPageViewController.m */,
+				2CC9B9DA23E7D2D000DB9B20 /* VENMaterialDetailsSubtitlesDetailsPageViewController.xib */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		2CC9B9DE23E7E77900DB9B20 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				2CC9B9DF23E7E78F00DB9B20 /* VENMaterialDetailsSubtitlesDetailsPageTableViewCell.h */,
+				2CC9B9E023E7E78F00DB9B20 /* VENMaterialDetailsSubtitlesDetailsPageTableViewCell.m */,
+				2CC9B9E123E7E78F00DB9B20 /* VENMaterialDetailsSubtitlesDetailsPageTableViewCell.xib */,
+				2CE3AB7723E902DC0023483A /* VENMaterialDetailsSubtitlesPopupView.h */,
+				2CE3AB7823E902DC0023483A /* VENMaterialDetailsSubtitlesPopupView.m */,
+				2CE3AB7A23E902EB0023483A /* VENMaterialDetailsSubtitlesPopupView.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		2CDD5763231E083700F64D57 /* Login&Register */ = {
 			isa = PBXGroup;
 			children = (
@@ -3738,6 +3790,15 @@
 				2CE829E4239F459A005F6D55 /* VENMaterialDetailsTranslationPageSearchWordViewController.m */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		2CE3AB7323E855400023483A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				2CE3AB7423E855570023483A /* VENMaterialDetailsSubtitlesDetailsPageModel.h */,
+				2CE3AB7523E855570023483A /* VENMaterialDetailsSubtitlesDetailsPageModel.m */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		2CE61302238FE7E500064317 /* LabelPickerView */ = {
@@ -4050,8 +4111,10 @@
 				2C9C8E7123A0994C0070C42C /* WechatIMG241.png in Resources */,
 				2C3B46B923A762C200135F7C /* VENMaterialDetailsTranslationPageOtherTranslationTableViewCell.xib in Resources */,
 				2C74228123AA451E00D217DA /* VENMaterialDetailPageViewController.xib in Resources */,
+				2CE3AB7B23E902EB0023483A /* VENMaterialDetailsSubtitlesPopupView.xib in Resources */,
 				2CA990A223068D190081CC0C /* VENListPickerViewCell.xib in Resources */,
 				2CDD577C231E083700F64D57 /* VENRegisterPageViewController.xib in Resources */,
+				2CC9B9DC23E7D2D000DB9B20 /* VENMaterialDetailsSubtitlesDetailsPageViewController.xib in Resources */,
 				2C4D5ED0234EDDF40010D5A1 /* VENMaterialDetailsStartDictationPageViewController.xib in Resources */,
 				2CE8E6362398ADDC0048977F /* VENMaterialDetailsArticleCorrectionPageViewController.xib in Resources */,
 				2C8278A622E560550066B0C2 /* VENHomePageBannerCollectionViewCell.xib in Resources */,
@@ -4061,6 +4124,7 @@
 				2C24703022F2E28A00142646 /* VENMinePageTableViewCell.xib in Resources */,
 				2CBCDEC12302BF270010BD11 /* VENSettingTableViewCell.xib in Resources */,
 				2C1E2B5823278D680080C526 /* VENMaterialSortSelectorViewCollectionReusableView.xib in Resources */,
+				2CC9B9E323E7E78F00DB9B20 /* VENMaterialDetailsSubtitlesDetailsPageTableViewCell.xib in Resources */,
 				2CDD5787231E4A9E00F64D57 /* VENSetPasswordPageViewController.xib in Resources */,
 				2C148FB323223C4000DC9BA3 /* VENDynamicCirclePageDetailsViewController.xib in Resources */,
 				2C1E2B6A2328E77C0080C526 /* VENMaterialDetailsPageHeaderView.xib in Resources */,
@@ -4095,6 +4159,7 @@
 				2CA990A123068D190081CC0C /* VENDatePickerView.m in Sources */,
 				2C3B468F23A2336B00135F7C /* QNUploadOption.m in Sources */,
 				2C699E3423190E9F00BA8810 /* JXCategoryTitleCell.m in Sources */,
+				2CC9B9DB23E7D2D000DB9B20 /* VENMaterialDetailsSubtitlesDetailsPageViewController.m in Sources */,
 				2C3B469B23A2336B00135F7C /* QNResponseInfo.m in Sources */,
 				2C84931E239E34BB0075F2AB /* VENMaterialDetailsReadAloudPageViewController.m in Sources */,
 				2C699E4423190E9F00BA8810 /* JXCategoryBaseCell.m in Sources */,
@@ -4263,6 +4328,7 @@
 				2C699E2623190E9F00BA8810 /* JXCategoryIndicatorBallView.m in Sources */,
 				2C1C01C322DC1EE400E4E9C4 /* VENEmptyClass.m in Sources */,
 				2C699E3F23190E9F00BA8810 /* JXCategoryIndicatorParamsModel.m in Sources */,
+				2CE3AB7623E855570023483A /* VENMaterialDetailsSubtitlesDetailsPageModel.m in Sources */,
 				2C3D63D2237BFB94001754E4 /* YYTextUtilities.m in Sources */,
 				2C1C01A122DC1EE400E4E9C4 /* UIView+SDExtension.m in Sources */,
 				2C1C01AB22DC1EE400E4E9C4 /* UIImage+GIF.m in Sources */,
@@ -4281,6 +4347,7 @@
 				2CA9908623054AED0081CC0C /* VENSettingPersonalInformationViewController.m in Sources */,
 				2C3D63C6237BFB94001754E4 /* YYTextInput.m in Sources */,
 				2C1C01BD22DC1EE400E4E9C4 /* VENBaseWebViewController.m in Sources */,
+				2CC9B9E223E7E78F00DB9B20 /* VENMaterialDetailsSubtitlesDetailsPageTableViewCell.m in Sources */,
 				2CDD577E231E083700F64D57 /* VENResetPasswordViewController.m in Sources */,
 				2C3D63D9237BFB94001754E4 /* YYTextWeakProxy.m in Sources */,
 				2C699E2123190E9F00BA8810 /* JXCategoryTitleVerticalZoomView.m in Sources */,
@@ -4320,6 +4387,7 @@
 				2CBCDEBC2302BBC70010BD11 /* VENSettingViewController.m in Sources */,
 				2C3B468E23A2336B00135F7C /* QNFormUpload.m in Sources */,
 				2C0ED37723B6310900CAD6B4 /* VENMinePageMyNewWordBookDetailsPageViewController.m in Sources */,
+				2CE3AB7923E902DC0023483A /* VENMaterialDetailsSubtitlesPopupView.m in Sources */,
 				2C1C013122DC1EE400E4E9C4 /* MJRefreshAutoStateFooter.m in Sources */,
 				2C699E1F23190E9F00BA8810 /* JXCategoryTitleVerticalZoomCellModel.m in Sources */,
 				2C1C01B522DC1EE400E4E9C4 /* MBProgressHUD+VEN.m in Sources */,
