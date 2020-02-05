@@ -30,6 +30,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *type;
 
 @property (nonatomic, copy) NSString *source_id;
+@property (nonatomic, copy) NSString *good_course_id;
 
 @end
 

@@ -8,6 +8,7 @@
 
 #import "VENExcellentCourseDetailsPageViewController.h"
 #import "VENExcellentCourseDetailsPageModel.h"
+#import "VENExcellentCourseDetailsCheckMaterialPageViewController.h"
 
 @interface VENExcellentCourseDetailsPageViewController ()
 
@@ -22,6 +23,9 @@
     self.navigationItem.title = @"课程详情";
     
     self.pictureImageViewHeightLayoutConstraint.constant = kMainScreenWidth / (375.0 / 250.0);
+    self.checkMaterialButton.layer.cornerRadius = 24.0f;
+    self.checkMaterialButton.layer.masksToBounds = YES;
+    [self.checkMaterialButton addTarget:self action:@selector(checkMaterialButtonClick) forControlEvents:UIControlEventTouchUpInside];
     
     [self loadExcellentCourseDetailsPageData];
 }
@@ -37,9 +41,21 @@
         self.priceLabel.text = [NSString stringWithFormat:@"¥%@", model.price];
         self.contentLabel.text = model.descriptionn;
         
+        if (model.orderStatus == 2) {
+            self.bottomToolsBarHeightLayoutConstraint.constant = 68.0f;
+        } else {
+            self.bottomToolsBarHeightLayoutConstraint.constant = 0.0f;
+        }
+        
     } failureBlock:^(NSError *error) {
         
     }];
+}
+
+#pragma mark - 查看课程素材
+- (void)checkMaterialButtonClick {
+    VENExcellentCourseDetailsCheckMaterialPageViewController *vc = [[VENExcellentCourseDetailsCheckMaterialPageViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 /*

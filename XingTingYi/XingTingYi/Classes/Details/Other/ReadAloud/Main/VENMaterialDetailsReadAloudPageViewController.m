@@ -41,7 +41,19 @@
 }
 
 - (void)loadMaterialDetailsReadAloudPageData {
-    [[VENNetworkingManager shareManager] requestWithType:HttpRequestTypePOST urlString:self.isPersonalMaterial ? @"userSource/userReadInfo" : @"source/readInfo" parameters:@{@"source_period_id" : self.source_period_id} successBlock:^(id responseObject) {
+    NSString *url = @"";
+    
+    if (self.isPersonalMaterial) {
+        url = @"userSource/userReadInfo";
+    } else {
+        if (self.isExcellentCourse) {
+            url = @"goodCourse/myCourseReadInfo";
+        } else {
+            url = @"source/readInfo";
+        }
+    }
+    
+    [[VENNetworkingManager shareManager] requestWithType:HttpRequestTypePOST urlString:url parameters:@{@"source_period_id" : self.source_period_id} successBlock:^(id responseObject) {
         
         self.infoModel = [VENMaterialDetailsPageModel yy_modelWithJSON:responseObject[@"content"][@"info"]];
         [self.tableView reloadData];
@@ -108,8 +120,20 @@
 
             NSDictionary *parameters = @{@"source_period_id" : self.source_period_id,
                                          @"path" : resp[@"key"]};
-
-            [[VENNetworkingManager shareManager] requestWithType:HttpRequestTypePOST urlString:self.isPersonalMaterial ? @"userSource/userRead" : @"source/read" parameters:parameters successBlock:^(id responseObject) {
+            
+            NSString *url = @"";
+            
+            if (self.isPersonalMaterial) {
+                url = @"userSource/userRead";
+            } else {
+                if (self.isExcellentCourse) {
+                    url = @"goodCourse/myCourseRead";
+                } else {
+                    url = @"source/read";
+                }
+            }
+            
+            [[VENNetworkingManager shareManager] requestWithType:HttpRequestTypePOST urlString:url parameters:parameters successBlock:^(id responseObject) {
                 
                 [MBProgressHUD removeLoading];
                 [self.navigationController popViewControllerAnimated:YES];

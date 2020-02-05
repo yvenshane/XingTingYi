@@ -31,11 +31,17 @@ static NSString *const cellIdentifier = @"cellIdentifier";
 }
 
 - (void)loadOtherTranslationDataWithPage:(NSString *)page {
+    NSString *url = @"";
+    if (self.isExcellentCourse) {
+        url = @"goodCourse/myCourseOtherTranslation";
+    } else {
+        url = @"source/otherTranslation";
+    }
     
     NSDictionary *parameters = @{@"source_period_id" : self.source_period_id,
                                  @"page" : page};
     
-    [[VENNetworkingManager shareManager] requestWithType:HttpRequestTypePOST urlString:@"source/otherTranslation" parameters:parameters successBlock:^(id responseObject) {
+    [[VENNetworkingManager shareManager] requestWithType:HttpRequestTypePOST urlString:url parameters:parameters successBlock:^(id responseObject) {
         
         if ([page integerValue] == 1) {
             [self.tableView.mj_header endRefreshing];
@@ -118,7 +124,14 @@ static NSString *const cellIdentifier = @"cellIdentifier";
 - (void)likeButtonClick:(UIButton *)button {
     VENMaterialDetailsTranslationPageOtherTranslationModel *model = self.dataSourceMuArr[button.tag];
     
-    [[VENNetworkingManager shareManager] requestWithType:HttpRequestTypePOST urlString:@"source/otherTranslationPraise" parameters:@{@"id" : model.id} successBlock:^(id responseObject) {
+    NSString *url = @"";
+    if (self.isExcellentCourse) {
+        url = @"goodCourse/myCourseOtherTranslationPraise";
+    } else {
+        url = @"source/otherTranslationPraise";
+    }
+    
+    [[VENNetworkingManager shareManager] requestWithType:HttpRequestTypePOST urlString:url parameters:@{@"id" : model.id} successBlock:^(id responseObject) {
         
         if (button.selected) {
             button.selected = NO;

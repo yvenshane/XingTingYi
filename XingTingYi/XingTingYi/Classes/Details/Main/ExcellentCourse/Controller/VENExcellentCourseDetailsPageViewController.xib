@@ -10,6 +10,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="VENExcellentCourseDetailsPageViewController">
             <connections>
+                <outlet property="bottomToolsBar" destination="nde-Ls-9Ku" id="v5U-lx-Zos"/>
+                <outlet property="bottomToolsBarHeightLayoutConstraint" destination="dPz-dw-Q9z" id="Y7z-Bt-dkb"/>
+                <outlet property="checkMaterialButton" destination="JoE-Av-ROi" id="fQ5-Oe-k0a"/>
                 <outlet property="contentLabel" destination="2XI-0n-Uhi" id="hSc-3Y-hbF"/>
                 <outlet property="otherLabel" destination="rAf-SF-WEc" id="4HA-Hx-B83"/>
                 <outlet property="pictureImageView" destination="feG-zv-bW6" id="Ni7-if-FiO"/>
@@ -25,7 +28,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bcv-6w-qjY">
-                    <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                    <rect key="frame" x="0.0" y="44" width="414" height="750"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cqJ-ao-mUj">
                             <rect key="frame" x="0.0" y="0.0" width="414" height="457"/>
@@ -108,13 +111,37 @@
                     <viewLayoutGuide key="contentLayoutGuide" id="A1W-sS-57w"/>
                     <viewLayoutGuide key="frameLayoutGuide" id="cvQ-7n-AwT"/>
                 </scrollView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nde-Ls-9Ku">
+                    <rect key="frame" x="0.0" y="794" width="414" height="68"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JoE-Av-ROi">
+                            <rect key="frame" x="20" y="10" width="374" height="48"/>
+                            <color key="backgroundColor" red="1" green="0.87058823529999996" blue="0.0078431372550000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                            <state key="normal" title="查看课程素材">
+                                <color key="titleColor" red="0.1333333333" green="0.1333333333" blue="0.1333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </state>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="JoE-Av-ROi" secondAttribute="bottom" constant="10" id="99Y-h6-GlG"/>
+                        <constraint firstAttribute="trailing" secondItem="JoE-Av-ROi" secondAttribute="trailing" constant="20" id="WYz-8i-1bc"/>
+                        <constraint firstAttribute="height" constant="68" id="dPz-dw-Q9z"/>
+                        <constraint firstItem="JoE-Av-ROi" firstAttribute="top" secondItem="nde-Ls-9Ku" secondAttribute="top" constant="10" id="fX2-pL-9Du"/>
+                        <constraint firstItem="JoE-Av-ROi" firstAttribute="leading" secondItem="nde-Ls-9Ku" secondAttribute="leading" constant="20" id="heh-mX-suy"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstItem="nde-Ls-9Ku" firstAttribute="top" secondItem="bcv-6w-qjY" secondAttribute="bottom" id="CNL-1b-i4a"/>
                 <constraint firstItem="bcv-6w-qjY" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="HqE-R6-oVH"/>
-                <constraint firstItem="Q5M-cg-NOt" firstAttribute="bottom" secondItem="bcv-6w-qjY" secondAttribute="bottom" id="KNm-FT-EoO"/>
+                <constraint firstItem="nde-Ls-9Ku" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="JFR-WJ-Flj"/>
+                <constraint firstItem="Q5M-cg-NOt" firstAttribute="bottom" secondItem="nde-Ls-9Ku" secondAttribute="bottom" id="Jj3-oZ-brd"/>
                 <constraint firstItem="bcv-6w-qjY" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" id="hs1-kf-gdq"/>
                 <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="bcv-6w-qjY" secondAttribute="trailing" id="lEt-xy-dDS"/>
+                <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="nde-Ls-9Ku" secondAttribute="trailing" id="uWO-LN-0AW"/>
                 <constraint firstItem="bcv-6w-qjY" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="yIj-L0-dOT"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>

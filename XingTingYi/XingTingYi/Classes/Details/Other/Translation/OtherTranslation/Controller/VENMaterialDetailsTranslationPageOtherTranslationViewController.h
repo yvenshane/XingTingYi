@@ -12,6 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface VENMaterialDetailsTranslationPageOtherTranslationViewController : VENBaseViewController
 @property (nonatomic, copy) NSString *source_period_id;
+@property (nonatomic, assign) BOOL isExcellentCourse;
 
 @end
 

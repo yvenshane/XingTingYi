@@ -132,7 +132,12 @@
         url = @"userSource/dictationInfo";
         parameters = @{@"source_id" : self.source_id};
     } else {
-        url = @"source/dictationInfo";
+        if (self.isExcellentCourse) {
+            url = @"goodCourse/myCourseDictationInfo";
+        } else {
+            url = @"source/dictationInfo";
+        }
+        
         parameters = @{@"source_id" : self.source_id,
                        @"source_period_id" : self.source_period_id};
     }
@@ -453,7 +458,11 @@
                        @"time" : self.time,
                        @"dictation_tag" : [tempMuArr componentsJoinedByString:@","]};
     } else {
-        url = @"source/dictation";
+        if (self.isExcellentCourse) {
+            url = @"goodCourse/myCourseDictation";
+        } else {
+            url = @"source/dictation";
+        }
         parameters = @{@"id" : self.source_period_id,
                        @"content" : [self exportHTML],
                        @"time" : self.time,

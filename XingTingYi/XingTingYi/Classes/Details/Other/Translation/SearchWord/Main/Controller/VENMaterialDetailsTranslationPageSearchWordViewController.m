@@ -84,6 +84,7 @@ static NSString *const cellIdentifier = @"cellIdentifier";
     vc.keyword = self.keyword;
     vc.translation = self.translation;
     vc.source_id = self.source_id;
+    vc.isExcellentCourse = self.isExcellentCourse;
     [self.navigationController pushViewController:vc animated:YES];
 }
 

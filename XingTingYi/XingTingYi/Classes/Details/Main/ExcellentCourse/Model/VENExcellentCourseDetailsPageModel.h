@@ -16,7 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *descriptionn;
 @property (nonatomic, copy) NSString *id;
 @property (nonatomic, copy) NSString *image;
-@property (nonatomic, copy) NSString *orderStatus;
+@property (nonatomic, assign) NSInteger orderStatus;
 @property (nonatomic, copy) NSString *price;
 @property (nonatomic, copy) NSString *title;
 

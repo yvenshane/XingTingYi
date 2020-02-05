@@ -54,7 +54,11 @@ static NSString *const cellIdentifier = @"cellIdentifier";
         parameters = @{@"words_id" : self.words_id,
                        @"source_id" : self.source_id};
     } else {
-        url = @"source/wordsInfo";
+        if (self.isExcellentCourse) {
+            url = @"goodCourse/myCourseWordsInfo";
+        } else {
+            url = @"source/wordsInfo";
+        }
         parameters = @{@"words_id" : self.words_id};
     }
     
@@ -236,7 +240,11 @@ static NSString *const cellIdentifier = @"cellIdentifier";
                 if (self.isPersonalMaterial) {
                     url = @"userSource/subUserWords";
                 } else {
-                    url = @"source/subWords";
+                    if (self.isExcellentCourse) {
+                        url = @"goodCourse/myCourseSubWords";
+                    } else {
+                        url = @"source/subWords";
+                    }
                 }
                 
                 [[VENNetworkingManager shareManager] requestWithType:HttpRequestTypePOST urlString:url parameters:parameters successBlock:^(id responseObject) {
@@ -271,7 +279,11 @@ static NSString *const cellIdentifier = @"cellIdentifier";
         if (self.isPersonalMaterial) {
             url = @"userSource/subUserWords";
         } else {
-            url = @"source/subWords";
+            if (self.isExcellentCourse) {
+                url = @"goodCourse/myCourseSubWords";
+            } else {
+                url = @"source/subWords";
+            }
         }
         
         [[VENNetworkingManager shareManager] requestWithType:HttpRequestTypePOST urlString:url parameters:parameters successBlock:^(id responseObject) {

@@ -100,8 +100,13 @@ static NSString *const cellIdentifier = @"cellIdentifier";
         url = @"userSource/userSourceInfo";
         parameters = @{@"source_id" : self.source_id};
     } else {
-        url = @"source/sourceInfo";
-        parameters = @{@"id" : self.source_id};
+        if (self.isExcellentCourse) {
+            url = @"goodCourse/myGoodCourseInfo";
+            parameters = @{@"source_id" : self.source_id};
+        } else {
+            url = @"source/sourceInfo";
+            parameters = @{@"id" : self.source_id};
+        }
     }
     
     [[VENNetworkingManager shareManager] requestWithType:HttpRequestTypePOST urlString:url parameters:parameters successBlock:^(id responseObject) {
@@ -180,7 +185,7 @@ static NSString *const cellIdentifier = @"cellIdentifier";
             CGFloat width = [button.titleLabel sizeThatFits:CGSizeMake(CGFLOAT_MAX, 15.0f)].width + 24;
             
             if (x + width + 10 > kMainScreenWidth - 62 - 20) {
-                return;
+                break;
             }
             
             button.frame = CGRectMake(x, 0, width, 30);
@@ -430,12 +435,16 @@ static NSString *const cellIdentifier = @"cellIdentifier";
 - (IBAction)addNewWordsBookButtonClick:(id)sender {
     VENMaterialDetailsTranslationPageSearchWordAddNewWordsViewController *vc = [[VENMaterialDetailsTranslationPageSearchWordAddNewWordsViewController alloc] init];
     vc.source_id = self.source_id;
+    vc.isPersonalMaterial = self.isPersonalMaterial;
+    vc.isExcellentCourse = self.isExcellentCourse;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (IBAction)addNewWordsBookButton2Click:(id)sender {
     VENMaterialDetailsTranslationPageSearchWordAddNewWordsViewController *vc = [[VENMaterialDetailsTranslationPageSearchWordAddNewWordsViewController alloc] init];
     vc.source_id = self.source_id;
+    vc.isPersonalMaterial = self.isPersonalMaterial;
+    vc.isExcellentCourse = self.isExcellentCourse;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -487,8 +496,20 @@ static NSString *const cellIdentifier = @"cellIdentifier";
 }
 
 - (void)leftButtonClick {
+    NSString *sourceType = @"";
+    
+    if (self.isPersonalMaterial) {
+        sourceType = @"2";
+    } else {
+        if (self.isExcellentCourse) {
+            sourceType = @"3";
+        } else {
+            sourceType = @"1";
+        }
+    }
+    
     NSDictionary *parameters = @{@"source_id" : self.source_id,
-                                 @"sourceType" : self.isPersonalMaterial ? @"2" : @"1",
+                                 @"sourceType" : sourceType,
                                  @"doType" : @"1"};
     
     [[VENNetworkingManager shareManager] requestWithType:HttpRequestTypePOST urlString:@"user/delDosource" parameters:parameters successBlock:^(id responseObject) {
@@ -512,6 +533,7 @@ static NSString *const cellIdentifier = @"cellIdentifier";
     } else {
         VENMaterialDetailPageViewController *vc = [[VENMaterialDetailPageViewController alloc] init];
         vc.id = self.source_id;
+        vc.isExcellentCourse = self.isExcellentCourse;
         [self.navigationController pushViewController:vc animated:YES];
     }
 }

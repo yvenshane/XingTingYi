@@ -14,6 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *origin;
 @property (nonatomic, copy) NSString *source_id;
 @property (nonatomic, assign) BOOL isPersonalMaterial;
+@property (nonatomic, assign) BOOL isExcellentCourse;
 
 @end
 

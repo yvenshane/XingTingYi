@@ -79,6 +79,7 @@ static NSString *const cellIdentifier = @"cellIdentifier";
     
     if ([self.dotype isEqualToString:@"1"]) {
         VENMyDictationDetailsViewController *vc = [[VENMyDictationDetailsViewController alloc] init];
+        vc.isExcellentCourse = YES;
         vc.source_id = model.source_id;
         vc.deleteBlock = ^{
             [self loadCourseMaterialData:@"1"];
@@ -87,6 +88,7 @@ static NSString *const cellIdentifier = @"cellIdentifier";
     } else if ([self.dotype isEqualToString:@"2"]) {
         VENMyReadingDetailsViewController *vc = [[VENMyReadingDetailsViewController alloc] init];
         vc.source_id = model.source_id;
+        vc.isExcellentCourse = YES;
         vc.deleteBlock = ^{
             [self loadCourseMaterialData:@"1"];
         };
@@ -94,6 +96,7 @@ static NSString *const cellIdentifier = @"cellIdentifier";
     } else if ([self.dotype isEqualToString:@"3"]) {
         VENMyTranslationDetailsViewController *vc = [[VENMyTranslationDetailsViewController alloc] init];
         vc.source_id = model.source_id;
+        vc.isExcellentCourse = YES;
         vc.deleteBlock = ^{
             [self loadCourseMaterialData:@"1"];
         };
@@ -101,6 +104,7 @@ static NSString *const cellIdentifier = @"cellIdentifier";
     } else {
         VENMySubtitleDetailsViewController *vc = [[VENMySubtitleDetailsViewController alloc] init];
         vc.source_id = model.source_id;
+        vc.isExcellentCourse = YES;
         vc.deleteBlock = ^{
             [self loadCourseMaterialData:@"1"];
         };

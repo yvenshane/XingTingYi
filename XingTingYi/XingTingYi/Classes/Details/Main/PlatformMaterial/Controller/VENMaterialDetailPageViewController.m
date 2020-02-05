@@ -96,7 +96,18 @@ static NSString *const cellIdentifier2 = @"cellIdentifier2";
 }
 
 - (void)loadVideoMaterialDetailsPageData {
-    [[VENNetworkingManager shareManager] requestWithType:HttpRequestTypePOST urlString:@"source/sourceInfo" parameters:@{@"id" : self.id} successBlock:^(id responseObject) {
+    NSString *url = @"";
+    NSDictionary *parameters = @{};
+    
+    if (self.isExcellentCourse) {
+        url = @"goodCourse/myGoodCourseInfo";
+        parameters = @{@"source_id" : self.id};
+    } else {
+        url = @"source/sourceInfo";
+        parameters = @{@"id" : self.id};
+    }
+    
+    [[VENNetworkingManager shareManager] requestWithType:HttpRequestTypePOST urlString:url parameters:parameters successBlock:^(id responseObject) {
         
         self.contentDict = responseObject[@"content"];
         
@@ -255,12 +266,14 @@ static NSString *const cellIdentifier2 = @"cellIdentifier2";
         cell.buttonTwoBlock = ^{
             VENMaterialDetailsReadAloudPageViewController *vc = [[VENMaterialDetailsReadAloudPageViewController alloc] init];
             vc.source_period_id = textInfoModel.id;
+            vc.isExcellentCourse = self.isExcellentCourse;
             [self.navigationController pushViewController:vc animated:YES];
         };
         
         cell.buttonThreeBlock = ^{
             VENMaterialDetailsTranslationPageViewController *vc = [[VENMaterialDetailsTranslationPageViewController alloc] init];
             vc.source_period_id = textInfoModel.id;
+            vc.isExcellentCourse = self.isExcellentCourse;
             [self.navigationController pushViewController:vc animated:YES];
         };
         
@@ -416,6 +429,7 @@ static NSString *const cellIdentifier2 = @"cellIdentifier2";
     VENMaterialDetailsStartDictationPageViewController *vc = [[VENMaterialDetailsStartDictationPageViewController alloc] init];
     vc.source_id = self.infoModel.id;
     vc.source_period_id = model.id;
+    vc.isExcellentCourse = self.isExcellentCourse;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -427,6 +441,7 @@ static NSString *const cellIdentifier2 = @"cellIdentifier2";
     vc.source_id = self.infoModel.id;
     vc.source_period_id = model.id;
     vc.isSectionDictation = YES;
+    vc.isExcellentCourse = self.isExcellentCourse;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -436,6 +451,7 @@ static NSString *const cellIdentifier2 = @"cellIdentifier2";
     
     VENMaterialDetailsMakeSubtitlesPageViewController *vc = [[VENMaterialDetailsMakeSubtitlesPageViewController alloc] init];
     vc.source_period_id = model.id;
+    vc.isExcellentCourse = self.isExcellentCourse;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -445,6 +461,7 @@ static NSString *const cellIdentifier2 = @"cellIdentifier2";
     
     VENMaterialDetailsMakeSubtitlesPageViewController *vc = [[VENMaterialDetailsMakeSubtitlesPageViewController alloc] init];
     vc.source_period_id = model.id;
+    vc.isExcellentCourse = self.isExcellentCourse;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -454,6 +471,7 @@ static NSString *const cellIdentifier2 = @"cellIdentifier2";
     
     VENMinePageMyNewWordBookViewController *vc = [[VENMinePageMyNewWordBookViewController alloc] init];
     vc.source_id = model.source_id;
+    vc.isExcellentCourse = self.isExcellentCourse;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -521,12 +539,14 @@ static NSString *const cellIdentifier2 = @"cellIdentifier2";
             VENMaterialDetailsStartDictationPageViewController *vc = [[VENMaterialDetailsStartDictationPageViewController alloc] init];
             vc.source_id = self.infoModel.id;
             vc.source_period_id = model.id;
+            vc.isExcellentCourse = self.isExcellentCourse;
             [self.navigationController pushViewController:vc animated:YES];
         } else { // 制作字幕
             VENMaterialDetailsPageModel *model = self.avInfoArr[0];
             
             VENMaterialDetailsMakeSubtitlesPageViewController *vc = [[VENMaterialDetailsMakeSubtitlesPageViewController alloc] init];
             vc.source_period_id = model.id;
+            vc.isExcellentCourse = self.isExcellentCourse;
             [self.navigationController pushViewController:vc animated:YES];
         }
     };

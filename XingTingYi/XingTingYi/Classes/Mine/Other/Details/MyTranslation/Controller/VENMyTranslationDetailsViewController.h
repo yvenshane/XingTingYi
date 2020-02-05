@@ -16,6 +16,7 @@ typedef void (^deleteBlock)(void);
 @property (nonatomic, copy) deleteBlock deleteBlock;
 
 @property (nonatomic, assign) BOOL isPersonalMaterial;
+@property (nonatomic, assign) BOOL isExcellentCourse;
 
 @end
 

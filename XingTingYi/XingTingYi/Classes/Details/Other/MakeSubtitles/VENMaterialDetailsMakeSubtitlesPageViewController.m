@@ -91,7 +91,11 @@
         url = @"userSource/userSubtitlesInfo";
         parameters = @{@"source_id" : self.source_period_id};
     } else {
-        url = @"source/subtitlesInfo";
+        if (self.isExcellentCourse) {
+            url = @"goodCourse/myCourseSubtitlesInfo";
+        } else {
+            url = @"source/subtitlesInfo";
+        }
         parameters = @{@"source_period_id" : self.source_period_id};
     }
     
@@ -304,7 +308,11 @@
         parameters = @{@"source_id" : self.source_period_id,
                        @"content" : tempMuStr};
     } else {
-        url = @"source/subtitles";
+        if (self.isExcellentCourse) {
+            url = @"goodCourse/myCourseSubtitles";
+        } else {
+            url = @"source/subtitles";
+        }
         parameters = @{@"source_period_id" : self.source_period_id,
                        @"content" : tempMuStr};
     }

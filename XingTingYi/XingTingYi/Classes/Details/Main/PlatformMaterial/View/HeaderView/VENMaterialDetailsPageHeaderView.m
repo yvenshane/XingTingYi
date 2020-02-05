@@ -135,14 +135,16 @@
             self.audioViewHeightLayoutConstraint.constant = audioHeight;
             self.audioPlayerView.frame = CGRectMake(0, 0, CGRectGetWidth(self.audioView.frame), CGRectGetHeight(self.audioView.frame));
             
-            if (![VENEmptyClass isEmptyArray:data[@"avInfo"][0][@"subtitlesList"]]) {
-                self.audioPlayerView.subtitlesButton.hidden = NO;
-                self.audioPlayerView.subtitlesButtonWidthLayoutConstraint.constant = 20.0f;
-                self.audioPlayerView.subtitlesButtonRightLayoutConstraint.constant = 15.0f;
-                [self.audioPlayerView.subtitlesButton addTarget:self action:@selector(subtitlesButtonClick:) forControlEvents:UIControlEventTouchUpInside];
-                
-                for (NSDictionary *dict in data[@"avInfo"][0][@"subtitlesList"]) {
-                    [self.dataSourceMuArr addObject:[VENMaterialDetailsSubtitlesDetailsPageModel yy_modelWithDictionary:dict]];
+            if (![VENEmptyClass isEmptyArray:data[@"avInfo"]]) {
+                if (![VENEmptyClass isEmptyArray:data[@"avInfo"][0][@"subtitlesList"]]) {
+                    self.audioPlayerView.subtitlesButton.hidden = NO;
+                    self.audioPlayerView.subtitlesButtonWidthLayoutConstraint.constant = 20.0f;
+                    self.audioPlayerView.subtitlesButtonRightLayoutConstraint.constant = 15.0f;
+                    [self.audioPlayerView.subtitlesButton addTarget:self action:@selector(subtitlesButtonClick:) forControlEvents:UIControlEventTouchUpInside];
+                    
+                    for (NSDictionary *dict in data[@"avInfo"][0][@"subtitlesList"]) {
+                        [self.dataSourceMuArr addObject:[VENMaterialDetailsSubtitlesDetailsPageModel yy_modelWithDictionary:dict]];
+                    }
                 }
             }
             

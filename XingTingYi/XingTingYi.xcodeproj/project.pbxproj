@@ -302,6 +302,7 @@
 		2C8EED4723B600D1000EF302 /* VENMinePageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C8EED4623B600D1000EF302 /* VENMinePageModel.m */; };
 		2C8EED4D23B61763000EF302 /* WechatIMG263.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C8EED4C23B61763000EF302 /* WechatIMG263.png */; };
 		2C8EED5023B617BF000EF302 /* VENChooseCategoryViewTwo.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C8EED4F23B617BF000EF302 /* VENChooseCategoryViewTwo.m */; };
+		2C90218D23EAC25200BFE397 /* VENExcellentCourseDetailsCheckMaterialPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C90218C23EAC25200BFE397 /* VENExcellentCourseDetailsCheckMaterialPageViewController.m */; };
 		2C98B1452340480400E2C700 /* VENStyleSettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C98B1442340480400E2C700 /* VENStyleSettingsController.m */; };
 		2C98B14C23404CF900E2C700 /* VENColorStyleSettingsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C98B14A23404CF900E2C700 /* VENColorStyleSettingsTableViewCell.m */; };
 		2C98B14D23404CF900E2C700 /* VENColorStyleSettingsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C98B14B23404CF900E2C700 /* VENColorStyleSettingsTableViewCell.xib */; };
@@ -999,6 +1000,8 @@
 		2C8EED4C23B61763000EF302 /* WechatIMG263.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WechatIMG263.png; sourceTree = "<group>"; };
 		2C8EED4E23B617BF000EF302 /* VENChooseCategoryViewTwo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VENChooseCategoryViewTwo.h; sourceTree = "<group>"; };
 		2C8EED4F23B617BF000EF302 /* VENChooseCategoryViewTwo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VENChooseCategoryViewTwo.m; sourceTree = "<group>"; };
+		2C90218B23EAC25200BFE397 /* VENExcellentCourseDetailsCheckMaterialPageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VENExcellentCourseDetailsCheckMaterialPageViewController.h; sourceTree = "<group>"; };
+		2C90218C23EAC25200BFE397 /* VENExcellentCourseDetailsCheckMaterialPageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VENExcellentCourseDetailsCheckMaterialPageViewController.m; sourceTree = "<group>"; };
 		2C98B1432340480400E2C700 /* VENStyleSettingsController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VENStyleSettingsController.h; sourceTree = "<group>"; };
 		2C98B1442340480400E2C700 /* VENStyleSettingsController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VENStyleSettingsController.m; sourceTree = "<group>"; };
 		2C98B14923404CF900E2C700 /* VENColorStyleSettingsTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VENColorStyleSettingsTableViewCell.h; sourceTree = "<group>"; };
@@ -2270,6 +2273,7 @@
 		2C270E1B23E9CD6100C4A184 /* Other */ = {
 			isa = PBXGroup;
 			children = (
+				2C90218A23EAC21C00BFE397 /* CheckMaterial */,
 				2CE8E6312398AD860048977F /* ArticleCorrection */,
 				2CFF8AFC232A450C009AD211 /* StartDictation */,
 				2CE8E6372398DE520048977F /* MakeSubtitles */,
@@ -3280,6 +3284,15 @@
 				2C8EED4F23B617BF000EF302 /* VENChooseCategoryViewTwo.m */,
 			);
 			path = ChooseCategoryViewTwo;
+			sourceTree = "<group>";
+		};
+		2C90218A23EAC21C00BFE397 /* CheckMaterial */ = {
+			isa = PBXGroup;
+			children = (
+				2C90218B23EAC25200BFE397 /* VENExcellentCourseDetailsCheckMaterialPageViewController.h */,
+				2C90218C23EAC25200BFE397 /* VENExcellentCourseDetailsCheckMaterialPageViewController.m */,
+			);
+			path = CheckMaterial;
 			sourceTree = "<group>";
 		};
 		2C98B14623404C5D00E2C700 /* StyleSettings */ = {
@@ -4510,6 +4523,7 @@
 				2C699E3323190E9F00BA8810 /* JXCategoryTitleCellModel.m in Sources */,
 				2CA152C7233B492D004CA0BA /* LMTextHTMLParser.m in Sources */,
 				2C3B469123A2336B00135F7C /* QNCrc32.m in Sources */,
+				2C90218D23EAC25200BFE397 /* VENExcellentCourseDetailsCheckMaterialPageViewController.m in Sources */,
 				2C1C01B622DC1EE400E4E9C4 /* VENVerificationCodeButton.m in Sources */,
 				2C1C018D22DC1EE400E4E9C4 /* UIProgressView+AFNetworking.m in Sources */,
 				2C1C01A622DC1EE400E4E9C4 /* TAAbstractDotView.m in Sources */,

@@ -17,9 +17,11 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UILabel *otherLabel;
 @property (weak, nonatomic) IBOutlet UILabel *priceLabel;
 @property (weak, nonatomic) IBOutlet UILabel *contentLabel;
+@property (weak, nonatomic) IBOutlet UIView *bottomToolsBar;
+@property (weak, nonatomic) IBOutlet UIButton *checkMaterialButton;
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *pictureImageViewHeightLayoutConstraint;
-
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomToolsBarHeightLayoutConstraint;
 
 @end
 

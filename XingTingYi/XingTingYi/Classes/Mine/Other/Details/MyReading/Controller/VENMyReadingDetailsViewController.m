@@ -66,8 +66,13 @@ static NSString *const cellIdentifier = @"cellIdentifier";
         url = @"userSource/userSourceInfo";
         parameters = @{@"source_id" : self.source_id};
     } else {
-        url = @"source/sourceInfo";
-        parameters = @{@"id" : self.source_id};
+        if (self.isExcellentCourse) {
+            url = @"goodCourse/myGoodCourseInfo";
+            parameters = @{@"source_id" : self.source_id};
+        } else {
+            url = @"source/sourceInfo";
+            parameters = @{@"id" : self.source_id};
+        }
     }
     
     [[VENNetworkingManager shareManager] requestWithType:HttpRequestTypePOST urlString:url parameters:parameters successBlock:^(id responseObject) {
@@ -257,6 +262,7 @@ static NSString *const cellIdentifier = @"cellIdentifier";
     VENMaterialDetailsStartDictationPageViewController *vc = [[VENMaterialDetailsStartDictationPageViewController alloc] init];
     vc.source_id = self.infoModel.id;
     vc.source_period_id = model.id;
+    vc.isExcellentCourse = self.isExcellentCourse;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -266,6 +272,7 @@ static NSString *const cellIdentifier = @"cellIdentifier";
     
     VENMaterialDetailsMakeSubtitlesPageViewController *vc = [[VENMaterialDetailsMakeSubtitlesPageViewController alloc] init];
     vc.source_period_id = model.id;
+    vc.isExcellentCourse = self.isExcellentCourse;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -301,8 +308,18 @@ static NSString *const cellIdentifier = @"cellIdentifier";
 }
 
 - (void)leftButtonClick {
+    NSString *sourceType = @"";
+    if (self.isPersonalMaterial) {
+        sourceType = @"2";
+    } else {
+        if (self.isExcellentCourse) {
+            sourceType = @"3";
+        } else {
+            sourceType = @"1";
+        }
+    }
     NSDictionary *parameters = @{@"source_id" : self.source_id,
-                                 @"sourceType" : self.isPersonalMaterial ? @"2" : @"1",
+                                 @"sourceType" : sourceType,
                                  @"doType" : @"2"};
     
     [[VENNetworkingManager shareManager] requestWithType:HttpRequestTypePOST urlString:@"user/delDosource" parameters:parameters successBlock:^(id responseObject) {
@@ -326,6 +343,7 @@ static NSString *const cellIdentifier = @"cellIdentifier";
     } else {
         VENMaterialDetailPageViewController *vc = [[VENMaterialDetailPageViewController alloc] init];
         vc.id = self.source_id;
+        vc.isExcellentCourse = self.isExcellentCourse;
         [self.navigationController pushViewController:vc animated:YES];
     }
 }

@@ -12,6 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface VENMaterialDetailPageViewController : VENBaseViewController
 @property (nonatomic, copy) NSString *id;
+@property (nonatomic, assign) BOOL isExcellentCourse;
 
 @end
 

@@ -36,7 +36,18 @@
 }
 
 - (void)loadMaterialDetailsTranslationPageData {
-    [[VENNetworkingManager shareManager] requestWithType:HttpRequestTypePOST urlString:self.isPersonalMaterial ? @"userSource/userTranslationInfo" : @"source/translationInfo" parameters:@{@"source_period_id" : self.source_period_id} successBlock:^(id responseObject) {
+    NSString *url = @"";
+    if (self.isPersonalMaterial) {
+        url = @"userSource/userTranslationInfo";
+    } else {
+        if (self.isExcellentCourse) {
+            url = @"goodCourse/myCourseTranslationInfo";
+        } else {
+            url = @"source/translationInfo";
+        }
+    }
+    
+    [[VENNetworkingManager shareManager] requestWithType:HttpRequestTypePOST urlString:url parameters:@{@"source_period_id" : self.source_period_id} successBlock:^(id responseObject) {
         
         self.infoModel = [VENMaterialDetailsPageModel yy_modelWithJSON:responseObject[@"content"][@"info"]];
         self.translationInfoModel = [VENMaterialDetailsTranslationPageModel yy_modelWithJSON:responseObject[@"content"][@"translationInfo"]];
@@ -97,6 +108,7 @@
 - (void)toolBarButtonClick {
     VENMaterialDetailsTranslationPageSearchWordViewController *vc = [[VENMaterialDetailsTranslationPageSearchWordViewController alloc] init];
     vc.source_id = self.infoModel.source_id;
+    vc.isExcellentCourse = self.isExcellentCourse;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -135,6 +147,7 @@
 // 查看他人翻译
 - (void)leftButtonClick:(UIButton *)button {
     VENMaterialDetailsTranslationPageOtherTranslationViewController *vc = [[VENMaterialDetailsTranslationPageOtherTranslationViewController alloc] init];
+    vc.isExcellentCourse = self.isExcellentCourse;
     vc.source_period_id = self.source_period_id;
     [self.navigationController pushViewController:vc animated:YES];
 }
@@ -147,7 +160,18 @@
                                  @"grammar" : self.headerView.otherTextField.text,
                                  @"words" : self.headerView.otherTextFieldTwo.text};
     
-    [[VENNetworkingManager shareManager] requestWithType:HttpRequestTypePOST urlString:self.isPersonalMaterial ? @"userSource/userTranslation" : @"source/translation" parameters:parameters successBlock:^(id responseObject) {
+    NSString *url = @"";
+    if (self.isPersonalMaterial) {
+        url = @"userSource/userTranslation";
+    } else {
+        if (self.isExcellentCourse) {
+            url = @"goodCourse/myCourseTranslation";
+        } else {
+            url = @"source/translation";
+        }
+    }
+    
+    [[VENNetworkingManager shareManager] requestWithType:HttpRequestTypePOST urlString:url parameters:parameters successBlock:^(id responseObject) {
         
         [self.navigationController popViewControllerAnimated:YES];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"RefreshDetailPage" object:nil userInfo:nil];

@@ -76,7 +76,11 @@ static NSString *const cellIdentifier = @"cellIdentifier";
         if (self.isPersonalMaterial) {
             url = @"userSource/userSourceWordList";
         } else {
-            url = @"source/sourceWordList";
+            if (self.isExcellentCourse) {
+                url = @"goodCourse/myCourseSourceWordList";
+            } else {
+                url = @"source/sourceWordList";
+            }
         }
     }
     

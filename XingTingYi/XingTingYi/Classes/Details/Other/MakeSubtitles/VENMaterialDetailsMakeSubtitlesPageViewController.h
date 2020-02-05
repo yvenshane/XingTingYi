@@ -15,6 +15,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) BOOL isPersonalMaterial;
 @property (nonatomic, strong) NSURL *videoURL;
 
+@property (nonatomic, assign) BOOL isExcellentCourse;
+
 @end
 
 NS_ASSUME_NONNULL_END
