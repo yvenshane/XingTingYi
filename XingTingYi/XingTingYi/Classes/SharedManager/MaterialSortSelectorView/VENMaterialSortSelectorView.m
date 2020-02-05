@@ -81,7 +81,7 @@ static NSString *const cellIdentifier2 = @"cellIdentifier2";
         lineImageView.hidden = YES;
         [button addSubview:lineImageView];
         
-        if ([VENEmptyClass isEmptyString:self.category_one_id]) {
+        if ([VENEmptyClass isEmptyString:[NSString stringWithFormat:@"%@", self.category_one_id]]) {
             if (i == 0) {
                 button.backgroundColor = [UIColor whiteColor];
                 button.titleLabel.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:14.0];
@@ -91,7 +91,7 @@ static NSString *const cellIdentifier2 = @"cellIdentifier2";
                 self.category_one_id = sourceCategoryArr[0][@"id"];
             }
         } else {
-            if ([sourceCategoryArr[i][@"id"] isEqualToString:self.category_one_id]) {
+            if (sourceCategoryArr[i][@"id"] == self.category_one_id) {
                 button.backgroundColor = [UIColor whiteColor];
                 button.titleLabel.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:14.0];
                 lineImageView.hidden = NO;
@@ -132,7 +132,7 @@ static NSString *const cellIdentifier2 = @"cellIdentifier2";
     VENMaterialSortSelectorViewCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellIdentifier forIndexPath:indexPath];
     cell.titleLabel.text = self.dataSourceArr[indexPath.section][@"son"][indexPath.row][@"name"];
     
-    if ([self.dataSourceArr[indexPath.section][@"son"][indexPath.row][@"id"] isEqualToString:self.category_three_id]) {
+    if (self.dataSourceArr[indexPath.section][@"son"][indexPath.row][@"id"] == self.category_three_id) {
         cell.titleLabel.backgroundColor = UIColorFromRGB(0xFFDE02);
         cell.titleLabel.textColor = UIColorFromRGB(0x222222);
     } else {
@@ -160,7 +160,11 @@ static NSString *const cellIdentifier2 = @"cellIdentifier2";
 }
 
 - (void)show {
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"MaterialSortSelectorView" object:nil userInfo:@{@"type" : @"show"}];
+    if (self.isExcellentCourse) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"ExcellentCourseSortSelectorView" object:nil userInfo:@{@"type" : @"show"}];
+    } else {
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"MaterialSortSelectorView" object:nil userInfo:@{@"type" : @"show"}];
+    }
     
     self.backgroundView.frame = CGRectMake(0, -(kMainScreenWidth * 420 / 375), kMainScreenWidth, kMainScreenWidth * 420 / 375);
     [UIView animateWithDuration:kAnimationDuration animations:^{
@@ -169,7 +173,11 @@ static NSString *const cellIdentifier2 = @"cellIdentifier2";
 }
 
 - (void)hidden {
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"MaterialSortSelectorView" object:nil userInfo:@{@"type" : @"hidden"}];
+    if (self.isExcellentCourse) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"ExcellentCourseSortSelectorView" object:nil userInfo:@{@"type" : @"hidden"}];
+    } else {
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"MaterialSortSelectorView" object:nil userInfo:@{@"type" : @"hidden"}];
+    }
     
     [UIView animateWithDuration:kAnimationDuration animations:^{
         self.backgroundView.frame = CGRectMake(0, -(kMainScreenWidth * 420 / 375), kMainScreenWidth, kMainScreenWidth * 420 / 375);

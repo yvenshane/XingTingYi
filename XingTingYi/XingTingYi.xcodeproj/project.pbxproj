@@ -140,6 +140,8 @@
 		2C21684A23E2E8E000B2F90A /* VENHomePageSignRecordPageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C21684823E2E8E000B2F90A /* VENHomePageSignRecordPageTableViewCell.xib */; };
 		2C24702F22F2E28A00142646 /* VENMinePageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C24702D22F2E28A00142646 /* VENMinePageTableViewCell.m */; };
 		2C24703022F2E28A00142646 /* VENMinePageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C24702E22F2E28A00142646 /* VENMinePageTableViewCell.xib */; };
+		2C270E2223E9CDC000C4A184 /* VENExcellentCourseDetailsPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C270E2023E9CDC000C4A184 /* VENExcellentCourseDetailsPageViewController.m */; };
+		2C270E2323E9CDC000C4A184 /* VENExcellentCourseDetailsPageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C270E2123E9CDC000C4A184 /* VENExcellentCourseDetailsPageViewController.xib */; };
 		2C2FAA99236ADD0C001227F4 /* UIViewController+DDYPresent.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C2FAA98236ADD0C001227F4 /* UIViewController+DDYPresent.m */; };
 		2C3B468823A2336B00135F7C /* QNConcurrentResumeUpload.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C3B465023A2336B00135F7C /* QNConcurrentResumeUpload.m */; };
 		2C3B468923A2336B00135F7C /* QNUploadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C3B465523A2336B00135F7C /* QNUploadManager.m */; };
@@ -356,6 +358,7 @@
 		2CA990A223068D190081CC0C /* VENListPickerViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2CA9909A23068D180081CC0C /* VENListPickerViewCell.xib */; };
 		2CA990A323068D190081CC0C /* VENListPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CA9909B23068D180081CC0C /* VENListPickerView.m */; };
 		2CA990A423068D190081CC0C /* VENListPickerViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CA9909C23068D180081CC0C /* VENListPickerViewCell.m */; };
+		2CAF2ED923EA6DEC007C6095 /* VENExcellentCourseDetailsPageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CAF2ED823EA6DEC007C6095 /* VENExcellentCourseDetailsPageModel.m */; };
 		2CAFE64B23E1BC86008E7377 /* VENHomePageSignViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2CAFE64923E1BC86008E7377 /* VENHomePageSignViewController.xib */; };
 		2CAFE65123E1D09A008E7377 /* VENHomePageSignCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CAFE64F23E1D09A008E7377 /* VENHomePageSignCollectionViewCell.m */; };
 		2CAFE65223E1D09A008E7377 /* VENHomePageSignCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2CAFE65023E1D09A008E7377 /* VENHomePageSignCollectionViewCell.xib */; };
@@ -393,6 +396,10 @@
 		2CE3AB7623E855570023483A /* VENMaterialDetailsSubtitlesDetailsPageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CE3AB7523E855570023483A /* VENMaterialDetailsSubtitlesDetailsPageModel.m */; };
 		2CE3AB7923E902DC0023483A /* VENMaterialDetailsSubtitlesPopupView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CE3AB7823E902DC0023483A /* VENMaterialDetailsSubtitlesPopupView.m */; };
 		2CE3AB7B23E902EB0023483A /* VENMaterialDetailsSubtitlesPopupView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2CE3AB7A23E902EB0023483A /* VENMaterialDetailsSubtitlesPopupView.xib */; };
+		2CE3AB7F23E958A00023483A /* VENExcellentCoursePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CE3AB7E23E958A00023483A /* VENExcellentCoursePageViewController.m */; };
+		2CE3AB8523E97C710023483A /* VENExcellentCoursePageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CE3AB8323E97C710023483A /* VENExcellentCoursePageTableViewCell.m */; };
+		2CE3AB8623E97C710023483A /* VENExcellentCoursePageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2CE3AB8423E97C710023483A /* VENExcellentCoursePageTableViewCell.xib */; };
+		2CE3AB8A23E9BD3A0023483A /* VENExcellentCoursePageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CE3AB8923E9BD3A0023483A /* VENExcellentCoursePageModel.m */; };
 		2CE68BDA238BF12700524CC4 /* VENMaterialDetailsPageMyDictationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CE68BD9238BF12700524CC4 /* VENMaterialDetailsPageMyDictationView.m */; };
 		2CE68BDC238BF13500524CC4 /* VENMaterialDetailsPageMyDictationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2CE68BDB238BF13500524CC4 /* VENMaterialDetailsPageMyDictationView.xib */; };
 		2CE829E5239F459A005F6D55 /* VENMaterialDetailsTranslationPageSearchWordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CE829E4239F459A005F6D55 /* VENMaterialDetailsTranslationPageSearchWordViewController.m */; };
@@ -682,6 +689,9 @@
 		2C24702C22F2E28A00142646 /* VENMinePageTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VENMinePageTableViewCell.h; sourceTree = "<group>"; };
 		2C24702D22F2E28A00142646 /* VENMinePageTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VENMinePageTableViewCell.m; sourceTree = "<group>"; };
 		2C24702E22F2E28A00142646 /* VENMinePageTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VENMinePageTableViewCell.xib; sourceTree = "<group>"; };
+		2C270E1F23E9CDC000C4A184 /* VENExcellentCourseDetailsPageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VENExcellentCourseDetailsPageViewController.h; sourceTree = "<group>"; };
+		2C270E2023E9CDC000C4A184 /* VENExcellentCourseDetailsPageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VENExcellentCourseDetailsPageViewController.m; sourceTree = "<group>"; };
+		2C270E2123E9CDC000C4A184 /* VENExcellentCourseDetailsPageViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VENExcellentCourseDetailsPageViewController.xib; sourceTree = "<group>"; };
 		2C2FAA97236ADD0C001227F4 /* UIViewController+DDYPresent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+DDYPresent.h"; sourceTree = "<group>"; };
 		2C2FAA98236ADD0C001227F4 /* UIViewController+DDYPresent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+DDYPresent.m"; sourceTree = "<group>"; };
 		2C3B465023A2336B00135F7C /* QNConcurrentResumeUpload.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QNConcurrentResumeUpload.m; sourceTree = "<group>"; };
@@ -1089,6 +1099,8 @@
 		2CA9909C23068D180081CC0C /* VENListPickerViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VENListPickerViewCell.m; sourceTree = "<group>"; };
 		2CA9909E23068D180081CC0C /* VENDatePickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VENDatePickerView.h; sourceTree = "<group>"; };
 		2CA9909F23068D180081CC0C /* VENListPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VENListPickerView.h; sourceTree = "<group>"; };
+		2CAF2ED723EA6DEC007C6095 /* VENExcellentCourseDetailsPageModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VENExcellentCourseDetailsPageModel.h; sourceTree = "<group>"; };
+		2CAF2ED823EA6DEC007C6095 /* VENExcellentCourseDetailsPageModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VENExcellentCourseDetailsPageModel.m; sourceTree = "<group>"; };
 		2CAFE64723E1BC86008E7377 /* VENHomePageSignViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VENHomePageSignViewController.h; sourceTree = "<group>"; };
 		2CAFE64923E1BC86008E7377 /* VENHomePageSignViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VENHomePageSignViewController.xib; sourceTree = "<group>"; };
 		2CAFE64E23E1D09A008E7377 /* VENHomePageSignCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VENHomePageSignCollectionViewCell.h; sourceTree = "<group>"; };
@@ -1151,6 +1163,13 @@
 		2CE3AB7723E902DC0023483A /* VENMaterialDetailsSubtitlesPopupView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VENMaterialDetailsSubtitlesPopupView.h; sourceTree = "<group>"; };
 		2CE3AB7823E902DC0023483A /* VENMaterialDetailsSubtitlesPopupView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VENMaterialDetailsSubtitlesPopupView.m; sourceTree = "<group>"; };
 		2CE3AB7A23E902EB0023483A /* VENMaterialDetailsSubtitlesPopupView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VENMaterialDetailsSubtitlesPopupView.xib; sourceTree = "<group>"; };
+		2CE3AB7D23E958A00023483A /* VENExcellentCoursePageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VENExcellentCoursePageViewController.h; sourceTree = "<group>"; };
+		2CE3AB7E23E958A00023483A /* VENExcellentCoursePageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VENExcellentCoursePageViewController.m; sourceTree = "<group>"; };
+		2CE3AB8223E97C710023483A /* VENExcellentCoursePageTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VENExcellentCoursePageTableViewCell.h; sourceTree = "<group>"; };
+		2CE3AB8323E97C710023483A /* VENExcellentCoursePageTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VENExcellentCoursePageTableViewCell.m; sourceTree = "<group>"; };
+		2CE3AB8423E97C710023483A /* VENExcellentCoursePageTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VENExcellentCoursePageTableViewCell.xib; sourceTree = "<group>"; };
+		2CE3AB8823E9BD3A0023483A /* VENExcellentCoursePageModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VENExcellentCoursePageModel.h; sourceTree = "<group>"; };
+		2CE3AB8923E9BD3A0023483A /* VENExcellentCoursePageModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VENExcellentCoursePageModel.m; sourceTree = "<group>"; };
 		2CE68BD8238BF12700524CC4 /* VENMaterialDetailsPageMyDictationView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VENMaterialDetailsPageMyDictationView.h; sourceTree = "<group>"; };
 		2CE68BD9238BF12700524CC4 /* VENMaterialDetailsPageMyDictationView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VENMaterialDetailsPageMyDictationView.m; sourceTree = "<group>"; };
 		2CE68BDB238BF13500524CC4 /* VENMaterialDetailsPageMyDictationView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VENMaterialDetailsPageMyDictationView.xib; sourceTree = "<group>"; };
@@ -1956,6 +1975,7 @@
 				2C1E2B602327A8950080C526 /* Details */,
 				2C1C01D322DC619400E4E9C4 /* Home */,
 				2C1C01CF22DC619400E4E9C4 /* Material */,
+				2CE3AB7C23E958000023483A /* ExcellentCourse */,
 				2C1C01D722DC619400E4E9C4 /* DynamicCircle */,
 				2C1C01CB22DC619400E4E9C4 /* Mine */,
 			);
@@ -2193,14 +2213,8 @@
 		2C1E2B602327A8950080C526 /* Details */ = {
 			isa = PBXGroup;
 			children = (
-				2CDD628E23E45A2700C09DD5 /* PlatformMaterial */,
-				2CDD628F23E45A3800C09DD5 /* PersonalMaterial */,
-				2CE8E6312398AD860048977F /* ArticleCorrection */,
-				2CFF8AFC232A450C009AD211 /* StartDictation */,
-				2CE8E6372398DE520048977F /* MakeSubtitles */,
-				2C84931A239E32D40075F2AB /* ReadAloud */,
-				2C849320239F32360075F2AB /* Translation */,
-				2CC9B9D723E7D26C00DB9B20 /* SubtitlesDetails */,
+				2C270E1A23E9CD5900C4A184 /* Main */,
+				2C270E1B23E9CD6100C4A184 /* Other */,
 			);
 			path = Details;
 			sourceTree = "<group>";
@@ -2232,6 +2246,38 @@
 				2C1E2B6D2328EEEF0080C526 /* VENMaterialDetailsPageModel.m */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		2C270E1923E9CD4600C4A184 /* ExcellentCourse */ = {
+			isa = PBXGroup;
+			children = (
+				2CAF2ED623EA6DD3007C6095 /* Model */,
+				2CAF2ED523EA6DCB007C6095 /* Controller */,
+			);
+			path = ExcellentCourse;
+			sourceTree = "<group>";
+		};
+		2C270E1A23E9CD5900C4A184 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				2CDD628E23E45A2700C09DD5 /* PlatformMaterial */,
+				2CDD628F23E45A3800C09DD5 /* PersonalMaterial */,
+				2C270E1923E9CD4600C4A184 /* ExcellentCourse */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		2C270E1B23E9CD6100C4A184 /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				2CE8E6312398AD860048977F /* ArticleCorrection */,
+				2CFF8AFC232A450C009AD211 /* StartDictation */,
+				2CE8E6372398DE520048977F /* MakeSubtitles */,
+				2C84931A239E32D40075F2AB /* ReadAloud */,
+				2C849320239F32360075F2AB /* Translation */,
+				2CC9B9D723E7D26C00DB9B20 /* SubtitlesDetails */,
+			);
+			path = Other;
 			sourceTree = "<group>";
 		};
 		2C3B464E23A2336B00135F7C /* QiniuSDK */ = {
@@ -3507,6 +3553,25 @@
 			path = ListPickerView;
 			sourceTree = "<group>";
 		};
+		2CAF2ED523EA6DCB007C6095 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				2C270E1F23E9CDC000C4A184 /* VENExcellentCourseDetailsPageViewController.h */,
+				2C270E2023E9CDC000C4A184 /* VENExcellentCourseDetailsPageViewController.m */,
+				2C270E2123E9CDC000C4A184 /* VENExcellentCourseDetailsPageViewController.xib */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		2CAF2ED623EA6DD3007C6095 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				2CAF2ED723EA6DEC007C6095 /* VENExcellentCourseDetailsPageModel.h */,
+				2CAF2ED823EA6DEC007C6095 /* VENExcellentCourseDetailsPageModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		2CAFE64623E1BC39008E7377 /* Sign */ = {
 			isa = PBXGroup;
 			children = (
@@ -3797,6 +3862,44 @@
 			children = (
 				2CE3AB7423E855570023483A /* VENMaterialDetailsSubtitlesDetailsPageModel.h */,
 				2CE3AB7523E855570023483A /* VENMaterialDetailsSubtitlesDetailsPageModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		2CE3AB7C23E958000023483A /* ExcellentCourse */ = {
+			isa = PBXGroup;
+			children = (
+				2CE3AB8723E9BD270023483A /* Model */,
+				2CE3AB8123E97C540023483A /* View */,
+				2CE3AB8023E97C4D0023483A /* Controller */,
+			);
+			path = ExcellentCourse;
+			sourceTree = "<group>";
+		};
+		2CE3AB8023E97C4D0023483A /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				2CE3AB7D23E958A00023483A /* VENExcellentCoursePageViewController.h */,
+				2CE3AB7E23E958A00023483A /* VENExcellentCoursePageViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		2CE3AB8123E97C540023483A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				2CE3AB8223E97C710023483A /* VENExcellentCoursePageTableViewCell.h */,
+				2CE3AB8323E97C710023483A /* VENExcellentCoursePageTableViewCell.m */,
+				2CE3AB8423E97C710023483A /* VENExcellentCoursePageTableViewCell.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		2CE3AB8723E9BD270023483A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				2CE3AB8823E9BD3A0023483A /* VENExcellentCoursePageModel.h */,
+				2CE3AB8923E9BD3A0023483A /* VENExcellentCoursePageModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -4127,6 +4230,7 @@
 				2CC9B9E323E7E78F00DB9B20 /* VENMaterialDetailsSubtitlesDetailsPageTableViewCell.xib in Resources */,
 				2CDD5787231E4A9E00F64D57 /* VENSetPasswordPageViewController.xib in Resources */,
 				2C148FB323223C4000DC9BA3 /* VENDynamicCirclePageDetailsViewController.xib in Resources */,
+				2C270E2323E9CDC000C4A184 /* VENExcellentCourseDetailsPageViewController.xib in Resources */,
 				2C1E2B6A2328E77C0080C526 /* VENMaterialDetailsPageHeaderView.xib in Resources */,
 				2CDD577F231E083700F64D57 /* VENResetPasswordViewController.xib in Resources */,
 				2C98B14D23404CF900E2C700 /* VENColorStyleSettingsTableViewCell.xib in Resources */,
@@ -4138,6 +4242,7 @@
 				2CECFDC922E1C2DE001D9F7F /* VENHomePageTableViewCellTwo.xib in Resources */,
 				2C42AD0523BB848A00A5B57B /* VENMyDictationDetailsRecordingPageViewController.xib in Resources */,
 				2C84932F239F35F90075F2AB /* VENMaterialDetailsTranslationPageTableHeaderView.xib in Resources */,
+				2CE3AB8623E97C710023483A /* VENExcellentCoursePageTableViewCell.xib in Resources */,
 				2CE8E62E2397D2B70048977F /* VENMaterialDetailsPageTableViewCell.xib in Resources */,
 				2C72A45723E3FD7D0078A120 /* VENMaterialPageAddPersonalTextMaterialViewController.xib in Resources */,
 				2C699E51231927DD00BA8810 /* VENDynamicCirclePageListTableViewCell.xib in Resources */,
@@ -4301,6 +4406,7 @@
 				2C21684523E2E86300B2F90A /* VENHomePageSignRecordPageModel.m in Sources */,
 				2C3D63C4237BFB94001754E4 /* YYTextContainerView.m in Sources */,
 				2C1C01B322DC1EE400E4E9C4 /* UIView+WebCacheOperation.m in Sources */,
+				2CE3AB8523E97C710023483A /* VENExcellentCoursePageTableViewCell.m in Sources */,
 				2C1C01B222DC1EE400E4E9C4 /* UIImageView+WebCache.m in Sources */,
 				2C699E3623190E9F00BA8810 /* JXCategoryImageView.m in Sources */,
 				2C3B46AA23A7166300135F7C /* VENMinePageMyNewWordBookModel.m in Sources */,
@@ -4326,6 +4432,7 @@
 				2CE8E63B2398DE9E0048977F /* VENMaterialDetailsMakeSubtitlesPageViewController.m in Sources */,
 				2C1C01AF22DC1EE400E4E9C4 /* SDImageCache.m in Sources */,
 				2C699E2623190E9F00BA8810 /* JXCategoryIndicatorBallView.m in Sources */,
+				2CE3AB7F23E958A00023483A /* VENExcellentCoursePageViewController.m in Sources */,
 				2C1C01C322DC1EE400E4E9C4 /* VENEmptyClass.m in Sources */,
 				2C699E3F23190E9F00BA8810 /* JXCategoryIndicatorParamsModel.m in Sources */,
 				2CE3AB7623E855570023483A /* VENMaterialDetailsSubtitlesDetailsPageModel.m in Sources */,
@@ -4441,6 +4548,7 @@
 				2CC9B9D623E732FB00DB9B20 /* VENTempDataManager.m in Sources */,
 				2C3B46B223A737B700135F7C /* VENMaterialDetailsTranslationPageOtherTranslationViewController.m in Sources */,
 				2C123B4D2378F03F00F2B1A3 /* VENSettingPersonalInformationModel.m in Sources */,
+				2CE3AB8A23E9BD3A0023483A /* VENExcellentCoursePageModel.m in Sources */,
 				2C3B469723A2336B00135F7C /* QNALAssetFile.m in Sources */,
 				2CA473DF23D85B3F0033B4D0 /* LJ_FileInfo.m in Sources */,
 				2C1C01AD22DC1EE400E4E9C4 /* SDWebImageCompat.m in Sources */,
@@ -4473,6 +4581,7 @@
 				2CE8E62223978B7A0048977F /* VENMaterialDetailsPageFooterView.m in Sources */,
 				2C1E2B5F232793B10080C526 /* VENMaterialFormatSelectorView.m in Sources */,
 				2C3B46A623A4D97F00135F7C /* VENMinePageMyNewWordBookTableViewCell.m in Sources */,
+				2CAF2ED923EA6DEC007C6095 /* VENExcellentCourseDetailsPageModel.m in Sources */,
 				2C1C019722DC1EE400E4E9C4 /* AFHTTPSessionManager.m in Sources */,
 				2C1C019B22DC1EE400E4E9C4 /* AFSecurityPolicy.m in Sources */,
 				2C8EED5023B617BF000EF302 /* VENChooseCategoryViewTwo.m in Sources */,
@@ -4481,6 +4590,7 @@
 				2C1C015C22DC1EE400E4E9C4 /* ViewController+MASAdditions.m in Sources */,
 				2C1C018F22DC1EE400E4E9C4 /* AFNetworkActivityIndicatorManager.m in Sources */,
 				2C817FE422F172FF00DA6F0B /* VENBaseCategoryView.m in Sources */,
+				2C270E2223E9CDC000C4A184 /* VENExcellentCourseDetailsPageViewController.m in Sources */,
 				2C0830F423E2DA55003386A7 /* VENHomePageSignRecordPageViewController.m in Sources */,
 				2C1C012E22DC1EE400E4E9C4 /* MJRefreshBackGifFooter.m in Sources */,
 				2C1C01DD22DC633000E4E9C4 /* VENHomePageViewController.m in Sources */,

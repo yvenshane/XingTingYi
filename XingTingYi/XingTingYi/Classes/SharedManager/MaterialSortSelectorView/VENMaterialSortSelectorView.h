@@ -19,6 +19,8 @@ typedef void (^didSelectItemBlock)(NSDictionary *);
 
 @property (nonatomic, copy) didSelectItemBlock didSelectItemBlock;
 
+@property (nonatomic, assign) BOOL isExcellentCourse;
+
 - (void)hidden;
 
 @end
