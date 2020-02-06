@@ -11,6 +11,7 @@
 #import "VENChooseCategoryView.h"
 #import "QiniuSDK.h"
 #import "VENMaterialDetailsAddNewWordsEditNewWordsModel.h"
+#import "VENMaterialDetailPagePopupView.h"
 
 @interface VENMaterialDetailsTranslationPageSearchWordAddNewWordsViewController ()
 @property (nonatomic, strong) VENMaterialDetailsTranslationPageSearchWordAddNewWordsTableHeaderView *headerView;
@@ -355,8 +356,22 @@ static NSString *const cellIdentifier = @"cellIdentifier";
             [[VENNetworkingManager shareManager] requestWithType:HttpRequestTypePOST urlString:url parameters:parameters successBlock:^(id responseObject) {
                 
                 [MBProgressHUD removeLoading];
-                [self.navigationController popViewControllerAnimated:YES];
-                [[NSNotificationCenter defaultCenter] postNotificationName:@"RefreshMyNewWordsPage" object:nil];
+                
+                // 签到
+                [[VENNetworkingManager shareManager] requestWithType:HttpRequestTypePOST urlString:@"user/signDays" parameters:nil successBlock:^(id responseObject) {
+                    
+                    VENMaterialDetailPagePopupView *popupView = [[NSBundle mainBundle] loadNibNamed:@"VENMaterialDetailPagePopupView" owner:nil options:nil].lastObject;
+                    popupView.frame = CGRectMake(0, 0, kMainScreenWidth, kMainScreenHeight);
+                    popupView.dataDict = responseObject[@"content"][@"signInfo"];
+                    popupView.closeButtonBlock = ^{
+                        [self.navigationController popViewControllerAnimated:YES];
+                        [[NSNotificationCenter defaultCenter] postNotificationName:@"RefreshMyNewWordsPage" object:nil];
+                    };
+                    [[UIApplication sharedApplication].keyWindow addSubview:popupView];
+                    
+                } failureBlock:^(NSError *error) {
+                    
+                }];
                 
             } failureBlock:^(NSError *error) {
                 

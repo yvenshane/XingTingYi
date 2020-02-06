@@ -11,6 +11,7 @@
 #import "VENAudioPlayerView.h"
 #import "VENMaterialDetailsPageModel.h"
 #import "VENAudioPlayer.h"
+#import "VENMaterialDetailPagePopupView.h"
 
 @interface VENMaterialDetailsMakeSubtitlesPageViewController () <UITextViewDelegate>
 @property (weak, nonatomic) IBOutlet UITextView *contentTextView;
@@ -319,8 +320,21 @@
     
     [[VENNetworkingManager shareManager] requestWithType:HttpRequestTypePOST urlString:url parameters:parameters successBlock:^(id responseObject) {
 
-        [self.navigationController popViewControllerAnimated:YES];
-
+        // 签到
+        [[VENNetworkingManager shareManager] requestWithType:HttpRequestTypePOST urlString:@"user/signDays" parameters:nil successBlock:^(id responseObject) {
+            
+            VENMaterialDetailPagePopupView *popupView = [[NSBundle mainBundle] loadNibNamed:@"VENMaterialDetailPagePopupView" owner:nil options:nil].lastObject;
+            popupView.frame = CGRectMake(0, 0, kMainScreenWidth, kMainScreenHeight);
+            popupView.dataDict = responseObject[@"content"][@"signInfo"];
+            popupView.closeButtonBlock = ^{
+                [self.navigationController popViewControllerAnimated:YES];
+            };
+            [[UIApplication sharedApplication].keyWindow addSubview:popupView];
+            
+        } failureBlock:^(NSError *error) {
+            
+        }];
+        
     } failureBlock:^(NSError *error) {
 
     }];

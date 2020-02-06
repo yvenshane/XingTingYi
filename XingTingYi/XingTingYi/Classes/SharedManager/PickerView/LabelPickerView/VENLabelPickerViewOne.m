@@ -9,6 +9,7 @@
 #import "VENLabelPickerViewOne.h"
 #import "VENListPickerViewCell.h"
 #import "VENLabelPickerViewThree.h"
+#import "VENMaterialDetailPagePopupView.h"
 
 @interface VENLabelPickerViewOne () <UITableViewDelegate, UITextFieldDelegate>
 @property (nonatomic, strong) UIButton *backgroundButton;
@@ -166,7 +167,24 @@
 
 // 确定按钮
 - (void)confirmButtonClick {
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"ConfirmButtonClick" object:nil userInfo:@{@"selectedMuArr" : self.selectedMuArr}];
+    if (self.selectedMuArr.count > 0) {
+        // 签到
+        [[VENNetworkingManager shareManager] requestWithType:HttpRequestTypePOST urlString:@"user/signDays" parameters:nil successBlock:^(id responseObject) {
+            
+            [self closeButtonClick];
+            
+            VENMaterialDetailPagePopupView *popupView = [[NSBundle mainBundle] loadNibNamed:@"VENMaterialDetailPagePopupView" owner:nil options:nil].lastObject;
+            popupView.frame = CGRectMake(0, 0, kMainScreenWidth, kMainScreenHeight);
+            popupView.dataDict = responseObject[@"content"][@"signInfo"];
+            popupView.closeButtonBlock = ^{
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"ConfirmButtonClick" object:nil userInfo:@{@"selectedMuArr" : self.selectedMuArr}];
+            };
+            [[UIApplication sharedApplication].keyWindow addSubview:popupView];
+            
+        } failureBlock:^(NSError *error) {
+            
+        }];
+    }
 }
 
 // 关闭弹窗

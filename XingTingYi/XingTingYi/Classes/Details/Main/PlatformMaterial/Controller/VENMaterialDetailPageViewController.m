@@ -263,6 +263,7 @@ static NSString *const cellIdentifier2 = @"cellIdentifier2";
             }
         };
         
+        // 朗读
         cell.buttonTwoBlock = ^{
             VENMaterialDetailsReadAloudPageViewController *vc = [[VENMaterialDetailsReadAloudPageViewController alloc] init];
             vc.source_period_id = textInfoModel.id;
@@ -270,6 +271,7 @@ static NSString *const cellIdentifier2 = @"cellIdentifier2";
             [self.navigationController pushViewController:vc animated:YES];
         };
         
+        // 翻译
         cell.buttonThreeBlock = ^{
             VENMaterialDetailsTranslationPageViewController *vc = [[VENMaterialDetailsTranslationPageViewController alloc] init];
             vc.source_period_id = textInfoModel.id;

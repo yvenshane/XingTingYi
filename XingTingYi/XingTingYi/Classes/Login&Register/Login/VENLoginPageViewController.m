@@ -42,9 +42,6 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textFieldTextDidChange:) name:UITextFieldTextDidChangeNotification object:nil];
     
     [self setupNavigationItemLeftBarButtonItem];
-    
-    self.phoneNumberTextField.text = @"15305532355";
-    self.passwordTextField.text = @"111111111";
 }
 
 #pragma mark - 登录

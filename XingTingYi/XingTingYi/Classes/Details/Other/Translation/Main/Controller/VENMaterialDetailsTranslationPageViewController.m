@@ -12,6 +12,7 @@
 #import "VENMaterialDetailsTranslationPageSearchWordViewController.h" // 查词
 #import "VENMaterialDetailsTranslationPageModel.h"
 #import "VENMaterialDetailsTranslationPageOtherTranslationViewController.h"
+#import "VENMaterialDetailPagePopupView.h"
 
 @interface VENMaterialDetailsTranslationPageViewController ()
 @property (nonatomic, strong) VENMaterialDetailsPageModel *infoModel;
@@ -173,8 +174,21 @@
     
     [[VENNetworkingManager shareManager] requestWithType:HttpRequestTypePOST urlString:url parameters:parameters successBlock:^(id responseObject) {
         
-        [self.navigationController popViewControllerAnimated:YES];
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"RefreshDetailPage" object:nil userInfo:nil];
+        // 签到
+        [[VENNetworkingManager shareManager] requestWithType:HttpRequestTypePOST urlString:@"user/signDays" parameters:nil successBlock:^(id responseObject) {
+            
+            VENMaterialDetailPagePopupView *popupView = [[NSBundle mainBundle] loadNibNamed:@"VENMaterialDetailPagePopupView" owner:nil options:nil].lastObject;
+            popupView.frame = CGRectMake(0, 0, kMainScreenWidth, kMainScreenHeight);
+            popupView.dataDict = responseObject[@"content"][@"signInfo"];
+            popupView.closeButtonBlock = ^{
+                [self.navigationController popViewControllerAnimated:YES];
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"RefreshDetailPage" object:nil userInfo:nil];
+            };
+            [[UIApplication sharedApplication].keyWindow addSubview:popupView];
+            
+        } failureBlock:^(NSError *error) {
+            
+        }];
         
     } failureBlock:^(NSError *error) {
         

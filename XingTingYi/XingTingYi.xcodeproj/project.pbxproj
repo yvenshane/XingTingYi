@@ -303,6 +303,8 @@
 		2C8EED4D23B61763000EF302 /* WechatIMG263.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C8EED4C23B61763000EF302 /* WechatIMG263.png */; };
 		2C8EED5023B617BF000EF302 /* VENChooseCategoryViewTwo.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C8EED4F23B617BF000EF302 /* VENChooseCategoryViewTwo.m */; };
 		2C90218D23EAC25200BFE397 /* VENExcellentCourseDetailsCheckMaterialPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C90218C23EAC25200BFE397 /* VENExcellentCourseDetailsCheckMaterialPageViewController.m */; };
+		2C90219123EB07C700BFE397 /* VENMaterialDetailPagePopupView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C90219023EB07C700BFE397 /* VENMaterialDetailPagePopupView.m */; };
+		2C90219323EB07D500BFE397 /* VENMaterialDetailPagePopupView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C90219223EB07D500BFE397 /* VENMaterialDetailPagePopupView.xib */; };
 		2C98B1452340480400E2C700 /* VENStyleSettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C98B1442340480400E2C700 /* VENStyleSettingsController.m */; };
 		2C98B14C23404CF900E2C700 /* VENColorStyleSettingsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C98B14A23404CF900E2C700 /* VENColorStyleSettingsTableViewCell.m */; };
 		2C98B14D23404CF900E2C700 /* VENColorStyleSettingsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C98B14B23404CF900E2C700 /* VENColorStyleSettingsTableViewCell.xib */; };
@@ -1002,6 +1004,9 @@
 		2C8EED4F23B617BF000EF302 /* VENChooseCategoryViewTwo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VENChooseCategoryViewTwo.m; sourceTree = "<group>"; };
 		2C90218B23EAC25200BFE397 /* VENExcellentCourseDetailsCheckMaterialPageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VENExcellentCourseDetailsCheckMaterialPageViewController.h; sourceTree = "<group>"; };
 		2C90218C23EAC25200BFE397 /* VENExcellentCourseDetailsCheckMaterialPageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VENExcellentCourseDetailsCheckMaterialPageViewController.m; sourceTree = "<group>"; };
+		2C90218F23EB07C700BFE397 /* VENMaterialDetailPagePopupView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VENMaterialDetailPagePopupView.h; sourceTree = "<group>"; };
+		2C90219023EB07C700BFE397 /* VENMaterialDetailPagePopupView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VENMaterialDetailPagePopupView.m; sourceTree = "<group>"; };
+		2C90219223EB07D500BFE397 /* VENMaterialDetailPagePopupView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VENMaterialDetailPagePopupView.xib; sourceTree = "<group>"; };
 		2C98B1432340480400E2C700 /* VENStyleSettingsController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VENStyleSettingsController.h; sourceTree = "<group>"; };
 		2C98B1442340480400E2C700 /* VENStyleSettingsController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VENStyleSettingsController.m; sourceTree = "<group>"; };
 		2C98B14923404CF900E2C700 /* VENColorStyleSettingsTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VENColorStyleSettingsTableViewCell.h; sourceTree = "<group>"; };
@@ -2273,6 +2278,7 @@
 		2C270E1B23E9CD6100C4A184 /* Other */ = {
 			isa = PBXGroup;
 			children = (
+				2C90218E23EB075F00BFE397 /* PopupView */,
 				2C90218A23EAC21C00BFE397 /* CheckMaterial */,
 				2CE8E6312398AD860048977F /* ArticleCorrection */,
 				2CFF8AFC232A450C009AD211 /* StartDictation */,
@@ -3295,6 +3301,16 @@
 			path = CheckMaterial;
 			sourceTree = "<group>";
 		};
+		2C90218E23EB075F00BFE397 /* PopupView */ = {
+			isa = PBXGroup;
+			children = (
+				2C90218F23EB07C700BFE397 /* VENMaterialDetailPagePopupView.h */,
+				2C90219023EB07C700BFE397 /* VENMaterialDetailPagePopupView.m */,
+				2C90219223EB07D500BFE397 /* VENMaterialDetailPagePopupView.xib */,
+			);
+			path = PopupView;
+			sourceTree = "<group>";
+		};
 		2C98B14623404C5D00E2C700 /* StyleSettings */ = {
 			isa = PBXGroup;
 			children = (
@@ -4190,6 +4206,7 @@
 			files = (
 				2C11BFB623E179C7004291E1 /* VENMyTranslationDetailsTableViewCell.xib in Resources */,
 				2C11BFBC23E19D96004291E1 /* VENMySubtitleDetailsViewController.xib in Resources */,
+				2C90219323EB07D500BFE397 /* VENMaterialDetailPagePopupView.xib in Resources */,
 				2C68466523E02F3400B16568 /* VENMyReadingDetailsViewController.xib in Resources */,
 				2C9C8E6F23A099470070C42C /* WechatIMG240.png in Resources */,
 				2C0F87CE23165EA7003E9DB3 /* VENSettingFeedbackViewController.xib in Resources */,
@@ -4559,6 +4576,7 @@
 				2C699E50231927DD00BA8810 /* VENDynamicCirclePageListTableViewCell.m in Sources */,
 				2CDD578B231F601F00F64D57 /* VENDynamicCirclePageReleaseDynamicViewController.m in Sources */,
 				2C9C8E8523A102B50070C42C /* VENMinePageMyNewWordBookCategoryManagementViewController.m in Sources */,
+				2C90219123EB07C700BFE397 /* VENMaterialDetailPagePopupView.m in Sources */,
 				2CC9B9D623E732FB00DB9B20 /* VENTempDataManager.m in Sources */,
 				2C3B46B223A737B700135F7C /* VENMaterialDetailsTranslationPageOtherTranslationViewController.m in Sources */,
 				2C123B4D2378F03F00F2B1A3 /* VENSettingPersonalInformationModel.m in Sources */,

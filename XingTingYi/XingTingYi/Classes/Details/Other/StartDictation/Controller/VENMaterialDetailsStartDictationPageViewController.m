@@ -474,8 +474,8 @@
         [self.timer invalidate];
         self.timer = nil;
         
-        [self.labelPickerViewOne removeFromSuperview];
-        self.labelPickerViewOne = nil;
+//        [self.labelPickerViewOne removeFromSuperview];
+//        self.labelPickerViewOne = nil;
         
         if (self.isPersonalMaterial) {
             [[NSNotificationCenter defaultCenter] postNotificationName:@"RefreshPersonalMaterialDetailPage" object:nil userInfo:@{@"url" : self.videoURL}];

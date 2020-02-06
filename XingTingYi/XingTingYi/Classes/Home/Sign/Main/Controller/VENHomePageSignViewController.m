@@ -109,7 +109,7 @@ static NSString *const cellIdentifier2 = @"cellIdentifier2";
         
         cell.numberButton.backgroundColor = UIColorFromRGB(0xF8F8F8);
         cell.numberButton.userInteractionEnabled = NO;
-        cell.signLabel.hidden = YES;
+        cell.signLabel.text = @"";
         
         for (VENHomePageSignModel *model in self.selectedDataMuArr) {
             if ([model.formatTime isEqualToString:date]) {
@@ -117,7 +117,7 @@ static NSString *const cellIdentifier2 = @"cellIdentifier2";
                 cell.numberButton.userInteractionEnabled = YES;
                 
                 if ([model.status integerValue] == 2) {
-                    cell.signLabel.hidden = NO;
+                    cell.signLabel.text = @"已学习";
                 }
             }
         }
