@@ -104,9 +104,9 @@
     UITextField *textField = notification.object;
     
     if (textField.tag == 998) { // 手机号
-        self.is11 = textField.text.length == 11 ? YES : NO;
+        self.is11 = textField.text.length > 0 ? YES : NO;
     } else if (textField.tag == 997) { // 验证码
-        self.is6 = textField.text.length == 6 ? YES : NO;
+        self.is6 = textField.text.length > 0 ? YES : NO;
     }
     
     if (self.is11 && self.is6) {

@@ -162,9 +162,9 @@
     UITextField *textField = notification.object;
     
     if (textField.tag == 994) { // 手机号
-        self.is11 = textField.text.length == 11 ? YES : NO;
+        self.is11 = textField.text.length > 0 ? YES : NO;
     } else if (textField.tag == 993) { // 密码
-        if (textField.text.length >= 9 && textField.text.length <= 16) {
+        if (textField.text.length > 0) {
             self.is916 = YES;
         } else {
             self.is916 = NO;

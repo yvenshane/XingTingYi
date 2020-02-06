@@ -213,7 +213,7 @@
 
 #pragma mark - 快进
 - (void)forwardButtonClick {
-    CGFloat willPlayTime = [self.audioPlayer currentTime] + 10;
+    CGFloat willPlayTime = [self.audioPlayer currentTime] + 3;
     
     if (self.isLoop) {
         // 快进时间 > 循环开始时间 = 循环开始时间
@@ -232,7 +232,7 @@
 
 #pragma mark - 快退
 - (void)retreatButtonClick {
-    CGFloat willPlayTime = [self.audioPlayer currentTime] - 10;
+    CGFloat willPlayTime = [self.audioPlayer currentTime] - 3;
     
     if (self.isLoop) {
         // 快退时间 < 循环结束时间 = 循环结束时间

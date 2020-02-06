@@ -158,7 +158,7 @@ static NSString *const cellIdentifier = @"cellIdentifier";
     });
     
     if ([VENEmptyClass isEmptyString:self.sort_id]) {
-        return;
+        self.sort_id = @"";
     }
     
     NSMutableArray *tempMuArr = [NSMutableArray arrayWithArray:self.pictureMuArr];

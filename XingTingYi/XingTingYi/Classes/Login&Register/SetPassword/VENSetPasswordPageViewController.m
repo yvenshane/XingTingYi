@@ -88,13 +88,13 @@
     UITextField *textField = notification.object;
     
     if (textField.tag == 996) { // 密码
-        if (textField.text.length >= 9 && textField.text.length <= 16) {
+        if (textField.text.length > 0) {
             self.is916 = YES;
         } else {
             self.is916 = NO;
         }
     } else if (textField.tag == 995) { // 重复密码
-        if (textField.text.length >= 9 && textField.text.length <= 16) {
+        if (textField.text.length > 0) {
             self.is9162 = YES;
         } else {
             self.is9162 = NO;

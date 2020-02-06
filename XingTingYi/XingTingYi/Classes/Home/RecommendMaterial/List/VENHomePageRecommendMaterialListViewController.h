@@ -11,8 +11,11 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef void (^cellDidSelectBlock)(NSString *);
 @interface VENHomePageRecommendMaterialListViewController : VENBaseViewController <JXCategoryListContentViewDelegate>
 @property (nonatomic, copy) NSString *type;
+
+@property (nonatomic, copy) cellDidSelectBlock cellDidSelectBlock;
 
 @end
 

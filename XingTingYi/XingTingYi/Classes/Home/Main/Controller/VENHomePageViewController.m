@@ -16,6 +16,7 @@
 #import "VENHomePageModel.h"
 #import "VENBaseWebViewController.h"
 #import "VENHomePageSignViewController.h"
+#import "VENMaterialDetailPageViewController.h"
 
 @interface VENHomePageViewController ()
 @property (nonatomic, strong) VENHomePageModel *model;
@@ -122,7 +123,49 @@ static NSString *const cellIdentifier3 = @"cellIdentifier3";
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+    VENHomePageModel *model;
+    if (indexPath.section == 1) {
+        model = [VENHomePageModel yy_modelWithJSON:self.model.news[indexPath.row]];
+        
+        [[VENNetworkingManager shareManager] requestWithType:HttpRequestTypePOST urlString:@"base/newsInfo" parameters:@{@"id" : model.id} successBlock:^(id responseObject) {
+            
+            UIView *headerView = [[UIView alloc] init];
+            
+            UILabel *titleLabel = [[UILabel alloc] init];
+            titleLabel.text = responseObject[@"content"][@"title"];
+            titleLabel.textColor = UIColorFromRGB(0x222222);
+            titleLabel.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:20.0f];
+            CGFloat width = kMainScreenWidth - 40;
+            CGFloat height = [titleLabel sizeThatFits:CGSizeMake(width, CGFLOAT_MAX)].height;
+            titleLabel.frame = CGRectMake(20, 5, width, height);
+            [headerView addSubview:titleLabel];
+            
+            UILabel *dateLabel = [[UILabel alloc] init];
+            dateLabel.text = responseObject[@"content"][@"created_at"];
+            dateLabel.textColor = UIColorFromRGB(0x999999);
+            dateLabel.font = [UIFont systemFontOfSize:13.0f];
+            CGFloat height2 = [dateLabel sizeThatFits:CGSizeMake(width, CGFLOAT_MAX)].height;
+            dateLabel.frame = CGRectMake(20, 5 + height + 10, width, height2);
+            [headerView addSubview:dateLabel];
+            
+            VENBaseWebViewController *vc = [[VENBaseWebViewController alloc] init];
+            vc.headerView = headerView;
+            vc.headerViewHeight = 5 + height + 10 + height2 + 20;
+            vc.HTMLString = responseObject[@"content"][@"content"];
+            vc.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:vc animated:YES];
+            
+        } failureBlock:^(NSError *error) {
+            
+        }];
+    } else {
+        model = [VENHomePageModel yy_modelWithJSON:self.model.source[indexPath.row]];
+        
+        VENMaterialDetailPageViewController *vc = [[VENMaterialDetailPageViewController alloc] init];
+        vc.id = model.id;
+        vc.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {

@@ -67,7 +67,11 @@ static NSString *const cellIdentifier = @"cellIdentifier";
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    VENHomePageModel *model = self.dataSourceMuArr[indexPath.row];
     
+    if (self.cellDidSelectBlock) {
+        self.cellDidSelectBlock(model.id);
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {

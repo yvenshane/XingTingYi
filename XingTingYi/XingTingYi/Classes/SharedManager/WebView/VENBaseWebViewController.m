@@ -72,8 +72,7 @@ static NSString *const cellIdentifier = @"cellIdentifier";
 #pragma mark - TableView
 - (UITableView *)tableView {
     if (!_tableView) {
-        CGFloat y = self.isPresent ? 0 : kStatusBarAndNavigationBarHeight;
-        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, y, kMainScreenWidth, kMainScreenHeight - kStatusBarHeight) style:UITableViewStyleGrouped];
+        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, kMainScreenWidth, kMainScreenHeight - kStatusBarHeight) style:UITableViewStyleGrouped];
         _tableView.backgroundColor = [UIColor whiteColor];
         _tableView.delegate = self;
 //        _tableView.dataSource = self;

@@ -11,6 +11,7 @@
 #import "JXCategoryIndicatorLineView.h"
 #import "JXCategoryListContainerView.h"
 #import "VENHomePageRecommendMaterialListViewController.h"
+#import "VENMaterialDetailPageViewController.h"
 
 @interface VENHomePageRecommendMaterialViewController () <JXCategoryViewDelegate, JXCategoryListContainerViewDelegate>
 @property (nonatomic, strong) JXCategoryListContainerView *listContainerView;
@@ -98,6 +99,11 @@
     
     VENHomePageRecommendMaterialListViewController *vc = [[VENHomePageRecommendMaterialListViewController alloc] init];
     vc.type = self.idsArr[index];
+    vc.cellDidSelectBlock = ^(NSString *id) {
+        VENMaterialDetailPageViewController *vc = [[VENMaterialDetailPageViewController alloc] init];
+        vc.id = id;
+        [self.navigationController pushViewController:vc animated:YES];
+    };
     return vc;
 }
 
