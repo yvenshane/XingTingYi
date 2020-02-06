@@ -221,7 +221,7 @@
         // 查看字幕详情
         [self.subtitleButton addTarget:self action:@selector(subtitleButtonClick) forControlEvents:UIControlEventTouchUpInside];
         
-        viewHeight += 20 + height + 44;
+        viewHeight += 20 + height + 44 + 20;
     }
     
     viewHeight += self.isPersonalMaterial ? 0 : 30;

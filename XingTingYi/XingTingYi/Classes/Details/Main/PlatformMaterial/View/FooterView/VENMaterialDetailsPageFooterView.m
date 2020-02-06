@@ -18,6 +18,16 @@
 
 @implementation VENMaterialDetailsPageFooterView
 
+- (void)drawRect:(CGRect)rect {
+    // Drawing code
+    
+    self.categoryLeftButton.tag = 998;
+    self.categoryRightButton.tag = 999;
+
+    [self.categoryLeftButton addTarget:self action:@selector(categoryButtonClick:) forControlEvents:UIControlEventTouchUpInside];
+    [self.categoryRightButton addTarget:self action:@selector(categoryButtonClick:) forControlEvents:UIControlEventTouchUpInside];
+}
+
 - (CGFloat)getHeightFromData:(NSDictionary *)data {
     self.infoModel = [VENMaterialDetailsPageModel yy_modelWithJSON:data[@"info"]];
     NSArray *avInfoArr = [NSArray yy_modelArrayWithClass:[VENMaterialDetailsPageModel class] json:data[@"avInfo"]];
@@ -97,12 +107,6 @@
             }
         }
     }
-    
-    self.categoryLeftButton.tag = 998;
-    self.categoryRightButton.tag = 999;
-    
-    [self.categoryLeftButton addTarget:self action:@selector(categoryButtonClick:) forControlEvents:UIControlEventTouchUpInside];
-    [self.categoryRightButton addTarget:self action:@selector(categoryButtonClick:) forControlEvents:UIControlEventTouchUpInside];
     
     return viewHeight;
 }

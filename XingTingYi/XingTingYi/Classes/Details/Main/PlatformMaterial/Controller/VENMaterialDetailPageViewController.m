@@ -508,6 +508,7 @@ static NSString *const cellIdentifier2 = @"cellIdentifier2";
     VENMaterialDetailsPageFooterView *footerView = [[NSBundle mainBundle] loadNibNamed:@"VENMaterialDetailsPageFooterView" owner:nil options:nil].lastObject;
     CGFloat footerViewHeight = [footerView getHeightFromData:self.contentDict];
     self.footerViewHeightLayoutConstraint.constant = footerViewHeight;
+    [self.footerView addSubview:footerView];
     
     __weak typeof(self) weakSelf = self;
     footerView.categoryButtonBlock = ^(NSInteger tag, BOOL isShowAudioView) {
@@ -553,7 +554,9 @@ static NSString *const cellIdentifier2 = @"cellIdentifier2";
         }
     };
     
-    [self.footerView addSubview:footerView];
+    CGRect frame = footerView.frame;
+    frame.size.width = kMainScreenWidth;
+    footerView.frame = frame;
 }
 
 #pragma mark - MyDictationView
@@ -571,15 +574,16 @@ static NSString *const cellIdentifier2 = @"cellIdentifier2";
         NSAttributedString *attributedString = [[NSAttributedString alloc] initWithData:[avInfoModel.dictationInfo[@"content"] dataUsingEncoding:NSUnicodeStringEncoding] options:@{NSDocumentTypeDocumentAttribute : NSHTMLTextDocumentType} documentAttributes:nil error:nil];
         myDictationView.contentLabel.attributedText = attributedString;
         
+        CGFloat height2 = [myDictationView.contentLabel sizeThatFits:CGSizeMake(kMainScreenWidth - 35 * 2, CGFLOAT_MAX)].height;
+        myDictationView.frame = CGRectMake(0, 0, kMainScreenWidth, 135 + height2);
+        self.myDictationViewHeightLayoutConstraint.constant = 135 + height2;
+        
         __weak typeof(self) weakSelf = self;
         myDictationView.myDictationViewBlock = ^(CGFloat height) {
             weakSelf.myDictationViewHeightLayoutConstraint.constant = 135 + height;
         };
-        [self.myDictationView addSubview:myDictationView];
         
-        CGFloat height = [myDictationView.contentLabel sizeThatFits:CGSizeMake(kMainScreenWidth - 35 * 2, CGFLOAT_MAX)].height;
-        myDictationView.frame = CGRectMake(0, 0, kMainScreenWidth, 135 + height);
-        self.myDictationViewHeightLayoutConstraint.constant = 135 + height;
+        [self.myDictationView addSubview:myDictationView];
     }
 }
 
@@ -638,7 +642,8 @@ static NSString *const cellIdentifier2 = @"cellIdentifier2";
 #pragma mark - headerView
 - (void)setupHeaderView {
     VENMaterialDetailsPageHeaderView *headerView = [[NSBundle mainBundle] loadNibNamed:@"VENMaterialDetailsPageHeaderView" owner:nil options:nil].lastObject;
-    self.headerViewHeightLayoutConstraint.constant = [headerView getHeightFromData:self.contentDict];
+    CGFloat headerViewHeight = [headerView getHeightFromData:self.contentDict];
+    self.headerViewHeightLayoutConstraint.constant = headerViewHeight;
     [self.headerView addSubview:headerView];
     
     headerView.contentButtonBlock = ^{
@@ -676,6 +681,10 @@ static NSString *const cellIdentifier2 = @"cellIdentifier2";
     headerView.popupViewBlock = ^(NSString *content) {
         self.popupView.contentLabel.text = content;
     };
+    
+    CGRect frame = headerView.frame;
+    frame.size.width = kMainScreenWidth;
+    headerView.frame = frame;
 }
 
 - (VENMaterialDetailsSubtitlesPopupView *)popupView {
