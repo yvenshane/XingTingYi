@@ -7,6 +7,7 @@
 //
 
 #import "VENMaterialDetailPagePopupView.h"
+#import <UShareUI/UShareUI.h>
 
 @implementation VENMaterialDetailPagePopupView
 
@@ -23,6 +24,8 @@
     
     self.backgroundView.layer.cornerRadius = 8.0f;
     self.backgroundView.layer.masksToBounds = YES;
+    self.logoView.layer.cornerRadius = 8.0f;
+    self.logoView.layer.masksToBounds = YES;
 }
 
 - (void)setDataDict:(NSDictionary *)dataDict {
@@ -76,6 +79,100 @@
         [self removeFromSuperview];
         
         self.closeButtonBlock();
+    }
+}
+
+- (IBAction)wxButtonClick:(id)sender {
+    [self shareImageToPlatformType:UMSocialPlatformType_WechatSession];
+}
+
+- (IBAction)wbButtonClick:(id)sender {
+//    [self shareImageToPlatformType:UMSocialPlatformType_Sina];
+    [MBProgressHUD showText:@"暂不支持"];
+}
+
+- (IBAction)qqButtonClick:(id)sender {
+    [self shareImageToPlatformType:UMSocialPlatformType_Qzone];
+}
+
+- (void)shareImageToPlatformType:(UMSocialPlatformType)platformType {
+    //创建分享消息对象
+    UMSocialMessageObject *messageObject = [UMSocialMessageObject messageObject];
+    
+    //创建图片内容对象
+    UMShareImageObject *shareObject = [[UMShareImageObject alloc] init];
+    //如果有缩略图，则设置缩略图
+    self.closeButton.hidden = YES;
+    self.logoView.hidden = NO;
+    
+    shareObject.shareImage = [self convertViewToImage:self.shareView];
+    
+    self.closeButton.hidden = NO;
+    self.logoView.hidden = YES;
+    
+    //分享消息对象设置分享内容对象
+    messageObject.shareObject = shareObject;
+    
+    //调用分享接口
+    [[UMSocialManager defaultManager] shareToPlatform:platformType messageObject:messageObject currentViewController:[self getCurrentTopVC] completion:^(id data, NSError *error) {
+        
+        if (error) {
+            NSLog(@"************Share fail with error %@*********",error);
+        }else{
+            NSLog(@"response data is %@",data);
+        }
+    }];
+}
+
+- (UIImage *)convertViewToImage:(UIView *)view {
+    CGSize size = view.bounds.size;
+    // 下面方法，第一个参数表示区域大小。第二个参数表示是否是非透明的。如果需要显示半透明效果，需要传NO，否则传YES。第三个参数就是屏幕密度了
+    UIGraphicsBeginImageContextWithOptions(size, NO, [UIScreen mainScreen].scale);
+    [view.layer renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return image;
+}
+
+#pragma mark - 获取当前屏幕显示的rootViewController
+- (UIViewController *)getCurrentTopVC {
+    UIViewController *result = nil;
+    
+    UIWindow * window = [[UIApplication sharedApplication] keyWindow];
+    if (window.windowLevel != UIWindowLevelNormal) {
+        NSArray *windows = [[UIApplication sharedApplication] windows];
+        for(UIWindow * tmpWin in windows) {
+            if (tmpWin.windowLevel == UIWindowLevelNormal) {
+                window = tmpWin;
+                break;
+            }
+        }
+    }
+    
+    UIView *frontView = [[window subviews] objectAtIndex:0];
+    id nextResponder = [frontView nextResponder];
+    
+    if ([nextResponder isKindOfClass:[UIViewController class]])
+        result = nextResponder;
+    else
+        result = window.rootViewController;
+    
+    return [self getTopViewController:result];
+}
+
+- (UIViewController *)getTopViewController:(UIViewController *)viewController {
+    if ([viewController isKindOfClass:[UITabBarController class]]) {
+        return [self getTopViewController:[(UITabBarController *)viewController selectedViewController]];
+        
+    } else if ([viewController isKindOfClass:[UINavigationController class]]) {
+        return [self getTopViewController:[(UINavigationController *)viewController topViewController]];
+        
+    } else if (viewController.presentedViewController) {
+        return [self getTopViewController:viewController.presentedViewController];
+        
+    } else {
+        return viewController;
     }
 }
 

@@ -49,15 +49,30 @@
 
 #pragma mark - 注册
 - (IBAction)commitButtonClick:(id)sender {
-    NSDictionary *parameters = @{@"mobile" : self.mobile,
-                                 @"code" : self.code,
-                                 @"password" : self.passwordTextField.text,
-                                 @"repassword" : self.confirmPasswordTextField.text};
+    NSDictionary *parameters = @{};
+    
+    if ([VENEmptyClass isEmptyString:self.platformid]) {
+        parameters = @{@"mobile" : self.mobile,
+                       @"code" : self.code,
+                       @"password" : self.passwordTextField.text,
+                       @"repassword" : self.confirmPasswordTextField.text};
+    } else {
+        parameters = @{@"mobile" : self.mobile,
+                       @"code" : self.code,
+                       @"password" : self.passwordTextField.text,
+                       @"repassword" : self.confirmPasswordTextField.text,
+                       @"platformid" : self.platformid};
+    }
+    
     NSString *urlString = @"";
     if ([self.pushType isEqualToString:@"ForgetPassword"]) {
         urlString = @"login/resetPassTwo";
     } else {
-        urlString = @"login/registerTwo";
+        if ([VENEmptyClass isEmptyString:self.platformid]) {
+            urlString = @"login/registerTwo";
+        } else {
+            urlString = @"login/completePass";
+        }
     }
     
     [[VENNetworkingManager shareManager] requestWithType:HttpRequestTypePOST urlString:urlString parameters:parameters successBlock:^(id responseObject) {

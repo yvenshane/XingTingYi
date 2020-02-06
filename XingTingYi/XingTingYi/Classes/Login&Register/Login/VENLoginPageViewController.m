@@ -9,7 +9,7 @@
 #import "VENResetPasswordViewController.h"
 #import "VENRegisterPageViewController.h"
 #import "VENBindingPhoneViewController.h"
-//#import <UMShare/UMShare.h>
+#import <UMShare/UMShare.h>
 
 @interface VENLoginPageViewController ()
 @property (weak, nonatomic) IBOutlet UIButton *loginButton;
@@ -86,86 +86,77 @@
 
 #pragma mark - QQ 登录
 - (IBAction)qqButtonClick:(id)sender {
-    //    [self getUserInfoForPlatform:UMSocialPlatformType_QQ];
+    [self getUserInfoForPlatform:UMSocialPlatformType_QQ];
 }
 
 #pragma mark - 微信登录
 - (IBAction)wechatButtonClick:(id)sender {
-//    [self getUserInfoForPlatform:UMSocialPlatformType_WechatSession];
-    VENBindingPhoneViewController *vc = [[VENBindingPhoneViewController alloc] init];
-    VENNavigationController *nav = [[VENNavigationController alloc] initWithRootViewController:vc];
-    [self presentViewController:nav animated:YES completion:nil];
+    [self getUserInfoForPlatform:UMSocialPlatformType_WechatSession];
 }
 
 #pragma mark - 谷歌登录
 - (IBAction)googleButtonClick:(id)sender {
-    
+    [MBProgressHUD showText:@"暂不支持"];
 }
 
-//- (void)getUserInfoForPlatform:(UMSocialPlatformType)platformType {
-//    [[UMSocialManager defaultManager] getUserInfoWithPlatform:platformType currentViewController:nil completion:^(id result, NSError *error) {
-//
-//
-//        UMSocialUserInfoResponse *resp = result;
-//        // 第三方登录数据(为空表示平台未提供)
-//        // 授权数据
-//        NSLog(@" uid: %@", resp.uid);
-//        NSLog(@" openid: %@", resp.openid);
-//        NSLog(@" accessToken: %@", resp.accessToken);
-//        NSLog(@" refreshToken: %@", resp.refreshToken);
-//        NSLog(@" expiration: %@", resp.expiration);
-//        NSLog(@" unionId: %@", resp.unionId);
-//        // 用户数据
-//        NSLog(@" name: %@", resp.name);
-//        NSLog(@" iconurl: %@", resp.iconurl);
-//        NSLog(@" gender: %@", resp.unionGender);
-//        // 第三方平台SDK原始数据
-//        NSLog(@" originalResponse: %@", resp.originalResponse);
-//
-//
-//        NSString *platform = @"";
-//        if (platformType == UMSocialPlatformType_WechatSession) {
-//            platform = @"Wechat";
-//        } else if (platformType == UMSocialPlatformType_QQ) {
-//            platform = @"QQ";
-//        }
-//
-//        [[VENNetworkingManager shareManager] requestWithType:HttpRequestTypePOST urlString:@"login/submitOtherLogin" parameters:@{@"platform" : platform, @"unique" : resp.uid} successBlock:^(id responseObject) {
-//
-//            if ([responseObject[@"status"] integerValue] == 205) {
-//                VENBindingPhoneViewController *vc = [[VENBindingPhoneViewController alloc] init];
-//                vc.platform = platform;
-//                vc.unique = resp.uid;
-//                vc.pushType = self.pushType;
-//                UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
-//                [self presentViewController:nav animated:YES completion:nil];
-//            } else if ([responseObject[@"status"] integerValue] == 200) {
-//
-//                [[NSUserDefaults standardUserDefaults] setObject:responseObject[@"content"] forKey:@"LOGIN"];
-//
-//                NSDictionary *dict = @{@"type" : platform,
-//                                       @"unique" : resp.uid};
-//
-//                [[NSUserDefaults standardUserDefaults] setObject:dict forKey:@"AutoLogin"];
-//                [[NSNotificationCenter defaultCenter] postNotificationName:@"Refresh_Mine_Page" object:nil];
-//
-//                if ([self.pushType isEqualToString:@"initialPage"]) {
-//                    [self.presentingViewController.presentingViewController dismissViewControllerAnimated:YES completion:nil];
-//                } else {
-//                    [self dismissViewControllerAnimated:YES completion:nil];
-//                }
-//            } else if ([responseObject[@"status"] integerValue] == 400) {
-//                VENDataViewController *vc = [[VENDataViewController alloc] init];
-//                vc.pushType = @"login";
-//                VENNavigationController *nav = [[VENNavigationController alloc] initWithRootViewController:vc];
-//                [self presentViewController:nav animated:YES completion:nil];
-//            }
-//
-//        } failureBlock:^(NSError *error) {
-//
-//        }];
-//    }];
-//}
+
+//VENBindingPhoneViewController *vc = [[VENBindingPhoneViewController alloc] init];
+//VENNavigationController *nav = [[VENNavigationController alloc] initWithRootViewController:vc];
+//[self presentViewController:nav animated:YES completion:nil];
+
+
+- (void)getUserInfoForPlatform:(UMSocialPlatformType)platformType {
+    [[UMSocialManager defaultManager] getUserInfoWithPlatform:platformType currentViewController:nil completion:^(id result, NSError *error) {
+        
+        UMSocialUserInfoResponse *resp = result;
+        // 第三方登录数据(为空表示平台未提供)
+        // 授权数据
+        NSLog(@" uid: %@", resp.uid);
+        NSLog(@" openid: %@", resp.openid);
+        NSLog(@" accessToken: %@", resp.accessToken);
+        NSLog(@" refreshToken: %@", resp.refreshToken);
+        NSLog(@" expiration: %@", resp.expiration);
+        NSLog(@" unionId: %@", resp.unionId);
+        // 用户数据
+        NSLog(@" name: %@", resp.name);
+        NSLog(@" iconurl: %@", resp.iconurl);
+        NSLog(@" gender: %@", resp.unionGender);
+        // 第三方平台SDK原始数据
+        NSLog(@" originalResponse: %@", resp.originalResponse);
+        
+        NSString *platform = @"";
+        if (platformType == UMSocialPlatformType_WechatSession) {
+            platform = @"wechat";
+        } else if (platformType == UMSocialPlatformType_QQ) {
+            platform = @"qq";
+        }
+        
+        NSDictionary *parameters = @{@"platform" : platform,
+                                     @"openid" : resp.openid,
+                                     @"unionid" : resp.unionId};
+        
+        [[VENNetworkingManager shareManager] requestWithType:HttpRequestTypePOST urlString:@"login/oauthLogin" parameters:parameters successBlock:^(id responseObject) {
+            
+            if ([responseObject[@"ret"] integerValue] == 301) {
+                VENBindingPhoneViewController *vc = [[VENBindingPhoneViewController alloc] init];
+                vc.platformid = [NSString stringWithFormat:@"%ld", [responseObject[@"content"][@"platformid"] integerValue]];
+                UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
+                [self presentViewController:nav animated:YES completion:nil];
+            } else if ([responseObject[@"ret"] integerValue] == 200) {
+                [[NSUserDefaults standardUserDefaults] setObject:@"1234" forKey:@"LOGIN"];
+                
+                [self dismissViewControllerAnimated:YES completion:nil];
+                
+                if (self.loginSuccessBlock) {
+                    self.loginSuccessBlock();
+                }
+            }
+            
+        } failureBlock:^(NSError *error) {
+            
+        }];
+    }];
+}
 
 - (void)textFieldTextDidChange:(NSNotification *)notification {
     UITextField *textField = notification.object;

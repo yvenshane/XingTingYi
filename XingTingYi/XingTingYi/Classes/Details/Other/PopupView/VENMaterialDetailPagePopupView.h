@@ -12,6 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 typedef void (^closeButtonBlock)(void);
 @interface VENMaterialDetailPagePopupView : UIView
+@property (weak, nonatomic) IBOutlet UIView *shareView;
 @property (weak, nonatomic) IBOutlet UIButton *closeButton;
 @property (weak, nonatomic) IBOutlet UILabel *signDayLabel;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
@@ -25,6 +26,7 @@ typedef void (^closeButtonBlock)(void);
 @property (weak, nonatomic) IBOutlet UIButton *wxButton;
 @property (weak, nonatomic) IBOutlet UIButton *wbButton;
 @property (weak, nonatomic) IBOutlet UIButton *qqButton;
+@property (weak, nonatomic) IBOutlet UIView *logoView;
 
 @property (weak, nonatomic) IBOutlet UIButton *backgroundButton;
 @property (weak, nonatomic) IBOutlet UIImageView *backgroundImageView;

@@ -81,6 +81,8 @@ static NSString *const url = @"https://www.yuanqilanguage.com/index.php/";
                     [[self getCurrentTopVC] presentViewController:nav animated:YES completion:nil];
                     
                     return;
+                } else if ([responseObject[@"ret"] integerValue] == 301) { // 第三方登录绑定手机号
+                    if (successBlock) successBlock(responseObject);
                 }
                 
                 if ([responseObject[@"ret"] integerValue] != 200) {

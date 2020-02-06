@@ -15,6 +15,9 @@
 @property (weak, nonatomic) IBOutlet UITextField *verificationCodeTextField;
 @property (weak, nonatomic) IBOutlet UIButton *nextStepButton;
 
+@property (nonatomic, assign) BOOL is11;
+@property (nonatomic, assign) BOOL is6;
+
 @end
 
 @implementation VENBindingPhoneViewController
@@ -36,14 +39,60 @@
     [verificationCodeButton addTarget:self action:@selector(verificationCodeButtonClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:verificationCodeButton];
     
-    [self setupWidget];
+    // UITextField 监听
+    self.phoneNumberTextField.tag = 998;
+    self.verificationCodeTextField.tag = 997;
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textFieldTextDidChange:) name:UITextFieldTextDidChangeNotification object:nil];
+    
     [self setupNavigationItemLeftBarButtonItem];
 }
 
 - (void)verificationCodeButtonClick:(VENVerificationCodeButton *)button {
-//    [[VENApiManager sharedManager] getVerificationCodeWithParameters:@{@"tel" : self.phoneNumberTextField.text} successBlock:^(id  _Nonnull responseObject) {
-//        [button countingDownWithCount:60];
-//    }];
+    NSDictionary *parameters = @{@"mobile" : self.phoneNumberTextField.text,
+                                 @"act" : @"bind"};
+    [[VENNetworkingManager shareManager] requestWithType:HttpRequestTypePOST urlString:@"login/sendcode" parameters:parameters successBlock:^(id responseObject) {
+        [button countingDownWithCount:60];
+    } failureBlock:^(NSError *error) {
+        
+    }];
+}
+
+#pragma mark - 下一步
+- (IBAction)nextStepButtonClick:(id)sender {
+    NSDictionary *parameters = @{@"platformid" : self.platformid,
+                                 @"mobile" : self.phoneNumberTextField.text,
+                                 @"code" : self.verificationCodeTextField.text};
+    
+    [[VENNetworkingManager shareManager] requestWithType:HttpRequestTypePOST urlString:@"login/bindMobile" parameters:parameters successBlock:^(id responseObject) {
+        
+        VENSetPasswordPageViewController *vc = [[VENSetPasswordPageViewController alloc] init];
+        vc.platformid = self.platformid;
+        vc.mobile = self.phoneNumberTextField.text;
+        vc.code = self.verificationCodeTextField.text;
+        VENNavigationController *nav = [[VENNavigationController alloc] initWithRootViewController:vc];
+        [self presentViewController:nav animated:YES completion:nil];
+        
+    } failureBlock:^(NSError *error) {
+        
+    }];
+}
+
+- (void)textFieldTextDidChange:(NSNotification *)notification {
+    UITextField *textField = notification.object;
+    
+    if (textField.tag == 998) { // 手机号
+        self.is11 = textField.text.length == 11 ? YES : NO;
+    } else if (textField.tag == 997) { // 验证码
+        self.is6 = textField.text.length == 6 ? YES : NO;
+    }
+    
+    if (self.is11 && self.is6) {
+        self.nextStepButton.backgroundColor = COLOR_THEME;
+        [self.nextStepButton setTitleColor:UIColorFromRGB(0x222222) forState:UIControlStateNormal];
+    } else {
+        self.nextStepButton.backgroundColor = UIColorFromRGB(0xEBEBEB);
+        [self.nextStepButton setTitleColor:UIColorFromRGB(0xB2B2B2) forState:UIControlStateNormal];
+    }
 }
 
 - (void)setupNavigationItemLeftBarButtonItem {
@@ -59,58 +108,8 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (void)setupWidget {
-//    NSString *str = @"我已阅读并同意“用户协议”和“隐私政策”";
-//    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:str];
-//    attributedString.yy_color = UIColorFromRGB(0x5E5E5E);
-//    [attributedString yy_setTextHighlightRange:[str rangeOfString:@"“用户协议”"] color:COLOR_THEME backgroundColor:UIColorMake(246, 246, 246) tapAction:^(UIView * _Nonnull containerView, NSAttributedString * _Nonnull text, NSRange range, CGRect rect) {
-//
-//    }];
-//    [attributedString yy_setTextHighlightRange:[str rangeOfString:@"“隐私政策”"] color:COLOR_THEME backgroundColor:UIColorMake(246, 246, 246) tapAction:^(UIView * _Nonnull containerView, NSAttributedString * _Nonnull text, NSRange range, CGRect rect) {
-//
-//    }];
-//
-//    YYLabel *contentLabel = [[YYLabel alloc] initWithFrame:CGRectMake(38 + 16 + 8, 495.5 - 44, kMainScreenWidth - 38 - 16 - 8 - 37, 16)];
-//    contentLabel.attributedText = attributedString;
-//    [self.view addSubview:contentLabel];
-}
-
-#pragma mark - 下一步
-- (IBAction)nextStepButtonClick:(id)sender {
-    VENSetPasswordPageViewController *vc = [[VENSetPasswordPageViewController alloc] init];
-    VENNavigationController *nav = [[VENNavigationController alloc] initWithRootViewController:vc];
-    [self presentViewController:nav animated:YES completion:nil];
-    
-    
-//    NSDictionary *parameters = @{@"tel" : self.phoneNumberTextField.text,
-//                                 @"code" : self.verificationCodeTextField.text,
-//                                 @"password" : self.newwPasswordTextField.text,
-//                                 @"passwords" : self.confirmPasswordTextField.text,
-//                                 @"platform" : self.platform,
-//                                 @"unique" : self.unique};
-//
-//    [[VENNetworkingManager shareManager] requestWithType:HttpRequestTypePOST urlString:@"login/submitComplete" parameters:parameters successBlock:^(id responseObject) {
-//
-//        if ([responseObject[@"status"] integerValue] == 200) {
-//            [[NSUserDefaults standardUserDefaults] setObject:responseObject[@"content"] forKey:@"LOGIN"];
-//
-//            NSDictionary *dict = @{@"type" : self.platform,
-//                                   @"unique" : self.unique};
-//
-//            [[NSUserDefaults standardUserDefaults] setObject:dict forKey:@"AutoLogin"];
-//
-//            if ([self.pushType isEqualToString:@"initialPage"]) {
-//                [self.presentingViewController.presentingViewController.presentingViewController dismissViewControllerAnimated:YES completion:nil];
-//            } else {
-//                [self.presentingViewController.presentingViewController dismissViewControllerAnimated:YES completion:nil];
-//            }
-//
-//            NSLog(@"%d", [[VENUserStatusManager sharedManager] isLogin]);
-//        }
-//
-//    } failureBlock:^(NSError *error) {
-//
-//    }];
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 /*
