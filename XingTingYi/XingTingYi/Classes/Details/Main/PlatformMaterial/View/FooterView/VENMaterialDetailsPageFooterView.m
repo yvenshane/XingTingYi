@@ -108,6 +108,20 @@
         }
     }
     
+    if (self.isTextInfo) {
+        self.categoryLeftLabel.textColor = UIColorFromRGB(0x999999);
+        self.categoryLeftView.hidden = YES;
+        
+        self.categoryRightLabel.textColor = UIColorFromRGB(0x222222);
+        self.categoryRightView.hidden = NO;
+    } else {
+        self.categoryLeftLabel.textColor = UIColorFromRGB(0x222222);
+        self.categoryLeftView.hidden = NO;
+        
+        self.categoryRightLabel.textColor = UIColorFromRGB(0x999999);
+        self.categoryRightView.hidden = YES;
+    }
+    
     return viewHeight;
 }
 

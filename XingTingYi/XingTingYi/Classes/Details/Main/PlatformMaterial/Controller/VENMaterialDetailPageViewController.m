@@ -92,6 +92,27 @@ static NSString *const cellIdentifier2 = @"cellIdentifier2";
         self.automaticallyAdjustsScrollViewInsets = false;
     }
     
+    // tableView
+    [self setupTableView];
+    
+    [self loadVideoMaterialDetailsPageData];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshPlatformMaterialDetailPage) name:@"RefreshPlatformMaterialDetailPage" object:nil];
+}
+
+- (void)refreshPlatformMaterialDetailPage {
+    for (UIView *subviews in self.headerView.subviews) {
+        [subviews removeFromSuperview];
+    }
+    
+    for (UIView *subviews in self.myDictationView.subviews) {
+        [subviews removeFromSuperview];
+    }
+    
+    for (UIView *subviews in self.footerView.subviews) {
+        [subviews removeFromSuperview];
+    }
+    
     [self loadVideoMaterialDetailsPageData];
 }
 
@@ -172,8 +193,8 @@ static NSString *const cellIdentifier2 = @"cellIdentifier2";
         [self setupMyDictationView];
         // footerView
         [self setupFooterView];
-        // tableView
-        [self setupTableView];
+        
+        [self.tableView reloadData];
         
     } failureBlock:^(NSError *error) {
         
@@ -371,7 +392,10 @@ static NSString *const cellIdentifier2 = @"cellIdentifier2";
 }
 
 - (void)setupBottomToolBar {
+    [[self.view viewWithTag:9000192] removeFromSuperview];
+    
     UIView *bottomToolBar = [[UIView alloc] initWithFrame:CGRectMake(0, kMainScreenHeight - 60 - (kTabBarHeight - 49), kMainScreenWidth, 60 + (kTabBarHeight - 49))];
+    bottomToolBar.tag = 9000192;
     bottomToolBar.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:bottomToolBar];
     
@@ -506,6 +530,7 @@ static NSString *const cellIdentifier2 = @"cellIdentifier2";
 #pragma mark - footerView
 - (void)setupFooterView {
     VENMaterialDetailsPageFooterView *footerView = [[NSBundle mainBundle] loadNibNamed:@"VENMaterialDetailsPageFooterView" owner:nil options:nil].lastObject;
+    footerView.isTextInfo = self.isTextInfo;
     CGFloat footerViewHeight = [footerView getHeightFromData:self.contentDict];
     self.footerViewHeightLayoutConstraint.constant = footerViewHeight;
     [self.footerView addSubview:footerView];

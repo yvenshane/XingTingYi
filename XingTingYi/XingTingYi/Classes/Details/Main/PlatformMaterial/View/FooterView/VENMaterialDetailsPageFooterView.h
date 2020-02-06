@@ -35,6 +35,8 @@ typedef void (^bottomViewButtonBlock)(NSInteger);
 @property (nonatomic, copy) categoryButtonBlock categoryButtonBlock;
 @property (nonatomic, copy) bottomViewButtonBlock bottomViewButtonBlock;
 
+@property (nonatomic, assign) BOOL isTextInfo;
+
 - (CGFloat)getHeightFromData:(NSDictionary *)data;
 
 @end

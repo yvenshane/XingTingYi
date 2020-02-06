@@ -479,6 +479,8 @@
         
         if (self.isPersonalMaterial) {
             [[NSNotificationCenter defaultCenter] postNotificationName:@"RefreshPersonalMaterialDetailPage" object:nil userInfo:@{@"url" : self.videoURL}];
+        } else {
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"RefreshPlatformMaterialDetailPage" object:nil];
         }
         
         [self.navigationController popViewControllerAnimated:YES];

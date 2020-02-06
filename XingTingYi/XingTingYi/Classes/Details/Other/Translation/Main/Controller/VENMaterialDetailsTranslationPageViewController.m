@@ -182,7 +182,7 @@
             popupView.dataDict = responseObject[@"content"][@"signInfo"];
             popupView.closeButtonBlock = ^{
                 [self.navigationController popViewControllerAnimated:YES];
-                [[NSNotificationCenter defaultCenter] postNotificationName:@"RefreshDetailPage" object:nil userInfo:nil];
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"RefreshPlatformMaterialDetailPage" object:nil userInfo:nil];
             };
             [[UIApplication sharedApplication].keyWindow addSubview:popupView];
             
