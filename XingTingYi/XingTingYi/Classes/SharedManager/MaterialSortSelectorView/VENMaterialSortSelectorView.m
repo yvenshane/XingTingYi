@@ -213,6 +213,14 @@ static NSString *const cellIdentifier2 = @"cellIdentifier2";
     self.dataSourceArr = self.sourceCategoryArr[button.tag][@"son"];
     self.category_one_id = self.sourceCategoryArr[button.tag][@"id"];
     [self.collectionView reloadData];
+    
+    if ([button.titleLabel.text isEqualToString:@"全部"]) {
+        if (self.didSelectItemBlock) {
+            self.didSelectItemBlock(@{@"category_one_id" : @"",
+                                      @"category_two_id" : @"",
+                                      @"category_three_id" : @""});
+        }
+    }
 }
 
 /*
