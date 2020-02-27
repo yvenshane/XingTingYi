@@ -62,6 +62,12 @@ static NSString *const cellIdentifier = @"cellIdentifier";
     self.audioPlayerView.audioURL = self.audioURL;
 }
 
+- (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+    
+    self.audioPlayerView.frame = CGRectMake(20, 15, kMainScreenWidth - 40, (kMainScreenWidth - 40) / (335.0 / 120.0) - 14);
+}
+
 - (void)setSubtitlesList:(NSArray *)subtitlesList {
     _subtitlesList = subtitlesList;
     
@@ -169,7 +175,6 @@ static NSString *const cellIdentifier = @"cellIdentifier";
 - (VENAudioPlayerView *)audioPlayerView {
     if (!_audioPlayerView) {
         _audioPlayerView = [[[NSBundle mainBundle] loadNibNamed:@"VENAudioPlayerView" owner:nil options:nil] firstObject];
-        _audioPlayerView.frame = CGRectMake(20, 15, kMainScreenWidth - 40, (kMainScreenWidth - 40) / (335.0 / 120.0) - 14);
         
         __weak typeof(self) weakSelf = self;
         _audioPlayerView.playProgressBlock = ^(float time) {

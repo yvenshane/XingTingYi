@@ -83,6 +83,12 @@
     [self loadMaterialDetailsMakeSubtitlesPageData];
 }
 
+- (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+    
+    self.audioPlayerView.frame = CGRectMake(20, 15, kMainScreenWidth - 40, (kMainScreenWidth - 40) / (335.0 / 120.0) - 14);
+}
+
 // 进入制作字幕
 - (void)loadMaterialDetailsMakeSubtitlesPageData {
     NSString *url = @"";
@@ -359,7 +365,6 @@
 - (VENAudioPlayerView *)audioPlayerView {
     if (!_audioPlayerView) {
         _audioPlayerView = [[[NSBundle mainBundle] loadNibNamed:@"VENAudioPlayerView" owner:nil options:nil] firstObject];
-        _audioPlayerView.frame = CGRectMake(20, 15, kMainScreenWidth - 40, (kMainScreenWidth - 40) / (335.0 / 120.0) - 14);
         
         __weak typeof(self) weakSelf = self;
         _audioPlayerView.palyButtonBlock = ^(BOOL isPlay) {
