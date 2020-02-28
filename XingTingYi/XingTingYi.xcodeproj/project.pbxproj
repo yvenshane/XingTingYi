@@ -143,6 +143,10 @@
 		2C270E2223E9CDC000C4A184 /* VENExcellentCourseDetailsPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C270E2023E9CDC000C4A184 /* VENExcellentCourseDetailsPageViewController.m */; };
 		2C270E2323E9CDC000C4A184 /* VENExcellentCourseDetailsPageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C270E2123E9CDC000C4A184 /* VENExcellentCourseDetailsPageViewController.xib */; };
 		2C2FAA99236ADD0C001227F4 /* UIViewController+DDYPresent.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C2FAA98236ADD0C001227F4 /* UIViewController+DDYPresent.m */; };
+		2C3643B72408A55000AF7C3E /* JJDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C3643B32408A55000AF7C3E /* JJDataModel.m */; };
+		2C3643B82408A55000AF7C3E /* JJOneScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C3643B42408A55000AF7C3E /* JJOneScrollView.m */; };
+		2C3643B92408A55000AF7C3E /* JJMainScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C3643B52408A55000AF7C3E /* JJMainScrollView.m */; };
+		2C3643BA2408A55000AF7C3E /* JJPhotoManeger.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C3643B62408A55000AF7C3E /* JJPhotoManeger.m */; };
 		2C3B468823A2336B00135F7C /* QNConcurrentResumeUpload.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C3B465023A2336B00135F7C /* QNConcurrentResumeUpload.m */; };
 		2C3B468923A2336B00135F7C /* QNUploadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C3B465523A2336B00135F7C /* QNUploadManager.m */; };
 		2C3B468A23A2336B00135F7C /* QNConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C3B465623A2336B00135F7C /* QNConfiguration.m */; };
@@ -711,6 +715,14 @@
 		2C270E2123E9CDC000C4A184 /* VENExcellentCourseDetailsPageViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VENExcellentCourseDetailsPageViewController.xib; sourceTree = "<group>"; };
 		2C2FAA97236ADD0C001227F4 /* UIViewController+DDYPresent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+DDYPresent.h"; sourceTree = "<group>"; };
 		2C2FAA98236ADD0C001227F4 /* UIViewController+DDYPresent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+DDYPresent.m"; sourceTree = "<group>"; };
+		2C3643AF2408A55000AF7C3E /* JJPhotoManeger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JJPhotoManeger.h; sourceTree = "<group>"; };
+		2C3643B02408A55000AF7C3E /* JJMainScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JJMainScrollView.h; sourceTree = "<group>"; };
+		2C3643B12408A55000AF7C3E /* JJOneScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JJOneScrollView.h; sourceTree = "<group>"; };
+		2C3643B22408A55000AF7C3E /* JJDataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JJDataModel.h; sourceTree = "<group>"; };
+		2C3643B32408A55000AF7C3E /* JJDataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JJDataModel.m; sourceTree = "<group>"; };
+		2C3643B42408A55000AF7C3E /* JJOneScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JJOneScrollView.m; sourceTree = "<group>"; };
+		2C3643B52408A55000AF7C3E /* JJMainScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JJMainScrollView.m; sourceTree = "<group>"; };
+		2C3643B62408A55000AF7C3E /* JJPhotoManeger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JJPhotoManeger.m; sourceTree = "<group>"; };
 		2C3B465023A2336B00135F7C /* QNConcurrentResumeUpload.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QNConcurrentResumeUpload.m; sourceTree = "<group>"; };
 		2C3B465123A2336B00135F7C /* QNResumeUpload.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QNResumeUpload.h; sourceTree = "<group>"; };
 		2C3B465223A2336B00135F7C /* QNUploadInfoReporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QNUploadInfoReporter.h; sourceTree = "<group>"; };
@@ -2039,6 +2051,7 @@
 		2C1CFF9122DC1EE300E4E9C4 /* ThirdPartyFramework */ = {
 			isa = PBXGroup;
 			children = (
+				2C3643AE2408A55000AF7C3E /* JJPhotoViewer */,
 				2C90219423EBD5BF00BFE397 /* Umeng */,
 				2C3B464E23A2336B00135F7C /* QiniuSDK */,
 				2C3D638D237BFB94001754E4 /* YYText */,
@@ -2335,6 +2348,21 @@
 				2CC9B9D723E7D26C00DB9B20 /* SubtitlesDetails */,
 			);
 			path = Other;
+			sourceTree = "<group>";
+		};
+		2C3643AE2408A55000AF7C3E /* JJPhotoViewer */ = {
+			isa = PBXGroup;
+			children = (
+				2C3643AF2408A55000AF7C3E /* JJPhotoManeger.h */,
+				2C3643B02408A55000AF7C3E /* JJMainScrollView.h */,
+				2C3643B12408A55000AF7C3E /* JJOneScrollView.h */,
+				2C3643B22408A55000AF7C3E /* JJDataModel.h */,
+				2C3643B32408A55000AF7C3E /* JJDataModel.m */,
+				2C3643B42408A55000AF7C3E /* JJOneScrollView.m */,
+				2C3643B52408A55000AF7C3E /* JJMainScrollView.m */,
+				2C3643B62408A55000AF7C3E /* JJPhotoManeger.m */,
+			);
+			path = JJPhotoViewer;
 			sourceTree = "<group>";
 		};
 		2C3B464E23A2336B00135F7C /* QiniuSDK */ = {
@@ -4594,6 +4622,7 @@
 				2C1C01C222DC1EE400E4E9C4 /* VENUserStatusManager.m in Sources */,
 				2C11BFAE23E170E2004291E1 /* VENMyTranslationDetailsViewController.m in Sources */,
 				2C1C015B22DC1EE400E4E9C4 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,
+				2C3643B82408A55000AF7C3E /* JJOneScrollView.m in Sources */,
 				2CDD629323E45A6700C09DD5 /* VENPersonalMaterialDetailPageViewController.m in Sources */,
 				2C699E2323190E9F00BA8810 /* JXCategoryIndicatorTriangleView.m in Sources */,
 				2C699E2E23190E9F00BA8810 /* JXCategoryDotView.m in Sources */,
@@ -4674,6 +4703,7 @@
 				2CBCDEB22302B8860010BD11 /* VENMyOtherPlatformMaterialViewController.m in Sources */,
 				2C1C018822DC1EE400E4E9C4 /* IQUITextFieldView+Additions.m in Sources */,
 				2C3D63D7237BFB94001754E4 /* UIView+YYText.m in Sources */,
+				2C3643B72408A55000AF7C3E /* JJDataModel.m in Sources */,
 				2C3B469623A2336B00135F7C /* QNAsyncRun.m in Sources */,
 				2C98B1452340480400E2C700 /* VENStyleSettingsController.m in Sources */,
 				2C1C013B22DC1EE400E4E9C4 /* MJRefreshComponent.m in Sources */,
@@ -4807,6 +4837,7 @@
 				2CDD577D231E083700F64D57 /* VENRegisterPageViewController.m in Sources */,
 				2C699E2D23190E9F00BA8810 /* JXCategoryDotCell.m in Sources */,
 				2CE8E62223978B7A0048977F /* VENMaterialDetailsPageFooterView.m in Sources */,
+				2C3643B92408A55000AF7C3E /* JJMainScrollView.m in Sources */,
 				2C1E2B5F232793B10080C526 /* VENMaterialFormatSelectorView.m in Sources */,
 				2C3B46A623A4D97F00135F7C /* VENMinePageMyNewWordBookTableViewCell.m in Sources */,
 				2CAF2ED923EA6DEC007C6095 /* VENExcellentCourseDetailsPageModel.m in Sources */,
@@ -4827,6 +4858,7 @@
 				2C3B46BD23A76A0C00135F7C /* VENMaterialDetailsTranslationPageOtherTranslationModel.m in Sources */,
 				2C42ACEF23BAE78900A5B57B /* VENMinePageMyTidingsViewController.m in Sources */,
 				2C817FFF22F190D200DA6F0B /* VENMaterialPagePlatformMaterialViewController.m in Sources */,
+				2C3643BA2408A55000AF7C3E /* JJPhotoManeger.m in Sources */,
 				2C9C4DD022DC797B00A67B9D /* VENHomePageTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -4961,9 +4993,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 3JRZ4BFGFJ;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 3;
+				DEVELOPMENT_TEAM = 5QWM5NGT72;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/XingTingYi/Classes/ThirdPartyFramework/umeng/umcommonlog/umcommonlog_ios_1.0.0",
@@ -4988,7 +5021,7 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.haiba.XingTingYi;
 				PRODUCT_NAME = "猩听译";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = XingTingYi_AD_HOC;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "";
 			};
@@ -4998,9 +5031,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 3JRZ4BFGFJ;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 3;
+				DEVELOPMENT_TEAM = 5QWM5NGT72;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/XingTingYi/Classes/ThirdPartyFramework/umeng/umcommonlog/umcommonlog_ios_1.0.0",
@@ -5025,7 +5059,7 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.haiba.XingTingYi;
 				PRODUCT_NAME = "猩听译";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = XingTingYi_AD_HOC;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "";
 			};

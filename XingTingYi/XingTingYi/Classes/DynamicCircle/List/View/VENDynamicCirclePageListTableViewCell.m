@@ -8,6 +8,12 @@
 
 #import "VENDynamicCirclePageListTableViewCell.h"
 #import "VENDynamicCirclePageListModel.h"
+#import "JJPhotoManeger.h"
+
+@interface VENDynamicCirclePageListTableViewCell ()
+@property (nonatomic, strong) NSMutableArray<JJDataModel *> *dataModelMuArr;
+
+@end
 
 @implementation VENDynamicCirclePageListTableViewCell
 
@@ -39,18 +45,28 @@
         [subview removeFromSuperview];
     }
     
+    [self.dataModelMuArr removeAllObjects];
+    
     if (model.images.count > 0) {
         if (model.images.count == 1) {
             CGFloat maxWidth = kMainScreenWidth - 66 - 20;
             
             UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, maxWidth, maxWidth)];
+            button.tag = 0;
             [button sd_setImageWithURL:[NSURL URLWithString:model.images[0]] forState:UIControlStateNormal];
             button.imageView.contentMode = UIViewContentModeScaleAspectFill;
             button.contentHorizontalAlignment = UIControlContentHorizontalAlignmentFill;
             button.contentVerticalAlignment = UIControlContentVerticalAlignmentFill;
+            [button addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
             [self.pictureView addSubview:button];
             
             self.pictureHeightLayoutConstraint.constant = maxWidth;
+            
+            JJDataModel *dataModel = [JJDataModel alloc];
+            dataModel.containerView = button;
+//            dataModel.holdImg = [UIImage imageNamed:@""];
+            dataModel.imgUrl = model.images[0];
+            [self.dataModelMuArr addObject:dataModel];
             
             // 方法2 适配图片高宽
 //            __weak typeof(self) weakSelf = self;
@@ -96,18 +112,42 @@
                 }
                 
                 UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(i % 3 * maxWidth + i % 3 * 5, y, maxWidth, maxWidth)];
+                button.tag = i;
                 [button sd_setImageWithURL:[NSURL URLWithString:model.images[i]] forState:UIControlStateNormal];
                 button.imageView.contentMode = UIViewContentModeScaleAspectFill;
                 button.contentHorizontalAlignment = UIControlContentHorizontalAlignmentFill;
                 button.contentVerticalAlignment = UIControlContentVerticalAlignmentFill;
+                [button addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
                 [self.pictureView addSubview:button];
                 
                 self.pictureHeightLayoutConstraint.constant = y + maxWidth + 5;
+                
+                JJDataModel *dataModel = [JJDataModel alloc];
+                dataModel.containerView = button;
+//                dataModel.holdImg = [UIImage imageNamed:@""];
+                dataModel.imgUrl = model.images[i];
+                [self.dataModelMuArr addObject:dataModel];
             }
         }
     } else {
         self.pictureHeightLayoutConstraint.constant = 0;
     }
+}
+
+- (void)buttonClick:(UIButton *)button { 
+    JJPhotoManeger *maneger = [[JJPhotoManeger alloc]init];
+    maneger.exitComplate = ^(NSInteger lastSelectIndex) {
+        NSLog(@"%zd",lastSelectIndex);
+    };
+    
+    [maneger showPhotoViewerModels:self.dataModelMuArr selectView:button];
+}
+
+- (NSMutableArray<JJDataModel *> *)dataModelMuArr {
+    if (!_dataModelMuArr) {
+        _dataModelMuArr = [NSMutableArray array];
+    }
+    return _dataModelMuArr;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
