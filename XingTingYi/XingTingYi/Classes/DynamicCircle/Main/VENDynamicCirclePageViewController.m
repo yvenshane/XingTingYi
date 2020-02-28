@@ -46,9 +46,12 @@
     __weak typeof(self) weakSelf = self;
     [[VENNetworkingManager shareManager] requestWithType:HttpRequestTypeGET urlString:@"circle/friendCircleSort" parameters:nil successBlock:^(id responseObject) {
         
+        [weakSelf.idsArr addObject:@"0"];
+        [weakSelf.titlesArr addObject:@"全部"];
+        
         for (NSDictionary *dict in responseObject[@"content"][@"categoryList"]) {
-            [weakSelf.idsArr addObject: dict[@"id"]];
-            [weakSelf.titlesArr addObject: dict[@"name"]];
+            [weakSelf.idsArr addObject:dict[@"id"]];
+            [weakSelf.titlesArr addObject:dict[@"name"]];
         }
         
         JXCategoryTitleView *categoryView = [[JXCategoryTitleView alloc] initWithFrame:CGRectMake(0, kStatusBarHeight, kMainScreenWidth, 44)];
