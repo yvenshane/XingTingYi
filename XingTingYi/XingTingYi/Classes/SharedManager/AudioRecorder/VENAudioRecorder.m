@@ -8,7 +8,6 @@
 
 #import "VENAudioRecorder.h"
 #import <AVFoundation/AVFoundation.h>
-#import "VENAudioPlayer.h"
 
 @interface VENAudioRecorder ()
 @property (nonatomic, strong) AVAudioRecorder *audioRecorder; // 录音器
@@ -33,7 +32,7 @@
 #pragma mark - 开始录音
 - (void)beginReadAloud {
     if (self.audioRecorder) {
-        [[VENAudioPlayer sharedAudioPlayer] stop];
+        [self.audioPlayer stop];
         [self.audioRecorder stop];
     }
     
@@ -120,13 +119,13 @@
 
 #pragma mark - 播放录音
 - (void)playReadAloudWithPath:(NSString *)path {    
-    if ([[VENAudioPlayer sharedAudioPlayer] isPlaying]) {
-        [[VENAudioPlayer sharedAudioPlayer] stop];
+    if ([self.audioPlayer isPlaying]) {
+        [self.audioPlayer stop];
     }
     
     if (path) {
-        [[VENAudioPlayer sharedAudioPlayer] playWithURL:[NSURL fileURLWithPath:path]];
-        [[VENAudioPlayer sharedAudioPlayer] play];
+        [self.audioPlayer playWithURL:[NSURL fileURLWithPath:path]];
+        [self.audioPlayer play];
     }
 }
 
@@ -156,6 +155,13 @@
     NSTimeInterval time = [date timeIntervalSince1970] * 1000;// *1000 是精确到毫秒(13位),不乘就是精确到秒(10位)
     NSString *timeString = [NSString stringWithFormat:@"%.0f", time];
     return timeString;
+}
+
+- (VENAudioPlayer *)audioPlayer {
+    if (!_audioPlayer) {
+        _audioPlayer = [[VENAudioPlayer alloc] init];
+    }
+    return _audioPlayer;
 }
 
 @end

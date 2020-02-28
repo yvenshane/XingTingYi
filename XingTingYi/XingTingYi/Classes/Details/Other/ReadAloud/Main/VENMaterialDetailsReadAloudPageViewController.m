@@ -41,6 +41,12 @@
     [self.rightButton addTarget:self action:@selector(rightButtonClick) forControlEvents:UIControlEventTouchUpInside];
 }
 
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    
+    [self.audioRecorder.audioPlayer stop];
+}
+
 - (void)loadMaterialDetailsReadAloudPageData {
     NSString *url = @"";
     

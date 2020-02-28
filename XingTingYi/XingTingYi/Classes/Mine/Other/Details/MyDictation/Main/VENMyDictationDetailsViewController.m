@@ -58,6 +58,8 @@
 @property (nonatomic, strong) NSMutableArray *avInfoNewMuArr;
 @property (nonatomic, strong) VENMaterialDetailsPageModel *infoModel;
 
+@property (nonatomic, strong) VENAudioPlayer *audioPlayer;
+
 @end
 
 static NSString *const cellIdentifier = @"cellIdentifier";
@@ -79,6 +81,18 @@ static NSString *const cellIdentifier = @"cellIdentifier";
     [self loadMyDictationDetailsPageData];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshMyOtherDetailPage:) name:@"RefreshMyOtherDetailPage" object:nil];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    
+    // 播放器
+    self.audioPlayerView.playButton.selected = YES;
+    [self.audioPlayerView playButtonClick:self.audioPlayerView.playButton];
+    // cell 播放器
+    [self.audioPlayer stop];
+    
+    [self.navigationController setNavigationBarHidden:NO animated:animated];
 }
 
 - (void)refreshMyOtherDetailPage:(NSNotification *)noti {
@@ -295,8 +309,8 @@ static NSString *const cellIdentifier = @"cellIdentifier";
     // 播放
     cell.buttonOneBlock = ^(UIButton *button) {
         if (button.selected) {
-            [[VENAudioPlayer sharedAudioPlayer] playWithURL:[NSURL URLWithString:avInfoModel.path]];
-            [[VENAudioPlayer sharedAudioPlayer] play];
+            [self.audioPlayer playWithURL:[NSURL URLWithString:avInfoModel.path]];
+            [self.audioPlayer play];
         }
     };
     
@@ -391,12 +405,12 @@ static NSString *const cellIdentifier = @"cellIdentifier";
 // 播放
 - (IBAction)playButtonClick:(id)sender {
     if (self.isPersonalMaterial) {
-        [[VENAudioPlayer sharedAudioPlayer] playWithURL:[NSURL URLWithString:self.infoModel.dictationRead[@"path"]]];
-        [[VENAudioPlayer sharedAudioPlayer] play];
+        [self.audioPlayer playWithURL:[NSURL URLWithString:self.infoModel.dictationRead[@"path"]]];
+        [self.audioPlayer play];
     } else {
         VENMaterialDetailsPageModel *model = self.avInfoOriginalArr[0];
-        [[VENAudioPlayer sharedAudioPlayer] playWithURL:[NSURL URLWithString:model.dictationRead[@"path"]]];
-        [[VENAudioPlayer sharedAudioPlayer] play];
+        [self.audioPlayer playWithURL:[NSURL URLWithString:model.dictationRead[@"path"]]];
+        [self.audioPlayer play];
     }
 }
 
@@ -545,6 +559,13 @@ static NSString *const cellIdentifier = @"cellIdentifier";
         [self.audioContentView addSubview:_audioPlayerView];
     }
     return _audioPlayerView;
+}
+
+- (VENAudioPlayer *)audioPlayer {
+    if (!_audioPlayer) {
+        _audioPlayer = [[VENAudioPlayer alloc] init];
+    }
+    return _audioPlayer;
 }
 
 - (NSMutableArray *)avInfoNewMuArr {

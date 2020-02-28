@@ -8,12 +8,10 @@
 
 #import "VENMaterialDetailsPageHeaderView.h"
 #import "VENMaterialDetailsPageModel.h"
-#import "VENAudioPlayerView.h"
 #import "VENAudioPlayer.h"
 #import "VENMaterialDetailsSubtitlesDetailsPageModel.h"
 
 @interface VENMaterialDetailsPageHeaderView ()
-@property (nonatomic, strong) VENAudioPlayerView *audioPlayerView;
 @property (nonatomic, strong) NSMutableArray *dataSourceMuArr;
 
 @end
@@ -116,7 +114,7 @@
                 self.videoViewHeightLayoutConstraint.constant = videoHeight;
                 self.audioViewTopLayoutConstraint.constant = 20.0f;
                 
-                AVPlayerLayer *playerLayer = [[VENAudioPlayer sharedAudioPlayer] playerLayer];
+                AVPlayerLayer *playerLayer = [self.audioPlayerView.audioPlayer playerLayer];
                 [self.videoView.layer addSublayer:playerLayer];
                 playerLayer.frame = CGRectMake(0, 0, kMainScreenWidth - 40, videoHeight);
                 
@@ -158,7 +156,7 @@
                 self.videoViewHeightLayoutConstraint.constant = videoHeight;
                 self.audioViewTopLayoutConstraint.constant = 20.0f;
                 
-                AVPlayerLayer *playerLayer = [[VENAudioPlayer sharedAudioPlayer] playerLayer];
+                AVPlayerLayer *playerLayer = [self.audioPlayerView.audioPlayer playerLayer];
                 [self.videoView.layer addSublayer:playerLayer];
                 playerLayer.frame = CGRectMake(0, 0, kMainScreenWidth - 40, videoHeight);
                 

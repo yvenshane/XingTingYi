@@ -38,6 +38,7 @@
 @property (nonatomic, strong) VENMaterialDetailsPageModel *infoModel;
 
 @property (nonatomic, strong) UILabel *cellLabelTwo;
+@property (nonatomic, strong) VENAudioPlayer *audioPlayer;
 
 @end
 
@@ -55,6 +56,16 @@ static NSString *const cellIdentifier = @"cellIdentifier";
     
     [self setupBottomToolBar];
     [self loadMyReadingDetailsPageData];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    
+    // 播放器
+    self.audioPlayerView.playButton.selected = YES;
+    [self.audioPlayerView playButtonClick:self.audioPlayerView.playButton];
+    // cell 播放器
+    [self.audioPlayer stop];
 }
 
 - (void)loadMyReadingDetailsPageData {
@@ -188,8 +199,8 @@ static NSString *const cellIdentifier = @"cellIdentifier";
             url = textInfoModel.read;
         }
         
-        [[VENAudioPlayer sharedAudioPlayer] playWithURL:[NSURL URLWithString:url]];
-        [[VENAudioPlayer sharedAudioPlayer] play];
+        [self.audioPlayer playWithURL:[NSURL URLWithString:url]];
+        [self.audioPlayer play];
     };
     
     return cell;
@@ -355,6 +366,13 @@ static NSString *const cellIdentifier = @"cellIdentifier";
         [self.audioContentView addSubview:_audioPlayerView];
     }
     return _audioPlayerView;
+}
+
+- (VENAudioPlayer *)audioPlayer {
+    if (!_audioPlayer) {
+        _audioPlayer = [[VENAudioPlayer alloc] init];
+    }
+    return _audioPlayer;
 }
 
 - (UILabel *)cellLabelTwo {

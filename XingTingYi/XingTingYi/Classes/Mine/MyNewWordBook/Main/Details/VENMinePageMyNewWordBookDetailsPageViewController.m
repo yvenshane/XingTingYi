@@ -29,6 +29,8 @@
 
 @property (nonatomic, strong) VENMaterialDetailsAddNewWordsEditNewWordsModel *wordsInfoModel;
 
+@property (nonatomic, strong) VENAudioPlayer *audioPlayer;
+
 @end
 
 @implementation VENMinePageMyNewWordBookDetailsPageViewController
@@ -99,8 +101,8 @@
 
 #pragma mark - 播放读音
 - (IBAction)pronunciationButtonClick:(id)sender {
-    [[VENAudioPlayer sharedAudioPlayer] playWithURL:[NSURL URLWithString:self.wordsInfoModel.path]];
-    [[VENAudioPlayer sharedAudioPlayer] play];
+    [self.audioPlayer playWithURL:[NSURL URLWithString:self.wordsInfoModel.path]];
+    [self.audioPlayer play];
 }
 
 #pragma mark - bottomBar
@@ -204,6 +206,13 @@
     vc.words_id = self.wordsInfoModel.id;
     vc.source_id = self.wordsInfoModel.sort_id;
     [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (VENAudioPlayer *)audioPlayer {
+    if (!_audioPlayer) {
+        _audioPlayer = [[VENAudioPlayer alloc] init];
+    }
+    return _audioPlayer;
 }
 
 /*

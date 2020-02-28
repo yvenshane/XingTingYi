@@ -7,11 +7,8 @@
 //
 
 #import "VENAudioPlayerView.h"
-#import "VENAudioPlayer.h"
 
 @interface VENAudioPlayerView ()
-@property (nonatomic, strong) VENAudioPlayer *audioPlayer;
-
 @property (weak, nonatomic) IBOutlet UISlider *progressBarSlider;
 @property (weak, nonatomic) IBOutlet UIButton *minTimeButton; // 00:00
 @property (weak, nonatomic) IBOutlet UILabel *maxTimeLabel; // 02:00
@@ -74,7 +71,6 @@
         return;
     }
     
-    self.audioPlayer = [VENAudioPlayer sharedAudioPlayer];
     [self.audioPlayer playWithURL:loctionAudioURL];
     
     __weak typeof(self) weakSelf = self;
@@ -122,7 +118,6 @@
         return;
     }
     
-    self.audioPlayer = [VENAudioPlayer sharedAudioPlayer];
     [self.audioPlayer playWithURL:[NSURL URLWithString:audioURL]];
     
     __weak typeof(self) weakSelf = self;
@@ -334,6 +329,13 @@
         _endTime = [self.audioPlayer durationTime];
     }
     return _endTime;
+}
+
+- (VENAudioPlayer *)audioPlayer {
+    if (!_audioPlayer) {
+        _audioPlayer = [[VENAudioPlayer alloc] init];
+    }
+    return _audioPlayer;
 }
 
 - (void)removeFromSuperview {

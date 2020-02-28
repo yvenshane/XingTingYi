@@ -39,6 +39,9 @@
 
 @property (nonatomic, strong) NSURL *videoURL;
 
+@property (nonatomic, strong) VENMaterialDetailsPageHeaderView *headerViewww;
+@property (nonatomic, strong) VENAudioPlayer *audioPlayer;
+
 @end
 
 static NSString *const cellIdentifier = @"cellIdentifier";
@@ -52,6 +55,12 @@ static NSString *const cellIdentifier = @"cellIdentifier";
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
+    
+    // 播放器
+    self.headerViewww.audioPlayerView.playButton.selected = YES;
+    [self.headerViewww.audioPlayerView playButtonClick:self.headerViewww.audioPlayerView.playButton];
+    // cell 播放器
+    [self.audioPlayer stop];
     
     [self.navigationController setNavigationBarHidden:NO animated:animated];
 }
@@ -155,8 +164,8 @@ static NSString *const cellIdentifier = @"cellIdentifier";
     
     cell.buttonOneBlock = ^(UIButton *button) {
         if (button.selected) {
-            [[VENAudioPlayer sharedAudioPlayer] playWithURL:[NSURL URLWithString:textInfoModel.readInfo[@"path"]]];
-            [[VENAudioPlayer sharedAudioPlayer] play];
+            [self.audioPlayer playWithURL:[NSURL URLWithString:textInfoModel.readInfo[@"path"]]];
+            [self.audioPlayer play];
         }
     };
     
@@ -247,6 +256,8 @@ static NSString *const cellIdentifier = @"cellIdentifier";
     headerView.videoURL = self.videoURL;
     self.headerViewHeightLayoutConstraint.constant = [headerView getHeightFromData:self.contentDict];
     [self.headerView addSubview:headerView];
+    
+    _headerViewww = headerView;
 }
 
 #pragma mark - MyDictationView
@@ -433,7 +444,6 @@ static NSString *const cellIdentifier = @"cellIdentifier";
 #pragma mark - 返回
 - (void)backButtonClick {
     [self.navigationController popViewControllerAnimated:YES];
-    [[VENAudioPlayer sharedAudioPlayer] stop];
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
@@ -463,6 +473,13 @@ static NSString *const cellIdentifier = @"cellIdentifier";
         _cellLabelThree.numberOfLines = 0;
     }
     return _cellLabelThree;
+}
+
+- (VENAudioPlayer *)audioPlayer {
+    if (!_audioPlayer) {
+        _audioPlayer = [[VENAudioPlayer alloc] init];
+    }
+    return _audioPlayer;
 }
 
 /*

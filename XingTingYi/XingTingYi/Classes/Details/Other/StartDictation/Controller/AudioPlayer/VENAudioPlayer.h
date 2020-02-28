@@ -23,7 +23,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) void (^playerEndHander)(void); // 播放完成
 @property (nonatomic, copy) void (^playerSeekToTimeHander)(void);
 
-+ (instancetype)sharedAudioPlayer;
+//+ (instancetype)sharedAudioPlayer;
 
 - (void)playWithURL:(NSURL *)url;
 - (void)play;

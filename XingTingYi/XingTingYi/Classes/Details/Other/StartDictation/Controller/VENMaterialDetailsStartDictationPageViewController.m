@@ -73,7 +73,7 @@
 - (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
     
-    [[VENAudioPlayer sharedAudioPlayer] stop];
+    [self.audioPlayerView.audioPlayer stop];
 }
 
 - (void)viewDidLoad {
@@ -127,6 +127,7 @@
     [super viewDidLayoutSubviews];
     
     self.audioPlayerView.frame = CGRectMake(20, 15, kMainScreenWidth - 40, (kMainScreenWidth - 40) / (335.0 / 120.0) - 14);
+    self.bottomToolsBarView.frame = CGRectMake(0, 0, kMainScreenWidth, 40);
 }
 
 // 进入听写数据
@@ -303,7 +304,6 @@
 - (VENBottomToolsBarView *)bottomToolsBarView {
     if (!_bottomToolsBarView) {
         _bottomToolsBarView = [[[NSBundle mainBundle] loadNibNamed:@"VENBottomToolsBarView" owner:nil options:nil] firstObject];
-        _bottomToolsBarView.frame = CGRectMake(0, 0, kMainScreenWidth, 40);
         _bottomToolsBarView.textView = self.contentTextView;
         
         [_bottomToolsBarView.playButton addTarget:self action:@selector(playButtonClick:) forControlEvents:UIControlEventTouchUpInside];

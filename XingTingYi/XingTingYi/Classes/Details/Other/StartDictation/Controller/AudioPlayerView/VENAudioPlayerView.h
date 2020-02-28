@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "VENAudioPlayer.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -24,6 +25,8 @@ typedef void (^playProgressBlock)(float);
 @property (weak, nonatomic) IBOutlet UIButton *subtitlesButton;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *subtitlesButtonWidthLayoutConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *subtitlesButtonRightLayoutConstraint;
+
+@property (nonatomic, strong) VENAudioPlayer *audioPlayer;
 
 - (void)playButtonClick:(UIButton *)button;
 - (void)forwardButtonClick;

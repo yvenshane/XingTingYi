@@ -17,6 +17,8 @@
 
 @property (nonatomic, assign) BOOL isPlayFile;
 
+@property (nonatomic, strong) VENAudioPlayer *audioPlayer;
+
 @end
 
 @implementation VENMaterialDetailsTranslationPageSearchWordAddNewWordsTableHeaderView
@@ -79,8 +81,8 @@
         if (self.isPlayFile) {
             [self.audioRecorder playReadAloudWithPath:self.path];
         } else {
-            [[VENAudioPlayer sharedAudioPlayer] playWithURL:[NSURL URLWithString:self.path]];
-            [[VENAudioPlayer sharedAudioPlayer] play];
+            [self.audioPlayer playWithURL:[NSURL URLWithString:self.path]];
+            [self.audioPlayer play];
         }
     }
 }
@@ -112,6 +114,13 @@
         _audioRecorder = [VENAudioRecorder sharedAudioRecorder];
     }
     return _audioRecorder;
+}
+
+- (VENAudioPlayer *)audioPlayer {
+    if (!_audioPlayer) {
+        _audioPlayer = [[VENAudioPlayer alloc] init];
+    }
+    return _audioPlayer;
 }
 
 /*

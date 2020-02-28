@@ -58,6 +58,9 @@
 
 @property (nonatomic, strong) VENMaterialDetailsSubtitlesPopupView *popupView;
 
+@property (nonatomic, strong) VENMaterialDetailsPageHeaderView *headerViewww;
+@property (nonatomic, strong) VENAudioPlayer *audioPlayer;
+
 @end
 
 static NSString *const cellIdentifier = @"cellIdentifier";
@@ -72,6 +75,12 @@ static NSString *const cellIdentifier2 = @"cellIdentifier2";
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
+    
+    // 播放器
+    self.headerViewww.audioPlayerView.playButton.selected = YES;
+    [self.headerViewww.audioPlayerView playButtonClick:self.headerViewww.audioPlayerView.playButton];
+    // cell 播放器
+    [self.audioPlayer stop];
     
     [self.navigationController setNavigationBarHidden:NO animated:animated];
 }
@@ -277,10 +286,11 @@ static NSString *const cellIdentifier2 = @"cellIdentifier2";
             cell.buttonOne.selected = YES;
         }
         
+        __weak typeof(self) weakSelf = self;
         cell.buttonOneBlock = ^(UIButton *button) {
             if (button.selected) {
-                [[VENAudioPlayer sharedAudioPlayer] playWithURL:[NSURL URLWithString:textInfoModel.read]];
-                [[VENAudioPlayer sharedAudioPlayer] play];
+                [weakSelf.audioPlayer playWithURL:[NSURL URLWithString:textInfoModel.read]];
+                [weakSelf.audioPlayer play];
             }
         };
         
@@ -710,6 +720,8 @@ static NSString *const cellIdentifier2 = @"cellIdentifier2";
     CGRect frame = headerView.frame;
     frame.size.width = kMainScreenWidth;
     headerView.frame = frame;
+    
+    _headerViewww = headerView;
 }
 
 - (VENMaterialDetailsSubtitlesPopupView *)popupView {
@@ -744,7 +756,6 @@ static NSString *const cellIdentifier2 = @"cellIdentifier2";
 #pragma mark - 返回
 - (void)backButtonClick {
     [self.navigationController popViewControllerAnimated:YES];
-    [[VENAudioPlayer sharedAudioPlayer] stop];
 }
 
 #pragma mark - 纠错
@@ -824,6 +835,13 @@ static NSString *const cellIdentifier2 = @"cellIdentifier2";
         _cellLabelThree.numberOfLines = 0;
     }
     return _cellLabelThree;
+}
+
+- (VENAudioPlayer *)audioPlayer {
+    if (!_audioPlayer) {
+        _audioPlayer = [[VENAudioPlayer alloc] init];
+    }
+    return _audioPlayer;
 }
 
 /*

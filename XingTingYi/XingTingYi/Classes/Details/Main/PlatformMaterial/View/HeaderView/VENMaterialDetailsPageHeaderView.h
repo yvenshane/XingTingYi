@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "VENAudioPlayerView.h"
 @class VENMaterialDetailsPageModel;
 
 NS_ASSUME_NONNULL_BEGIN
@@ -47,6 +48,7 @@ typedef void (^popupViewBlock)(NSString *);
 
 @property (nonatomic, assign) BOOL isPersonalMaterial;
 @property (nonatomic, strong) NSURL *videoURL;
+@property (nonatomic, strong) VENAudioPlayerView *audioPlayerView;
 
 - (CGFloat)getHeightFromData:(NSDictionary *)data;
 

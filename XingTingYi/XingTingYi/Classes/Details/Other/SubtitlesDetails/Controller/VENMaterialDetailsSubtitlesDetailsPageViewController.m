@@ -31,7 +31,7 @@ static NSString *const cellIdentifier = @"cellIdentifier";
 - (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
     
-    [[VENAudioPlayer sharedAudioPlayer] stop];
+    [self.audioPlayerView.audioPlayer stop];
 }
 
 - (void)viewDidLoad {

@@ -19,14 +19,14 @@
 
 @implementation VENAudioPlayer
 
-+ (instancetype)sharedAudioPlayer {
-    static id instance;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        instance = [[self alloc] init];
-    });
-    return instance;
-}
+//+ (instancetype)sharedAudioPlayer {
+//    static id instance;
+//    static dispatch_once_t onceToken;
+//    dispatch_once(&onceToken, ^{
+//        instance = [[self alloc] init];
+//    });
+//    return instance;
+//}
 
 - (instancetype)init {
     if (self = [super init]) {
@@ -36,11 +36,13 @@
     return self;
 }
 
+// 进入后台
 - (void)applicationDidEnterBackground {
     self.isEnterBackground = YES;
     self.playerLayer.player = nil;
 }
 
+// 进入前台
 - (void)applicationWillEnterForeground {
     self.isEnterBackground = YES;
     self.playerLayer.player = self.player;

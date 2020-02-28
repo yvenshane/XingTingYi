@@ -7,12 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "VENAudioPlayer.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 typedef void (^recorderEndBlock)(NSDictionary *);
 @interface VENAudioRecorder : NSObject
 @property (nonatomic, copy) recorderEndBlock recorderEndBlock;
+@property (nonatomic, strong) VENAudioPlayer *audioPlayer;
 
 + (instancetype)sharedAudioRecorder;
 
