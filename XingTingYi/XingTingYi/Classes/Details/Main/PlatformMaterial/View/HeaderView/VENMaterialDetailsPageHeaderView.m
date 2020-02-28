@@ -118,7 +118,7 @@
                 
                 AVPlayerLayer *playerLayer = [[VENAudioPlayer sharedAudioPlayer] playerLayer];
                 [self.videoView.layer addSublayer:playerLayer];
-                playerLayer.frame = CGRectMake(0, 0, CGRectGetWidth(self.videoView.frame), CGRectGetHeight(self.videoView.frame));
+                playerLayer.frame = CGRectMake(0, 0, kMainScreenWidth - 40, videoHeight);
                 
                 viewHeight += videoHeight + 20;
             }
@@ -160,7 +160,7 @@
                 
                 AVPlayerLayer *playerLayer = [[VENAudioPlayer sharedAudioPlayer] playerLayer];
                 [self.videoView.layer addSublayer:playerLayer];
-                playerLayer.frame = CGRectMake(0, 0, CGRectGetWidth(self.videoView.frame), CGRectGetHeight(self.videoView.frame));
+                playerLayer.frame = CGRectMake(0, 0, kMainScreenWidth - 40, videoHeight);
                 
                 viewHeight += videoHeight + 20;
             }
