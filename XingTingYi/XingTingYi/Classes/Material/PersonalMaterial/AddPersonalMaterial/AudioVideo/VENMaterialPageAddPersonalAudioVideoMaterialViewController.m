@@ -127,6 +127,11 @@
         return;
     }
     
+    if (!self.videoURL) {
+        [MBProgressHUD showText:@"请上传音频/视频素材"];
+        return;
+    }
+    
     NSDictionary *parameters = @{};
     if (![VENEmptyClass isEmptyString:self.name]) {
         parameters = @{@"title" : self.titleTextField.text,
