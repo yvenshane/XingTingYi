@@ -148,7 +148,12 @@
         
         if (![VENEmptyClass isEmptyString:self.infoModel.merge_audio]) {
             self.audioView.hidden = NO;
-            self.audioViewHeightLayoutConstraint.constant = (kMainScreenWidth - 40) / (335.0 / 120.0);
+            
+            CGFloat audioHeight = (kMainScreenWidth - 40) / (335.0 / 120.0);
+            if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+                audioHeight = 120;
+            }
+            self.audioViewHeightLayoutConstraint.constant = audioHeight;
             
             [self.audioPlayerView removeFromSuperview];
             

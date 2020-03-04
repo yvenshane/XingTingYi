@@ -101,6 +101,9 @@
             self.audioView.layer.masksToBounds = YES;
             
             CGFloat audioHeight = (kMainScreenWidth - 40) / (335.0 / 120.0);
+            if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+                audioHeight = 120;
+            }
             self.audioViewHeightLayoutConstraint.constant = audioHeight;
             self.audioPlayerView.frame = CGRectMake(0, 0, CGRectGetWidth(self.audioView.frame), CGRectGetHeight(self.audioView.frame));
             
@@ -130,6 +133,9 @@
             self.audioView.layer.masksToBounds = YES;
             
             CGFloat audioHeight = (kMainScreenWidth - 40) / (335.0 / 120.0);
+            if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+                audioHeight = 120;
+            }
             self.audioViewHeightLayoutConstraint.constant = audioHeight;
             self.audioPlayerView.frame = CGRectMake(0, 0, CGRectGetWidth(self.audioView.frame), CGRectGetHeight(self.audioView.frame));
             

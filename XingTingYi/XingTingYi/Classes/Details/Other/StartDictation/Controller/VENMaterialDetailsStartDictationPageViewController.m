@@ -90,7 +90,11 @@
     self.topAudioPlayerView.layer.shadowRadius = 8;
     [self.topAudioPlayerView addSubview:self.audioPlayerView];
     
-    self.topAudioPlayerViewHeightLayoutConstraint.constant = (kMainScreenWidth - 40) / (335.0 / 120.0) + 15 + 20;
+    CGFloat audioHeight = (kMainScreenWidth - 40) / (335.0 / 120.0);
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+        audioHeight = 120;
+    }
+    self.topAudioPlayerViewHeightLayoutConstraint.constant = audioHeight + 15 + 20;
     
     // 底部按钮视图
     [self.bottomView addSubview:self.bottomToolsBarView];
@@ -126,7 +130,11 @@
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
     
-    self.audioPlayerView.frame = CGRectMake(20, 15, kMainScreenWidth - 40, (kMainScreenWidth - 40) / (335.0 / 120.0) - 14);
+    CGFloat audioHeight = (kMainScreenWidth - 40) / (335.0 / 120.0);
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+        audioHeight = 120;
+    }
+    self.audioPlayerView.frame = CGRectMake(20, 15, kMainScreenWidth - 40, audioHeight);
     self.bottomToolsBarView.frame = CGRectMake(0, 0, kMainScreenWidth, 40);
 }
 

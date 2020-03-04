@@ -48,11 +48,14 @@ static NSString *const cellIdentifier = @"cellIdentifier";
     self.topAudioPlayerView.layer.shadowRadius = 8;
     [self.topAudioPlayerView addSubview:self.audioPlayerView];
 
-    CGFloat height = (kMainScreenWidth - 40) / (335.0 / 120.0) + 15 + 20;
-    self.topAudioPlayerViewHeightLayoutConstraint.constant = height;
+    CGFloat audioHeight = (kMainScreenWidth - 40) / (335.0 / 120.0);
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+        audioHeight = 120;
+    }
+    self.topAudioPlayerViewHeightLayoutConstraint.constant = audioHeight + 15 + 20;
     
     
-    self.tableView.frame = CGRectMake(0, height, kMainScreenWidth, kMainScreenHeight - kStatusBarAndNavigationBarHeight - (kTabBarHeight - 49) - height);
+    self.tableView.frame = CGRectMake(0, audioHeight, kMainScreenWidth, kMainScreenHeight - kStatusBarAndNavigationBarHeight - (kTabBarHeight - 49) - audioHeight);
     self.tableView.scrollEnabled = NO;
     self.tableView.showsVerticalScrollIndicator = NO;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -65,7 +68,11 @@ static NSString *const cellIdentifier = @"cellIdentifier";
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
     
-    self.audioPlayerView.frame = CGRectMake(20, 15, kMainScreenWidth - 40, (kMainScreenWidth - 40) / (335.0 / 120.0) - 14);
+    CGFloat audioHeight = (kMainScreenWidth - 40) / (335.0 / 120.0);
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+        audioHeight = 120;
+    }
+    self.audioPlayerView.frame = CGRectMake(20, 15, kMainScreenWidth - 40, audioHeight);
 }
 
 - (void)setSubtitlesList:(NSArray *)subtitlesList {

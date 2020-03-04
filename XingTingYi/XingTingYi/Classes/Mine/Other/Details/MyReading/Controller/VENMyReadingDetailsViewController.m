@@ -153,6 +153,9 @@ static NSString *const cellIdentifier = @"cellIdentifier";
             self.audioContentView.layer.masksToBounds = YES;
 
             CGFloat audioHeight = (kMainScreenWidth - 40) / (335.0 / 120.0);
+            if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+                audioHeight = 120;
+            }
             self.audioContentViewHeightLayoutConstraint.constant = audioHeight;
 
             self.audioPlayerView.frame = CGRectMake(0, 0, CGRectGetWidth(self.audioContentView.frame), CGRectGetHeight(self.audioContentView.frame));
