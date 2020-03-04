@@ -266,6 +266,9 @@
 }
 
 - (void)saveButtonClick {
+    
+    [self.contentTextView endEditing:YES];
+    
     NSMutableString *contentStr = [[NSMutableString alloc] initWithString:self.contentTextView.text];
     
     // 字符串转数组 元素:XXXX[00:00]
