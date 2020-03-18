@@ -52,6 +52,15 @@ static NSString *const cellIdentifier = @"cellIdentifier";
     [self loadMinePageData];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loginOutClick) name:@"Login_Out" object:nil];
+    
+    NSTimer* timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(timered:) userInfo:nil repeats:YES];
+    [[NSRunLoop currentRunLoop] addTimer:timer forMode:NSDefaultRunLoopMode];
+}
+
+- (void)timered:(NSTimer* )timer {
+    if (!self.model) {
+        [self loadMinePageData];
+    }
 }
 
 - (void)loadMinePageData {

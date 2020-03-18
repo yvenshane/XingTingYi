@@ -18,11 +18,18 @@
     // Drawing code
     
     self.contentTextView.delegate = self;
+    [self.titleButton addTarget:self action:@selector(titleButtonClick:) forControlEvents:UIControlEventTouchUpInside];
 }
 
 #pragma mark - UITextView
 - (void)textViewDidChange:(UITextView *)textView {
     self.placeholderLabel.hidden = textView.text.length > 0 ? YES : NO;
+}
+
+- (void)titleButtonClick:(UIButton *)button {
+    if (self.titleButtonClickBlock) {
+        self.titleButtonClickBlock();
+    }
 }
 
 /*

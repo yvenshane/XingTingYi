@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -80,6 +80,9 @@
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lgl-wm-EGP">
+                    <rect key="frame" x="20" y="10" width="374" height="20"/>
+                </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
@@ -88,6 +91,7 @@
                 <constraint firstItem="v58-z5-m4T" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="36n-HS-Tid"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="m0I-8M-DJ2" secondAttribute="bottom" id="3Xv-zq-Ig3"/>
                 <constraint firstItem="lt5-lR-VQ1" firstAttribute="top" secondItem="v58-z5-m4T" secondAttribute="bottom" constant="20" id="757-YY-KVE"/>
+                <constraint firstItem="Lgl-wm-EGP" firstAttribute="trailing" secondItem="v58-z5-m4T" secondAttribute="trailing" id="E3Z-bY-shp"/>
                 <constraint firstItem="T3B-Jh-asg" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="I4s-sD-cML"/>
                 <constraint firstItem="m0I-8M-DJ2" firstAttribute="top" secondItem="FA9-Lc-0nm" secondAttribute="bottom" id="LSO-Oc-jIN"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="lt5-lR-VQ1" secondAttribute="trailing" constant="20" id="NSc-kf-7wl"/>
@@ -98,6 +102,7 @@
                 <constraint firstItem="Upv-zM-fWh" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="UOZ-6K-j6O"/>
                 <constraint firstItem="5Kr-Za-oJN" firstAttribute="top" secondItem="lt5-lR-VQ1" secondAttribute="bottom" constant="28" id="VAB-MB-g7V"/>
                 <constraint firstItem="xJy-Q4-zNK" firstAttribute="top" secondItem="lt5-lR-VQ1" secondAttribute="bottom" constant="20" id="XYQ-J5-MSn"/>
+                <constraint firstItem="Lgl-wm-EGP" firstAttribute="top" secondItem="v58-z5-m4T" secondAttribute="top" id="Y6c-Q1-ebm"/>
                 <constraint firstItem="T3B-Jh-asg" firstAttribute="top" secondItem="xJy-Q4-zNK" secondAttribute="bottom" constant="20" id="YcL-eS-tle"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="aOO-tq-2gU" secondAttribute="trailing" constant="20" id="Zt1-XI-C9N"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Upv-zM-fWh" secondAttribute="trailing" constant="20" id="gMe-JG-eUg"/>
@@ -106,7 +111,9 @@
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="FA9-Lc-0nm" secondAttribute="trailing" constant="20" id="nhJ-PY-7dO"/>
                 <constraint firstItem="FA9-Lc-0nm" firstAttribute="top" secondItem="aOO-tq-2gU" secondAttribute="bottom" id="oRF-Cg-SRu"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="xJy-Q4-zNK" secondAttribute="trailing" constant="17" id="obp-iJ-l2B"/>
+                <constraint firstItem="Lgl-wm-EGP" firstAttribute="leading" secondItem="v58-z5-m4T" secondAttribute="leading" id="rtJ-3V-15Z"/>
                 <constraint firstItem="lt5-lR-VQ1" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="wBC-CQ-42X"/>
+                <constraint firstItem="Lgl-wm-EGP" firstAttribute="bottom" secondItem="v58-z5-m4T" secondAttribute="bottom" id="wdg-3x-FxK"/>
                 <constraint firstItem="m0I-8M-DJ2" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="y8C-Fv-pea"/>
                 <constraint firstItem="v58-z5-m4T" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="10" id="yXw-R0-r7v"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="T3B-Jh-asg" secondAttribute="trailing" constant="20" id="zuz-fj-6rZ"/>
@@ -118,6 +125,7 @@
                 <outlet property="otherTextField" destination="Upv-zM-fWh" id="NHg-ro-55E"/>
                 <outlet property="otherTextFieldTwo" destination="FA9-Lc-0nm" id="Gzu-Mw-4B1"/>
                 <outlet property="placeholderLabel" destination="5Kr-Za-oJN" id="5G0-Ld-7y2"/>
+                <outlet property="titleButton" destination="Lgl-wm-EGP" id="PQW-wA-QP4"/>
                 <outlet property="titleLabel" destination="v58-z5-m4T" id="1KG-hG-05E"/>
             </connections>
             <point key="canvasLocation" x="137.68115942028987" y="178.125"/>

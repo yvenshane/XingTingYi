@@ -314,7 +314,14 @@
         [formatter setDateFormat:@"mm:ss"];
     }
     
-    return [formatter stringFromDate:date];
+    // 解决播放时 显示59:59 问题
+    NSString *result = [formatter stringFromDate:date];
+    
+    if ([result isEqualToString:@"59:59"]) {
+        result = @"00:00";
+    }
+    
+    return result;
 }
 
 - (float)startTime {

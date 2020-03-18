@@ -10,12 +10,16 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef void (^titleButtonClickBlock)(void);
 @interface VENMaterialDetailsTranslationPageTableHeaderView : UIView
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UITextView *contentTextView;
 @property (weak, nonatomic) IBOutlet UILabel *placeholderLabel;
 @property (weak, nonatomic) IBOutlet UITextField *otherTextField;
 @property (weak, nonatomic) IBOutlet UITextField *otherTextFieldTwo;
+@property (weak, nonatomic) IBOutlet UIButton *titleButton;
+
+@property (nonatomic, copy) titleButtonClickBlock titleButtonClickBlock;
 
 @end
 

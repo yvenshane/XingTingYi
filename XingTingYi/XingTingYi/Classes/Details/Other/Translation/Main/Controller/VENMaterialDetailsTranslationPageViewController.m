@@ -66,6 +66,11 @@
     headerView.contentTextView.text = self.translationInfoModel.content;
     headerView.otherTextField.text = self.translationInfoModel.grammar;
     headerView.otherTextFieldTwo.text = self.translationInfoModel.words;
+    headerView.titleButtonClickBlock = ^{
+        UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
+        pasteboard.string = self.infoModel.content;
+        [MBProgressHUD showText:@"复制成功"];
+    };
     
     if ([VENEmptyClass isEmptyString:self.translationInfoModel.content]) {
         headerView.placeholderLabel.hidden = NO;

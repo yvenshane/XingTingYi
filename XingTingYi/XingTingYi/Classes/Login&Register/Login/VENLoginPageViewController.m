@@ -131,6 +131,10 @@
             platform = @"qq";
         }
         
+        if (!resp) {
+            return;
+        }
+        
         NSDictionary *parameters = @{@"platform" : platform,
                                      @"openid" : resp.openid,
                                      @"unionid" : resp.unionId};

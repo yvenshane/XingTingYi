@@ -633,7 +633,11 @@ static NSString *const cellIdentifier2 = @"cellIdentifier2";
         
     if (![VENEmptyClass isEmptyString:self.infoModel.notice] && ![VENEmptyClass isEmptyString:self.infoModel.words] && ![VENEmptyClass isEmptyString:self.infoModel.answer]) {
         // button
+        
+        [[self.categoryView viewWithTag:9889222] removeFromSuperview];
+        
         VENMaterialDetailsPageCategoryView *categoryVieww = [[VENMaterialDetailsPageCategoryView alloc] initWithFrame:CGRectMake(0, 0, kMainScreenWidth, 25)];
+        categoryVieww.tag = 9889222;
         categoryVieww.titleArr = @[@"提示词", @"生词汇总", @"标准答案"];
         __weak typeof(self) weakSelf = self;
         categoryVieww.buttonClickBlock = ^(UIButton *button) {

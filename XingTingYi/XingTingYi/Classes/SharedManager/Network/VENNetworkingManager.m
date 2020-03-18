@@ -9,7 +9,7 @@
 #import "VENLoginPageViewController.h"
 
 static id instance;
-static NSString *const url = @"https://www.yuanqilanguage.com/index.php/";
+static NSString *const url = @"https://www.xingtingyi.com/index.php/";
 @implementation VENNetworkingManager
 
 + (AFHTTPSessionManager *)shareManager {

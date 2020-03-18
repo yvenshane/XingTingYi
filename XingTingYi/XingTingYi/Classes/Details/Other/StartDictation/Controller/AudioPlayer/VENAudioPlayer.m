@@ -175,12 +175,12 @@
         return;
     }
     
-    @try {
-        [self.playerItem removeObserver:self forKeyPath:@"status" context:nil];
-    }
-    @catch (NSException *exception) {
-        NSLog(@"多次删除kvo 报错了");
-    }
+//    @try {
+//        [self.playerItem removeObserver:self forKeyPath:@"status" context:nil];
+//    }
+//    @catch (NSException *exception) {
+//        NSLog(@"多次删除kvo 报错了");
+//    }
     
     [self.player removeTimeObserver:self.playTimeObserver]; // 移除playTimeObserver
     [self.playerItem cancelPendingSeeks];

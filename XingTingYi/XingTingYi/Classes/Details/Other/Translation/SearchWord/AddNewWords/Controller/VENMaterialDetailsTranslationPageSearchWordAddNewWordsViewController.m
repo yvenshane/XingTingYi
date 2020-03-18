@@ -306,6 +306,36 @@ static NSString *const cellIdentifier = @"cellIdentifier";
         return;
     }
     
+    if ([VENEmptyClass isEmptyString:self.keyword]) {
+        [MBProgressHUD showText:@"请填写生词"];
+        return;
+    }
+    
+    if ([VENEmptyClass isEmptyString:self.sort_id]) {
+        [MBProgressHUD showText:@"请选择分类"];
+        return;
+    }
+    
+    if ([VENEmptyClass isEmptyString:self.translation]) {
+        [MBProgressHUD showText:@"请填写释义"];
+        return;
+    }
+    
+    if ([VENEmptyClass isEmptyString:self.headerView.pronunciationTextField.text]) {
+        [MBProgressHUD showText:@"请填写读音"];
+        return;
+    }
+    
+    if ([VENEmptyClass isEmptyString:self.headerView.textViewOne.text]) {
+        [MBProgressHUD showText:@"请填写例句"];
+        return;
+    }
+    
+    if ([VENEmptyClass isEmptyString:self.headerView.textViewTwo.text]) {
+        [MBProgressHUD showText:@"请填写联想"];
+        return;
+    }
+    
     [[VENNetworkingManager shareManager] requestWithType:HttpRequestTypeGET urlString:@"qiniu/createToken" parameters:nil successBlock:^(id responseObject) {
         
         NSString *token = responseObject[@"content"][@"token"];
@@ -320,7 +350,7 @@ static NSString *const cellIdentifier = @"cellIdentifier";
             
             NSDictionary *parameters = @{};
             NSString *url = @"";
-            
+
             if ([self.origin isEqualToString:@"PersonalCenter"]) {
                 parameters = @{@"source_id" : @"0",
                                @"words_id" : @"0",
