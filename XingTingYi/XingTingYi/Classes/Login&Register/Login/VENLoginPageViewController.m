@@ -59,6 +59,9 @@
 //                                @"password" : self.passwordTextField.text};
 //         [[NSUserDefaults standardUserDefaults] setObject:dict forKey:@"AutoLogin"];
 
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"LOGIN_SUCCESS_REFRESH" object:nil];
+        
         [self dismissViewControllerAnimated:YES completion:nil];
 
         if (self.loginSuccessBlock) {

@@ -4996,7 +4996,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 4;
-				DEVELOPMENT_TEAM = 3JRZ4BFGFJ;
+				DEVELOPMENT_TEAM = Y99CH2YM5T;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/XingTingYi/Classes/ThirdPartyFramework/umeng/umcommonlog/umcommonlog_ios_1.0.0",
@@ -5034,7 +5034,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 4;
-				DEVELOPMENT_TEAM = 3JRZ4BFGFJ;
+				DEVELOPMENT_TEAM = Y99CH2YM5T;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/XingTingYi/Classes/ThirdPartyFramework/umeng/umcommonlog/umcommonlog_ios_1.0.0",

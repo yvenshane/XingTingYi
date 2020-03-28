@@ -56,7 +56,8 @@
         self.contentView.layer.borderWidth = 1.0f;
         self.contentView.layer.borderColor = UIColorFromRGB(0xE8E8E8).CGColor;
         
-        self.contentLabel.text = infoModel.descriptionn;
+        NSAttributedString *attributedString = [[NSAttributedString alloc] initWithData:[infoModel.descriptionn dataUsingEncoding:NSUnicodeStringEncoding] options:@{NSDocumentTypeDocumentAttribute : NSHTMLTextDocumentType} documentAttributes:nil error:nil];
+        self.contentLabel.attributedText = attributedString;
         [self.contentButton addTarget:self action:@selector(contentButtonClick) forControlEvents:UIControlEventTouchUpInside];
         
         CGFloat height = [self.contentLabel sizeThatFits:CGSizeMake(kMainScreenWidth - 70, CGFLOAT_MAX)].height;

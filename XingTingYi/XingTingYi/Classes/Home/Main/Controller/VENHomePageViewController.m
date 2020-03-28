@@ -71,6 +71,12 @@ static NSString *const cellIdentifier3 = @"cellIdentifier3";
     [self setupTableView];
     
     [self loadHomePageData];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loginSuccessRefresh) name:@"LOGIN_SUCCESS_REFRESH" object:nil];
+}
+
+- (void)loginSuccessRefresh {
+    [self.tableView.mj_header beginRefreshing];
 }
 
 - (void)loadHomePageData {

@@ -646,11 +646,14 @@ static NSString *const cellIdentifier2 = @"cellIdentifier2";
             weakSelf.categoryContentLabel.hidden = NO;
             
             if (button.tag == 0) {
-                weakSelf.categoryContentLabel.text = weakSelf.infoModel.notice;
+                NSAttributedString *attributedString = [[NSAttributedString alloc] initWithData:[weakSelf.infoModel.notice dataUsingEncoding:NSUnicodeStringEncoding] options:@{NSDocumentTypeDocumentAttribute : NSHTMLTextDocumentType} documentAttributes:nil error:nil];
+                weakSelf.categoryContentLabel.attributedText = attributedString;
             } else if (button.tag == 1) {
-                weakSelf.categoryContentLabel.text = weakSelf.infoModel.words;
+                NSAttributedString *attributedString = [[NSAttributedString alloc] initWithData:[weakSelf.infoModel.words dataUsingEncoding:NSUnicodeStringEncoding] options:@{NSDocumentTypeDocumentAttribute : NSHTMLTextDocumentType} documentAttributes:nil error:nil];
+                weakSelf.categoryContentLabel.attributedText = attributedString;
             } else {
-                weakSelf.categoryContentLabel.text = weakSelf.infoModel.answer;
+                NSAttributedString *attributedString = [[NSAttributedString alloc] initWithData:[weakSelf.infoModel.answer dataUsingEncoding:NSUnicodeStringEncoding] options:@{NSDocumentTypeDocumentAttribute : NSHTMLTextDocumentType} documentAttributes:nil error:nil];
+                weakSelf.categoryContentLabel.attributedText = attributedString;
             }
             
             CGFloat height = [weakSelf.categoryContentLabel sizeThatFits:CGSizeMake(kMainScreenWidth - 20 * 2 - 15 * 2, CGFLOAT_MAX)].height;
@@ -672,7 +675,8 @@ static NSString *const cellIdentifier2 = @"cellIdentifier2";
         
         self.categoryViewBackgroundView.hidden = NO;
         
-        weakSelf.categoryContentLabel.text = self.infoModel.notice;
+        NSAttributedString *attributedString = [[NSAttributedString alloc] initWithData:[weakSelf.infoModel.notice dataUsingEncoding:NSUnicodeStringEncoding] options:@{NSDocumentTypeDocumentAttribute : NSHTMLTextDocumentType} documentAttributes:nil error:nil];
+        weakSelf.categoryContentLabel.attributedText = attributedString;
         CGFloat height = [weakSelf.categoryContentLabel sizeThatFits:CGSizeMake(kMainScreenWidth - 20 * 2 - 15 * 2, CGFLOAT_MAX)].height;
         weakSelf.categoryViewHeightLayoutConstraint.constant = 45 + height + 15 * 2;
     }
