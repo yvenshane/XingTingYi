@@ -970,6 +970,9 @@
 		2C699E4D231927DD00BA8810 /* VENDynamicCirclePageListTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VENDynamicCirclePageListTableViewCell.h; sourceTree = "<group>"; };
 		2C699E4E231927DD00BA8810 /* VENDynamicCirclePageListTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VENDynamicCirclePageListTableViewCell.m; sourceTree = "<group>"; };
 		2C699E4F231927DD00BA8810 /* VENDynamicCirclePageListTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VENDynamicCirclePageListTableViewCell.xib; sourceTree = "<group>"; };
+		2C6A858F2441644800D6B966 /* 猩听译.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "猩听译.entitlements"; sourceTree = "<group>"; };
+		2C6A874C2441666400D6B966 /* XingTingYi copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "XingTingYi copy-Info.plist"; path = "/Users/yven/Documents/Other/XingTingYi/XingTingYi/XingTingYi copy-Info.plist"; sourceTree = "<absolute>"; };
+		2C6A89092441666600D6B966 /* XingTingYi copy copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "XingTingYi copy copy-Info.plist"; path = "/Users/yven/Documents/Other/XingTingYi/XingTingYi/XingTingYi copy copy-Info.plist"; sourceTree = "<absolute>"; };
 		2C726A6E23A2290B0024BED7 /* VENAudioRecorder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VENAudioRecorder.h; sourceTree = "<group>"; };
 		2C726A6F23A2290B0024BED7 /* VENAudioRecorder.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VENAudioRecorder.m; sourceTree = "<group>"; };
 		2C72A45323E3FD7D0078A120 /* VENMaterialPageAddPersonalTextMaterialViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VENMaterialPageAddPersonalTextMaterialViewController.h; sourceTree = "<group>"; };
@@ -3628,6 +3631,8 @@
 				2C9D240B22D8333B00B15896 /* XingTingYi */,
 				2C9D240A22D8333B00B15896 /* Products */,
 				2C9021BA23EBD68800BFE397 /* Frameworks */,
+				2C6A874C2441666400D6B966 /* XingTingYi copy-Info.plist */,
+				2C6A89092441666600D6B966 /* XingTingYi copy copy-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
@@ -3642,6 +3647,7 @@
 		2C9D240B22D8333B00B15896 /* XingTingYi */ = {
 			isa = PBXGroup;
 			children = (
+				2C6A858F2441644800D6B966 /* 猩听译.entitlements */,
 				2C1CFF9022DC1EE300E4E9C4 /* Classes */,
 				2C9D240C22D8333B00B15896 /* AppDelegate.h */,
 				2C9D240D22D8333B00B15896 /* AppDelegate.m */,
@@ -4993,10 +4999,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "XingTingYi/猩听译.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_INJECT_BASE_ENTITLEMENTS = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
-				DEVELOPMENT_TEAM = Y99CH2YM5T;
+				CURRENT_PROJECT_VERSION = 5;
+				DEVELOPMENT_TEAM = 5QWM5NGT72;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/XingTingYi/Classes/ThirdPartyFramework/umeng/umcommonlog/umcommonlog_ios_1.0.0",
@@ -5031,10 +5039,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
-				DEVELOPMENT_TEAM = Y99CH2YM5T;
+				CODE_SIGN_ENTITLEMENTS = "XingTingYi/猩听译.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_INJECT_BASE_ENTITLEMENTS = YES;
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 5;
+				DEVELOPMENT_TEAM = 5QWM5NGT72;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/XingTingYi/Classes/ThirdPartyFramework/umeng/umcommonlog/umcommonlog_ios_1.0.0",
@@ -5059,7 +5069,7 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.haiba.XingTingYi;
 				PRODUCT_NAME = "猩听译";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = XingTingYi_Dis;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "";
 			};

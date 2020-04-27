@@ -10,11 +10,13 @@
 #import "VENRegisterPageViewController.h"
 #import "VENBindingPhoneViewController.h"
 #import <UMShare/UMShare.h>
+#import <AuthenticationServices/AuthenticationServices.h>
 
-@interface VENLoginPageViewController ()
+@interface VENLoginPageViewController () <ASAuthorizationControllerDelegate, ASAuthorizationControllerPresentationContextProviding>
 @property (weak, nonatomic) IBOutlet UIButton *loginButton;
 @property (weak, nonatomic) IBOutlet UITextField *phoneNumberTextField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
+@property (weak, nonatomic) IBOutlet UIView *appleLoginView;
 
 @property (nonatomic, assign) BOOL is11;
 @property (nonatomic, assign) BOOL is916;
@@ -42,6 +44,8 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textFieldTextDidChange:) name:UITextFieldTextDidChangeNotification object:nil];
     
     [self setupNavigationItemLeftBarButtonItem];
+    
+    [self setupAppleLogin];
 }
 
 #pragma mark - 登录
@@ -214,5 +218,101 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+#pragma mark - 苹果登录
+- (void)setupAppleLogin {
+    if (@available(iOS 13.0, *)) {
+        ASAuthorizationAppleIDButton *button = [ASAuthorizationAppleIDButton buttonWithType:ASAuthorizationAppleIDButtonTypeSignIn style:ASAuthorizationAppleIDButtonStyleWhiteOutline];
+        button.frame = CGRectMake(0, 0, kMainScreenWidth - 30 * 2, 48);
+        [button addTarget:self action:@selector(appleLoginButtonClick) forControlEvents:UIControlEventTouchUpInside];
+        [self.appleLoginView addSubview:button];
+    }
+}
+
+- (void)appleLoginButtonClick {
+    if (@available(iOS 13.0, *)) {
+        ASAuthorizationAppleIDProvider *provider = [[ASAuthorizationAppleIDProvider alloc] init];
+        ASAuthorizationAppleIDRequest *request = [provider createRequest];
+        request.requestedScopes = @[ASAuthorizationScopeFullName, ASAuthorizationScopeEmail];
+        
+        ASAuthorizationController *vc = [[ASAuthorizationController alloc] initWithAuthorizationRequests:@[request]];
+        vc.delegate = self;
+        vc.presentationContextProvider = self;
+        [vc performRequests];
+    }
+}
+
+#pragma mark - 苹果登录
+- (ASPresentationAnchor)presentationAnchorForAuthorizationController:(ASAuthorizationController *)controller API_AVAILABLE(ios(13.0)) {
+    return self.view.window;
+}
+
+- (void)authorizationController:(ASAuthorizationController *)controller didCompleteWithAuthorization:(ASAuthorization *)authorization API_AVAILABLE(ios(13.0)) {
+    if ([authorization.credential isKindOfClass:[ASAuthorizationAppleIDCredential class]]) {
+        ASAuthorizationAppleIDCredential *credential = authorization.credential;
+        
+        NSString *state = credential.state;
+        NSString *userID = credential.user;
+        NSPersonNameComponents *fullName = credential.fullName;
+        NSString *email = credential.email;
+        NSString *authorizationCode = [[NSString alloc] initWithData:credential.authorizationCode encoding:NSUTF8StringEncoding]; // refresh token
+        NSString *identityToken = [[NSString alloc] initWithData:credential.identityToken encoding:NSUTF8StringEncoding]; // access token
+        ASUserDetectionStatus realUserStatus = credential.realUserStatus;
+        
+        NSLog(@"state: %@", state);
+        NSLog(@"userID: %@", userID);
+        NSLog(@"fullName: %@", fullName);
+        NSLog(@"email: %@", email);
+        NSLog(@"authorizationCode: %@", authorizationCode);
+        NSLog(@"identityToken: %@", identityToken);
+        NSLog(@"realUserStatus: %@", @(realUserStatus));
+                
+        NSDictionary *parameters = @{@"userID" : userID,
+                                     @"identityToken" : identityToken};
+        
+        [[VENNetworkingManager shareManager] requestWithType:HttpRequestTypePOST urlString:@"base/otherIosLogin" parameters:parameters successBlock:^(id responseObject) {
+            
+            if ([responseObject[@"ret"] integerValue] == 301) {
+                VENBindingPhoneViewController *vc = [[VENBindingPhoneViewController alloc] init];
+                vc.platformid = [NSString stringWithFormat:@"%ld", [responseObject[@"content"][@"platformid"] integerValue]];
+                UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
+                [self presentViewController:nav animated:YES completion:nil];
+            } else if ([responseObject[@"ret"] integerValue] == 200) {
+                [[NSUserDefaults standardUserDefaults] setObject:@"1234" forKey:@"LOGIN"];
+                
+                [self dismissViewControllerAnimated:YES completion:nil];
+                
+                if (self.loginSuccessBlock) {
+                    self.loginSuccessBlock();
+                }
+            }
+            
+        } failureBlock:^(NSError *error) {
+            
+        }];
+    }
+}
+
+- (void)authorizationController:(ASAuthorizationController *)controller didCompleteWithError:(NSError *)error API_AVAILABLE(ios(13.0)) {
+    NSString *errorMsg = nil;
+    switch (error.code) {
+        case ASAuthorizationErrorCanceled:
+            errorMsg = @"用户取消了授权请求";
+            break;
+        case ASAuthorizationErrorFailed:
+            errorMsg = @"授权请求失败";
+            break;
+        case ASAuthorizationErrorInvalidResponse:
+            errorMsg = @"授权请求响应无效";
+            break;
+        case ASAuthorizationErrorNotHandled:
+            errorMsg = @"未能处理授权请求";
+            break;
+        case ASAuthorizationErrorUnknown:
+            errorMsg = @"授权请求失败未知原因";
+            break;
+    }
+    NSLog(@"%@", errorMsg);
+}
 
 @end
