@@ -21,6 +21,9 @@
 @property (nonatomic, assign) BOOL is11;
 @property (nonatomic, assign) BOOL is916;
 
+@property (weak, nonatomic) IBOutlet UIButton *qqButton;
+@property (weak, nonatomic) IBOutlet UIButton *wxButton;
+
 @end
 
 @implementation VENLoginPageViewController
@@ -46,6 +49,20 @@
     [self setupNavigationItemLeftBarButtonItem];
     
     [self setupAppleLogin];
+    
+    // 检测是否安装了微信
+    if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"weixin://"]]) {
+        self.wxButton.hidden = NO;
+    } else {
+        self.wxButton.hidden = YES;
+    }
+    
+    // 检测是否安装了QQ
+    if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"mqq://"]]) {
+        self.qqButton.hidden = NO;
+    } else {
+        self.qqButton.hidden = YES;
+    }
 }
 
 #pragma mark - 登录
