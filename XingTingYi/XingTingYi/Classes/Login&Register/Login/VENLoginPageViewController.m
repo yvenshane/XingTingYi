@@ -240,7 +240,7 @@
 - (void)setupAppleLogin {
     if (@available(iOS 13.0, *)) {
         ASAuthorizationAppleIDButton *button = [ASAuthorizationAppleIDButton buttonWithType:ASAuthorizationAppleIDButtonTypeSignIn style:ASAuthorizationAppleIDButtonStyleWhiteOutline];
-        button.frame = CGRectMake(0, 0, kMainScreenWidth - 30 * 2, 48);
+        button.frame = CGRectMake(0, 0, 140, 30);
         [button addTarget:self action:@selector(appleLoginButtonClick) forControlEvents:UIControlEventTouchUpInside];
         [self.appleLoginView addSubview:button];
     }
