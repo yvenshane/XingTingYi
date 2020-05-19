@@ -61,7 +61,7 @@ static NSString *const url = @"https://www.xingtingyi.com/index.php/";
     
     switch (type) {
         case HttpRequestTypePOST: {
-            [self POST:urlString parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            [self POST:urlString parameters:parameters headers:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
                 [MBProgressHUD removeLoading];
                 
                 NSLog(@"%@", responseObject);
@@ -100,7 +100,7 @@ static NSString *const url = @"https://www.xingtingyi.com/index.php/";
         }
             
         case HttpRequestTypeGET: {
-            [self GET:urlString parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            [self GET:urlString parameters:parameters headers:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
                 [MBProgressHUD removeLoading];
                 
                 NSLog(@"%@", responseObject);
@@ -152,7 +152,7 @@ static NSString *const url = @"https://www.xingtingyi.com/index.php/";
     
     NSLog(@"请求参数：%@", parameters);
     
-    [self POST:urlString parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+    [self POST:urlString parameters:parameters headers:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
         
         for (NSInteger i = 0; i < images.count; i++) {
             NSData *imageData = UIImageJPEGRepresentation([self compressImage:images[i] toByte:102400], 1);
