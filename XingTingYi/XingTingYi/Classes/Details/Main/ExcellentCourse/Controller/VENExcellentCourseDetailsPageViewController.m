@@ -39,7 +39,8 @@
         self.titleLabel.text = model.title;
         self.otherLabel.text = [NSString stringWithFormat:@"%@    已有%@人购买", model.created_at, model.buynum];
         self.priceLabel.text = [NSString stringWithFormat:@"¥%@", model.price];
-        self.contentLabel.text = model.descriptionn;
+        NSAttributedString *attributedString = [[NSAttributedString alloc] initWithData:[model.descriptionn dataUsingEncoding:NSUnicodeStringEncoding] options:@{NSDocumentTypeDocumentAttribute : NSHTMLTextDocumentType} documentAttributes:nil error:nil];
+        self.contentLabel.attributedText = attributedString;
         
         if (model.orderStatus == 2) {
             self.bottomToolsBarHeightLayoutConstraint.constant = 68.0f;

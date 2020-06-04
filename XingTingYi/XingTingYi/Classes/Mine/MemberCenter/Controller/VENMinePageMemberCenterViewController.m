@@ -202,7 +202,10 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return 386 + 80;
+    CGFloat buttonWidth = (kMainScreenWidth - 20 - 30) / 3.5;
+    CGFloat buttonHeight = buttonWidth * 80 / 90;
+    
+    return 30 + 150 + 10 + 11 + 20 + 11 + 15 + 8 + 15 + 8 + 15 + 26 + 20 + 16 + buttonHeight;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
