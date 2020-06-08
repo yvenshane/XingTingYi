@@ -11,6 +11,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef void (^moreButtonClickBlock)(void);
 @interface VENDynamicCirclePageListTableViewCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UIImageView *avatarImageView;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
@@ -23,6 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UIButton *deleteButton;
 
 @property (nonatomic, strong) VENDynamicCirclePageListModel *model;
+@property (nonatomic, copy) moreButtonClickBlock moreButtonClickBlock;
 
 @end
 

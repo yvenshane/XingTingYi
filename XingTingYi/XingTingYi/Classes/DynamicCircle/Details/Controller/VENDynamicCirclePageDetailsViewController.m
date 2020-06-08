@@ -11,6 +11,7 @@
 #import "VENDynamicCirclePageDetailsCommentTableViewCell.h"
 #import "VENDynamicCirclePageListModel.h"
 #import "VENDynamicCirclePageDetailsModel.h"
+#import "VENDynamicCirclePageReleaseDynamicViewController.h"
 
 @interface VENDynamicCirclePageDetailsViewController () <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UIButton *backgroundButton;
@@ -127,6 +128,35 @@ static NSString *const cellIdentifier = @"cellIdentifier";
             [headerView.deleteButton addTarget:self action:@selector(deleteButtonClick) forControlEvents:UIControlEventTouchUpInside];
         }
         
+        __weak typeof(self) weakSelf = self;
+        headerView.moreButtonClickBlock = ^{
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+            
+            UIAlertAction *alertAction = [UIAlertAction actionWithTitle:@"屏蔽此人" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                [weakSelf shieldWithType:@"2" andID:self.model.user_id];
+            }];
+            UIAlertAction *alertAction2 = [UIAlertAction actionWithTitle:@"屏蔽此条动态" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                [weakSelf shieldWithType:@"1" andID:self.model.id];
+            }];
+            UIAlertAction *alertAction3 = [UIAlertAction actionWithTitle:@"举报" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                VENDynamicCirclePageReleaseDynamicViewController *vc = [[VENDynamicCirclePageReleaseDynamicViewController alloc] init];
+                vc.type = @"report";
+                vc.circle_id = self.model.id;
+                vc.hidesBottomBarWhenPushed = YES;
+                [self.navigationController pushViewController:vc animated:YES];
+            }];
+            UIAlertAction *alertAction4 = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+                
+            }];
+            
+            [alert addAction:alertAction];
+            [alert addAction:alertAction2];
+            [alert addAction:alertAction3];
+            [alert addAction:alertAction4];
+            
+            [weakSelf presentViewController:alert animated:YES completion:nil];
+        };
+        
         return headerView;
     } else {
         UIView *headerView = [[UIView alloc] init];
@@ -153,6 +183,25 @@ static NSString *const cellIdentifier = @"cellIdentifier";
         
         return headerView;
     }
+}
+
+- (void)shieldWithType:(NSString *)type andID:(NSString *)idd {
+    NSDictionary *parameters = @{@"type" : type,
+                                 [type isEqualToString:@"1"] ? @"circle_id" : @"shield_id" : idd};
+    
+    __weak typeof(self) weakSelf = self;
+    [[VENNetworkingManager shareManager] requestWithType:HttpRequestTypePOST urlString:@"circle/shield" parameters:parameters successBlock:^(id responseObject) {
+        
+        [self.navigationController popViewControllerAnimated:YES];
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"RefreshMyTidingsListPage" object:nil];
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"RefreshDynamicCircleListPage" object:nil userInfo:@{@"sort_id" : weakSelf.model.id}];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"RefreshDynamicCircleListPage" object:nil userInfo:@{@"sort_id" : @"0"}];
+        
+    } failureBlock:^(NSError *error) {
+        
+    }];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView estimatedHeightForHeaderInSection:(NSInteger)section {
@@ -260,6 +309,7 @@ static NSString *const cellIdentifier = @"cellIdentifier";
             [[NSNotificationCenter defaultCenter] postNotificationName:@"RefreshMyTidingsListPage" object:nil];
             
             [[NSNotificationCenter defaultCenter] postNotificationName:@"RefreshDynamicCircleListPage" object:nil userInfo:@{@"sort_id" : self.model.id}];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"RefreshDynamicCircleListPage" object:nil userInfo:@{@"sort_id" : @"0"}];
             
         } failureBlock:^(NSError *error) {
             

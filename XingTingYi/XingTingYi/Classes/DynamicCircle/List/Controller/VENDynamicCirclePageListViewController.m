@@ -9,6 +9,7 @@
 #import "VENDynamicCirclePageListViewController.h"
 #import "VENDynamicCirclePageListTableViewCell.h"
 #import "VENDynamicCirclePageListModel.h"
+#import "VENDynamicCirclePageReleaseDynamicViewController.h"
 
 @interface VENDynamicCirclePageListViewController ()
 @property (nonatomic, assign) NSInteger page;
@@ -63,9 +64,57 @@ static NSString *const cellIdentifier = @"cellIdentifier";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     VENDynamicCirclePageListTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    cell.model = self.dataSourceMuArr[indexPath.row];
+    
+    VENDynamicCirclePageListModel *model = self.dataSourceMuArr[indexPath.row];
+    cell.model = model;
+    
+    __weak typeof(self) weakSelf = self;
+    cell.moreButtonClickBlock = ^{
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+        
+        UIAlertAction *alertAction = [UIAlertAction actionWithTitle:@"屏蔽此人" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            [weakSelf shieldWithType:@"2" andID:model.user_id];
+        }];
+        UIAlertAction *alertAction2 = [UIAlertAction actionWithTitle:@"屏蔽此条动态" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            [weakSelf shieldWithType:@"1" andID:model.id];
+        }];
+        UIAlertAction *alertAction3 = [UIAlertAction actionWithTitle:@"举报" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            VENDynamicCirclePageReleaseDynamicViewController *vc = [[VENDynamicCirclePageReleaseDynamicViewController alloc] init];
+            vc.type = @"report";
+            vc.circle_id = model.id;
+            vc.hidesBottomBarWhenPushed = YES;
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"DynamicCirclePageListPush" object:nil userInfo:@{@"vc" : vc}];
+        }];
+        UIAlertAction *alertAction4 = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+            
+        }];
+        
+        [alert addAction:alertAction];
+        [alert addAction:alertAction2];
+        [alert addAction:alertAction3];
+        [alert addAction:alertAction4];
+        
+        [weakSelf presentViewController:alert animated:YES completion:nil];
+    };
     
     return cell;
+}
+
+- (void)shieldWithType:(NSString *)type andID:(NSString *)idd {
+    NSDictionary *parameters = @{@"type" : type,
+                                 [type isEqualToString:@"1"] ? @"circle_id" : @"shield_id" : idd};
+    
+    __weak typeof(self) weakSelf = self;
+    [[VENNetworkingManager shareManager] requestWithType:HttpRequestTypePOST urlString:@"circle/shield" parameters:parameters successBlock:^(id responseObject) {
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"RefreshMyTidingsListPage" object:nil];
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"RefreshDynamicCircleListPage" object:nil userInfo:@{@"sort_id" : self.sort_id}];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"RefreshDynamicCircleListPage" object:nil userInfo:@{@"sort_id" : @"0"}];
+        
+    } failureBlock:^(NSError *error) {
+        
+    }];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {

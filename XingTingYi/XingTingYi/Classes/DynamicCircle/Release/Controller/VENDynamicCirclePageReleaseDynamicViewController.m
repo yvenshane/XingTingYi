@@ -50,7 +50,7 @@ static NSString *const cellIdentifier = @"cellIdentifier";
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    self.navigationItem.title = @"发布动态圈";
+    self.navigationItem.title = [self.type isEqualToString:@"report"] ? @"举报" : @"发布动态圈";
     
     UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, kMainScreenWidth, kMainScreenHeight - kStatusBarAndNavigationBarHeight)];
     [self.view addSubview:scrollView];
@@ -62,7 +62,7 @@ static NSString *const cellIdentifier = @"cellIdentifier";
     [scrollView addSubview:selectorButton];
     
     UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 48 / 2 - 17 / 2, kMainScreenWidth - 20 - 36, 17)];
-    titleLabel.text = @"添加分类";
+    titleLabel.text = [self.type isEqualToString:@"report"] ? @"选择举报分类" : @"添加分类";
     titleLabel.textColor = UIColorFromRGB(0x222222);
     titleLabel.font = [UIFont systemFontOfSize:14.0f];
     [selectorButton addSubview:titleLabel];
@@ -83,7 +83,7 @@ static NSString *const cellIdentifier = @"cellIdentifier";
     [scrollView addSubview:textView];
     
     UILabel *placeholderLabel = [[UILabel alloc] initWithFrame:CGRectMake(25, y + 24, kMainScreenWidth - 40, 17)];
-    placeholderLabel.text = @"有什么最新的动态快来告诉大家～";
+    placeholderLabel.text = [self.type isEqualToString:@"report"] ? @"请简述你要投诉的原因，可以添加图片作为证明" : @"有什么最新的动态快来告诉大家～";
     placeholderLabel.textColor = UIColorFromRGB(0xCCCCCC);
     placeholderLabel.font = [UIFont systemFontOfSize:15.0f];
     [scrollView addSubview:placeholderLabel];
@@ -134,14 +134,14 @@ static NSString *const cellIdentifier = @"cellIdentifier";
     
     [self.view endEditing:YES];
     
-    [[VENNetworkingManager shareManager] requestWithType:HttpRequestTypeGET urlString:@"circle/friendCircleSort" parameters:nil successBlock:^(id responseObject) {
+    [[VENNetworkingManager shareManager] requestWithType:HttpRequestTypeGET urlString:[self.type isEqualToString:@"report"] ? @"circle/complainList" : @"circle/friendCircleSort" parameters:nil successBlock:^(id responseObject) {
         
         VENListPickerView *listPickerView = [[VENListPickerView alloc] initWithFrame:CGRectMake(0, 0, kMainScreenWidth, kMainScreenHeight)];
-        listPickerView.dataSourceArr = responseObject[@"content"][@"categoryList"];
+        listPickerView.dataSourceArr = [self.type isEqualToString:@"report"] ? responseObject[@"content"][@"list"] : responseObject[@"content"][@"categoryList"];
         __weak typeof(self) weakSelf = self;
         listPickerView.listPickerViewBlock = ^(NSDictionary *dict) {
             weakSelf.titleLabel.text = dict[@"name"];
-            weakSelf.sort_id = dict[@"id"];
+            weakSelf.sort_id = [self.type isEqualToString:@"report"] ? [dict[@"id"] stringValue] : dict[@"id"];
         };
         [[UIApplication sharedApplication].keyWindow addSubview:listPickerView];
         
@@ -166,15 +166,28 @@ static NSString *const cellIdentifier = @"cellIdentifier";
         [tempMuArr removeObject:[UIImage imageNamed:@"icon_add_photo"]];
     }
     
-    NSDictionary *parameters = @{@"sort_id" : self.sort_id,
-                                 @"title" : self.textView.text};
+    NSDictionary *parameters;
     
-    [[VENNetworkingManager shareManager] uploadImageWithUrlString:@"circle/subFriendsCircle" parameters:parameters images:tempMuArr keyName:@"images" successBlock:^(id responseObject) {
+    if ([self.type isEqualToString:@"report"]) {
+        parameters = @{@"circle_id" : self.circle_id,
+                       @"sort_id" : self.sort_id,
+                       @"content" : self.textView.text};
+    } else {
+        parameters = @{@"sort_id" : self.sort_id,
+                       @"title" : self.textView.text};
+    }
+    
+    [[VENNetworkingManager shareManager] uploadImageWithUrlString:[self.type isEqualToString:@"report"] ? @"circle/reportCircle" : @"circle/subFriendsCircle" parameters:parameters images:tempMuArr keyName:@"images" successBlock:^(id responseObject) {
         
-        [self.navigationController popViewControllerAnimated:YES];
-        
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"RefreshDynamicCircleListPage" object:nil userInfo:@{@"sort_id" : self.sort_id}];
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"RefreshMyTidingsListPage" object:nil];
+        if (![self.type isEqualToString:@"report"]) {
+            [self.navigationController popViewControllerAnimated:YES];
+            
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"RefreshDynamicCircleListPage" object:nil userInfo:@{@"sort_id" : self.sort_id}];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"RefreshDynamicCircleListPage" object:nil userInfo:@{@"sort_id" : @"0"}];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"RefreshMyTidingsListPage" object:nil];
+        } else {
+            [self.navigationController popViewControllerAnimated:YES];
+        }
         
     } failureBlock:^(NSError *error) {
         

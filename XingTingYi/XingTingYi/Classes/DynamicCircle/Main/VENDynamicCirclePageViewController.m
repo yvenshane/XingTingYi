@@ -88,6 +88,13 @@
     } failureBlock:^(NSError *error) {
         
     }];
+    
+    // 动态圈列表 举报
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dynamicCirclePageListPush:) name:@"DynamicCirclePageListPush" object:nil];
+}
+
+- (void)dynamicCirclePageListPush:(NSNotification *)noti {
+    [self.navigationController pushViewController:noti.userInfo[@"vc"] animated:YES];
 }
 
 //点击选中或者滚动选中都会调用该方法。适用于只关心选中事件，不关心具体是点击还是滚动选中的。

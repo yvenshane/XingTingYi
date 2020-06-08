@@ -143,6 +143,12 @@
     [maneger showPhotoViewerModels:self.dataModelMuArr selectView:button];
 }
 
+- (IBAction)moreButtonClick:(id)sender {
+    if (self.moreButtonClickBlock) {
+        self.moreButtonClickBlock();
+    }
+}
+
 - (NSMutableArray<JJDataModel *> *)dataModelMuArr {
     if (!_dataModelMuArr) {
         _dataModelMuArr = [NSMutableArray array];

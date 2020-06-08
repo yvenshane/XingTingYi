@@ -96,7 +96,7 @@
 //    y += 16;
     
     // card
-    UIImageView *memberCarImageView = [[UIImageView alloc] initWithFrame:CGRectMake(15, y, kMainScreenWidth - 30, 150)];
+    UIImageView *memberCarImageView = [[UIImageView alloc] initWithFrame:CGRectMake((kMainScreenWidth - 345) / 2, y, 345, 150)];
     memberCarImageView.image = [UIImage imageNamed:@"icon_member_card"];
     memberCarImageView.layer.cornerRadius = 12.0f;
     memberCarImageView.layer.masksToBounds = YES;

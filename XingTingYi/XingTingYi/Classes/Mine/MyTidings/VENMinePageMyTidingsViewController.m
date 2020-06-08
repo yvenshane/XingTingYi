@@ -119,7 +119,7 @@ static NSString *const cellIdentifier = @"cellIdentifier";
             
             [self loadDynamicCirclePageListData:@"1"];
             
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"RefreshDynamicCircleListPage" object:nil userInfo:@{@"sort_id" : model.id}];
+//            [[NSNotificationCenter defaultCenter] postNotificationName:@"RefreshDynamicCircleListPage" object:nil userInfo:@{@"sort_id" : model.id}];
             
         } failureBlock:^(NSError *error) {
             
