@@ -55,13 +55,15 @@
         parameters = @{@"mobile" : self.mobile,
                        @"code" : self.code,
                        @"password" : self.passwordTextField.text,
-                       @"repassword" : self.confirmPasswordTextField.text};
+                       @"repassword" : self.confirmPasswordTextField.text,
+                       @"nation_code" : self.otherStr};
     } else {
         parameters = @{@"mobile" : self.mobile,
                        @"code" : self.code,
                        @"password" : self.passwordTextField.text,
                        @"repassword" : self.confirmPasswordTextField.text,
-                       @"platformid" : self.platformid};
+                       @"platformid" : self.platformid,
+                       @"nation_code" : self.otherStr};
     }
     
     NSString *urlString = @"";

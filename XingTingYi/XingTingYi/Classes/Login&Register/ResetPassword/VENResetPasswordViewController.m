@@ -9,6 +9,7 @@
 #import "VENResetPasswordViewController.h"
 #import "VENVerificationCodeButton.h"
 #import "VENSetPasswordPageViewController.h"
+#import "VENListPickerView.h"
 
 @interface VENResetPasswordViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *phoneNumberTextField;
@@ -17,6 +18,9 @@
 
 @property (nonatomic, assign) BOOL is11;
 @property (nonatomic, assign) BOOL is6;
+
+@property (weak, nonatomic) IBOutlet UILabel *otherLabel;
+@property (nonatomic, copy) NSString *otherStr;
 
 @end
 
@@ -45,11 +49,14 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textFieldTextDidChange:) name:UITextFieldTextDidChangeNotification object:nil];
     
     [self setupNavigationItemLeftBarButtonItem];
+    
+    self.otherStr = @"86";
 }
 
 - (void)verificationCodeButtonClick:(VENVerificationCodeButton *)button {
     NSDictionary *parameters = @{@"mobile" : self.phoneNumberTextField.text,
-                                 @"act" : @"reset"};
+                                 @"act" : @"reset",
+                                 @"nation_code" : self.otherStr};
     [[VENNetworkingManager shareManager] requestWithType:HttpRequestTypePOST urlString:@"login/sendcode" parameters:parameters successBlock:^(id responseObject) {
         
         [button countingDownWithCount:60];
@@ -62,13 +69,15 @@
 #pragma mark - 下一步
 - (IBAction)nextStepButtonClick:(id)sender {
     NSDictionary *parameters = @{@"mobile" : self.phoneNumberTextField.text,
-                                 @"code" : self.verificationCodeTextField.text};
+                                 @"code" : self.verificationCodeTextField.text,
+                                 @"nation_code" : self.otherStr};
     [[VENNetworkingManager shareManager] requestWithType:HttpRequestTypePOST urlString:@"login/resetPassOne" parameters:parameters successBlock:^(id responseObject) {
         
         VENSetPasswordPageViewController *vc = [[VENSetPasswordPageViewController alloc] init];
         vc.mobile = self.phoneNumberTextField.text;
         vc.code = self.verificationCodeTextField.text;
         vc.pushType = @"ForgetPassword";
+        vc.otherStr = self.otherStr;
         VENNavigationController *nav = [[VENNavigationController alloc] initWithRootViewController:vc];
         [self presentViewController:nav animated:YES completion:nil];
         
@@ -110,6 +119,26 @@
 
 - (void)backButtonClick {
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (IBAction)otherButtonClick:(id)sender {
+    [self.view endEditing:YES];
+       
+       [[VENNetworkingManager shareManager] requestWithType:HttpRequestTypeGET urlString:@"login/nationCode" parameters:nil successBlock:^(id responseObject) {
+           
+           VENListPickerView *listPickerView = [[VENListPickerView alloc] initWithFrame:CGRectMake(0, 0, kMainScreenWidth, kMainScreenHeight)];
+           listPickerView.type = @"login";
+           listPickerView.dataSourceArr = responseObject[@"content"][@"list"];
+           __weak typeof(self) weakSelf = self;
+           listPickerView.listPickerViewBlock = ^(NSDictionary *dict) {
+               weakSelf.otherLabel.text = [NSString stringWithFormat:@"+%@", dict[@"code"]];
+               weakSelf.otherStr = dict[@"code"];
+           };
+           [[UIApplication sharedApplication].keyWindow addSubview:listPickerView];
+           
+       } failureBlock:^(NSError *error) {
+           
+       }];
 }
 
 /*

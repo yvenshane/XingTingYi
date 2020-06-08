@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment version="2304" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -11,6 +11,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="VENRegisterPageViewController">
             <connections>
                 <outlet property="nextStepButton" destination="N6k-AZ-ld8" id="6Pr-HW-m6s"/>
+                <outlet property="otherLabel" destination="Xw2-IK-QRy" id="lAa-ov-bg9"/>
                 <outlet property="phoneNumberTextField" destination="Jpp-ns-BmU" id="yL6-NL-6sy"/>
                 <outlet property="userAgreementButton" destination="ryT-Ng-rNB" id="e9I-Yq-5a0"/>
                 <outlet property="verificationCodeTextField" destination="Jc2-hs-Lmu" id="NW4-CS-oaY"/>
@@ -29,7 +30,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入手机号码" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Jpp-ns-BmU">
-                    <rect key="frame" x="30" y="166" width="354" height="58"/>
+                    <rect key="frame" x="111" y="166" width="273" height="58"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="58" id="ae1-dC-rm5"/>
                     </constraints>
@@ -79,20 +80,58 @@
                         <color key="titleColor" red="0.6470588235294118" green="0.65490196078431373" blue="0.6588235294117647" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </state>
                 </button>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="w12-9G-R5n">
+                    <rect key="frame" x="30" y="180" width="61" height="30"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+86" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xw2-IK-QRy">
+                            <rect key="frame" x="0.0" y="0.0" width="29" height="30"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.84705882349999995" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_login_down" translatesAutoresizingMaskIntoConstraints="NO" id="CUn-VK-1MA">
+                            <rect key="frame" x="49" y="11.5" width="12" height="7"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="7" id="6xJ-1T-748"/>
+                                <constraint firstAttribute="width" constant="12" id="nK7-3T-FIu"/>
+                            </constraints>
+                        </imageView>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="CUn-VK-1MA" secondAttribute="trailing" id="ETd-EC-cvG"/>
+                        <constraint firstAttribute="bottom" secondItem="Xw2-IK-QRy" secondAttribute="bottom" id="LZ5-HP-2Dd"/>
+                        <constraint firstItem="Xw2-IK-QRy" firstAttribute="top" secondItem="w12-9G-R5n" secondAttribute="top" id="QMM-I7-KuT"/>
+                        <constraint firstItem="Xw2-IK-QRy" firstAttribute="leading" secondItem="w12-9G-R5n" secondAttribute="leading" id="Qx5-qc-coo"/>
+                        <constraint firstItem="CUn-VK-1MA" firstAttribute="centerY" secondItem="Xw2-IK-QRy" secondAttribute="centerY" id="a5c-hq-Zs2"/>
+                        <constraint firstItem="CUn-VK-1MA" firstAttribute="leading" secondItem="Xw2-IK-QRy" secondAttribute="trailing" constant="20" id="reL-H7-NNL"/>
+                    </constraints>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hXh-pW-6jZ">
+                    <rect key="frame" x="30" y="180" width="61" height="30"/>
+                    <connections>
+                        <action selector="otherButtonClick:" destination="-1" eventType="touchUpInside" id="AXa-El-Y5r"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="Jpp-ns-BmU" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" constant="30" id="1zI-UA-ivQ"/>
+                <constraint firstItem="hXh-pW-6jZ" firstAttribute="top" secondItem="w12-9G-R5n" secondAttribute="top" id="2rK-VH-pBG"/>
+                <constraint firstItem="XH2-ln-Tdq" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="30" id="7hC-vb-SMG"/>
                 <constraint firstItem="Jc2-hs-Lmu" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" constant="30" id="9Ec-bI-FGR"/>
+                <constraint firstItem="w12-9G-R5n" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" constant="30" id="A8J-w5-aIq"/>
                 <constraint firstItem="ryT-Ng-rNB" firstAttribute="top" secondItem="N6k-AZ-ld8" secondAttribute="bottom" constant="25" id="EOk-P6-Ph0"/>
                 <constraint firstItem="KE0-Ky-BhY" firstAttribute="leading" secondItem="Jc2-hs-Lmu" secondAttribute="leading" id="GSi-5q-Kh0"/>
+                <constraint firstItem="hXh-pW-6jZ" firstAttribute="trailing" secondItem="w12-9G-R5n" secondAttribute="trailing" id="Ifk-nU-WAB"/>
+                <constraint firstItem="Jpp-ns-BmU" firstAttribute="leading" secondItem="w12-9G-R5n" secondAttribute="trailing" constant="20" id="JdW-ix-pPQ"/>
                 <constraint firstItem="Jc2-hs-Lmu" firstAttribute="top" secondItem="XH2-ln-Tdq" secondAttribute="bottom" id="Lc1-ge-0w7"/>
                 <constraint firstItem="Lwf-KG-lfg" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" constant="30" id="UQm-m2-3kv"/>
+                <constraint firstItem="w12-9G-R5n" firstAttribute="centerY" secondItem="Jpp-ns-BmU" secondAttribute="centerY" id="XSj-mB-XLr"/>
                 <constraint firstAttribute="trailing" secondItem="KE0-Ky-BhY" secondAttribute="trailing" constant="30" id="Xfy-c1-R9T"/>
                 <constraint firstItem="KE0-Ky-BhY" firstAttribute="top" secondItem="Jc2-hs-Lmu" secondAttribute="bottom" id="ZWV-zg-zIv"/>
-                <constraint firstItem="XH2-ln-Tdq" firstAttribute="leading" secondItem="Jpp-ns-BmU" secondAttribute="leading" id="Zfe-WD-IoI"/>
                 <constraint firstItem="N6k-AZ-ld8" firstAttribute="top" secondItem="KE0-Ky-BhY" secondAttribute="bottom" constant="30" id="bIy-jI-tN1"/>
                 <constraint firstItem="Jpp-ns-BmU" firstAttribute="top" secondItem="Lwf-KG-lfg" secondAttribute="bottom" constant="63" id="c6u-85-KHg"/>
+                <constraint firstItem="hXh-pW-6jZ" firstAttribute="leading" secondItem="w12-9G-R5n" secondAttribute="leading" id="dWN-QM-dnV"/>
                 <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="N6k-AZ-ld8" secondAttribute="trailing" constant="37" id="g1N-BW-mnh"/>
                 <constraint firstItem="ryT-Ng-rNB" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="hWE-RT-Nvk"/>
                 <constraint firstItem="XH2-ln-Tdq" firstAttribute="trailing" secondItem="Jpp-ns-BmU" secondAttribute="trailing" id="jFt-xg-KyY"/>
@@ -101,9 +140,13 @@
                 <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="Jc2-hs-Lmu" secondAttribute="trailing" constant="125" id="sf2-li-TBK"/>
                 <constraint firstItem="N6k-AZ-ld8" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" constant="38" id="ti6-e3-Wj8"/>
                 <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="Jpp-ns-BmU" secondAttribute="trailing" constant="30" id="u1e-vU-c0K"/>
+                <constraint firstItem="hXh-pW-6jZ" firstAttribute="bottom" secondItem="w12-9G-R5n" secondAttribute="bottom" id="yS4-8k-foO"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
             <point key="canvasLocation" x="139" y="151"/>
         </view>
     </objects>
+    <resources>
+        <image name="icon_login_down" width="12" height="7"/>
+    </resources>
 </document>

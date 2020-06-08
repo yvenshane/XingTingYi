@@ -12,6 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 typedef void (^listPickerViewBlock)(NSDictionary *);
 @interface VENListPickerView : UIView
+@property (nonatomic, copy) NSString *type;
 @property (nonatomic, copy) NSArray *dataSourceArr;
 @property (nonatomic, copy) listPickerViewBlock listPickerViewBlock;
 

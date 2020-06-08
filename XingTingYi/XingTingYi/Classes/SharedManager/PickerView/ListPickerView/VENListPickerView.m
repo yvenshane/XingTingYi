@@ -57,7 +57,12 @@ static NSString *const cellIdentifier = @"cellIdentifier";
     VENListPickerViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
-    cell.titleLabel.text = self.dataSourceArr[indexPath.row][@"name"];
+    if ([self.type isEqualToString:@"login"]) {
+        cell.titleLabel.text = [NSString stringWithFormat:@"%@ +%@", self.dataSourceArr[indexPath.row][@"name"], self.dataSourceArr[indexPath.row][@"code"]];
+    } else {
+        cell.titleLabel.text = self.dataSourceArr[indexPath.row][@"name"];
+    }
+    
     
     return cell;
 }

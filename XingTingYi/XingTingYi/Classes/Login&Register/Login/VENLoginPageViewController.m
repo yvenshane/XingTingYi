@@ -11,6 +11,7 @@
 #import "VENBindingPhoneViewController.h"
 #import <UMShare/UMShare.h>
 #import <AuthenticationServices/AuthenticationServices.h>
+#import "VENListPickerView.h"
 
 @interface VENLoginPageViewController () <ASAuthorizationControllerDelegate, ASAuthorizationControllerPresentationContextProviding>
 @property (weak, nonatomic) IBOutlet UIButton *loginButton;
@@ -23,6 +24,9 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *qqButton;
 @property (weak, nonatomic) IBOutlet UIButton *wxButton;
+
+@property (weak, nonatomic) IBOutlet UILabel *otherLabel;
+@property (nonatomic, copy) NSString *otherStr;
 
 @end
 
@@ -63,12 +67,15 @@
     } else {
         self.qqButton.hidden = YES;
     }
+    
+    self.otherStr = @"86";
 }
 
 #pragma mark - 登录
 - (IBAction)loginButtonClick:(id)sender {
     NSDictionary *parameters = @{@"mobile" : self.phoneNumberTextField.text,
-                                 @"password" : self.passwordTextField.text};
+                                 @"password" : self.passwordTextField.text,
+                                 @"nation_code" : self.otherStr};
     [[VENNetworkingManager shareManager] requestWithType:HttpRequestTypePOST urlString:@"login/login" parameters:parameters successBlock:^(id responseObject) {
         
 //         [[NSUserDefaults standardUserDefaults] setObject:responseObject[@"content"] forKey:@"LOGIN"];
@@ -330,6 +337,26 @@
             break;
     }
     NSLog(@"%@", errorMsg);
+}
+
+- (IBAction)otherButtonClick:(id)sender {
+    [self.view endEditing:YES];
+       
+       [[VENNetworkingManager shareManager] requestWithType:HttpRequestTypeGET urlString:@"login/nationCode" parameters:nil successBlock:^(id responseObject) {
+           
+           VENListPickerView *listPickerView = [[VENListPickerView alloc] initWithFrame:CGRectMake(0, 0, kMainScreenWidth, kMainScreenHeight)];
+           listPickerView.type = @"login";
+           listPickerView.dataSourceArr = responseObject[@"content"][@"list"];
+           __weak typeof(self) weakSelf = self;
+           listPickerView.listPickerViewBlock = ^(NSDictionary *dict) {
+               weakSelf.otherLabel.text = [NSString stringWithFormat:@"+%@", dict[@"code"]];
+               weakSelf.otherStr = dict[@"code"];
+           };
+           [[UIApplication sharedApplication].keyWindow addSubview:listPickerView];
+           
+       } failureBlock:^(NSError *error) {
+           
+       }];
 }
 
 @end

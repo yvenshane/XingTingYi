@@ -16,6 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *code;
 
 @property (nonatomic, copy) NSString *pushType;
+@property (nonatomic, copy) NSString *otherStr;
 
 @end
 
