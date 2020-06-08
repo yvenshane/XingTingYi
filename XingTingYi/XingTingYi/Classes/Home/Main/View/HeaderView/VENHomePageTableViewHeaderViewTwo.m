@@ -13,12 +13,12 @@
 @interface VENHomePageTableViewHeaderViewTwo () <TYCyclePagerViewDelegate, TYCyclePagerViewDataSource>
 @property (nonatomic, strong) UIImageView *bannerBackgroundImageView;
 @property (nonatomic, strong) TYCyclePagerView *pagerView;
-@property (nonatomic, strong) UILabel *titleLabel;
-@property (nonatomic, strong) UIView *lineView;
-@property (nonatomic, strong) UILabel *descriptionLabel;
-@property (nonatomic, strong) UIButton *moreButton;
-@property (nonatomic, strong) UILabel *titleLabel2;
-@property (nonatomic, strong) UIView *lineView2;
+//@property (nonatomic, strong) UILabel *titleLabel;
+//@property (nonatomic, strong) UIView *lineView;
+//@property (nonatomic, strong) UILabel *descriptionLabel;
+//@property (nonatomic, strong) UIButton *moreButton;
+//@property (nonatomic, strong) UILabel *titleLabel2;
+//@property (nonatomic, strong) UIView *lineView2;
 
 @end
 
@@ -42,50 +42,50 @@ static NSString *const bannerCellIdentifier = @"bannerCellIdentifier";
         [pagerView registerNib:[UINib nibWithNibName:@"VENHomePageBannerCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:bannerCellIdentifier];
         [self addSubview:pagerView];
         
-        UIView *lineView = [[UIView alloc] init];
-        lineView.backgroundColor = UIColorFromRGB(0xFFDE02);
-        [self addSubview:lineView];
-        
-        UILabel *titleLabel = [[UILabel alloc] init];
-        titleLabel.text = @"关于我们";
-        titleLabel.textColor = UIColorFromRGB(0x222222);
-        titleLabel.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:18.0];
-        titleLabel.textAlignment = NSTextAlignmentCenter;
-        [self addSubview:titleLabel];
-        
-        UILabel *descriptionLabel = [[UILabel alloc] init];
-        descriptionLabel.textColor = UIColorFromRGB(0x666666);
-        descriptionLabel.font = [UIFont systemFontOfSize:13.0f];
-        descriptionLabel.numberOfLines = 3;
-        [self addSubview:descriptionLabel];
-        
-        UIButton *moreButton = [[UIButton alloc] init];
-        [moreButton setTitle:@"查看更多介绍" forState:UIControlStateNormal];
-        [moreButton setTitleColor:UIColorFromRGB(0x222222) forState:UIControlStateNormal];
-        moreButton.titleLabel.font = [UIFont systemFontOfSize:13.0f];
-        [moreButton addTarget:self action:@selector(moreButtonClick) forControlEvents:UIControlEventTouchUpInside];
-        [self addSubview:moreButton];
-        ViewBorderRadius(moreButton, 20, 1, UIColorFromRGB(0xE8E8E8));
-        
-        UIView *lineView2 = [[UIView alloc] init];
-        lineView2.backgroundColor = UIColorFromRGB(0xFFDE02);
-        [self addSubview:lineView2];
-        
-        UILabel *titleLabel2 = [[UILabel alloc] init];
-        titleLabel2.text = @"系统介绍";
-        titleLabel2.textColor = UIColorFromRGB(0x222222);
-        titleLabel2.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:18.0];
-        titleLabel2.textAlignment = NSTextAlignmentCenter;
-        [self addSubview:titleLabel2];
+//        UIView *lineView = [[UIView alloc] init];
+//        lineView.backgroundColor = UIColorFromRGB(0xFFDE02);
+//        [self addSubview:lineView];
+//
+//        UILabel *titleLabel = [[UILabel alloc] init];
+//        titleLabel.text = @"关于我们";
+//        titleLabel.textColor = UIColorFromRGB(0x222222);
+//        titleLabel.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:18.0];
+//        titleLabel.textAlignment = NSTextAlignmentCenter;
+//        [self addSubview:titleLabel];
+//
+//        UILabel *descriptionLabel = [[UILabel alloc] init];
+//        descriptionLabel.textColor = UIColorFromRGB(0x666666);
+//        descriptionLabel.font = [UIFont systemFontOfSize:13.0f];
+//        descriptionLabel.numberOfLines = 3;
+//        [self addSubview:descriptionLabel];
+//
+//        UIButton *moreButton = [[UIButton alloc] init];
+//        [moreButton setTitle:@"查看更多介绍" forState:UIControlStateNormal];
+//        [moreButton setTitleColor:UIColorFromRGB(0x222222) forState:UIControlStateNormal];
+//        moreButton.titleLabel.font = [UIFont systemFontOfSize:13.0f];
+//        [moreButton addTarget:self action:@selector(moreButtonClick) forControlEvents:UIControlEventTouchUpInside];
+//        [self addSubview:moreButton];
+//        ViewBorderRadius(moreButton, 20, 1, UIColorFromRGB(0xE8E8E8));
+//
+//        UIView *lineView2 = [[UIView alloc] init];
+//        lineView2.backgroundColor = UIColorFromRGB(0xFFDE02);
+//        [self addSubview:lineView2];
+//
+//        UILabel *titleLabel2 = [[UILabel alloc] init];
+//        titleLabel2.text = @"系统介绍";
+//        titleLabel2.textColor = UIColorFromRGB(0x222222);
+//        titleLabel2.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:18.0];
+//        titleLabel2.textAlignment = NSTextAlignmentCenter;
+//        [self addSubview:titleLabel2];
         
         _bannerBackgroundImageView = bannerBackgroundImageView;
         _pagerView = pagerView;
-        _lineView = lineView;
-        _titleLabel = titleLabel;
-        _descriptionLabel = descriptionLabel;
-        _moreButton = moreButton;
-        _lineView2 = lineView2;
-        _titleLabel2 = titleLabel2;
+//        _lineView = lineView;
+//        _titleLabel = titleLabel;
+//        _descriptionLabel = descriptionLabel;
+//        _moreButton = moreButton;
+//        _lineView2 = lineView2;
+//        _titleLabel2 = titleLabel2;
     }
     return self;
 }
@@ -95,26 +95,28 @@ static NSString *const bannerCellIdentifier = @"bannerCellIdentifier";
     
     self.bannerBackgroundImageView.frame = CGRectMake(0, 0, kMainScreenWidth, kMainScreenHeight / (667.0 / 114.0));
     self.pagerView.frame = CGRectMake(0, 10, kMainScreenWidth, kMainScreenHeight / (667.0 / 170.0));
-    CGFloat y = 10 + kMainScreenHeight / (667.0 / 170.0) + 30;
-    self.titleLabel.frame = CGRectMake(20, y, kMainScreenWidth - 40, 25);
-    y += 18;
-    self.lineView.frame = CGRectMake(kMainScreenWidth / 2 - 73.5 / 2, y, 73.5, 5);
-    y += 5 + 20;
-    self.descriptionLabel.frame = CGRectMake(20, y, kMainScreenWidth - 40, 60);
-    y += 60 + 20;
-    self.moreButton.frame = CGRectMake(kMainScreenWidth / 2 - 129 / 2, y, 129, 40);
-    y += 40 + 40;
-    self.titleLabel2.frame = CGRectMake(20, y, kMainScreenWidth - 40, 25);
-    y += 18;
-    self.lineView2.frame = CGRectMake(kMainScreenWidth / 2 - 73.5 / 2, y, 73.5, 5);
+//    CGFloat y = 10 + kMainScreenHeight / (667.0 / 170.0) + 30;
+//    self.titleLabel.frame = CGRectMake(20, y, kMainScreenWidth - 40, 25);
+//    y += 18;
+//    self.lineView.frame = CGRectMake(kMainScreenWidth / 2 - 73.5 / 2, y, 73.5, 5);
+//    y += 5 + 20;
+//    self.descriptionLabel.frame = CGRectMake(20, y, kMainScreenWidth - 40, 60);
+//    y += 60 + 20;
+//    self.moreButton.frame = CGRectMake(kMainScreenWidth / 2 - 129 / 2, y, 129, 40);
+//    y += 40 + 40;
+//    self.titleLabel2.frame = CGRectMake(20, y, kMainScreenWidth - 40, 25);
+//    y += 18;
+//    self.lineView2.frame = CGRectMake(kMainScreenWidth / 2 - 73.5 / 2, y, 73.5, 5);
 }
 
 - (void)setModel:(VENHomePageModel *)model {
     _model = model;
     
-    NSAttributedString *attributedString = [[NSAttributedString alloc] initWithData:[model.aboutUs[0][@"description"] dataUsingEncoding:NSUnicodeStringEncoding] options:@{NSDocumentTypeDocumentAttribute : NSHTMLTextDocumentType} documentAttributes:nil error:nil];
+//    NSAttributedString *attributedString = [[NSAttributedString alloc] initWithData:[model.aboutUs[0][@"description"] dataUsingEncoding:NSUnicodeStringEncoding] options:@{NSDocumentTypeDocumentAttribute : NSHTMLTextDocumentType} documentAttributes:nil error:nil];
+//
+//    self.descriptionLabel.attributedText = attributedString;
     
-    self.descriptionLabel.attributedText = attributedString;
+    [self.pagerView reloadData];
 }
 
 - (void)moreButtonClick {

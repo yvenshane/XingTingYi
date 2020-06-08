@@ -188,7 +188,7 @@ static NSString *const cellIdentifier2 = @"cellIdentifier2";
                 self.scrollViewBottomLayoutConstraint.constant = 0;
             } else {
                 [self setupBottomToolBar];
-                self.scrollViewBottomLayoutConstraint.constant = (kTabBarHeight - 49) + 60;
+                self.scrollViewBottomLayoutConstraint.constant = 60;
             }
         } else {
             self.scrollViewBottomLayoutConstraint.constant = 0;

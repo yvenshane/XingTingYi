@@ -20,6 +20,7 @@
 
 @interface VENHomePageViewController ()
 @property (nonatomic, strong) VENHomePageModel *model;
+@property (nonatomic, strong) VENHomePageTableViewHeaderViewTwo *headView;
 
 @end
 
@@ -86,6 +87,8 @@ static NSString *const cellIdentifier3 = @"cellIdentifier3";
         
         self.model = [VENHomePageModel yy_modelWithJSON:responseObject[@"content"]];
         
+        self.headView.model = self.model;
+        
         [self.tableView reloadData];
     } failureBlock:^(NSError *error) {
         
@@ -93,44 +96,40 @@ static NSString *const cellIdentifier3 = @"cellIdentifier3";
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 3;
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (section == 0) {
-        return self.model.introduce.count;
-    } else if (section == 1) {
         return self.model.news.count;
     } else {
-        
         return self.model.source.count;
     }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.section == 0) {
-        VENHomePageTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.model = [VENHomePageModel yy_modelWithJSON:self.model.introduce[indexPath.row]];
-
-        return cell;
+    VENHomePageTableViewCellTwo *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier2 forIndexPath:indexPath];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
+    if (indexPath.section == 1) {
+        cell.model = [VENHomePageModel yy_modelWithJSON:self.model.news[indexPath.row]];
     } else {
-        VENHomePageTableViewCellTwo *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier2 forIndexPath:indexPath];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        
-        if (indexPath.section == 1) {
-            cell.model = [VENHomePageModel yy_modelWithJSON:self.model.news[indexPath.row]];
-        } else {
-            cell.model = [VENHomePageModel yy_modelWithJSON:self.model.source[indexPath.row]];
-        }
-        
-        return cell;
+        cell.model = [VENHomePageModel yy_modelWithJSON:self.model.source[indexPath.row]];
     }
+    
+    return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     VENHomePageModel *model;
-    if (indexPath.section == 1) {
+    if (indexPath.section == 0) {
+        model = [VENHomePageModel yy_modelWithJSON:self.model.source[indexPath.row]];
+        
+        VENMaterialDetailPageViewController *vc = [[VENMaterialDetailPageViewController alloc] init];
+        vc.id = model.id;
+        vc.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:vc animated:YES];
+    } else {
         model = [VENHomePageModel yy_modelWithJSON:self.model.news[indexPath.row]];
         
         [[VENNetworkingManager shareManager] requestWithType:HttpRequestTypePOST urlString:@"base/newsInfo" parameters:@{@"id" : model.id} successBlock:^(id responseObject) {
@@ -164,81 +163,47 @@ static NSString *const cellIdentifier3 = @"cellIdentifier3";
         } failureBlock:^(NSError *error) {
             
         }];
-    } else {
-        model = [VENHomePageModel yy_modelWithJSON:self.model.source[indexPath.row]];
-        
-        VENMaterialDetailPageViewController *vc = [[VENMaterialDetailPageViewController alloc] init];
-        vc.id = model.id;
-        vc.hidesBottomBarWhenPushed = YES;
-        [self.navigationController pushViewController:vc animated:YES];
     }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.section == 0) {
-        CGFloat aspectRatio = 315.0 / 157.0;
-        return (kMainScreenWidth - 60) / aspectRatio + 30 + 20 + 25 + 10 + 36;
-    } else {
-        return  80 + 30;
-    }
+    return  80 + 30;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    VENHomePageTableViewHeaderView *headView = [[NSBundle mainBundle] loadNibNamed:@"VENHomePageTableViewHeaderView" owner:nil options:nil].lastObject;
+    
     if (section == 0) {
-        VENHomePageTableViewHeaderViewTwo *headView = [[VENHomePageTableViewHeaderViewTwo alloc] init];
-        headView.model = self.model;
-        headView.moreButtonClickBlock = ^(NSString *str) {
-            VENBaseWebViewController *vc = [[VENBaseWebViewController alloc] init];
-            vc.HTMLString = self.model.aboutUs[0][@"content"];
-            vc.isPresent = YES;
-            vc.navigationItem.title = @"关于我们";
-            VENNavigationController *nav = [[VENNavigationController alloc] initWithRootViewController:vc];
-            [self presentViewController:nav animated:YES completion:nil];
-        };
-        
-        return headView;
+        headView.titleLabel.text = @"新闻资讯";
     } else {
-        VENHomePageTableViewHeaderView *headView = [[NSBundle mainBundle] loadNibNamed:@"VENHomePageTableViewHeaderView" owner:nil options:nil].lastObject;
-        
-        if (section == 1) {
-            headView.titleLabel.text = @"新闻资讯";
-        } else {
-            headView.titleLabel.text = @"推荐素材";
-        }
-        
-        return headView;
+        headView.titleLabel.text = @"推荐素材";
     }
+    
+    return headView;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    if (section == 0) {
-        return 10 + kMainScreenHeight / (667.0 / 170.0) + 30 + 25 + 20 + 60 + 20 + 40 + 40 + 25;
-    } else {
-        return 80;
-    }
+    return 80;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
     UIView *footerView = [[UIView alloc] init];
     footerView.backgroundColor = [UIColor whiteColor];
     
-    if (section != 0) {
-        UIButton *moreButton = [[UIButton alloc] initWithFrame:CGRectMake(20, 15, kMainScreenWidth - 40, 40)];
-        moreButton.backgroundColor = UIColorFromRGB(0xF8F8F8);
-        moreButton.tag = section;
-        [moreButton setTitle:@"查看更多" forState:UIControlStateNormal];
-        [moreButton setTitleColor:UIColorFromRGB(0x666666) forState:UIControlStateNormal];
-        moreButton.titleLabel.font = [UIFont systemFontOfSize:14.0f];
-        [moreButton addTarget:self action:@selector(moreButtonClick:) forControlEvents:UIControlEventTouchUpInside];
-        [footerView addSubview:moreButton];
-    }
+    UIButton *moreButton = [[UIButton alloc] initWithFrame:CGRectMake(20, 15, kMainScreenWidth - 40, 40)];
+    moreButton.backgroundColor = UIColorFromRGB(0xF8F8F8);
+    moreButton.tag = section;
+    [moreButton setTitle:@"查看更多" forState:UIControlStateNormal];
+    [moreButton setTitleColor:UIColorFromRGB(0x666666) forState:UIControlStateNormal];
+    moreButton.titleLabel.font = [UIFont systemFontOfSize:14.0f];
+    [moreButton addTarget:self action:@selector(moreButtonClick:) forControlEvents:UIControlEventTouchUpInside];
+    [footerView addSubview:moreButton];
+    
     return footerView;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
     if (section == 0) {
-        return 10;
-    } else if (section == 1) {
         return 55;
     } else {
         return 55 + 40;
@@ -253,6 +218,11 @@ static NSString *const cellIdentifier3 = @"cellIdentifier3";
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         [self loadHomePageData];
     }];
+    
+    VENHomePageTableViewHeaderViewTwo *headView = [[VENHomePageTableViewHeaderViewTwo alloc] initWithFrame:CGRectMake(0, 0, kMainScreenWidth, 10 + kMainScreenHeight / (667.0 / 170.0))];
+    self.tableView.tableHeaderView = headView;
+    
+    _headView = headView;
     
     [self.view addSubview:self.tableView];
 }
