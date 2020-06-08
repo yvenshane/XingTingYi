@@ -10,11 +10,13 @@
 #import "VENTabBarController.h"
 #import <UMShare/UMShare.h>
 #import <UMCommon/UMConfigure.h>
+#import <GoogleSignIn/GoogleSignIn.h>
 
-@interface AppDelegate ()
+@interface AppDelegate () <GIDSignInDelegate>
 
 @end
 
+static NSString *const kClientID = @"683938591915-76jn41133qsfof445a22d83258gl3876.apps.googleusercontent.com";
 @implementation AppDelegate
 
 
@@ -33,6 +35,10 @@
     
     [self confitUShareSettings];
     [self configUSharePlatforms];
+    
+    // google login
+    [GIDSignIn sharedInstance].delegate = self;
+    [GIDSignIn sharedInstance].clientID = kClientID;
     
     return YES;
 }
@@ -77,6 +83,13 @@
     if (!result) {
          // 其他如支付等SDK的回调
     }
+    
+    if ([url.absoluteString rangeOfString:kClientID].location != NSNotFound) {
+        //Google的回调
+        
+        return [[GIDSignIn sharedInstance] handleURL:url];
+    }
+    
     return result;
 }
 
@@ -121,6 +134,27 @@
     } else {
         return UIInterfaceOrientationMaskPortrait;
     }
+}
+
+// google login
+- (void)signIn:(GIDSignIn *)signIn didSignInForUser:(GIDGoogleUser *)user withError:(NSError *)error {
+    // Perform any operations on signed in user here.
+    NSString *userId = user.userID; // For client-side use only!
+    NSString *idToken = user.authentication.idToken; // Safe to send to the server
+    NSString *fullName = user.profile.name;
+    NSString *givenName = user.profile.givenName;
+    NSString *familyName = user.profile.familyName;
+    NSString *email = user.profile.email;
+    NSLog(@"userID = %@",userId);
+    NSLog(@"idToken = %@",idToken);
+    NSLog(@"fullName = %@",fullName);
+    NSLog(@"givenName = %@",givenName);
+    NSLog(@"familyName = %@",familyName);
+    NSLog(@"email = %@",email);
+}
+
+-(void)signIn:(GIDSignIn *)signIn didDisconnectWithUser:(GIDGoogleUser *)user withError:(NSError *)error{
+    //执行任何操作，当用户断开与这里的应用程序。// …
 }
 
 @end

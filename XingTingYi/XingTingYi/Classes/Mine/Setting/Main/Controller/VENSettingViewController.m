@@ -12,6 +12,7 @@
 #import "VENSettingPersonalInformationViewController.h"
 #import "VENSettingFeedbackViewController.h"
 #import "VENBaseWebViewController.h"
+#import <GoogleSignIn/GoogleSignIn.h>
 
 @interface VENSettingViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, copy) NSArray *titleArr;
@@ -163,6 +164,8 @@ static NSString *const cellIdentifier = @"cellIdentifier";
     
     UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"再看看" style:UIAlertActionStyleDestructive handler:nil];
     UIAlertAction *determineAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        
+        [[GIDSignIn sharedInstance] signOut];
         
         [[VENNetworkingManager shareManager] requestWithType:HttpRequestTypeGET urlString:@"user/exitLogin" parameters:nil successBlock:^(id responseObject) {
             

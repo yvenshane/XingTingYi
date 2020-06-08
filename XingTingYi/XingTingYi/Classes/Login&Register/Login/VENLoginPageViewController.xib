@@ -114,7 +114,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ohk-IJ-3QY">
-                    <rect key="frame" x="227" y="794" width="48" height="48"/>
+                    <rect key="frame" x="183" y="794" width="48" height="48"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="48" id="8C3-7p-cdw"/>
                         <constraint firstAttribute="width" constant="48" id="SDH-tr-7kn"/>
@@ -125,7 +125,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hpk-Bz-x65">
-                    <rect key="frame" x="139" y="794" width="48" height="48"/>
+                    <rect key="frame" x="95" y="794" width="48" height="48"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="48" id="5cL-9w-dWC"/>
                         <constraint firstAttribute="height" constant="48" id="ebN-Ha-hx6"/>
@@ -176,6 +176,17 @@
                         <action selector="otherButtonClick:" destination="-1" eventType="touchUpInside" id="a3I-4V-vVz"/>
                     </connections>
                 </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UtD-aT-4Tz">
+                    <rect key="frame" x="271" y="794" width="48" height="48"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="48" id="47u-Qg-HjV"/>
+                        <constraint firstAttribute="width" constant="48" id="4ws-ue-mTH"/>
+                    </constraints>
+                    <state key="normal" image="icon_login_google"/>
+                    <connections>
+                        <action selector="googleButtonClick:" destination="-1" eventType="touchUpInside" id="xOA-So-8HU"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
@@ -187,6 +198,7 @@
                 <constraint firstItem="7cD-Vi-8Da" firstAttribute="trailing" secondItem="9U6-mA-aXm" secondAttribute="trailing" id="8OP-YX-OLt"/>
                 <constraint firstItem="LJZ-r8-i2M" firstAttribute="top" secondItem="9U6-mA-aXm" secondAttribute="bottom" constant="25" id="8wY-ge-5zn"/>
                 <constraint firstItem="pDT-JQ-umo" firstAttribute="leading" secondItem="vfi-fb-5dP" secondAttribute="leading" id="9Pa-1u-4ZT"/>
+                <constraint firstItem="UtD-aT-4Tz" firstAttribute="leading" secondItem="ohk-IJ-3QY" secondAttribute="trailing" constant="40" id="AUl-bu-Co9"/>
                 <constraint firstItem="Iv1-Pm-8nk" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" constant="30" id="Ayg-xt-QTB"/>
                 <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="7LO-Vc-V1K" secondAttribute="trailing" constant="30" id="EjS-A4-xpI"/>
                 <constraint firstItem="cgV-AS-Uh3" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Fie-QI-WI3"/>
@@ -195,6 +207,7 @@
                 <constraint firstItem="fSu-eI-ldC" firstAttribute="centerY" secondItem="J9A-9w-ghK" secondAttribute="centerY" constant="-5.5" id="JOU-kW-DGM"/>
                 <constraint firstItem="dQt-4i-6za" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" constant="30" id="JsI-5I-Fmv"/>
                 <constraint firstItem="ohk-IJ-3QY" firstAttribute="leading" secondItem="hpk-Bz-x65" secondAttribute="trailing" constant="40" id="K06-RN-BTz"/>
+                <constraint firstItem="UtD-aT-4Tz" firstAttribute="centerY" secondItem="ohk-IJ-3QY" secondAttribute="centerY" id="KHr-uj-3DB"/>
                 <constraint firstItem="vfi-fb-5dP" firstAttribute="centerY" secondItem="wtp-oP-gq5" secondAttribute="centerY" id="Kaa-3r-fRF"/>
                 <constraint firstItem="fSu-eI-ldC" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" constant="30" id="MtZ-en-Fud"/>
                 <constraint firstItem="pDT-JQ-umo" firstAttribute="top" secondItem="vfi-fb-5dP" secondAttribute="top" id="Mvy-VL-dwJ"/>
@@ -204,7 +217,7 @@
                 <constraint firstItem="wtp-oP-gq5" firstAttribute="leading" secondItem="vfi-fb-5dP" secondAttribute="trailing" constant="20" id="YEG-mb-Epo"/>
                 <constraint firstItem="mlm-3U-zi1" firstAttribute="top" secondItem="wtp-oP-gq5" secondAttribute="bottom" id="YFY-Xb-NgZ"/>
                 <constraint firstItem="ohk-IJ-3QY" firstAttribute="top" secondItem="J9A-9w-ghK" secondAttribute="bottom" constant="20" id="amO-TE-ZTQ"/>
-                <constraint firstItem="ohk-IJ-3QY" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" constant="44" id="b4K-5p-zjr"/>
+                <constraint firstItem="ohk-IJ-3QY" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="b4K-5p-zjr"/>
                 <constraint firstItem="cgV-AS-Uh3" firstAttribute="top" secondItem="9U6-mA-aXm" secondAttribute="bottom" constant="115" id="baX-D4-xcG"/>
                 <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="wtp-oP-gq5" secondAttribute="trailing" constant="30" id="cxj-w6-iPi"/>
                 <constraint firstItem="LJZ-r8-i2M" firstAttribute="leading" secondItem="9U6-mA-aXm" secondAttribute="leading" id="gfl-6w-wdI"/>
@@ -227,6 +240,7 @@
     </objects>
     <resources>
         <image name="icon_login_down" width="12" height="7"/>
+        <image name="icon_login_google" width="48" height="48"/>
         <image name="icon_login_qq" width="48" height="48"/>
         <image name="icon_login_weixin" width="48" height="48"/>
     </resources>

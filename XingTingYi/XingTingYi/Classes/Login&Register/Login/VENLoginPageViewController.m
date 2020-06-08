@@ -12,8 +12,9 @@
 #import <UMShare/UMShare.h>
 #import <AuthenticationServices/AuthenticationServices.h>
 #import "VENListPickerView.h"
+#import <GoogleSignIn/GoogleSignIn.h>
 
-@interface VENLoginPageViewController () <ASAuthorizationControllerDelegate, ASAuthorizationControllerPresentationContextProviding>
+@interface VENLoginPageViewController () <ASAuthorizationControllerDelegate, ASAuthorizationControllerPresentationContextProviding, GIDSignInDelegate>
 @property (weak, nonatomic) IBOutlet UIButton *loginButton;
 @property (weak, nonatomic) IBOutlet UITextField *phoneNumberTextField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
@@ -69,6 +70,10 @@
     }
     
     self.otherStr = @"86";
+    
+    // google
+    [GIDSignIn sharedInstance].presentingViewController = self;
+    [[GIDSignIn sharedInstance] restorePreviousSignIn];
 }
 
 #pragma mark - 登录
@@ -127,9 +132,43 @@
 
 #pragma mark - 谷歌登录
 - (IBAction)googleButtonClick:(id)sender {
-    [MBProgressHUD showText:@"暂不支持"];
+    [[GIDSignIn sharedInstance] signIn];
 }
 
+#pragma mark - GIDSignInDelegate
+- (void)signIn:(GIDSignIn *)signIn didSignInForUser:(GIDGoogleUser *)user withError:(NSError *)error {
+    if (error) {
+        NSLog(@"error = %@", error);
+    } else {
+        NSString *token = user.authentication.idToken;
+        NSString *openId = user.userID;
+        
+        NSDictionary *parameters = @{@"platform" : @"google",
+                                     @"openid" : token,
+                                     @"unionid" : openId};
+        
+        [[VENNetworkingManager shareManager] requestWithType:HttpRequestTypePOST urlString:@"login/oauthLogin" parameters:parameters successBlock:^(id responseObject) {
+            
+            if ([responseObject[@"ret"] integerValue] == 301) {
+                VENBindingPhoneViewController *vc = [[VENBindingPhoneViewController alloc] init];
+                vc.platformid = [NSString stringWithFormat:@"%ld", [responseObject[@"content"][@"platformid"] integerValue]];
+                UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
+                [self presentViewController:nav animated:YES completion:nil];
+            } else if ([responseObject[@"ret"] integerValue] == 200) {
+                [[NSUserDefaults standardUserDefaults] setObject:@"1234" forKey:@"LOGIN"];
+                
+                [self dismissViewControllerAnimated:YES completion:nil];
+                
+                if (self.loginSuccessBlock) {
+                    self.loginSuccessBlock();
+                }
+            }
+            
+        } failureBlock:^(NSError *error) {
+            
+        }];
+    }
+}
 
 //VENBindingPhoneViewController *vc = [[VENBindingPhoneViewController alloc] init];
 //VENNavigationController *nav = [[VENNavigationController alloc] initWithRootViewController:vc];
