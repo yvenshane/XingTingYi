@@ -69,7 +69,7 @@ static NSString *const cellIdentifier = @"cellIdentifier";
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 7;
+    return 6;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -78,13 +78,7 @@ static NSString *const cellIdentifier = @"cellIdentifier";
     
     cell.iconImageView.image = [UIImage imageNamed:self.titleArr[indexPath.row][@"icon"]];
     cell.titleLabel.text = self.titleArr[indexPath.row][@"title"];
-    cell.descriptionLabel.hidden = indexPath.row == 5 ? NO : YES;
-    
-    NSMutableAttributedString *mutableAttributedString = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"会员剩余天数%@天", self.model.days]];
-    [mutableAttributedString setAttributes:@{NSForegroundColorAttributeName : [UIColor redColor]} range:NSMakeRange(6, self.model.days.length)];
-    
-    cell.descriptionLabel.attributedText = mutableAttributedString;
-    cell.iconImageViewCenterYLayoutConstraint.constant = indexPath.row == 0 ? -7 : 0;
+    cell.descriptionLabel.hidden = YES;
     
     return cell;
 }
@@ -96,11 +90,7 @@ static NSString *const cellIdentifier = @"cellIdentifier";
         vc.origin = @"PersonalCenter";
         vc.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:vc animated:YES];
-    } else if (indexPath.row == 5) { // 会员中心
-        VENMinePageMemberCenterViewController *vc = [[VENMinePageMemberCenterViewController alloc] init];
-        vc.hidesBottomBarWhenPushed = YES;
-        [self.navigationController pushViewController:vc animated:YES];
-    } else if (indexPath.row == 6) {
+    } else if (indexPath.row == 5) {
         VENMinePageMyTidingsViewController *vc = [[VENMinePageMyTidingsViewController alloc] init];
         vc.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:vc animated:YES];
@@ -180,7 +170,6 @@ static NSString *const cellIdentifier = @"cellIdentifier";
                      @{@"icon" : @"icon_mine_03", @"title" : @"我的翻译"},
                      @{@"icon" : @"icon_mine_04", @"title" : @"我的字幕"},
                      @{@"icon" : @"icon_mine_05", @"title" : @"我的生词本"},
-                     @{@"icon" : @"icon_mine_06", @"title" : @"会员中心"},
                      @{@"icon" : @"icon_mine_07", @"title" : @"我的动态"}];
     }
     return _titleArr;

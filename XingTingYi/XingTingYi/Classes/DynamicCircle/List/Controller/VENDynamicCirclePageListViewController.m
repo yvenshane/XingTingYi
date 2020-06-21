@@ -70,7 +70,7 @@ static NSString *const cellIdentifier = @"cellIdentifier";
     
     __weak typeof(self) weakSelf = self;
     cell.moreButtonClickBlock = ^{
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:[[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad ? UIAlertControllerStyleAlert : UIAlertControllerStyleActionSheet];
         
         UIAlertAction *alertAction = [UIAlertAction actionWithTitle:@"屏蔽此人" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             [weakSelf shieldWithType:@"2" andID:model.user_id];
@@ -85,9 +85,7 @@ static NSString *const cellIdentifier = @"cellIdentifier";
             vc.hidesBottomBarWhenPushed = YES;
             [[NSNotificationCenter defaultCenter] postNotificationName:@"DynamicCirclePageListPush" object:nil userInfo:@{@"vc" : vc}];
         }];
-        UIAlertAction *alertAction4 = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-            
-        }];
+        UIAlertAction *alertAction4 = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
         
         [alert addAction:alertAction];
         [alert addAction:alertAction2];
@@ -104,7 +102,6 @@ static NSString *const cellIdentifier = @"cellIdentifier";
     NSDictionary *parameters = @{@"type" : type,
                                  [type isEqualToString:@"1"] ? @"circle_id" : @"shield_id" : idd};
     
-    __weak typeof(self) weakSelf = self;
     [[VENNetworkingManager shareManager] requestWithType:HttpRequestTypePOST urlString:@"circle/shield" parameters:parameters successBlock:^(id responseObject) {
         
         [[NSNotificationCenter defaultCenter] postNotificationName:@"RefreshMyTidingsListPage" object:nil];
