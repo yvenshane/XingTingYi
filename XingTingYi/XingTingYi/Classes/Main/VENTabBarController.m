@@ -23,9 +23,8 @@
     UIViewController *vc2 = [self loadChildViewControllerWithClassName:@"VENMaterialPageViewController" andTitle:@"素材专区" andImageName:@"icon_tab02"];
     UIViewController *vc3 = [self loadChildViewControllerWithClassName:@"VENDynamicCirclePageViewController" andTitle:@"动态圈" andImageName:@"icon_tab03"];
     UIViewController *vc4 = [self loadChildViewControllerWithClassName:@"VENMinePageViewController" andTitle:@"我的" andImageName:@"icon_tab04"];
-    UIViewController *vc5 = [self loadChildViewControllerWithClassName:@"VENExcellentCoursePageViewController" andTitle:@"精品课程" andImageName:@"icon_tab05"];
     
-    self.viewControllers = @[vc1, vc2, vc5, vc3, vc4];
+    self.viewControllers = @[vc1, vc2, vc3, vc4];
     
     self.delegate = self;
     self.tabBar.tintColor = UIColorFromRGB(0x222222);
