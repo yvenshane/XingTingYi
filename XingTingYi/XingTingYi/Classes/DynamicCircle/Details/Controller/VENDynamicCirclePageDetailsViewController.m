@@ -130,7 +130,7 @@ static NSString *const cellIdentifier = @"cellIdentifier";
         
         __weak typeof(self) weakSelf = self;
         headerView.moreButtonClickBlock = ^{
-            UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:[[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad ? UIAlertControllerStyleAlert : UIAlertControllerStyleActionSheet];
             
             UIAlertAction *alertAction = [UIAlertAction actionWithTitle:@"屏蔽此人" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
                 [weakSelf shieldWithType:@"2" andID:self.model.user_id];
